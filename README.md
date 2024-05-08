@@ -1,3 +1,16 @@
+## Tutor clone project
+1. Clone project ke komputer kalian
+2. Di dalam folder project buka command line
+3. Ketik "composer install" setelah itu enter
+4. Tunggu sampai folder vendor dibuat
+5. Buat file .env di folder terluar project (bisa .env.example kalian copy terus rename)
+6. Isi dari file .env kalian sesuaikan dengan database di komputer kalian
+7. Gas ngerjain.....
+
+<p align="center"><a href="https://github.com/ghazafm" target="_blank"><img src="https://i.pinimg.com/originals/41/7e/be/417ebee986aec41629278b1e04cfbfe9.gif" width="400" alt="Laravel Logo"></a></p>
+
+## Laravel
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
