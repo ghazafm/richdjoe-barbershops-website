@@ -1,0 +1,80 @@
+.service-area {
+
+    @media #{$md}{
+        padding-bottom: 100px;
+    }
+    @media #{$sm}{
+        padding-bottom: 70px;
+    }
+    @media #{$xs}{
+        padding-bottom: 70px;
+    }
+    .services-caption{
+        background: #f8f8f8;
+        padding:84px 45px 56px;
+        border-radius: 7px;
+        @include transition(.5s);
+        @media #{$lg}{
+            padding: 84px 25px 56px;
+        }
+        .service-icon{
+            display: inline-block;
+            position: relative;
+            &::before{
+                background-image: url(../img/gallery/dot.png);
+                content: "";
+                width: 80px;
+                height: 135px;
+                position: absolute;
+                right: -29px;
+                top: -35px;
+                z-index: 0;
+                @include transition(.5s);
+            }
+            i{
+                position: relative;
+                color: #fff;
+                font-size: 40px;
+                height: 105px;
+                width: 105px;
+                display: block;
+                line-height: 105px;
+                text-align: center;
+                background:#1d2434;
+                margin-bottom: 42px;
+                @include transition(.5s);
+
+            }
+        }
+        .service-cap{
+            h4{
+                a{
+                    font-size: 24px;
+                    font-weight: 700;
+                    line-height: 1.2;
+                    margin-bottom: 27px;
+                    display: inline-block;
+                    &:hover{
+                        color:$theme-color;
+                    }
+                }
+            }
+            p{
+
+            }
+        }
+    }
+}
+// hover
+.services-caption:hover {
+    .service-icon {
+        &::before{
+            right: -32px;
+        }
+        i{
+            background:#d19f68;
+        }
+    }
+}
+
+

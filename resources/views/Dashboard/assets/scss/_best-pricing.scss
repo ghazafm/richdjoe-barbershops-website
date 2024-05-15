@@ -1,0 +1,102 @@
+.best-pricing{
+    background: #fffcf9;
+    .pricing-list{
+        ul{
+            li{
+                font-family: $font_1;
+                text-transform: uppercase;
+                font-size: 15px;
+                font-weight: 500;
+                color: #010101;
+                margin-bottom: 18px;
+                @media #{$lg}{
+                    font-size: 14px;
+                }
+                @media #{$sm}{
+                    font-size: 13px;
+                }
+                span{
+                    color: #d19f68 !important;
+                    font-weight: 400;
+                    font-size: 16px
+                }
+            }
+        }
+    }
+    .pricing-img{
+        @media #{$md}{
+            padding-top: 80px;
+        }
+        @media #{$sm}{
+            padding-top: 60px;
+        }
+        @media #{$xs}{
+            padding-top: 60px;
+        }
+        .pricing-img1{
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 909px;
+            width: 36%;
+
+            @media #{$large1}{
+                width: 35%;
+            }
+            @media #{$large2}{
+                width: 35%;
+            }
+            @media #{$large3}{
+                width: 33%;;
+            }
+
+            @media #{$lg}{
+                width: 39%;
+                height: 905px;
+            }
+            @media #{$md}{
+                position: unset;
+                width: 70%;
+            }
+            @media #{$sm}{
+                position: unset;
+                width: 80%;
+                height: 450px;
+            }
+            @media #{$xs}{
+                position: unset;
+                width: 90%;
+                height: 320px;
+            }
+        }
+        .pricing-img2{
+            position: absolute;
+            bottom: 10%;
+            left: 17%;
+            @media #{$large1}{
+                left: 8%;
+                width: 33%;
+            }
+            @media #{$large2}{
+                left: 9%;
+                width: 33%;
+            }
+            @media #{$large3}{
+                left: 13%;
+            }
+            @media #{$lg}{
+                display: none;
+            }
+            @media #{$md}{
+                bottom: 9%;
+            }
+            @media #{$sm}{
+               display: none;
+            }
+            @media #{$xs}{
+               display: none;
+            }
+        }
+    }
+
+}
