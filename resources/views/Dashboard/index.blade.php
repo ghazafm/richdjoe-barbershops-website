@@ -8,23 +8,23 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href={{asset('assets/img/favicon.ico')}}>
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/slicknav.css">
-    <link rel="stylesheet" href="assets/css/flaticon.css">
-    <link rel="stylesheet" href="assets/css/gijgo.css">
-    <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href="assets/css/animated-headline.css">
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/css/themify-icons.css">
-    <link rel="stylesheet" href="assets/css/slick.css">
-    <link rel="stylesheet" href="assets/css/nice-select.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href={{ asset('assets/css/bootstrap.min.css') }}>
+<link rel="stylesheet" href={{ asset('assets/css/owl.carousel.min.css') }}>
+<link rel="stylesheet" href={{ asset('assets/css/slicknav.css') }}>
+<link rel="stylesheet" href={{ asset('assets/css/flaticon.css') }}>
+<link rel="stylesheet" href={{ asset('assets/css/gijgo.css') }}>
+<link rel="stylesheet" href={{ asset('assets/css/animate.min.css') }}>
+<link rel="stylesheet" href={{ asset('assets/css/animated-headline.css') }}>
+<link rel="stylesheet" href={{ asset('assets/css/magnific-popup.css') }}>
+<link rel="stylesheet" href={{ asset('assets/css/fontawesome-all.min.css') }}>
+<link rel="stylesheet" href={{ asset('assets/css/themify-icons.css') }}>
+<link rel="stylesheet" href={{ asset('assets/css/slick.css') }}>
+<link rel="stylesheet" href={{ asset('assets/css/nice-select.css') }}>
+<link rel="stylesheet" href={{ asset('assets/css/style.css') }}>
+
 </head>
 
 <body>
@@ -34,7 +34,7 @@
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
                 <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/loder.png" alt="">
+                    <img src={{asset('assets/img/logo/loder.png')}} alt="">
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
                         <!-- Logo -->
                         <div class="col-xl-2 col-lg-2 col-md-1">
                             <div class="logo">
-                                <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                <a href="index.html"><img src="{{ asset('assets/img/logo/logo.png') }}" alt=""></a>
                             </div>
                         </div>
                         <div class="col-xl-10 col-lg-10 col-md-10">
@@ -142,7 +142,7 @@
                     <div class="col-lg-6 col-md-11">
                         <!-- about-img -->
                         <div class="about-img ">
-                            <img src="assets/img/gallery/about.png" alt="">
+                            <img src={{ asset('assets/img/gallery/about.png')}} alt="">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12">
@@ -158,14 +158,14 @@
                                 intended.</p>
                             <p class="pera-top mb-50">Brook presents your services with flexible, convefnient and ent
                                 anipurpose layouts. You can select your favorite.</p>
-                            <img src="assets/img/gallery/signature.png" alt="">
+                            <img src={{ asset('assets/img/gallery/signature.png')}} alt="">
                         </div>
                     </div>
                 </div>
             </div>
             <!-- About Shape -->
             <div class="about-shape">
-                <img src="assets/img/gallery/about-shape.png" alt="">
+                <img src={{ asset('assets/img/gallery/about-shape.png')}} alt="">
             </div>
         </section>
         <!-- About-2 Area End -->
@@ -240,7 +240,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
                         <div class="single-team mb-80 text-center">
                             <div class="team-img">
-                                <img src="assets/img/gallery/team1.png" alt="">
+                                <img src = {{asset('assets/img/gallery/team1.png"')}}alt="">
                             </div>
                             <div class="team-caption">
                                 <span>Master Barber</span>
@@ -251,7 +251,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
                         <div class="single-team mb-80 text-center">
                             <div class="team-img">
-                                <img src="assets/img/gallery/team2.png" alt="">
+                                <img src={{asset('assets/img/gallery/team2.png')}} alt="">
                             </div>
                             <div class="team-caption">
                                 <span>Color Expart</span>
@@ -262,7 +262,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
                         <div class="single-team mb-80 text-center">
                             <div class="team-img">
-                                <img src="assets/img/gallery/team3.png" alt="">
+                                <img src="{{asset('assets/img/gallery/team3.png')}} alt="">
                             </div>
                             <div class="team-caption">
                                 <span>Master Barber</span>
@@ -273,7 +273,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
                         <div class="single-team mb-80 text-center">
                             <div class="team-img">
-                                <img src="assets/img/gallery/team2.png" alt="">
+                                <img src={{asset('assets/img/gallery/team2.png')}} alt="">
                             </div>
                             <div class="team-caption">
                                 <span>Master Barber</span>
@@ -335,8 +335,8 @@
             </div>
             <!-- pricing img -->
             <div class="pricing-img">
-                <img class="pricing-img1" src="assets/img/gallery/pricing1.png" alt="">
-                <img class="pricing-img2" src="assets/img/gallery/pricing2.png" alt="">
+                <img class="pricing-img1" src={{asset('assets/img/gallery/pricing1.png')}} alt="">
+                <img class="pricing-img2" src={{asset('assets/img/gallery/pricing2.png')}} alt="">
             </div>
         </div>
         <!-- Best Pricing Area End -->
@@ -355,28 +355,28 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="box snake mb-30">
-                            <div class="gallery-img " style="background-image: url(assets/img/gallery/gallery1.png);">
+                            <div class="gallery-img " style="background-image: url('{{ asset('assets/img/gallery/gallery1.png') }}');">
                             </div>
                             <div class="overlay"></div>
                         </div>
                     </div>
                     <div class="col-lg-8 col-md-6 col-sm-6">
                         <div class="box snake mb-30">
-                            <div class="gallery-img " style="background-image: url(assets/img/gallery/gallery2.png);">
+                            <div class="gallery-img " style="background-image: url('{{ asset('assets/img/gallery/gallery2.png') }}');">
                             </div>
                             <div class="overlay"></div>
                         </div>
                     </div>
                     <div class="col-lg-8 col-md-6 col-sm-6">
                         <div class="box snake mb-30">
-                            <div class="gallery-img " style="background-image: url(assets/img/gallery/gallery3.png);">
+                            <div class="gallery-img " style="background-image: url('{{ asset('assets/img/gallery/gallery3.png') }}');">
                             </div>
                             <div class="overlay"></div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="box snake mb-30">
-                            <div class="gallery-img " style="background-image: url(assets/img/gallery/gallery4.png);">
+                            <div class="gallery-img " style="background-image: url('{{ asset('assets/img/gallery/gallery4.png') }}');">
                             </div>
                             <div class="overlay"></div>
                         </div>
@@ -387,7 +387,7 @@
         <!-- Gallery Area End -->
         <!-- Cut Details Start -->
         <div class="cut-details section-bg section-padding2"
-            data-background="assets/img/gallery/section_bg02.png">
+            data-background={{asset('assets/img/gallery/section_bg02.png')}}>
             <div class="container">
                 <div class="cut-active dot-style">
                     <div class="single-cut">
@@ -453,7 +453,7 @@
                         <div class="home-blog-single mb-30">
                             <div class="blog-img-cap">
                                 <div class="blog-img">
-                                    <img src="assets/img/gallery/home-blog1.png" alt="">
+                                    <img src={{asset('assets/img/gallery/home-blog1.png')}} alt="">
                                     <!-- Blog date -->
                                     <div class="blog-date text-center">
                                         <span>24</span>
@@ -473,7 +473,7 @@
                         <div class="home-blog-single mb-30">
                             <div class="blog-img-cap">
                                 <div class="blog-img">
-                                    <img src="assets/img/gallery/home-blog2.png" alt="">
+                                    <img src={{asset('assets/img/gallery/home-blog2.png')}} alt="">
                                     <!-- Blog date -->
                                     <div class="blog-date text-center">
                                         <span>24</span>
@@ -496,7 +496,7 @@
     </main>
     <footer>
         <!--? Footer Start-->
-        <div class="footer-area section-bg" data-background="assets/img/gallery/footer_bg.png">
+        <div class="footer-area section-bg" data-background={{asset('assets/img/gallery/footer_bg.png')}}>
             <div class="container">
                 <div class="footer-top footer-padding">
                     <div class="row d-flex justify-content-between">
@@ -504,7 +504,7 @@
                             <div class="single-footer-caption mb-50">
                                 <!-- logo -->
                                 <div class="footer-logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo2_footer.png"
+                                    <a href="index.html"><img src={{asset('assets/img/logo/logo2_footer.png')}}
                                             alt=""></a>
                                 </div>
                                 <div class="footer-tittle">
@@ -611,44 +611,44 @@
 
     <!-- JS here -->
 
-    <script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src={{asset('assets/js/vendor/modernizr-3.5.0.min.js')}}></script>
     <!-- Jquery, Popper, Bootstrap -->
-    <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src={{asset('assets/js/vendor/jquery-1.12.4.min.js')}}></script>
+    <script src={{asset('assets/js/popper.min.js')}}></script>
+    <script src={{asset('assets/js/bootstrap.min.js')}}></script>
     <!-- Jquery Mobile Menu -->
-    <script src="assets/js/jquery.slicknav.min.js"></script>
+    <script src={{asset('assets/js/jquery.slicknav.min.js')}}></script>
 
     <!-- Jquery Slick , Owl-Carousel Plugins -->
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/slick.min.js"></script>
+    <script src={{asset('assets/js/owl.carousel.min.js')}}></script>
+    <script src={{asset('assets/js/slick.min.js')}}></script>
     <!-- One Page, Animated-HeadLin -->
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/animated.headline.js"></script>
-    <script src="assets/js/jquery.magnific-popup.js"></script>
+    <script src={{asset('assets/js/wow.min.js')}}></script>
+    <script src={{asset('assets/js/animated.headline.js')}}></script>
+    <script src={{asset('assets/js/jquery.magnific-popup.js')}}></script>
 
     <!-- Date Picker -->
-    <script src="assets/js/gijgo.min.js"></script>
+    <script src={{asset('assets/js/gijgo.min.js')}}></script>
     <!-- Nice-select, sticky -->
-    <script src="assets/js/jquery.nice-select.min.js"></script>
-    <script src="assets/js/jquery.sticky.js"></script>
+    <script src={{asset('assets/js/jquery.nice-select.min.js')}}></script>
+    <script src={{asset('assets/js/jquery.sticky.js')}}></script>
 
     <!-- counter , waypoint,Hover Direction -->
-    <script src="assets/js/jquery.counterup.min.js"></script>
-    <script src="assets/js/waypoints.min.js"></script>
-    <script src="assets/js/jquery.countdown.min.js"></script>
-    <script src="assets/js/hover-direction-snake.min.js"></script>
+    <script src={{asset('assets/js/jquery.counterup.min.js')}}></script>
+    <script src={{asset('assets/js/waypoints.min.js')}}></script>
+    <script src={{asset('assets/js/jquery.countdown.min.js')}}></script>
+    <script src={{asset('assets/js/hover-direction-snake.min.js')}}></script>
 
     <!-- contact js -->
-    <script src="assets/js/contact.js"></script>
-    <script src="assets/js/jquery.form.js"></script>
-    <script src="assets/js/jquery.validate.min.js"></script>
-    <script src="assets/js/mail-script.js"></script>
-    <script src="assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src={{asset('assets/js/contact.js')}}></script>
+    <script src={{asset('assets/js/jquery.form.js')}}></script>
+    <script src={{asset('assets/js/jquery.validate.min.js')}}></script>
+    <script src={{asset('assets/js/mail-script.js')}}></script>
+    <script src={{asset('assets/js/jquery.ajaxchimp.min.js')}}></script>
 
     <!-- Jquery Plugins, main Jquery -->
-    <script src="assets/js/plugins.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src={{asset('assets/js/plugins.js')}}></script>
+    <script src={{asset('assets/js/main.js')}}></script>
 
 </body>
 
