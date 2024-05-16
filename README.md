@@ -5,7 +5,8 @@
 4. Tunggu sampai folder vendor dibuat
 5. Setelah itu buat file .env di folder terluar project (bisa .env.example kalian copy terus rename)
 6. Isi dari file .env kalian sesuaikan dengan database di komputer kalian
-7. Gas ngerjain.....
+7. jalankan di terminal php artisan migrate
+8. Gas ngerjain.....
 
 <p align="center"><a href="https://github.com/ghazafm" target="_blank"><img src="https://i.pinimg.com/originals/41/7e/be/417ebee986aec41629278b1e04cfbfe9.gif" width="400" alt="Laravel Logo"></a></p>
 
