@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-cd ..
 # Directory containing migration files
 MIGRATIONS_DIR="database/migrations"
 
