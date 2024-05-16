@@ -5,15 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kapster extends Model
+class Transaction extends Model
 {
     use HasFactory;
 
-    protected $table = 'kapster';
-
     protected $fillable = [
-        'name', 'photo', 'schedule',
+        'customer_id', 'kapster_id', 'service_id', 'transaction_date', 'total_price', 'rating', 'comment',
     ];
-
-    
 }

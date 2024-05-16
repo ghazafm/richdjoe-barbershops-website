@@ -8,3 +8,4 @@ DESCRIBE kapster;
 DESCRIBE customer;
 DESCRIBE services;
 DESCRIBE transaction;
+DESCRIBE transaction_services;
