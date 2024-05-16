@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +21,7 @@ class TransactionsSeeder extends Seeder
         $kapsterIds = DB::table('kapsters')->pluck('id');
         $serviceIds = DB::table('services')->pluck('id');
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 1000; $i++) {
             $customerId = $faker->randomElement($customerIds);
             $kapsterId = $faker->randomElement($kapsterIds);
             $serviceId = $faker->randomElement($serviceIds);

@@ -1,26 +1,29 @@
 <?php
+namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
+use Faker\Factory as Faker;
 
 class KapstersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     *
+     * @return void
      */
-    public function run(): void
+    public function run()
     {
         $faker = Faker::create('id_ID'); // Initialize the Faker library with Indonesian locale
 
-        for ($i = 0; $i < 50; $i++) { // Change according to your project
+        for ($i = 0; $i < 50; $i++) { // Create 20 dummy kapsters
             $name = $faker->name;
-            $photo = $faker->imageUrl(640, 480, 'people', true, 'Faker'); // Ensure a realistic URL
+            $photoUrl = $faker->imageUrl(640, 480, 'people', true, 'Faker'); // Ensure a realistic URL
             $schedule = $faker->sentence(5); // Example: Generate a random schedule string
 
             DB::table('kapsters')->insert([
                 'name' => $name,
-                'photo' => $photo,
+                'photo' => $photoUrl,
                 'schedule' => $schedule,
             ]);
         }
