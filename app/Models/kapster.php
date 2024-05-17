@@ -12,8 +12,10 @@ class Kapster extends Model
     protected $table = 'kapster';
 
     protected $fillable = [
-        'name', 'photo', 'schedule',
+        'name', 
+        'photo', 
+        'place', 
+        'schedule'
     ];
-
     
 }

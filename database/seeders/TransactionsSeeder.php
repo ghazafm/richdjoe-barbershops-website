@@ -25,6 +25,8 @@ class TransactionsSeeder extends Seeder
             $customerId = $faker->randomElement($customerIds);
             $kapsterId = $faker->randomElement($kapsterIds);
             $serviceId = $faker->randomElement($serviceIds);
+            $service_status = $faker->randomElement(['wait', 'acc', 'dcl']);
+            $payment_status = $faker->randomElement([true, false]);
             $rating = $faker->numberBetween(1, 5);
             $comment = $faker->sentence;
 
@@ -36,6 +38,8 @@ class TransactionsSeeder extends Seeder
                 'kapster_id' => $kapsterId,
                 'service_id' => $serviceId,
                 'total_price' => $totalPrice,
+                'service_status' => $service_status,
+                'payment_status' => $payment_status,
                 'rating' => $rating,
                 'comment' => $comment,
             ]);

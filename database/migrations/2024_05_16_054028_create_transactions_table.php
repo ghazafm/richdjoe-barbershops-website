@@ -18,6 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('service_id');
             $table->dateTime('transaction_date')->default(now());
             $table->decimal('total_price', 10, 2);
+            $table->string('service_status', 4)->default('wait');
+            $table->boolean('payment_status')->default(false);
             $table->integer('rating')->nullable()->default(null);
             $table->string('comment', 255)->nullable();
             $table->timestamps();
