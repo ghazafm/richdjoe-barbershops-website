@@ -2,12 +2,14 @@
 1. Clone project ke komputer kalian (git clone aja)
 2. Di dalam folder project buka command line
 3. Ketik "composer install" setelah itu enter
-4. Jalankan di terminal 'php artisan key:generate' (jika diperlukan)
 5. Tunggu sampai folder vendor dibuat
-6. Setelah itu buat file .env di folder terluar project (bisa .env.example kalian copy terus rename)
-7. Isi dari file .env kalian sesuaikan dengan database di komputer kalian
-8. jalankan di terminal 'php artisan migrate' atau './script/migrate_all.zsh'(jika command sebelumnya tidak merubah apapun di database kalian)
-9. Gas ngerjain.....
+6. Jalankan di terminal 'php artisan migrate' atau './script/migrate_all.zsh'(jika command sebelumnya tidak merubah apapun di database kalian)
+7. Jalankan di terminal 'npm install'
+8. Jalankan di terminal 'npm run build'
+9. Setelah itu buat file .env di folder terluar project (bisa .env.example kalian copy terus rename)
+10. Isi dari file .env kalian sesuaikan dengan database di komputer kalian
+11. Jalankan di terminal 'php artisan key:generate' (jika diperlukan)
+12. Gas ngerjain.....
 
 <p align="center"><a href="https://github.com/ghazafm" target="_blank"><img src="https://i.pinimg.com/originals/41/7e/be/417ebee986aec41629278b1e04cfbfe9.gif" width="400" alt="Laravel Logo"></a></p>
 
