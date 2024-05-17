@@ -1,5 +1,5 @@
 ## Tutor clone project
-1. Clone project ke komputer kalian
+1. Clone project ke komputer kalian (git clone aja)
 2. Di dalam folder project buka command line
 3. Ketik "composer install" setelah itu enter
 4. Tunggu sampai folder vendor dibuat
