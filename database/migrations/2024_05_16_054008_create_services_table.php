@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('name', 100);
             $table->string('description', 255)->nullable();
             $table->decimal('price', 10, 2);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 
