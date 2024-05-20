@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('kapster_id');
             $table->unsignedBigInteger('service_id');
+            $table->enum('type', ['haircut', 'other']);
             $table->decimal('total_price', 10, 2);
             $table->string('service_status', 4)->default('wait');
             $table->boolean('payment_status')->default(false);
