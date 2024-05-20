@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\MaliciousController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Malicious\MaliciousController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
