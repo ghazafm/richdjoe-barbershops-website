@@ -3,11 +3,11 @@
 2. Di dalam folder project buka command line
 3. Ketik "composer install" setelah itu enter
 5. Tunggu sampai folder vendor dibuat
-6. Jalankan di terminal 'php artisan migrate' atau './script/migrate_all.zsh'(jika command sebelumnya tidak merubah apapun di database kalian)
-7. Jalankan di terminal 'npm install'
-8. Jalankan di terminal 'npm run build'
-9. Setelah itu buat file .env di folder terluar project (bisa .env.example kalian copy terus rename)
-10. Isi dari file .env kalian sesuaikan dengan database di komputer kalian
+6. Setelah itu buat file .env di folder terluar project (bisa .env.example kalian copy terus rename)
+7. Isi dari file .env kalian sesuaikan dengan database di komputer kalian
+8. Jalankan di terminal 'php artisan migrate' atau './script/migrate_all.zsh'(jika command sebelumnya tidak merubah apapun di database kalian)
+9. Jalankan di terminal 'npm install'
+10. Jalankan di terminal 'npm run build'
 11. Jalankan di terminal 'php artisan key:generate' (jika diperlukan)
 12. Gas ngerjain.....
 
