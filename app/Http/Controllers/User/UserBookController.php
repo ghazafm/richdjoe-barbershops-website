@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use App\Models\Kapster;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserBookController extends Controller
 {
@@ -20,34 +22,66 @@ class UserBookController extends Controller
 	public function services($place)
 	{
 		// Retrieve Services with pagination
-		$services = Service::where();
+		$services = Service::where('type', 'LIKE', 'other');
 
 		// Pass the data to the view
-		return view('user.services.service', ['services' => $services, 'place' => $place ]);
+		return view('user.services.service', ['services' => $services, 'place' => $place]);
 	}
 
-	public function haircut()
+	public function haircut($place)
 	{
-		return view('user.services.haircut',['place' => $place ]);
+		$services = Service::where('type', 'LIKE', 'haircut');
+		return view('user.services.haircut', ['services' => $services, 'place' => $place]);
 	}
 
-	public function kapsters()
+	public function kapsters($place, $service)
 	{
-		// Retrieve Services with pagination
-		$kapsters = Kapster::all();
+		$kapsters = Kapster::where('place', 'LIKE', $place);
 
 		// Pass the data to the view
-		return view('user.services.kapster', ['kapsters' => $kapsters]);
+		return view('user.services.kapster', ['kapsters' => $kapsters, 'service' => $service, 'place' => $place]);
 	}
 
 	public function showKapster($search)
 	{
-		// Retrieve Services with pagination
-		$kapster = Kapster::where('id', 'LIKE', $search);
+		$kapster = Kapster::find($search);
 
 		// Pass the data to the view
 		return view('user.services.kapster', ['kapster' => $kapster]);
 	}
 
+	public function backShowCapster($place, $service)
+	{
+		$kapsters = Kapster::where('place', 'LIKE', $place);
+		// Pass the data to the view
+		return view('user.services.kapster', ['kapsters' => $kapsters, 'service' => $service, 'place' => $place]);
+	}
 
+
+	public function confirmation($place, $service, $kapster)
+	{
+		$user = auth()->user();
+		$transactionData = [
+			'customer_id' => $user->id, // Replace with actual customer ID
+			'kapster_id' => $kapster->id, // Assuming $kapster is an object
+			'service_id' => $service->id, // Assuming $service is an object
+			'total_price' => $service->price, // Replace with actual total price
+		];
+
+		// Create the transaction
+		$transaction = Transaction::create($transactionData);
+
+		// Pass the data to the view
+		return view('user.services.confirmation', [
+			'kapster' => $kapster,
+			'service' => $service,
+			'place' => $place,
+			'transaction' => $transaction // Pass the transaction to the view if needed
+		]);
+	}
+
+	public function confirm($transaction)
+	{
+		return view('user.services.log', ['transaction' => $transaction ]);
+	}
 }

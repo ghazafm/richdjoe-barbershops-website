@@ -19,5 +19,15 @@ class Transaction extends Model
 
     // Automatically manage created_at and updated_at fields
     public $timestamps = true;
+
+
+    public function setRatingAttribute($value)
+    {
+        if (!is_null($value) && ($value < 1 || $value > 5)) {
+            throw new \InvalidArgumentException('Rating must be between 1 and 5.');
+        }
+
+        $this->attributes['rating'] = $value;
+    }
     
 }
