@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Richdjoe Barbershop</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
     <style>
@@ -16,6 +18,7 @@
             width: 100%;
             overflow-x: hidden;
         }
+
         .navbar {
             background-color: #30475E;
             position: fixed;
@@ -23,28 +26,36 @@
             width: 100%;
             z-index: 1000;
         }
+
         .navbar-brand {
             font-weight: bold;
             color: #FFF;
         }
+
         .navbar-nav {
-            margin-right: 100px; /* Adjust this value to move the menu to the left */
+            margin-right: 100px;
+            /* Adjust this value to move the menu to the left */
         }
+
         .navbar-nav .nav-link {
             color: #FFF !important;
         }
+
         .navbar-nav .nav-link:hover {
             color: #FFD700 !important;
         }
+
         .btn-custom {
             background-color: #FF6F6F;
             color: #FFF;
             border-radius: 25px;
         }
+
         .btn-custom:hover {
             background-color: #FF4C4C;
             color: #FFF;
         }
+
         .book {
             background-color: #FF6F6F;
             color: #FFF;
@@ -56,13 +67,17 @@
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            text-decoration: none; /* Remove underline */
-            margin-top: 40px; /* Add space above the button */
+            text-decoration: none;
+            /* Remove underline */
+            margin-top: 40px;
+            /* Add space above the button */
         }
+
         .book:hover {
             background-color: #FF4C4C;
             color: #FFF;
         }
+
         .main-content {
             text-align: center;
             padding: 150px 0 100px;
@@ -70,16 +85,20 @@
             flex-direction: column;
             align-items: center;
         }
+
         .main-content h1 {
             font-size: 4em;
             font-weight: bold;
             color: #000;
         }
+
         .main-content img {
-            width: 80%; /* Adjust this value as needed */
+            width: 80%;
+            /* Adjust this value as needed */
             max-width: 1200px;
             height: auto;
         }
+
         .footer {
             background-color: #30475E;
             color: white;
@@ -87,28 +106,37 @@
             padding: 20px 0;
             margin-top: 50px;
         }
+
         .footer .socials {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 20px;
         }
+
         .footer .socials img {
             width: 40px;
             height: 40px;
         }
-        .services, .capster {
+
+        .services,
+        .capster {
             text-align: center;
             padding: 50px 0;
         }
-        .services h2, .capster h2 {
+
+        .services h2,
+        .capster h2 {
             font-size: 3em;
             margin-bottom: 30px;
         }
-        .capster{
+
+        .capster {
             padding: 0 0px;
         }
-        .service-card, .capster-card {
+
+        .service-card,
+        .capster-card {
             display: inline-block;
             width: 500px;
             margin: 20px;
@@ -118,34 +146,64 @@
             overflow: hidden;
             background-color: #fff;
         }
-        .service-card img, .capster-card img {
+
+        .service-card img,
+        .capster-card img {
             width: 100%;
             height: auto;
         }
-        .service-card h3, .capster-card h3 {
+
+        .service-card h3,
+        .capster-card h3 {
             font-size: 1.2em;
             margin: 10px 0;
             color: #000;
         }
-        .swiper-container {
-            width: 100%;
-            height: 100%;
-            position: relative; /* Ensures the navigation buttons are positioned correctly */
-        }
-        .swiper-button-next,
-        .swiper-button-prev {
-            color: #FF6F6F; /* Customize the color as needed */
-        }
+
         /* Updated CSS */
-.swiper-slide {
-    width: 530px !important; /* Adjust the width as needed */
-    margin-right: 10px !important; /* Adjust the margin as needed */
-}
+        .swiper-slide {
+            width: 530px !important;
+            /* Adjust the width as needed */
+            margin-right: 10px !important;
+            /* Adjust the margin as needed */
+        }
 
- 
+        .card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: rgba(240, 84, 84, 1);
+            padding: 10px;
+            max-width: 100%;
+        }
 
+        .card img {
+            object-fit: cover;
+            max-width: 100%;
+            border-radius: 20px;
+        }
+
+        .btn-danger {
+            background-color: #ff6f6f;
+            border: none;
+            border-radius: 15px;
+        }
+
+        .logo {
+            height: 50px;
+        }
+
+        .footer .social-icon {
+            width: 30px;
+            height: 30px;
+        }
+
+        .d-flex img {
+            width: 50px;
+        }
     </style>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
@@ -171,7 +229,7 @@
                         <a class="nav-link" href="#capster">HAIR ARTIST</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">PRODUCT</a>
+                        <a class="nav-link" href="#produk">PRODUCT</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">ABOUT US</a>
@@ -181,32 +239,31 @@
                     </li>
                     <!-- Authentication Links -->
                     @if (Route::has('login'))
-                        @auth
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {{ Auth::user()->name }}
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
-                                    <li>
-                                        <form method="POST" action="{{ route('logout') }}">
-                                            @csrf
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                               onclick="event.preventDefault(); this.closest('form').submit();">
-                                                Log Out
-                                            </a>
-                                        </form>
-                                    </li>
-                                </ul>
+                    @auth
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                                        Log Out
+                                    </a>
+                                </form>
                             </li>
-                        @else
-                            <li class="nav-item">
-                                <a class="nav-link btn btn-custom ms-2" href="{{ route('register') }}">SIGN UP</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link btn btn-custom ms-2" href="{{ route('login') }}">SIGN IN</a>
-                            </li>
-                        @endauth
+                        </ul>
+                    </li>
+                    @else
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-custom ms-2" href="{{ route('register') }}">SIGN UP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-custom ms-2" href="{{ route('login') }}">SIGN IN</a>
+                    </li>
+                    @endauth
                     @endif
                 </ul>
             </div>
@@ -220,66 +277,150 @@
         <a class="book" href="#">Book Now</a>
     </div>
 
-    <div class="services" id="services">
-        <h2>SERVICES</h2>
-        <p>Richdjoe menyediakan beberapa layanan servis</p>
-        <div class="service-card">
-            <img src="{{ asset('images/services/service1.jpg') }}" alt="Haircut">
-            <h3>HAIRCUT</h3>
-        </div>
-        <div class="service-card">
-            <img src="{{ asset('images/services/service2.jpg') }}" alt="Treatment">
-            <h3>TREATMENT</h3>
-        </div>
-        <div class="service-card">
-            <img src="{{ asset('images/services/service3.jpg') }}" alt="Bleaching">
-            <h3>BLEACHING</h3>
-        </div>
-        <div class="service-card">
-            <img src="{{ asset('images/services/service4.jpeg') }}" alt="Toning">
-            <h3>TONING</h3>
-        </div>
-        <div class="service-card">
-            <img src="{{ asset('images/services/service5.jpg') }}" alt="Fashion Color">
-            <h3>FASHION COLOR</h3>
-        </div>
-    </div>
-
-    <div class="capster" id="capster">
-        <h2>HAIR ARTIST</h2>
-        <p>Richdjoe memiliki beberapa hair artist</p>
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide capster-card">
-                    <img src="{{ asset('images/services/service1.jpg') }}" alt="Haircut">
-                    <h3>PONERI</h3>
-                </div>
-                <div class="swiper-slide capster-card">
-                    <img src="{{ asset('images/services/service2.jpg') }}" alt="Treatment">
-                    <h3>ANANG</h3>
-                </div>
-                <div class="swiper-slide capster-card">
-                    <img src="{{ asset('images/services/service3.jpg') }}" alt="Bleaching">
-                    <h3>BRIAN</h3>
-                </div>
-                <div class="swiper-slide capster-card">
-                    <img src="{{ asset('images/services/service3.jpg') }}" alt="Bleaching">
-                    <h3>JODI</h3>
-                </div>
-                <div class="swiper-slide capster-card">
-                    <img src="{{ asset('images/services/service3.jpg') }}" alt="Bleaching">
-                    <h3>DHEA</h3>
-                </div>
-                <div class="swiper-slide capster-card">
-                    <img src="{{ asset('images/services/service3.jpg') }}" alt="Bleaching">
-                    <h3>BAHRUL</h3>
+    <main class="container" id="services">
+        <h1 class="text-center mb-2">SERVICES</h1>
+        <p class="text-center mb-4">Richdjoe menyediakan beberapa layanan servis</p>
+        <div class="row justify-content-center text-center text-light">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ asset('images/services/service1.jpg') }}" alt="HAIRCUT">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold ">HAIRCUT</h5>
+                    </div>
                 </div>
             </div>
-            <!-- Add Arrows -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ asset('images/services/service2.jpg') }}" alt="TREATMENT">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">TREATMENT</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ asset('images/services/service3.jpg') }}" alt="BLEACHING">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">BLEACHING</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">TONING</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ asset('images/services/service5.jpg') }}" alt="FASHION COLOR">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">FASHION COLOR</h5>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </main>
+
+    <main class="container my-4" id="capster">
+        <h1 class="text-center mb-2">HAIR ARTIST</h1>
+        <p class="text-center mb-4">Richdjoe memiliki beberapa Hair Artist</p>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="2000">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row justify-content-center text-center text-light">
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title fw-bold">TONING</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title fw-bold">TONING</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title fw-bold">TONING</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row justify-content-center text-center text-light">
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title fw-bold">TONING</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title fw-bold">TONING</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title fw-bold">TONING</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tambahkan lebih banyak carousel-item sesuai kebutuhan -->
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </main>
+
+    <main class="container my-4" id="produk">
+        <h1 class="text-center mb-2">OUR PRODUCTS</h1>
+        <p class="text-center mb-4">Richdjoe menyediakan beberapa layanan servis</p>
+        <div class="row justify-content-center text-center text-light">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ asset('images/services/service1.jpg') }}" alt="HAIRCUT">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold ">HAIRCUT</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ asset('images/services/service2.jpg') }}" alt="TREATMENT">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">TREATMENT</h5>
+                        <button class="btn-danger">Pilih</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <footer class="footer">
         <h2>Our Socials</h2>
@@ -291,20 +432,10 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>  
-    <script>
-        var swiper = new Swiper('.swiper-container', {
-            slidesPerView: 3,
-            loop: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-    </script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
