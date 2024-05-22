@@ -11,92 +11,11 @@
 
     <style>
         body {
-            background-color: #FFEAEA;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            overflow-x: hidden;
-        }
-
-        .navbar {
-            background-color: #30475E;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        .navbar-brand {
-            font-weight: bold;
-            color: #FFF;
-        }
-
-        .navbar-nav {
-            margin-right: 100px;
-            /* Adjust this value to move the menu to the left */
-        }
-
-        .navbar-nav .nav-link {
-            color: #FFF !important;
-        }
-
-        .navbar-nav .nav-link:hover {
-            color: #FFD700 !important;
-        }
-
-        .btn-custom {
-            background-color: #FF6F6F;
-            color: #FFF;
-            border-radius: 25px;
-        }
-
-        .btn-custom:hover {
-            background-color: #FF4C4C;
-            color: #FFF;
-        }
-
-        .book {
-            background-color: #FF6F6F;
-            color: #FFF;
-            border-radius: 25px;
-            text-align: center;
-            align-items: center;
-            width: 200px;
-            height: 50px;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            /* Remove underline */
-            margin-top: 40px;
-            /* Add space above the button */
-        }
-
-        .book:hover {
-            background-color: #FF4C4C;
-            color: #FFF;
-        }
-
-        .main-content {
-            text-align: center;
-            padding: 150px 0 100px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .main-content h1 {
-            font-size: 4em;
-            font-weight: bold;
-            color: #000;
-        }
-
-        .main-content img {
-            width: 80%;
-            /* Adjust this value as needed */
-            max-width: 1200px;
-            height: auto;
+            background-image: url("{{ asset('images/home/bg1.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         .footer {
@@ -119,53 +38,69 @@
             height: 40px;
         }
 
-        .services,
-        .capster {
-            text-align: center;
-            padding: 50px 0;
+        .navbar {
+            background-color: rgba(32, 78, 124, 1);
         }
 
-        .services h2,
-        .capster h2 {
-            font-size: 3em;
-            margin-bottom: 30px;
+        .navbar-brand {
+            color: #fff;
+            display: flex;
+            align-items: center;
         }
 
-        .capster {
-            padding: 0 0px;
+        .navbar-brand img {
+            height: 75px;
+            margin-right: 10px;
         }
 
-        .service-card,
-        .capster-card {
-            display: inline-block;
-            width: 500px;
-            margin: 20px;
-            text-align: center;
-            border: 2px solid #FF6F6F;
+        .navbar-nav .nav-link {
+            color: #fff;
+        }
+
+        .main-content {
+            margin-top: 30px;
+            margin-bottom: 200px;
+            margin-inline: 50px;
+            padding: 20px;
             border-radius: 10px;
-            overflow: hidden;
-            background-color: #fff;
         }
 
-        .service-card img,
-        .capster-card img {
-            width: 100%;
-            height: auto;
+        .main-content h1 {
+            font-size: 3rem;
+            color: #343a40;
         }
 
-        .service-card h3,
-        .capster-card h3 {
-            font-size: 1.2em;
-            margin: 10px 0;
-            color: #000;
+        .main-content img {
+            height: 100%;
+            max-height: 1000px;
         }
 
-        /* Updated CSS */
-        .swiper-slide {
-            width: 530px !important;
-            /* Adjust the width as needed */
-            margin-right: 10px !important;
-            /* Adjust the margin as needed */
+        .btn-book {
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.25rem;
+            border-radius: 25px;
+            margin-top: 20px;
+        }
+
+        .navbar-center {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .navbar-right {
+            display: flex;
+        }
+
+        .btn-sign {
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            margin-left: 10px;
         }
 
         .card {
@@ -175,6 +110,7 @@
             background-color: rgba(240, 84, 84, 1);
             padding: 10px;
             max-width: 100%;
+            position: relative;
         }
 
         .card img {
@@ -183,10 +119,16 @@
             border-radius: 20px;
         }
 
-        .btn-danger {
-            background-color: #ff6f6f;
-            border: none;
+        .btn-warning {
+            background-color: white;
+            border-color: black;
             border-radius: 15px;
+        }
+
+        .btn-warning:hover {
+            background-color: black;
+            color: white;
+            border-color: white;
         }
 
         .logo {
@@ -201,83 +143,70 @@
         .d-flex img {
             width: 50px;
         }
+
+        .services,
+        .capster {
+            margin-bottom: 350px;
+        }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="{{ asset('images/home/logo.png') }}" alt="Logo" style="height: 80px;">
-                RICHDJOE BARBERSHOP
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <nav class="navbar navbar-expand-lg navbar-darker">
+        <a class="navbar-brand" href="#">
+            <img src="{{ asset('images/home/logo.png') }}" alt="Logo" class="logo">
+            Ricdhjoe Barbershop
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-center">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">HOME</a>
+                        <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/book">BOOK</a>
+                        <a class="nav-link" href="#">Book</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#services">SERVICES</a>
+                        <a class="nav-link" href="#services">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#capster">HAIR ARTIST</a>
+                        <a class="nav-link" href="#capster">Hair Artist</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#produk">PRODUCT</a>
+                        <a class="nav-link" href="#produk">Product</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">ABOUT US</a>
+                        <a class="nav-link" href="#">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">CONTACT US</a>
+                        <a class="nav-link" href="#">Contact Us</a>
                     </li>
-                    <!-- Authentication Links -->
-                    @if (Route::has('login'))
-                    @auth
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ Auth::user()->name }}
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
-                            <li>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
-                                        Log Out
-                                    </a>
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                    @else
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-custom ms-2" href="{{ route('register') }}">SIGN UP</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-custom ms-2" href="{{ route('login') }}">SIGN IN</a>
-                    </li>
-                    @endauth
-                    @endif
                 </ul>
+            </div>
+            <div class="navbar-right">
+                <button class="btn btn-sign">Sign Up</button>
+                <button class="btn btn-sign">Sign In</button>
             </div>
         </div>
     </nav>
 
+    <!-- Main Content -->
     <div class="main-content">
-        <!-- Content here -->
-        <h1>Welcome to Richdjoe Barbershop</h1>
-        <img class="barber" src="{{ asset('images/home/barber.jpg') }}" alt="Barbershop">
-        <a class="book" href="#">Book Now</a>
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1>RICDHJOE BARBERSHOP</h1>
+                <button class="btn-book">BOOK</button>
+            </div>
+            <div class="col-md-6">
+                <img src="{{ asset('images/home/transformed.png') }}" alt="Barbershop Image" class="img-fluid">
+            </div>
+        </div>
     </div>
 
-    <main class="container" id="services">
+    <main class="container services" id="services">
         <h1 class="text-center mb-2">SERVICES</h1>
         <p class="text-center mb-4">Richdjoe menyediakan beberapa layanan servis</p>
         <div class="row justify-content-center text-center text-light">
@@ -324,7 +253,7 @@
         </div>
     </main>
 
-    <main class="container my-4" id="capster">
+    <main class="container capster" id="capster">
         <h1 class="text-center mb-2">HAIR ARTIST</h1>
         <p class="text-center mb-4">Richdjoe memiliki beberapa Hair Artist</p>
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="2000">
@@ -400,27 +329,39 @@
 
     <main class="container my-4" id="produk">
         <h1 class="text-center mb-2">OUR PRODUCTS</h1>
-        <p class="text-center mb-4">Richdjoe menyediakan beberapa layanan servis</p>
+        <p class="text-center mb-4">Richdjoe menyediakan beberapa produk</p>
         <div class="row justify-content-center text-center text-light">
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="{{ asset('images/services/service1.jpg') }}" alt="HAIRCUT">
+                    <img src="{{ asset('images/product/clay.jpeg') }}" alt="HAIRCUT">
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold ">HAIRCUT</h5>
+                        <h5 class="card-title fw-bold">POMADE CLAY HAIRSTYLING</h5>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="{{ asset('images/services/service2.jpg') }}" alt="TREATMENT">
+                    <img src="{{ asset('images/product/kids.jpeg') }}" alt="TREATMENT">
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">TREATMENT</h5>
-                        <button class="btn-danger">Pilih</button>
+                        <h5 class="card-title fw-bold">POMADE ANAK WATERBASED KIDS (JUNIOR)</h5>
                     </div>
                 </div>
             </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ asset('images/product/stronghold.jpeg') }}" alt="TREATMENT">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">POMADE WATERBASED STRONGHOLD</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-2">
+                <button class="btn btn-warning btn-block">BUY NOW</button>
+            </div>
         </div>
     </main>
+
+
 
     <footer class="footer">
         <h2>Our Socials</h2>
