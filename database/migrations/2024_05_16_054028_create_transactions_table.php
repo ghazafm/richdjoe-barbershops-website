@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('kapster_id');
             $table->unsignedBigInteger('service_id');
             $table->enum('type', ['haircut', 'other']);
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 
-            $table->foreign('customer_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('kapster_id')->references('id')->on('kapsters');
             $table->foreign('service_id')->references('id')->on('services');
         });
