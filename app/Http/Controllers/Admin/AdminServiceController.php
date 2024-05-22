@@ -82,4 +82,33 @@ class AdminServiceController extends Controller
         // Pass the data to the view
         return view('admin.service.index', ['services' => $services]);
     }
+
+    public function filter(Request $req)
+	{
+		$query = Service::query();
+
+		if ($req->filled('id')) {
+			$query->where('customer_id', $req->input('customer_id'));
+		}
+        
+		if ($req->filled('name')) {
+			$query->where('name', $req->input('name'));
+		}
+        
+		if ($req->filled('description')) {
+			$query->where('description', $req->input('description'));
+		}
+        
+		if ($req->filled('price_from') && $req->filled('price_to')) {
+			$query->whereBetween('price', [$req->input('price_from'), $req->input('price_to')]);
+		}
+
+		if ($req->filled('date_from') && $req->filled('date_to')) {
+			$query->whereBetween('created_at', [$req->input('date_from'), $req->input('date_to')]);
+		}
+
+		$transactions = $query->paginate();
+
+		return view('admin.book', ['transactions' => $transactions]);
+	}
 }

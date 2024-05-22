@@ -84,4 +84,37 @@ class AdminUserController extends Controller
         // Pass the data to the view
         return view('admin.user', ['users' => $users]);
     }
+
+    public function filter(Request $req)
+    {
+        $query = User::query();
+
+        if ($req->filled('id')) {
+            $query->where('customer_id', $req->input('customer_id'));
+        }
+
+        if ($req->filled('name')) {
+            $query->where('name', $req->input('name'));
+        }
+
+        if ($req->filled('email')) {
+            $query->where('email', $req->input('email'));
+        }
+
+        if ($req->filled('phone')) {
+            $query->where('phone', $req->input('phone'));
+        }
+
+        if ($req->filled('address')) {
+            $query->where('address', $req->input('address'));
+        }
+
+        if ($req->filled('date_from') && $req->filled('date_to')) {
+            $query->whereBetween('created_at', [$req->input('date_from'), $req->input('date_to')]);
+        }
+
+        $transactions = $query->paginate();
+
+        return view('admin.book', ['transactions' => $transactions]);
+    }
 }

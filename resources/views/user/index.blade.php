@@ -157,7 +157,8 @@
             <img src="{{ asset('images/home/logo.png') }}" alt="Logo" class="logo">
             Ricdhjoe Barbershop
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -167,7 +168,7 @@
                         <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Book</a>
+                        <a class="nav-link" href="/book">Book</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#services">Services</a>
@@ -187,8 +188,12 @@
                 </ul>
             </div>
             <div class="navbar-right">
-                <button class="btn btn-sign">Sign Up</button>
-                <button class="btn btn-sign">Sign In</button>
+                <a href="/register">
+                    <button class="btn btn-sign">Sign Up</button>
+                </a>
+                <a href="/login">
+                    <button class="btn btn-sign">Sign In</button>
+                </a>
             </div>
         </div>
     </nav>
@@ -198,7 +203,9 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 <h1>RICDHJOE BARBERSHOP</h1>
-                <button class="btn-book">BOOK</button>
+                <a href="/book">
+                    <button class="btn-book">BOOK</button>
+                </a>
             </div>
             <div class="col-md-6">
                 <img src="{{ asset('images/home/transformed.png') }}" alt="Barbershop Image" class="img-fluid">
@@ -256,6 +263,7 @@
     <main class="container capster" id="capster">
         <h1 class="text-center mb-2">HAIR ARTIST</h1>
         <p class="text-center mb-4">Richdjoe memiliki beberapa Hair Artist</p>
+        {{-- saran ku di for loop sejumlah kapster pake php jadi jangan pure html --}}
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="2000">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -366,7 +374,8 @@
     <footer class="footer">
         <h2>Our Socials</h2>
         <div class="socials">
-            <a href="https://www.instagram.com/richdjoebarbershops/"><img src="{{ asset('images/home/instagram.png') }}" alt="Instagram"></a>
+            <a href="https://www.instagram.com/richdjoebarbershops/"><img
+                    src="{{ asset('images/home/instagram.png') }}" alt="Instagram"></a>
             <a href="#"><img src="{{ asset('images/home/wa.png') }}" alt="Whats App"></a>
             <a href="#"><img src="{{ asset('images/home/tt.png') }}" alt="TikTok"></a>
         </div>
