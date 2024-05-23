@@ -14,7 +14,7 @@ class AdminKapsterController extends Controller
         $kapsters = Kapster::paginate(10);
 
         // Pass the data to the view
-        return view('admin.kapster.index', ['kapsters' => $kapsters]);
+        return view('admin.hairartist', ['kapsters' => $kapsters]);
     }
 
     public function add()
