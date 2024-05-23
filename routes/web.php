@@ -41,10 +41,10 @@ Route::get('/admin', function () {
     return redirect('/admin/dashboard');
 })->middleware(['auth', 'admin']);
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware(['auth', 'admin']);
-Route::get('/admin/book', [AdminBookController::class, 'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/book/add', [AdminBookController::class, 'book'])->middleware(['auth', 'admin']);
+Route::get('/admin/book', [AdminBookController::class, 'book'])->middleware(['auth', 'admin']);
+Route::get('/admin/book/{id}', [AdminBookController::class, 'detail'])->middleware(['auth', 'admin']);
+Route::get('/admin/book/add', [AdminBookController::class, 'add_book'])->middleware(['auth', 'admin']);
 Route::get('/admin/service', [AdminServiceController::class, 'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/hairartist', [AdminKapsterController::class, 'index'])->middleware(['auth', 'admin']);
-Route::get('/admin/dashboard', [AdminController::class,'index'])->middleware(['auth', 'admin']);
-Route::get('/admin/book',[AdminBookController::class,'index'])->middleware(['auth', 'admin']);
-Route::get('/admin/service',[AdminServiceController::class,'index'])->middleware(['auth', 'admin']);
-Route::get('/admin/hairartist',[AdminKapsterController::class,'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/payment', [AdminBookController::class, 'payment'])->middleware(['auth', 'admin']);

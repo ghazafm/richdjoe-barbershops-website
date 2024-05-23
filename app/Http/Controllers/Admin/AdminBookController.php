@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class AdminBookController extends Controller
 {
-	public function index()
+	public function book()
 	{
 		$transactions = Transaction::with(['user', 'kapster', 'service'])
 			->where('service_status', 'wait')
@@ -18,6 +18,17 @@ class AdminBookController extends Controller
 
 		// Pass the data to the view
 		return view('admin.book', ['transaction' => $transactions]);
+	}
+
+	public function detail($id)
+	{
+		$transaction = Transaction::with(['user', 'service', 'kapster'])->find($id);
+
+		if ($transaction) {
+			return view('admin.book_detail', compact('transaction'));
+		} else {
+			return response()->view('admin.book_detail', ['error' => 'Booking not found'], 404);
+		}
 	}
 
 	public function edit($id)
