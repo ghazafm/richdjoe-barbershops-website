@@ -101,68 +101,23 @@
     <main class="container services" id="services">
         <h1 class="text-center mb-4">Please Choose the Type of Haircut</h1>
         <div class="row justify-content-center text-center text-light">
+            @foreach($services as $service)
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    <img src="{{ asset('images/services/service1.jpg') }}" alt="HAIRCUT">
+                    <img src="{{ asset('images/services/' . $service->image) }}" alt="{{ $service->name }}">
                     <div class="card-body d-flex flex-column">
-                        <h4 class="card-title fw-bold">ROYALE LUXE CUT</h4>
-                        <h6 class="card-text">IDR Rp139.000</h6>
+                        <h4 class="card-title fw-bold">{{ $service->name }}</h4>
+                        <h6 class="card-text">IDR {{ number_format($service->price, 0, ',', '.') }}</h6>
                     </div>
-                    <a href="">
+                    <a href="{{ url('book/service/haircut/kapster/'.$place.'/'.$service->id) }}">
                         <button class="btn-pilih">SELECT</button>
                     </a>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="{{ asset('images/services/service2.jpg') }}" alt="TREATMENT">
-                    <div class="card-body d-flex flex-column">
-                        <h4 class="card-title fw-bold">ROYALE LUXE CUT + BACK MASSAGE</h4>
-                        <h6 class="card-text">IDR Rp169.000</h6>
-                    </div>
-                    <a href="">
-                        <button class="btn-pilih">SELECT</button>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="{{ asset('images/services/service3.jpg') }}" alt="BLEACHING">
-                    <div class="card-body d-flex flex-column">
-                        <h4 class="card-title fw-bold">ROYALE LUXE CUT + ADD MASSAGE TIME (HEAD/FACE)</h4>
-                        <h6 class="card-text">IDR Rp154.000</h6>
-                    </div>
-                    <a href="">
-                        <button class="btn-pilih">SELECT</button>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
-                    <div class="card-body d-flex flex-column">
-                        <h4 class="card-title fw-bold">ROYALE LUXE CUT + BACK MASSAGE + ADD MASSAGE TIME (HEAD/FACE)</h4>
-                        <h6 class="card-text">IDR Rp184.000</h6>
-                    </div>
-                    <a href="">
-                        <button class="btn-pilih">SELECT</button>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="{{ asset('images/services/service5.jpg') }}" alt="FASHION COLOR">
-                    <div class="card-body d-flex flex-column">
-                        <h4 class="card-title fw-bold">ROYALE HAIRCUT</h4>
-                        <h6 class="card-text">IDR Rp85.000</h6>
-                    </div>
-                    <a href="">
-                        <button class="btn-pilih">PILIH</button>
-                    </a>
-                </div>
-            </div>
+            @endforeach
         </div>
     </main>
+
 
     <footer class="footer-socials">
         <div class="container">

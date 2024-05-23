@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use App\Models\Kapster;
 use App\Models\Service;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,7 +30,7 @@ class UserBookController extends Controller
 
 	public function haircut($place)
 	{
-		$services = Service::where('type', 'LIKE', 'haircut');
+		$services = Service::where('type', 'LIKE', 'haircut')->get();
 		return view('book.haircut', ['services' => $services, 'place' => $place]);
 	}
 
@@ -38,7 +39,7 @@ class UserBookController extends Controller
 		$kapsters = Kapster::where('place', 'LIKE', $place);
 
 		// Pass the data to the view
-		return view('book.kapster', ['kapsters' => $kapsters, 'service' => $service, 'place' => $place]);
+		return view('book.kapster', ['kapsters' => $kapsters, 'service_id' => $service, 'place' => $place]);
 	}
 
 	public function showKapster($search)
@@ -47,6 +48,12 @@ class UserBookController extends Controller
 
 		// Pass the data to the view
 		return view('book.kapster', ['kapster' => $kapster]);
+	}
+
+	public function schedule($place, $service, $kapster)
+	{
+		// Pass the data to the view
+		return view('book.kapster', ['kapsters' => $kapster, 'service_id' => $service, 'place' => $place]);
 	}
 
 
