@@ -20,11 +20,6 @@ class AdminBookController extends Controller
 		return view('admin.book', ['transaction' => $transactions]);
 	}
 
-	public function detail($id)
-	{
-		$transaction = Transaction::find($id);
-        return view('admin.book_detail', compact('transaction'));
-	}
 	public function booksave(Request $req)
 	{
 		$validated = $req->validate([
