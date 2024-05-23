@@ -70,7 +70,7 @@
             height: 65px;
         }
 
-        .services {
+        .haircut {
             padding-bottom: 100px;
         }
 
@@ -98,7 +98,7 @@
         </div>
     </header>
 
-    <main class="container services" id="services">
+    <main class="container haircut" id="haircut">
         <h1 class="text-center mb-4">Please Choose the Type of Haircut</h1>
         <div class="row justify-content-center text-center text-light">
             @foreach($services as $service)
@@ -117,7 +117,6 @@
             @endforeach
         </div>
     </main>
-
 
     <footer class="footer-socials">
         <div class="container">

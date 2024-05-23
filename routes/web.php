@@ -33,7 +33,8 @@ Route::get('/malicious', [MaliciousController::class,'index']);
 Route::get('/book', [UserBookController::class,'index'])->middleware('auth', 'verified');
 Route::get('/book/service/{place}', [UserBookController::class,'services'])->middleware('auth', 'verified');
 Route::get('/book/service/haircut/{place}', [UserBookController::class,'haircut'])->middleware('auth', 'verified');
-Route::get('/book/service/haircut/kapster/{place}/{service}', [UserBookController::class,'haircut'])->middleware('auth', 'verified');
+Route::get('/book/service/haircut/kapster/{place}/{service}', [UserBookController::class,'kapsters'])->middleware('auth', 'verified');
+Route::get('/book/service/haircut/profil_kapster/{kapster}', [UserBookController::class,'showKapster'])->middleware('auth', 'verified');
 
 
 //Admin

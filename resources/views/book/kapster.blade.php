@@ -69,7 +69,7 @@
             height: 65px;
         }
 
-        .services {
+        .capster {
             padding-bottom: 100px;
         }
 
@@ -97,66 +97,25 @@
         </div>
     </header>
 
-    <main class="container services" id="services">
+    <main class="container capster" id="capster">
         <h1 class="text-center mb-4">Please Select Hair Artist</h1>
         <div class="row justify-content-center text-center text-light">
+            @foreach($kapsters as $kapster)
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="{{ asset('images/services/service1.jpg') }}" alt="HAIRCUT">
+                    <img src="{{ asset($kapster->image) }}" alt="{{ $kapster->name }}">
                     <div class="card-body d-flex flex-column">
-                        <h4 class="card-title fw-bold">HAIRCUT</h4>
-                        <a href="">
+                        <h4 class="card-title fw-bold">{{ $kapster->name }}</h4>
+                        <a href="{{ url('/book/service/haircut/profil_kapster/' .$kapster->id) }}">
                             <button class="btn-pilih">SELECT</button>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="{{ asset('images/services/service2.jpg') }}" alt="TREATMENT">
-                    <div class="card-body d-flex flex-column">
-                        <h4 class="card-title fw-bold">TREATMENT</h4>
-                        <a href="">
-                            <button class="btn-pilih">SELECT</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="{{ asset('images/services/service3.jpg') }}" alt="BLEACHING">
-                    <div class="card-body d-flex flex-column">
-                        <h4 class="card-title fw-bold">BLEACHING</h4>
-                        <a href="">
-                            <button class="btn-pilih">SELECT</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
-                    <div class="card-body d-flex flex-column">
-                        <h4 class="card-title fw-bold">TONING</h4>
-                        <a href="">
-                            <button class="btn-pilih">SELECT</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="{{ asset('images/services/service5.jpg') }}" alt="FASHION COLOR">
-                    <div class="card-body d-flex flex-column">
-                        <h4 class="card-title fw-bold">FASHION COLOR</h4>
-                        <a href="">
-                            <button class="btn-pilih">SELECT</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </main>
+
 
     <footer class="footer-socials">
         <div class="container">
