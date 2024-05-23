@@ -36,4 +36,4 @@ Route::get('/book/service/{place}', [UserBookController::class,'services'])->mid
 //Admin
 Route::get('/admin/dashboard', [AdminController::class,'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/book',[AdminBookController::class,'index'])->middleware(['auth', 'admin']);
-Route::get('/admin/service',[AdminBookController::class,'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/service',[AdminServiceController::class,'index'])->middleware(['auth', 'admin']);

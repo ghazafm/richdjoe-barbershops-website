@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminBookController extends Controller
@@ -11,10 +12,10 @@ class AdminBookController extends Controller
 	public function index()
 	{
 		// Retrieve users with pagination
-		$transaction = Transaction::paginate(10);
+		$transactions = Transaction::with(['user','kapster','service'])->paginate(10);
 
 		// Pass the data to the view
-		return view('admin.book', ['transaction' => $transaction]);
+		return view('admin.book', ['transaction' => $transactions]);
 	}
 
 	public function booksave(Request $req)

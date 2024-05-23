@@ -28,5 +28,19 @@ class Transaction extends Model
 
         $this->attributes['rating'] = $value;
     }
-    
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
+
+    public function kapster()
+    {
+        return $this->belongsTo(Kapster::class);
+    }
 }

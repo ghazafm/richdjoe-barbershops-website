@@ -18,13 +18,13 @@ return new class extends Migration
             $table->unsignedBigInteger('kapster_id');
             $table->unsignedBigInteger('service_id');
             $table->enum('type', ['haircut', 'other']);
+            $table->timestamp('jadwal');
             $table->decimal('total_price', 10, 2);
-            $table->enum('service_status', ['wait', 'decline', 'wait confirmation','verified'])->default('wait');
+            $table->enum('service_status', ['wait', 'decline','verified'])->default('wait');
             $table->boolean('payment_status')->default(false);
             $table->tinyInteger('rating')->nullable()->default(null);
             $table->string('comment', 255)->nullable();
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('kapster_id')->references('id')->on('kapsters');
