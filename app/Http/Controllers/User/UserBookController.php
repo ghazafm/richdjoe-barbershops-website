@@ -29,7 +29,7 @@ class UserBookController extends Controller
 
 	public function haircut($place)
 	{
-		$services = Service::where('type', 'LIKE', 'haircut');
+		$services = Service::where('type', 'LIKE', 'haircut')->get();
 		return view('book.haircut', ['services' => $services, 'place' => $place]);
 	}
 
@@ -38,7 +38,7 @@ class UserBookController extends Controller
 		$kapsters = Kapster::where('place', 'LIKE', $place);
 
 		// Pass the data to the view
-		return view('book.kapster', ['kapsters' => $kapsters, 'service' => $service, 'place' => $place]);
+		return view('book.kapster', ['kapsters' => $kapsters, 'service_id' => $service, 'place' => $place]);
 	}
 
 	public function showKapster($search)
