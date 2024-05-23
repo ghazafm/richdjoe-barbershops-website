@@ -85,4 +85,37 @@ class AdminKapsterController extends Controller
         // Pass the data to the view
         return view('admin.kapster.index', ['kapsters' => $kapsters]);
     }
+
+    public function filter(Request $req)
+    {
+        $query = Kapster::query();
+
+        if ($req->filled('id')) {
+            $query->where('customer_id', $req->input('customer_id'));
+        }
+
+        if ($req->filled('name')) {
+            $query->where('name', $req->input('name'));
+        }
+
+        if ($req->filled('photo')) {
+            $query->where('photo', $req->input('photo'));
+        }
+
+        if ($req->filled('place')) {
+            $query->where('place', $req->input('place'));
+        }
+
+        if ($req->filled('schedule')) {
+            $query->where('schedule', $req->input('schedule'));
+        }
+
+        if ($req->filled('date_from') && $req->filled('date_to')) {
+            $query->whereBetween('created_at', [$req->input('date_from'), $req->input('date_to')]);
+        }
+
+        $transactions = $query->paginate();
+
+        return view('admin.book', ['transactions' => $transactions]);
+    }
 }

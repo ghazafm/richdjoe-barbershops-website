@@ -214,7 +214,8 @@
         <a class="navbar-brand" href="#">
             <img src="{{ asset('images/home/logo.png') }}" alt="Logo" class="logo">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -224,7 +225,7 @@
                         <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Book</a>
+                        <a class="nav-link" href="/book">Book</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#services">Services</a>
@@ -244,6 +245,7 @@
                 </ul>
             </div>
             <div class="navbar-right">
+<<<<<<< HEAD
                 <!-- Authentication Links -->
                 @if (Route::has('login'))
                 @auth
@@ -272,6 +274,14 @@
                 </li>
                 @endauth
                 @endif
+=======
+                <a href="/register">
+                    <button class="btn btn-sign">Sign Up</button>
+                </a>
+                <a href="/login">
+                    <button class="btn btn-sign">Sign In</button>
+                </a>
+>>>>>>> 1d37630616d1ae675f5c0bb0816e7e08022b51c1
             </div>
         </div>
     </nav>
@@ -281,8 +291,15 @@
     <div class="main-content">
         <div class="row align-items-center">
             <div class="col-md-6">
+<<<<<<< HEAD
                 <h1>RICHDJOE BARBERSHOP</h1>
                 <button class="btn-book">BOOK</button>
+=======
+                <h1>RICDHJOE BARBERSHOP</h1>
+                <a href="/book">
+                    <button class="btn-book">BOOK</button>
+                </a>
+>>>>>>> 1d37630616d1ae675f5c0bb0816e7e08022b51c1
             </div>
         </div>
     </div>
@@ -337,6 +354,7 @@
     <main class="capster" id="capster">
         <h1 class="text-center mb-2">HAIR ARTIST</h1>
         <p class="text-center mb-4">Richdjoe memiliki beberapa Hair Artist</p>
+        {{-- saran ku di for loop sejumlah kapster pake php jadi jangan pure html --}}
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="2000">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -536,6 +554,7 @@
         </form>
     </main>
 
+<<<<<<< HEAD
     <footer class="footer-main">
         <div class="container">
             <div class="row">
@@ -591,6 +610,15 @@
                     </div>
                 </div>
             </div>
+=======
+    <footer class="footer">
+        <h2>Our Socials</h2>
+        <div class="socials">
+            <a href="https://www.instagram.com/richdjoebarbershops/"><img
+                    src="{{ asset('images/home/instagram.png') }}" alt="Instagram"></a>
+            <a href="#"><img src="{{ asset('images/home/wa.png') }}" alt="Whats App"></a>
+            <a href="#"><img src="{{ asset('images/home/tt.png') }}" alt="TikTok"></a>
+>>>>>>> 1d37630616d1ae675f5c0bb0816e7e08022b51c1
         </div>
     </footer>
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\User\UserBookController;
 use App\Http\Controllers\Malicious\MaliciousController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -22,8 +23,12 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/admin/dashboard', [AdminController::class,'index'])->middleware(['auth', 'admin']);
+//Malicious
 Route::get('/malicious', [MaliciousController::class,'index']);
 
-//user 
-Route::get('/book', [UserController::class,'book']);
+//User Book
+Route::get('/book', [UserBookController::class,'index'])->middleware('auth', 'verified');
+
+//Admin
+Route::get('/admin/dashboard', [AdminController::class,'index'])->middleware(['auth', 'admin']);
+

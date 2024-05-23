@@ -137,4 +137,53 @@ class AdminBookController extends Controller
 		// Return view with search results
 		return view('student.index', ['transactions' => $transactions]);
 	}
+
+	public function filter(Request $req)
+	{
+		$query = Transaction::query();
+
+		if ($req->filled('id')) {
+			$query->where('id', $req->input('id'));
+		}
+
+		if ($req->filled('customer_id')) {
+			$query->where('customer_id', $req->input('customer_id'));
+		}
+
+		if ($req->filled('kapster_id')) {
+			$query->where('kapster_id', $req->input('kapster_id'));
+		}
+
+		if ($req->filled('service_id')) {
+			$query->where('service_id', $req->input('service_id'));
+		}
+
+		if ($req->filled('service_status')) {
+			$query->where('service_status', $req->input('service_status'));
+		}
+
+		if ($req->filled('payment_status')) {
+			$query->where('payment_status', $req->input('payment_status'));
+		}
+
+		if ($req->filled('rating')) {
+			$query->where('rating', $req->input('rating'));
+		}
+
+		if ($req->filled('comment')) {
+			$query->where('comment', 'like', '%' . $req->input('comment') . '%');
+		}
+
+		if ($req->filled('price_from') && $req->filled('price_to')) {
+			$query->whereBetween('price', [$req->input('price_from'), $req->input('price_to')]);
+		}
+
+		if ($req->filled('date_from') && $req->filled('date_to')) {
+			$query->whereBetween('created_at', [$req->input('date_from'), $req->input('date_to')]);
+		}
+
+		$transactions = $query->paginate();
+
+		return view('admin.book', ['transactions' => $transactions]);
+	}
 }
