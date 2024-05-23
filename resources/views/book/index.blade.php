@@ -33,6 +33,7 @@
             border-radius: 15px;
             border: none;
             margin-top: auto;
+            width: 100%;
         }
 
         .btn-buy:hover {
