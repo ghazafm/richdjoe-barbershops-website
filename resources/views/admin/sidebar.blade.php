@@ -29,7 +29,7 @@
             </a>
         </li>
         <li class="{{ Request::is('admin/service') ? 'active' : '' }}">
-            <a href="/admin/service">
+            <a href="{{ url('/admin/service')}}">
                 <i class="fa fa-scissors"></i>Service
             </a>
         </li>
