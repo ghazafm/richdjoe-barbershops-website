@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminBookController;
 use App\Http\Controllers\Admin\AdminServiceController;
+use App\Http\Controllers\Admin\AdminKapsterController;
 use App\Http\Controllers\User\UserBookController;
 use App\Http\Controllers\Malicious\MaliciousController;
 use App\Http\Controllers\ProfileController;
@@ -37,3 +38,4 @@ Route::get('/book/service/{place}', [UserBookController::class,'services'])->mid
 Route::get('/admin/dashboard', [AdminController::class,'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/book',[AdminBookController::class,'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/service',[AdminServiceController::class,'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/hairartist',[AdminKapsterController::class,'index'])->middleware(['auth', 'admin']);

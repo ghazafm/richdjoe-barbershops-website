@@ -28,8 +28,8 @@
                 <i class="fa fa-scissors"></i>Service
             </a>
         </li>
-        <li class="{{ Request::is('hairartist.html') ? 'active' : '' }}">
-            <a href="hairartist.html">
+        <li class="{{ Request::is('admin/hairartist') ? 'active' : '' }}">
+            <a href="/admin/hairartist">
                 <i class="fa fa-user-tie"></i>HairArtist
             </a>
         </li>
