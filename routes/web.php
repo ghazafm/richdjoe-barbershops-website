@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminBookController;
+use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\User\UserBookController;
 use App\Http\Controllers\Malicious\MaliciousController;
 use App\Http\Controllers\ProfileController;
@@ -31,4 +33,5 @@ Route::get('/book', [UserBookController::class,'index'])->middleware('auth', 've
 
 //Admin
 Route::get('/admin/dashboard', [AdminController::class,'index'])->middleware(['auth', 'admin']);
-
+Route::get('/admin/book',[AdminBookController::class,'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/service',[AdminBookController::class,'index'])->middleware(['auth', 'admin']);

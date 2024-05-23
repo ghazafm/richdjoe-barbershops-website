@@ -14,7 +14,7 @@ class AdminServiceController extends Controller
         $services = Service::paginate(10);
 
         // Pass the data to the view
-        return view('admin.service.index', ['services' => $services]);
+        return view('admin.service', ['services' => $services]);
     }
 
     public function add()
