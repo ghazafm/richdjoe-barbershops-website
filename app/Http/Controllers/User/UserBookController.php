@@ -30,7 +30,7 @@ class UserBookController extends Controller
 	public function haircut($place)
 	{
 		$services = Service::where('type', 'LIKE', 'haircut');
-		return view('user.services.haircut', ['services' => $services, 'place' => $place]);
+		return view('book.haircut', ['services' => $services, 'place' => $place]);
 	}
 
 	public function kapsters($place, $service)
@@ -38,7 +38,7 @@ class UserBookController extends Controller
 		$kapsters = Kapster::where('place', 'LIKE', $place);
 
 		// Pass the data to the view
-		return view('user.services.kapster', ['kapsters' => $kapsters, 'service' => $service, 'place' => $place]);
+		return view('book.kapster', ['kapsters' => $kapsters, 'service' => $service, 'place' => $place]);
 	}
 
 	public function showKapster($search)
@@ -46,7 +46,7 @@ class UserBookController extends Controller
 		$kapster = Kapster::find($search);
 
 		// Pass the data to the view
-		return view('user.services.kapster', ['kapster' => $kapster]);
+		return view('book.kapster', ['kapster' => $kapster]);
 	}
 
 
@@ -64,7 +64,7 @@ class UserBookController extends Controller
 		$transaction = Transaction::create($transactionData);
 
 		// Pass the data to the view
-		return view('user.services.confirmation', [
+		return view('book.confirmation', [
 			'kapster' => $kapster,
 			'service' => $service,
 			'place' => $place,
@@ -74,7 +74,7 @@ class UserBookController extends Controller
 
 	public function confirm($transaction)
 	{
-		return view('user.services.log', ['transaction' => $transaction]);
+		return view('book.log', ['transaction' => $transaction]);
 	}
 
 
@@ -83,7 +83,7 @@ class UserBookController extends Controller
 	{
 		$uniquePlaces = Kapster::distinct()->pluck('place');
 		// Pass the data to the view
-		return view('user.services.index', ['uniquePlaces' => $uniquePlaces]);
+		return view('book.index', ['uniquePlaces' => $uniquePlaces]);
 	}
 	public function backServices($place)
 	{
@@ -91,12 +91,12 @@ class UserBookController extends Controller
 		$services = Service::where('type', 'LIKE', 'other');
 
 		// Pass the data to the view
-		return view('user.services.service', ['services' => $services, 'place' => $place]);
+		return view('book.service', ['services' => $services, 'place' => $place]);
 	}
 	public function backKapster($place, $service)
 	{
 		$kapsters = Kapster::where('place', 'LIKE', $place);
 		// Pass the data to the view
-		return view('user.services.kapster', ['kapsters' => $kapsters, 'service' => $service, 'place' => $place]);
+		return view('book.kapster', ['kapsters' => $kapsters, 'service' => $service, 'place' => $place]);
 	}
 }

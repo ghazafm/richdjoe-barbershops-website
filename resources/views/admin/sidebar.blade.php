@@ -23,19 +23,29 @@
                 <i class="icon-grid"></i>Book
             </a>
         </li>
+        <li class="{{ Request::is('admin/payment') ? 'active' : '' }}">
+            <a href="{{ url('/admin/payment') }}">
+                <i class="fa fa-money-bill-wave"></i>Payment
+            </a>
+        </li>
         <li class="{{ Request::is('admin/service') ? 'active' : '' }}">
             <a href="{{ url('/admin/service')}}">
                 <i class="fa fa-scissors"></i>Service
             </a>
         </li>
-        <li class="{{ Request::is('hairartist.html') ? 'active' : '' }}">
-            <a href="hairartist.html">
+        <li class="{{ Request::is('admin/hairartist') ? 'active' : '' }}">
+            <a href="/admin/hairartist">
                 <i class="fa fa-user-tie"></i>HairArtist
             </a>
         </li>
         <li class="{{ Request::is('user.html') ? 'active' : '' }}">
             <a href="user.html">
                 <i class="fa fa-user"></i>User
+            </a>
+        </li>
+        <li class="{{ Request::is('admin/history') ? 'active' : '' }}">
+            <a href="{{ url('/admin/history') }}">
+                <i class="fa fa-book"></i>History
             </a>
         </li>
     </ul>

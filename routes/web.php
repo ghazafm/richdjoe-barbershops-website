@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminBookController;
 use App\Http\Controllers\Admin\AdminServiceController;
+use App\Http\Controllers\Admin\AdminKapsterController;
 use App\Http\Controllers\User\UserBookController;
 use App\Http\Controllers\Malicious\MaliciousController;
 use App\Http\Controllers\ProfileController;
@@ -31,9 +32,12 @@ Route::get('/malicious', [MaliciousController::class,'index']);
 //User Book
 Route::get('/book', [UserBookController::class,'index'])->middleware('auth', 'verified');
 Route::get('/book/service/{place}', [UserBookController::class,'services'])->middleware('auth', 'verified');
+Route::get('/book/service/haircut/{place}', [UserBookController::class,'haircut'])->middleware('auth', 'verified');
+Route::get('/book/service/haircut/kapster/{place}/{service}', [UserBookController::class,'haircut'])->middleware('auth', 'verified');
 
 
 //Admin
 Route::get('/admin/dashboard', [AdminController::class,'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/book',[AdminBookController::class,'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/service',[AdminServiceController::class,'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/hairartist',[AdminKapsterController::class,'index'])->middleware(['auth', 'admin']);

@@ -9,7 +9,8 @@
 9. Jalankan di terminal 'npm install'
 10. Jalankan di terminal 'npm run build'
 11. Jalankan di terminal 'php artisan key:generate' (jika diperlukan)
-12. Gas ngerjain.....
+12. Jalankan di terminal 'php artisan db:seed' (untuk menambahkan data dummy)
+13. Gas ngerjain.....
 
 <p align="center"><a href="https://github.com/ghazafm" target="_blank"><img src="https://i.pinimg.com/originals/41/7e/be/417ebee986aec41629278b1e04cfbfe9.gif" width="400" alt="Laravel Logo"></a></p>
 

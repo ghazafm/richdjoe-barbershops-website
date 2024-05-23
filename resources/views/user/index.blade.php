@@ -76,7 +76,7 @@
             background-color: rgb(246, 220, 172);
             color: black;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 30px;
             font-size: 1.25rem;
             border-radius: 25px;
             margin-top: 20px;
@@ -123,6 +123,7 @@
             border-radius: 15px;
             border: none;
             margin-top: auto;
+            padding: 5px 0;
         }
 
         .btn-buy:hover {
@@ -208,6 +209,15 @@
             width: 40px;
             margin: 10px;
         }
+
+        .navbar-right .dropdown-menu {
+            min-width: auto;
+            right: 0;
+        }
+
+        .navbar-right .dropdown-menu a {
+            white-space: nowrap;
+        }
     </style>
 </head>
 
@@ -243,17 +253,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#contact-us">Contact Us</a>
                     </li>
+
                 </ul>
             </div>
             <div class="navbar-right">
-                <!-- Authentication Links -->
                 @if (Route::has('login'))
                 @auth
-                <li class="nav-item dropdown">
+                <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ Auth::user()->name }}
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
@@ -264,7 +274,7 @@
                             </form>
                         </li>
                     </ul>
-                </li>
+                </div>
                 @else
                 <li class="nav-item">
                     <a class="nav-link btn btn-sign ms-2" href="{{ route('register') }}">SIGN UP</a>
@@ -284,7 +294,7 @@
             <div class="col-md-6">
                 <h1>RICDHJOE BARBERSHOP</h1>
                 <a href="/book">
-                    <button class="btn-book">BOOK</button>
+                    <button class="btn-book fw-bold">BOOK</button>
                 </a>
             </div>
         </div>
@@ -292,7 +302,7 @@
 
     <main class="services" id="services">
         <h1 class="text-center mb-2">SERVICES</h1>
-        <p class="text-center mb-4">Richdjoe menyediakan beberapa layanan servis</p>
+        <p class="text-center mb-4">Richdjoe Provides Several Services</p>
         <div class="row justify-content-center text-center text-light">
             <div class="col-md-4 mb-4">
                 <div class="card">
@@ -339,7 +349,7 @@
 
     <main class="capster" id="capster">
         <h1 class="text-center mb-2">HAIR ARTIST</h1>
-        <p class="text-center mb-4">Richdjoe memiliki beberapa Hair Artist</p>
+        <p class="text-center mb-4">Richdjoe Has Several Hair Artists</p>
         {{-- saran ku di for loop sejumlah kapster pake php jadi jangan pure html --}}
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="2000">
             <div class="carousel-inner">
@@ -471,7 +481,7 @@
 
     <main class="produk" id="produk">
         <h1 class="text-center mb-2">OUR PRODUCTS</h1>
-        <p class="text-center mb-4">Richdjoe menyediakan beberapa produk</p>
+        <p class="text-center mb-4">Richdjoe Provides Several Products</p>
         <div class="row justify-content-center text-center text-light ">
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
@@ -507,9 +517,10 @@
         <div class="row align-items-center">
             <div class="history col-md-6">
                 <h1>OUR HISTORY</h1>
-                <span>Richdjoe Barbershops adalah salah satu bisnis yang memanfaatkan perkembangan gaya hidup masyarakat Indonesia
-                    sebagai bisnis baru khususnya di Kota Malang. Richdjoe Barbershops berdiri pada tanggal 15 Februari 2015. Usaha
-                    ini berawal dari kepindahan pemilik yaitu bapak Djoko Prihatin dari kota Jakarta dan menetap di kota Malang.</span>
+                <span>Richdjoe Barbershops is one of the businesses that utilizes the development of the lifestyle of the 
+                    Indonesian people as a new business, especially in Malang City. Richdjoe Barbershops was established on 
+                    February 15, 2015. This business began with the move of the owner, Mr. Djoko Prihatin, from Jakarta and 
+                    settled in Malang.</span>
             </div>
             <div class="col-md-6">
                 <img src="{{ asset('images/home/barber.jpg') }}" alt="Barbershop Image" class="img-fluid">
@@ -536,7 +547,7 @@
                 <label for="message">Message</label>
                 <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
             </div>
-            <button class="btn-contact">SEND</button>
+            <button class="btn-contact fw-bold">SEND</button>
         </form>
     </main>
 

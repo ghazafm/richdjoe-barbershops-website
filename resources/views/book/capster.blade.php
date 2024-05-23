@@ -26,7 +26,6 @@
         .card img {
             object-fit: cover;
             width: 100%;
-            height: 350px;
         }
 
         .card-body {
@@ -70,7 +69,7 @@
             height: 65px;
         }
 
-        .produk {
+        .services {
             padding-bottom: 100px;
         }
 
@@ -98,51 +97,61 @@
         </div>
     </header>
 
-    <main class="container produk" id="produk">
-        <h1 class="text-center mb-4">Please Select Your Store</h1>
+    <main class="container services" id="services">
+        <h1 class="text-center mb-4">Please Select Hair Artist</h1>
         <div class="row justify-content-center text-center text-light">
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="{{ asset('images/store/suhat.jpg') }}" alt="HAIRCUT">
+                <div class="card">
+                    <img src="{{ asset('images/services/service1.jpg') }}" alt="HAIRCUT">
                     <div class="card-body d-flex flex-column">
-                        <h4 class="card-title font-weight-bold">Soekarno Hatta</h4>
-                        <p class="card-text">Bunga Coklat St No.1, Jatimulyo, Lowokwaru District, Malang City, East Java 65141</p>
-                        <?php
-                        $place = 'Soekarno Hatta';
-                        echo '<a href="/book/service/' . $place . '">';
-                        echo '<button class="btn-pilih">SELECT</button>';
-                        echo '</a>';
-                        ?>
+                        <h4 class="card-title fw-bold">HAIRCUT</h4>
+                        <a href="">
+                            <button class="btn-pilih">SELECT</button>
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="{{ asset('images/store/ijen1.jpg') }}" alt="TREATMENT">
+                <div class="card">
+                    <img src="{{ asset('images/services/service2.jpg') }}" alt="TREATMENT">
                     <div class="card-body d-flex flex-column">
-                        <h4 class="card-title font-weight-bold">Ijen</h4>
-                        <p class="card-text">Ijen St No.86, Oro-oro Dowo, Klojen, Malang City, East Java 65119</p>
-                        <?php
-                        $place = 'Ijen';
-                        echo '<a href="/book/service/' . $place . '">';
-                        echo '<button class="btn-pilih">SELECT</button>';
-                        echo '</a>';
-                        ?>
+                        <h4 class="card-title fw-bold">TREATMENT</h4>
+                        <a href="">
+                            <button class="btn-pilih">SELECT</button>
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="{{ asset('images/store/sigura.jpg') }}" alt="TREATMENT">
+                <div class="card">
+                    <img src="{{ asset('images/services/service3.jpg') }}" alt="BLEACHING">
                     <div class="card-body d-flex flex-column">
-                        <h4 class="card-title font-weight-bold">Sigura-gura</h4>
-                        <p class="card-text">Sigura - Gura St No.2 Kavling 4, Sumbersari, Lowokwaru District, Malang City, East Java 65145</p>
-                        <?php
-                        $place = 'Sigura-gura';
-                        echo '<a href="/book/service/' . $place . '">';
-                        echo '<button class="btn-pilih">SELECT</button>';
-                        echo '</a>';
-                        ?>
+                        <h4 class="card-title fw-bold">BLEACHING</h4>
+                        <a href="">
+                            <button class="btn-pilih">SELECT</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
+                    <div class="card-body d-flex flex-column">
+                        <h4 class="card-title fw-bold">TONING</h4>
+                        <a href="">
+                            <button class="btn-pilih">SELECT</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ asset('images/services/service5.jpg') }}" alt="FASHION COLOR">
+                    <div class="card-body d-flex flex-column">
+                        <h4 class="card-title fw-bold">FASHION COLOR</h4>
+                        <a href="">
+                            <button class="btn-pilih">SELECT</button>
+                        </a>
                     </div>
                 </div>
             </div>
