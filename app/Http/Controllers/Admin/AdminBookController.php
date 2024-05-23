@@ -11,8 +11,10 @@ class AdminBookController extends Controller
 {
 	public function index()
 	{
-		// Retrieve users with pagination
-		$transactions = Transaction::with(['user', 'kapster', 'service'])->paginate(10);
+		$transactions = Transaction::with(['user', 'kapster', 'service'])
+			->where('service_status', 'wait')
+			->paginate(10);
+		
 
 		// Pass the data to the view
 		return view('admin.book', ['transaction' => $transactions]);
@@ -102,7 +104,6 @@ class AdminBookController extends Controller
 		}
 	}
 
-
 	public function delete($id)
 	{
 		try {
@@ -117,7 +118,7 @@ class AdminBookController extends Controller
 		}
 	}
 
-	public function search(Request $req)
+	public function search_book(Request $req)
 	{
 		$search = $req->input('search');
 
@@ -139,7 +140,7 @@ class AdminBookController extends Controller
 		return view('student.index', ['transactions' => $transactions]);
 	}
 
-	public function filter(Request $req)
+	public function filter_book(Request $req)
 	{
 		$query = Transaction::query();
 
@@ -219,5 +220,61 @@ class AdminBookController extends Controller
 
 		// Redirect back with a success message
 		return redirect()->back()->with('success', 'Payment verified successfully.');
+	}
+
+	public function filter_payment(Request $req)
+	{
+		// Initialize a query builder
+		$query = Transaction::query();
+
+		// Apply filters based on the request
+		if ($req->filled('id')) {
+			$query->where('id', $req->input('id'));
+		}
+
+		if ($req->filled('customer_id')) {
+			$query->where('customer_id', $req->input('customer_id'));
+		}
+
+		if ($req->filled('kapster_id')) {
+			$query->where('kapster_id', $req->input('kapster_id'));
+		}
+
+		if ($req->filled('service_id')) {
+			$query->where('service_id', $req->input('service_id'));
+		}
+
+		if ($req->filled('service_status')) {
+			$query->where('service_status', $req->input('service_status'));
+		}
+
+		if ($req->filled('payment_status')) {
+			$query->where('payment_status', $req->input('payment_status'));
+		}
+
+		if ($req->filled('rating')) {
+			$query->where('rating', $req->input('rating'));
+		}
+
+		if ($req->filled('comment')) {
+			$query->where('comment', 'like', '%' . $req->input('comment') . '%');
+		}
+
+		if ($req->filled('price_from') && $req->filled('price_to')) {
+			$query->whereBetween('price', [$req->input('price_from'), $req->input('price_to')]);
+		}
+
+		if ($req->filled('date_from') && $req->filled('date_to')) {
+			$query->whereBetween('created_at', [$req->input('date_from'), $req->input('date_to')]);
+		}
+
+		// Filter by service_status set to "verified"
+		$query->where('service_status', 'verified');
+
+		// Retrieve filtered transactions with pagination
+		$transactions = $query->paginate(10);
+
+		// Pass the data to the view
+		return view('admin.book', ['transactions' => $transactions]);
 	}
 }
