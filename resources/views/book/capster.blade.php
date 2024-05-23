@@ -98,14 +98,13 @@
     </header>
 
     <main class="container services" id="services">
-        <h1 class="text-center mb-4">Please Select Your Serivce</h1>
+        <h1 class="text-center mb-4">Please Select Hair Artist</h1>
         <div class="row justify-content-center text-center text-light">
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <img src="{{ asset('images/services/service1.jpg') }}" alt="HAIRCUT">
                     <div class="card-body d-flex flex-column">
                         <h4 class="card-title fw-bold">HAIRCUT</h4>
-                        <h6 class="card-text">IDR Rp85.000 - Rp184.000</h6>
                         <a href="">
                             <button class="btn-pilih">SELECT</button>
                         </a>
@@ -117,7 +116,6 @@
                     <img src="{{ asset('images/services/service2.jpg') }}" alt="TREATMENT">
                     <div class="card-body d-flex flex-column">
                         <h4 class="card-title fw-bold">TREATMENT</h4>
-                        <h6 class="card-text">IDR Rp165.000</h6>
                         <a href="">
                             <button class="btn-pilih">SELECT</button>
                         </a>
@@ -129,7 +127,6 @@
                     <img src="{{ asset('images/services/service3.jpg') }}" alt="BLEACHING">
                     <div class="card-body d-flex flex-column">
                         <h4 class="card-title fw-bold">BLEACHING</h4>
-                        <h6 class="card-text">IDR Rp85.000</h6>
                         <a href="">
                             <button class="btn-pilih">SELECT</button>
                         </a>
@@ -141,7 +138,6 @@
                     <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
                     <div class="card-body d-flex flex-column">
                         <h4 class="card-title fw-bold">TONING</h4>
-                        <h6 class="card-text">IDR Rp150.000</h6>
                         <a href="">
                             <button class="btn-pilih">SELECT</button>
                         </a>
@@ -153,7 +149,6 @@
                     <img src="{{ asset('images/services/service5.jpg') }}" alt="FASHION COLOR">
                     <div class="card-body d-flex flex-column">
                         <h4 class="card-title fw-bold">FASHION COLOR</h4>
-                        <h6 class="card-text">IDR Rp235.000</h6>
                         <a href="">
                             <button class="btn-pilih">SELECT</button>
                         </a>
