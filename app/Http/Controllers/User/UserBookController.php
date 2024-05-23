@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
@@ -14,9 +14,8 @@ class UserBookController extends Controller
 	public function index()
 	{
 		$uniquePlaces = Kapster::distinct()->pluck('place');
-
 		// Pass the data to the view
-		return view('user.services.index', ['uniquePlaces' => $uniquePlaces]);
+		return view('book.index', ['uniquePlaces' => $uniquePlaces]);
 	}
 
 	public function services($place)
@@ -50,13 +49,6 @@ class UserBookController extends Controller
 		return view('user.services.kapster', ['kapster' => $kapster]);
 	}
 
-	public function backShowCapster($place, $service)
-	{
-		$kapsters = Kapster::where('place', 'LIKE', $place);
-		// Pass the data to the view
-		return view('user.services.kapster', ['kapsters' => $kapsters, 'service' => $service, 'place' => $place]);
-	}
-
 
 	public function confirmation($place, $service, $kapster)
 	{
@@ -82,6 +74,29 @@ class UserBookController extends Controller
 
 	public function confirm($transaction)
 	{
-		return view('user.services.log', ['transaction' => $transaction ]);
+		return view('user.services.log', ['transaction' => $transaction]);
+	}
+
+
+	// Back button ===============================================================
+	public function backIndex()
+	{
+		$uniquePlaces = Kapster::distinct()->pluck('place');
+		// Pass the data to the view
+		return view('user.services.index', ['uniquePlaces' => $uniquePlaces]);
+	}
+	public function backServices($place)
+	{
+		// Retrieve Services with pagination
+		$services = Service::where('type', 'LIKE', 'other');
+
+		// Pass the data to the view
+		return view('user.services.service', ['services' => $services, 'place' => $place]);
+	}
+	public function backKapster($place, $service)
+	{
+		$kapsters = Kapster::where('place', 'LIKE', $place);
+		// Pass the data to the view
+		return view('user.services.kapster', ['kapsters' => $kapsters, 'service' => $service, 'place' => $place]);
 	}
 }

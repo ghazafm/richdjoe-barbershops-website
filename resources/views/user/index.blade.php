@@ -214,7 +214,8 @@
         <a class="navbar-brand" href="#">
             <img src="{{ asset('images/home/logo.png') }}" alt="Logo" class="logo">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -224,7 +225,7 @@
                         <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Book</a>
+                        <a class="nav-link" href="/book">Book</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#services">Services</a>
@@ -281,8 +282,10 @@
     <div class="main-content">
         <div class="row align-items-center">
             <div class="col-md-6">
-                <h1>RICHDJOE BARBERSHOP</h1>
-                <button class="btn-book">BOOK</button>
+                <h1>RICDHJOE BARBERSHOP</h1>
+                <a href="/book">
+                    <button class="btn-book">BOOK</button>
+                </a>
             </div>
         </div>
     </div>
@@ -337,6 +340,7 @@
     <main class="capster" id="capster">
         <h1 class="text-center mb-2">HAIR ARTIST</h1>
         <p class="text-center mb-4">Richdjoe memiliki beberapa Hair Artist</p>
+        {{-- saran ku di for loop sejumlah kapster pake php jadi jangan pure html --}}
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="2000">
             <div class="carousel-inner">
                 <div class="carousel-item active">

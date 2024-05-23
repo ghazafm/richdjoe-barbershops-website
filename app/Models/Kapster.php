@@ -16,9 +16,7 @@ class Kapster extends Model
         'name',
         'photo',
         'place',
-        'schedule',
-        'created_at',
-        'updated_at'
+        'schedule'
     ];
 
     // Disable timestamps if your table does not have created_at and updated_at columns automatically managed

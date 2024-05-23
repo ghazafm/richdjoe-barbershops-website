@@ -15,7 +15,7 @@ class Service extends Model
     protected $fillable = [
         'name',
         'description',
-        'price',
+        'price'
     ];
 
     // Disable timestamps if your table does not have created_at and updated_at columns automatically managed

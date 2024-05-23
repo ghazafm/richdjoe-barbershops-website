@@ -13,8 +13,7 @@ class Transaction extends Model
 
     protected $fillable = [
         'customer_id', 'kapster_id', 'service_id', 'total_price',
-        'service_status', 'payment_status', 'rating', 'comment', 
-        'created_at', 'updated_at'
+        'service_status', 'payment_status', 'rating', 'comment'
     ];
 
     // Automatically manage created_at and updated_at fields
