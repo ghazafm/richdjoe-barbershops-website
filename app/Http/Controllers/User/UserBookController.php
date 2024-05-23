@@ -24,7 +24,7 @@ class UserBookController extends Controller
 		$services = Service::where('type', 'LIKE', 'other');
 
 		// Pass the data to the view
-		return view('user.services.service', ['services' => $services, 'place' => $place]);
+		return view('book.service', ['services' => $services, 'place' => $place]);
 	}
 
 	public function haircut($place)

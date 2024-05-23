@@ -14,8 +14,8 @@
             background: url("{{ asset('images/home/bg2.jpg') }}");
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat; 
-            background-attachment: fixed; 
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             color: white;
         }
 
@@ -57,7 +57,8 @@
 
         .about-us h1 {
             font-size: 3rem;
-            color: whitesmoke;
+            color: white;
+            padding-bottom: 20px;
         }
 
         .about-us span {
@@ -81,7 +82,7 @@
             margin-top: 20px;
         }
 
-        .btn-book:hover{
+        .btn-book:hover {
             background-color: rgb(236, 177, 118);
         }
 
@@ -118,7 +119,7 @@
         }
 
         .btn-buy {
-            background-color: white;
+            background-color: rgb(255, 250, 230);
             border-radius: 15px;
             border: none;
             margin-top: auto;
@@ -150,8 +151,9 @@
         .services,
         .capster,
         .about-us,
-        .produk, .contact-us {
-            background-color: rgba(0,19,33,255);
+        .produk,
+        .contact-us {
+            background-color: rgba(0, 19, 33, 255);
             padding-inline: 200px;
             padding-top: 50px;
             padding-bottom: 200px;
@@ -211,18 +213,17 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-darker">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img src="{{ asset('images/home/logo.png') }}" alt="Logo" class="logo">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-center">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/book">Book</a>
@@ -276,7 +277,6 @@
             </div>
         </div>
     </nav>
-
 
     <!-- Main Content -->
     <div class="main-content">

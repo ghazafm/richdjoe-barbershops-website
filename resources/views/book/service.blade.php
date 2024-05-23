@@ -25,7 +25,6 @@
         .card img {
             object-fit: cover;
             width: 100%;
-            height: 350px;
         }
 
         .btn-buy {
@@ -61,7 +60,7 @@
             height: 65px;
         }
 
-        .produk {
+        .services {
             padding-bottom: 100px;
         }
 
@@ -89,41 +88,47 @@
         </div>
     </header>
 
-    <main class="container produk" id="produk">
-        <h1 class="text-center mb-4">SILAHKAN PILIH STORE ANDA</h1>
+    <main class="services" id="services">
+        <h1 class="text-center mb-2">SERVICES</h1>
+        <p class="text-center mb-4">Richdjoe menyediakan beberapa layanan servis</p>
         <div class="row justify-content-center text-center text-light">
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="{{ asset('images/store/suhat.jpg') }}" alt="HAIRCUT">
-                    <div class="card-body d-flex flex-column text-dark">
-                        <h4 class="card-title font-weight-bold">Soekarno Hatta</h4>
-                        <p class="card-text">Jl. Bunga Coklat No.1, Jatimulyo, Kec. Lowokwaru, Kota Malang, Jawa Timur 65141</p>
-                        <?php
-                            $place = 'Soekarno Hatta';
-                            echo '<a href="/book/service/' . $place . '">';
-                            echo '<button class="btn-buy">PILIH</button>';
-                            echo '</a>';
-                        ?>
+                <div class="card">
+                    <img src="{{ asset('images/services/service1.jpg') }}" alt="HAIRCUT">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">HAIRCUT</h5>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="{{ asset('images/store/ijen1.jpg') }}" alt="TREATMENT">
-                    <div class="card-body d-flex flex-column text-dark">
-                        <h4 class="card-title font-weight-bold">Ijen</h4>
-                        <p class="card-text">Ijen St No.86, Oro-oro Dowo, Klojen, Malang City, East Java 65119</p>
-                        <button class="btn-buy">PILIH</button>
+                <div class="card">
+                    <img src="{{ asset('images/services/service2.jpg') }}" alt="TREATMENT">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">TREATMENT</h5>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="{{ asset('images/store/sigura.jpg') }}" alt="TREATMENT">
-                    <div class="card-body d-flex flex-column text-dark">
-                        <h4 class="card-title font-weight-bold">Sigura-gura</h4>
-                        <p class="card-text">Jl. Sigura - Gura No.2 Kavling 4, Sumbersari, Kec. Lowokwaru, Kota Malang, Jawa Timur 65145</p>
-                        <button class="btn-buy">PILIH</button>
+                <div class="card">
+                    <img src="{{ asset('images/services/service3.jpg') }}" alt="BLEACHING">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">BLEACHING</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">TONING</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ asset('images/services/service5.jpg') }}" alt="FASHION COLOR">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold">FASHION COLOR</h5>
                     </div>
                 </div>
             </div>

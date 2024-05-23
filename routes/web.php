@@ -28,6 +28,8 @@ Route::get('/malicious', [MaliciousController::class,'index']);
 
 //User Book
 Route::get('/book', [UserBookController::class,'index'])->middleware('auth', 'verified');
+Route::get('/book/service/{place}', [UserBookController::class,'services'])->middleware('auth', 'verified');
+
 
 //Admin
 Route::get('/admin/dashboard', [AdminController::class,'index'])->middleware(['auth', 'admin']);
