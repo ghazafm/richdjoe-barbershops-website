@@ -12,7 +12,7 @@ class AdminBookController extends Controller
 	public function index()
 	{
 		// Retrieve users with pagination
-		$transactions = Transaction::with(['user','kapster','service'])->paginate(10);
+		$transactions = Transaction::with(['user', 'kapster', 'service'])->paginate(10);
 
 		// Pass the data to the view
 		return view('admin.book', ['transaction' => $transactions]);
@@ -186,5 +186,38 @@ class AdminBookController extends Controller
 		$transactions = $query->paginate();
 
 		return view('admin.book', ['transactions' => $transactions]);
+	}
+
+
+
+
+	// Payment ====================================================
+	public function payment()
+	{
+		// Retrieve transactions with service_status set to "verified"
+		$transactions = Transaction::with(['user', 'kapster', 'service'])
+			->where('service_status', 'verified')
+			->paginate(10);
+
+		// Pass the data to the view
+		return view('admin.book', ['transactions' => $transactions]);
+	}
+
+
+	public function verify_payment(Request $request)
+	{
+		// Validate the request
+		$request->validate([
+			'transaction_id' => 'required|exists:transactions,id',
+		]);
+
+		// Find the transaction by its ID
+		$transaction = Transaction::findOrFail($request->input('transaction_id'));
+
+		// Update the payment_status to "verified"
+		$transaction->update(['payment_status' => 'verified']);
+
+		// Redirect back with a success message
+		return redirect()->back()->with('success', 'Payment verified successfully.');
 	}
 }
