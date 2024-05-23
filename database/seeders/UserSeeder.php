@@ -16,11 +16,11 @@ class UserSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             User::create([
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
-                'usertype' => $faker->randomElement(['user', 'admin']),
+                'usertype' => 'user',
                 'phone' => $faker->phoneNumber,
                 'address' => $faker->address,
                 'password' => Hash::make('password'), // Default password for all users

@@ -23,7 +23,7 @@ class TransactionSeeder extends Seeder
         $kapsters = Kapster::all();
         $services = Service::all();
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 1000; $i++) {
             // Randomly select a service
             $service = $services->random();
 
@@ -37,7 +37,7 @@ class TransactionSeeder extends Seeder
                 'user_id' => $users->random()->id,
                 'kapster_id' => $kapsters->random()->id,
                 'service_id' => $service->id,
-                'jadwal' => $schedule,
+                'schedule' => $schedule,
                 'total_price' => $service->price,
                 'service_status' => $faker->randomElement(['wait', 'decline', 'verified']),
                 'payment_status' => $faker->randomElement(['process', 'verified']),
