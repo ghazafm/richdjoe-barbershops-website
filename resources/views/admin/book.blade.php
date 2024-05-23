@@ -17,7 +17,7 @@
         <div class="page-header">
             <div class="container-fluid">
                 <h3>Booking Data</h3>
-                <a href="/admin/add">+ Add Booking Data</a>
+                <a href="{{ url('/admin/addbook')}}">+ Add Booking Data</a>
                 <br />
                 <br />
                 <p>Search Transaction ID:</p>
