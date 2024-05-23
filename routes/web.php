@@ -44,3 +44,11 @@ Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware(['
 Route::get('/admin/book', [AdminBookController::class, 'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/service', [AdminServiceController::class, 'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/hairartist', [AdminKapsterController::class, 'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/dashboard', [AdminController::class,'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/book',[AdminBookController::class,'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/book/{id}',[AdminBookController::class,'detail'])->middleware(['auth', 'admin']);
+Route::get('/admin/book/add',[AdminBookController::class,'add'])->middleware(['auth', 'admin']);
+Route::get('/admin/service',[AdminServiceController::class,'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/hairartist',[AdminKapsterController::class,'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/history',[AdminKapsterController::class,'index'])->middleware(['auth', 'admin']);
+// routes/web.php

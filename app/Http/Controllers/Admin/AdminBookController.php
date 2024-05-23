@@ -20,6 +20,59 @@ class AdminBookController extends Controller
 		return view('admin.book', ['transaction' => $transactions]);
 	}
 
+	public function detail($id)
+	{
+		$transaction = Transaction::find($id);
+        return view('admin.book_detail', compact('transaction'));
+	}
+	public function booksave(Request $req)
+	{
+		$validated = $req->validate([
+			'customer_id' => 'required|integer',
+			'kapster_id' => 'required|integer',
+			'service_id' => 'required|integer',
+			'total_price' => 'required|numeric',
+			'service_status' => 'required|string|max:4',
+			'payment_status' => 'required|boolean',
+			'rating' => 'nullable|integer',
+			'comment' => 'nullable|string|max:255'
+		]);
+
+		try {
+			// Insert data into the transaction table using Eloquent
+			Transaction::create($validated);
+
+			// Redirect to the student page with success message
+			return redirect('/student')->with('success', 'Transaction saved successfully.');
+		} catch (\Exception $e) {
+			// Handle the exception and redirect back with an error message
+			return redirect()->back()->with('error', 'Failed to save transaction: ' . $e->getMessage());
+
+			// cara nampilin
+			// 	<title>Student Page</title>
+			// 	<!-- Add your CSS and JS files here -->
+			// </head>
+			// <body>
+			// 	<!-- Flash Messages -->
+			// 	@if (session('success'))
+			// 		<div class="alert alert-success">
+			// 			{{ session('success') }}
+			// 		</div>
+			// 	@endif
+
+			// 	@if (session('error'))
+			// 		<div class="alert alert-danger">
+			// 			{{ session('error') }}
+			// 		</div>
+			// 	@endif
+
+			// 	<!-- Your other page content -->
+			// </body>
+			// </html>
+
+		}
+	}
+
 	public function edit($id)
 	{
 		// Fetch transaction data by ID using Eloquent
