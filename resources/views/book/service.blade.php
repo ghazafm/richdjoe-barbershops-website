@@ -20,6 +20,7 @@
             background-color: rgb(246, 220, 172);
             max-width: 100%;
             position: relative;
+            color: black;
         }
 
         .card img {
@@ -27,14 +28,22 @@
             width: 100%;
         }
 
-        .btn-buy {
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .btn-pilih {
             background-color: rgb(255, 250, 230);
             border-radius: 15px;
             border: none;
             margin-top: auto;
+            width: 100%;
+            padding: 5px 0;
         }
 
-        .btn-buy:hover {
+        .btn-pilih:hover {
             background-color: black;
             color: white;
         }
@@ -80,23 +89,28 @@
                 <button class="btn btn-outline-secondary text-white" onclick="goBack()">⬅️ Back</button>
             </div>
             <div class="text-right ml-auto mr-3">
-                <a href="tes.html" class="d-block text-white">My Booking</a>
-                <a href="tes.html" class="text-white">Awan, </a>
+                <a href="" class="d-block text-white">My Booking</a>
+                <a href="" class="text-white">Awan, </a>
                 <span class="text-muted">17 May 2024, 11:11</span>
             </div>
             <button class="btn btn-danger">Sign Out</button>
         </div>
     </header>
 
-    <main class="services" id="services">
-        <h1 class="text-center mb-2">SERVICES</h1>
-        <p class="text-center mb-4">Richdjoe menyediakan beberapa layanan servis</p>
+    <main class="container services" id="services">
+        <h1 class="text-center mb-4">Please Select Your Serivce</h1>
         <div class="row justify-content-center text-center text-light">
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <img src="{{ asset('images/services/service1.jpg') }}" alt="HAIRCUT">
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">HAIRCUT</h5>
+                        <h4 class="card-title fw-bold">HAIRCUT</h4>
+                        <h6 class="card-text">IDR Rp85.000 - Rp184.000</h6>
+                        <?php
+                        echo '<a href="/book/service/haircut/' . $place . '">';
+                        echo '<button class="btn-pilih">SELECT</button>';
+                        echo '</a>';
+                        ?>
                     </div>
                 </div>
             </div>
@@ -104,7 +118,11 @@
                 <div class="card">
                     <img src="{{ asset('images/services/service2.jpg') }}" alt="TREATMENT">
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">TREATMENT</h5>
+                        <h4 class="card-title fw-bold">TREATMENT</h4>
+                        <h6 class="card-text">IDR Rp165.000</h6>
+                        <a href="">
+                            <button class="btn-pilih">SELECT</button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -112,7 +130,11 @@
                 <div class="card">
                     <img src="{{ asset('images/services/service3.jpg') }}" alt="BLEACHING">
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">BLEACHING</h5>
+                        <h4 class="card-title fw-bold">BLEACHING</h4>
+                        <h6 class="card-text">IDR Rp85.000</h6>
+                        <a href="">
+                            <button class="btn-pilih">SELECT</button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -120,7 +142,11 @@
                 <div class="card">
                     <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">TONING</h5>
+                        <h4 class="card-title fw-bold">TONING</h4>
+                        <h6 class="card-text">IDR Rp150.000</h6>
+                        <a href="">
+                            <button class="btn-pilih">SELECT</button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -128,7 +154,11 @@
                 <div class="card">
                     <img src="{{ asset('images/services/service5.jpg') }}" alt="FASHION COLOR">
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">FASHION COLOR</h5>
+                        <h4 class="card-title fw-bold">FASHION COLOR</h4>
+                        <h6 class="card-text">IDR Rp235.000</h6>
+                        <a href="">
+                            <button class="btn-pilih">SELECT</button>
+                        </a>
                     </div>
                 </div>
             </div>
