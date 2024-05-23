@@ -17,8 +17,7 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->string('place');
             $table->string('schedule', 255)->nullable();
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamps();
         });
     }
 

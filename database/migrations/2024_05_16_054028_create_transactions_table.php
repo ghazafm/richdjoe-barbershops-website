@@ -17,11 +17,10 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('kapster_id');
             $table->unsignedBigInteger('service_id');
-            $table->enum('type', ['haircut', 'other']);
-            $table->timestamp('jadwal');
+            $table->timestamp('schedule');
             $table->decimal('total_price', 10, 2);
             $table->enum('service_status', ['wait', 'decline','verified'])->default('wait');
-            $table->boolean('payment_status')->default(false);
+            $table->enum('payment_status',['process','verified'])->default('process');
             $table->tinyInteger('rating')->nullable()->default(null);
             $table->string('comment', 255)->nullable();
             $table->timestamps();
