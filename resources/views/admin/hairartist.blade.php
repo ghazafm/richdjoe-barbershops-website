@@ -36,7 +36,7 @@
                             <td>{{ $kap->place }}</td>
                             <td>{{ $kap->schedule }}</td>
                             <td>
-                                <a class="btn btn-warning btn-sm" href="/admin/detail/{{ $kap->id }}">Detail</a>
+                                <a class="btn btn-warning btn-sm">Detail</a>
                             </td>
                         </tr>
                         @endforeach
