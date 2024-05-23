@@ -14,58 +14,10 @@ class AdminBookController extends Controller
 		$transactions = Transaction::with(['user', 'kapster', 'service'])
 			->where('service_status', 'wait')
 			->paginate(10);
-		
+
 
 		// Pass the data to the view
 		return view('admin.book', ['transaction' => $transactions]);
-	}
-
-	public function booksave(Request $req)
-	{
-		$validated = $req->validate([
-			'customer_id' => 'required|integer',
-			'kapster_id' => 'required|integer',
-			'service_id' => 'required|integer',
-			'total_price' => 'required|numeric',
-			'service_status' => 'required|string|max:4',
-			'payment_status' => 'required|boolean',
-			'rating' => 'nullable|integer',
-			'comment' => 'nullable|string|max:255'
-		]);
-
-		try {
-			// Insert data into the transaction table using Eloquent
-			Transaction::create($validated);
-
-			// Redirect to the student page with success message
-			return redirect('/student')->with('success', 'Transaction saved successfully.');
-		} catch (\Exception $e) {
-			// Handle the exception and redirect back with an error message
-			return redirect()->back()->with('error', 'Failed to save transaction: ' . $e->getMessage());
-
-			// cara nampilin
-			// 	<title>Student Page</title>
-			// 	<!-- Add your CSS and JS files here -->
-			// </head>
-			// <body>
-			// 	<!-- Flash Messages -->
-			// 	@if (session('success'))
-			// 		<div class="alert alert-success">
-			// 			{{ session('success') }}
-			// 		</div>
-			// 	@endif
-
-			// 	@if (session('error'))
-			// 		<div class="alert alert-danger">
-			// 			{{ session('error') }}
-			// 		</div>
-			// 	@endif
-
-			// 	<!-- Your other page content -->
-			// </body>
-			// </html>
-
-		}
 	}
 
 	public function edit($id)
@@ -189,7 +141,110 @@ class AdminBookController extends Controller
 		return view('admin.book', ['transactions' => $transactions]);
 	}
 
+	public function sort_book(Request $req)
+	{
+		// Retrieve transactions with service_status set to "wait"
+		$transactions = Transaction::with(['user', 'kapster', 'service'])
+			->where('service_status', 'wait');
 
+		// Apply sorting based on the request
+		if ($req->filled('sort_by') && $req->filled('sort_order')) {
+			$sortBy = $req->input('sort_by');
+			$sortOrder = $req->input('sort_order');
+			$transactions = $this->sortTransactions($transactions, $sortBy, $sortOrder);
+		}
+
+		// Paginate the sorted transactions
+		$transactions = $transactions->paginate(10);
+
+		// Pass the data to the view
+		return view('admin.book', ['transactions' => $transactions]);
+	}
+
+	public function verify_service(Request $request)
+	{
+		// Validate the request
+		$request->validate([
+			'transaction_id' => 'required|exists:transactions,id',
+		]);
+
+		// Find the transaction by its ID
+		$transaction = Transaction::findOrFail($request->input('transaction_id'));
+
+		// Update the payment_status to "verified"
+		$transaction->update(['service_status' => 'verified']);
+
+		// Redirect back with a success message
+		return redirect()->back()->with('success', 'Payment verified successfully.');
+	}
+
+	public function decline_service(Request $request)
+	{
+		// Validate the request
+		$request->validate([
+			'transaction_id' => 'required|exists:transactions,id',
+		]);
+
+		// Find the transaction by its ID
+		$transaction = Transaction::findOrFail($request->input('transaction_id'));
+
+		// Update the payment_status to "verified"
+		$transaction->update(['service_status' => 'decline']);
+
+		// Redirect back with a success message
+		return redirect()->back()->with('success', 'Payment declined.');
+	}
+
+
+	// Book Add ====================================================
+
+	public function booksave(Request $req)
+	{
+		$validated = $req->validate([
+			'customer_id' => 'required|integer',
+			'kapster_id' => 'required|integer',
+			'service_id' => 'required|integer',
+			'total_price' => 'required|numeric',
+			'service_status' => 'required|string|max:4',
+			'payment_status' => 'required|boolean',
+			'rating' => 'nullable|integer',
+			'comment' => 'nullable|string|max:255'
+		]);
+
+		try {
+			// Insert data into the transaction table using Eloquent
+			Transaction::create($validated);
+
+			// Redirect to the student page with success message
+			return redirect('/student')->with('success', 'Transaction saved successfully.');
+		} catch (\Exception $e) {
+			// Handle the exception and redirect back with an error message
+			return redirect()->back()->with('error', 'Failed to save transaction: ' . $e->getMessage());
+
+			// cara nampilin
+			// 	<title>Student Page</title>
+			// 	<!-- Add your CSS and JS files here -->
+			// </head>
+			// <body>
+			// 	<!-- Flash Messages -->
+			// 	@if (session('success'))
+			// 		<div class="alert alert-success">
+			// 			{{ session('success') }}
+			// 		</div>
+			// 	@endif
+
+			// 	@if (session('error'))
+			// 		<div class="alert alert-danger">
+			// 			{{ session('error') }}
+			// 		</div>
+			// 	@endif
+
+			// 	<!-- Your other page content -->
+			// </body>
+			// </html>
+
+		}
+	}
 
 
 	// Payment ====================================================
@@ -276,5 +331,34 @@ class AdminBookController extends Controller
 
 		// Pass the data to the view
 		return view('admin.book', ['transactions' => $transactions]);
+	}
+
+	public function sort_payment(Request $req)
+	{
+		// Retrieve transactions with service_status set to "verified"
+		$transactions = Transaction::with(['user', 'kapster', 'service'])
+			->where('service_status', 'verified');
+
+		// Apply sorting based on the request
+		if ($req->filled('sort_by') && $req->filled('sort_order')) {
+			$sortBy = $req->input('sort_by');
+			$sortOrder = $req->input('sort_order');
+			$transactions = $this->sortTransactions($transactions, $sortBy, $sortOrder);
+		}
+
+		// Paginate the sorted transactions
+		$transactions = $transactions->paginate(10);
+
+		// Pass the data to the view
+		return view('admin.book', ['transactions' => $transactions]);
+	}
+
+
+
+
+	// Helper =============================================================================================
+	private function sortTransactions($transactions, $sortBy, $sortOrder)
+	{
+		return $transactions->orderBy($sortBy, $sortOrder)->paginate(10);
 	}
 }
