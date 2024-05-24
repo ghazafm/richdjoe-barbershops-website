@@ -104,23 +104,7 @@
                     <img src="{{ asset($kapsters->photo) }}" alt="{{ $kapsters->name }}">
                     <div class="card-body d-flex flex-column">
                         <h4 class="card-title fw-bold">{{ $kapsters->name }}</h4>
-                        <a href='{{ url("/book/service/haircut/profil_kapster/" .$kapsters->id) }}'>
-                            <button class="btn-pilih">SELECT</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <main class="container profil-capster" id="profil-capster">
-        <div class="row justify-content-center text-center text-light">
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="{{ asset($kapsters->photo) }}" alt="{{ $kapsters->name }}">
-                    <div class="card-body d-flex flex-column">
-                        <h4 class="card-title fw-bold">{{ $kapsters->name }}</h4>
-                        <a href='{{ url("/book/service/haircut/profil_kapster/" .$kapsters->id) }}'>
+                        <a href="{{ url('book/service/haircut/kapster/schedule/'.$place.'/'.$service.'/'.$kapster->id) }}">
                             <button class="btn-pilih">SELECT</button>
                         </a>
                     </div>
