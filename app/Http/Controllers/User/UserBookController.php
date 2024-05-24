@@ -22,7 +22,7 @@ class UserBookController extends Controller
 	public function services($place)
 	{
 		// Retrieve Services with pagination
-		$services = Service::where('type', 'LIKE', 'other');
+		$services = Service::where('type', 'LIKE', 'other')->get();
 
 		// Pass the data to the view
 		return view('book.service', ['services' => $services, 'place' => $place]);
@@ -36,18 +36,18 @@ class UserBookController extends Controller
 
 	public function kapsters($place, $service)
 	{
-		$kapsters = Kapster::where('place', 'LIKE', $place);
+		$kapsters = Kapster::where('place', 'LIKE', $place)->get();
 
 		// Pass the data to the view
 		return view('book.kapster', ['kapsters' => $kapsters, 'service_id' => $service, 'place' => $place]);
 	}
 
-	public function showKapster($search)
+	public function showKapster($id)
 	{
-		$kapster = Kapster::find($search);
+		$kapsters = Kapster::where('id', 'LIKE', $id)->get();
 
 		// Pass the data to the view
-		return view('book.kapster', ['kapster' => $kapster]);
+		return view('book.profil_kapster', ['kapsters' => $kapsters]);
 	}
 
 	public function schedule($place, $service, $kapster)
