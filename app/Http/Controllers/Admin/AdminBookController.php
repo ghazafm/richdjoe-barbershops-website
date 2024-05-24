@@ -44,7 +44,6 @@ class AdminBookController extends Controller
 		$validated = $req->validate([
 			'kapster_id' => 'required|integer',
 			'service_id' => 'required|integer',
-			'total_price' => 'required|numeric',
 		]);
 
 		try {
