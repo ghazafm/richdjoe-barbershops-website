@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Import Auth facade
@@ -21,7 +22,7 @@ class AdminBookController extends Controller
 		return view('admin.book', ['transaction' => $transactions]);
 	}
 
-	public function detail($id)
+	public function detail_book($id)
 	{
 		$transaction = Transaction::with(['user', 'service', 'kapster'])->find($id);
 
@@ -34,7 +35,7 @@ class AdminBookController extends Controller
 
 	public function add()
 	{
-		return view('admin.add');
+		return view('admin.addbook');
 	}
 
 	public function addsave(Request $req)
@@ -43,16 +44,19 @@ class AdminBookController extends Controller
 		$validated = $req->validate([
 			'kapster_id' => 'required|integer',
 			'service_id' => 'required|integer',
-			'total_price' => 'required|numeric',
-			'service_status' => 'required|string|max:4',
-			'payment_status' => 'required|boolean',
-			'rating' => 'nullable|integer',
-			'comment' => 'nullable|string|max:255'
 		]);
 
 		try {
+			$validated['service_status'] = 'verified';
+
+			$service = Service::findOrFail($validated['service_id']);
+
+			// Calculate the total price based on the service price
+			$totalPrice = $service->price;
+			$validated['total_price'] = $totalPrice;
+
 			// Add the current user's ID as the customer_id
-			$validated['customer_id'] = Auth::id();
+			$validated['user_id'] = Auth::id();
 
 			// Add the current timestamp for the 'schedule' field
 			$validated['schedule'] = now();
@@ -61,7 +65,7 @@ class AdminBookController extends Controller
 			Transaction::create($validated);
 
 			// Redirect to the booking page with a success message
-			return redirect()->route('admin.book')->with('success', 'Transaction added successfully.');
+			return redirect('/admin/book')->with('success', 'Transaction added successfully.');
 		} catch (\Exception $e) {
 			// Handle any exceptions and redirect back with an error message
 			return redirect()->back()->with('error', 'Failed to add transaction: ' . $e->getMessage());

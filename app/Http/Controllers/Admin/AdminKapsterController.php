@@ -42,7 +42,7 @@ class AdminKapsterController extends Controller
         $kapster = Kapster::find($id);
 
         // Pass the data to the view
-        return view('admin.kapster.edit', ['kapster' => $kapster]);
+        return view('admin.edithairartist', ['kapster' => $kapster]);
     }
 
     public function editsave(Request $req)

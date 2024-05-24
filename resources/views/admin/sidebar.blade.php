@@ -34,7 +34,7 @@
             </a>
         </li>
         <li class="{{ Request::is('admin/hairartist') ? 'active' : '' }}">
-            <a href="/admin/hairartist">
+            <a href="{{ url('/admin/hairartist')}}">
                 <i class="fa fa-user-tie"></i>HairArtist
             </a>
         </li>

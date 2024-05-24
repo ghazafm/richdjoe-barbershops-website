@@ -15,17 +15,14 @@
 	<br/>
 	<br/>
  
-	@foreach($mahasiswa as $mhs)
 	<form action="/student/editsave" method="post">
 		{{ csrf_field() }}
-		<input type="hidden" name="nim" value="{{ $mhs->nim }}"> <br/>
-		Nama <input type="text" name="nama" value="{{ $mhs->nama }}" required="required"> <br/>
-		Alamat <textarea name="alamat" required="required">{{ $mhs->alamat }}</textarea> <br/>
-        No Telp <input type="text" name="notelp" value="{{ $mhs->notelp }}" required="required"> <br/>
-		IPK <input type="number" name="ipk" min="0" max="4" step="0.01" value="{{ $mhs->ipk }}" required="required"> <br/>
+		ID<input type="show" name="id" value="{{ $kapster->id }}"> <br/>
+		Hair Artist Name <input type="text" name="name" value="{{ $kapster->name }}" required="required"> <br/>
+		Place <textarea name="place" required="required">{{ $kapster->place }}</textarea> <br/>
+        Schedule <input type="schedule" name="notelp" value="{{ $kapster->schedule }}" required="required"> <br/>
 		<input type="submit" value="Simpan Data">
 	</form>
-	@endforeach
 		
  
 </body>
