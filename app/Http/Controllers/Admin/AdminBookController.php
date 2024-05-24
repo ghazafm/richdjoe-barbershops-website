@@ -267,7 +267,7 @@ class AdminBookController extends Controller
 			->paginate(10);
 
 		// Pass the data to the view
-		return view('admin.book', ['transactions' => $transactions]);
+		return view('admin.payment', ['transactions' => $transactions]);
 	}
 
 
