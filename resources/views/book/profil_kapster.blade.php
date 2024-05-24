@@ -96,10 +96,8 @@
             <button class="btn btn-danger">Sign Out</button>
         </div>
     </header>
-
     <main class="container profil-capster" id="profil-capster">
         <h1 class="text-center mb-4">Hair Artist Profile</h1>
-
         <div class="row justify-content-center text-center text-light">
             <div class="col-md-4 mb-4">
                 <div class="card">
@@ -115,6 +113,21 @@
         </div>
     </main>
 
+    <main class="container profil-capster" id="profil-capster">
+        <div class="row justify-content-center text-center text-light">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ asset($kapsters->photo) }}" alt="{{ $kapsters->name }}">
+                    <div class="card-body d-flex flex-column">
+                        <h4 class="card-title fw-bold">{{ $kapsters->name }}</h4>
+                        <a href='{{ url("/book/service/haircut/profil_kapster/" .$kapsters->id) }}'>
+                            <button class="btn-pilih">SELECT</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <footer class="footer-socials">
         <div class="container">
