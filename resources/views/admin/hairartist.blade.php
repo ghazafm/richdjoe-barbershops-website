@@ -48,7 +48,10 @@
                             <td>{{ $kap->place }}</td>
                             <td>{{ $kap->schedule }}</td>
                             <td>
-                                <a class="btn btn-warning btn-sm">Detail</a>
+                                <a class="btn btn-warning btn-sm" 
+                                href="/admin/hairartist/edit/{{ $kap->id }}">Edit</a>
+                                <a class="btn btn-danger btn-sm">Delete</a>
+
                             </td>
                         </tr>
                         @endforeach

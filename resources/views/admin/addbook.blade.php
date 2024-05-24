@@ -14,7 +14,7 @@
         <br/>
         <br/>
 
-        <form action="{{ url('/admin/book/addsave/') }}" method="post">
+        <form action="{{ url('/admin/book/addsave') }}" method="post">
 			@csrf
 			<div class="mb-3">
 				<label for="kapster_id" class="form-label">Kapster ID:</label>

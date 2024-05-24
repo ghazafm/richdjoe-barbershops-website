@@ -48,6 +48,7 @@ Route::get('/admin/book/{id}', [AdminBookController::class, 'detail_book'])->mid
 Route::get('/admin/book/add', [AdminBookController::class, 'add'])->middleware(['auth', 'admin']);
 Route::get('/admin/service', [AdminServiceController::class, 'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/hairartist', [AdminKapsterController::class, 'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/hairartist/edit/{id}', [AdminKapsterController::class, 'edit'])->middleware(['auth', 'admin']);
 Route::post('/admin/book/addsave', [AdminBookController::class, 'addsave'])->middleware(['auth', 'admin']);
 
 
