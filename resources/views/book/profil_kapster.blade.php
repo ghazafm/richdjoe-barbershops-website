@@ -69,7 +69,7 @@
             height: 65px;
         }
 
-        .services {
+        .profil-capster {
             padding-bottom: 100px;
         }
 
@@ -97,25 +97,24 @@
         </div>
     </header>
 
-    <main class="container services" id="services">
-        <h1 class="text-center mb-4">Please Choose the Type of Services</h1>
+    <main class="container profil-capster" id="profil-capster">
+        <h1 class="text-center mb-4">Hair Artist Profile</h1>
+
         <div class="row justify-content-center text-center text-light">
-            @foreach($services as $service)
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="{{ asset('images/services/' . $service->image) }}" alt="{{ $service->name }}">
+                <div class="card">
+                    <img src="{{ asset($kapsters->photo) }}" alt="{{ $kapsters->name }}">
                     <div class="card-body d-flex flex-column">
-                        <h4 class="card-title fw-bold">{{ $service->name }}</h4>
-                        <h6 class="card-text">IDR {{ number_format($service->price, 0, ',', '.') }}</h6>
-                        <a href="{{ url('book/service/haircut/kapster/'.$place.'/'.$service->id) }}">
+                        <h4 class="card-title fw-bold">{{ $kapsters->name }}</h4>
+                        <a href='{{ url("/book/service/haircut/profil_kapster/" .$kapsters->id) }}'>
                             <button class="btn-pilih">SELECT</button>
                         </a>
                     </div>
                 </div>
             </div>
-            @endforeach
         </div>
     </main>
+
 
     <footer class="footer-socials">
         <div class="container">

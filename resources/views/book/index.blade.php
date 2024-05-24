@@ -70,7 +70,7 @@
             height: 65px;
         }
 
-        .produk {
+        .store {
             padding-bottom: 100px;
         }
 
@@ -98,56 +98,26 @@
         </div>
     </header>
 
-    <main class="container produk" id="produk">
+    <main class="container store" id="store">
         <h1 class="text-center mb-4">Please Select Your Store</h1>
         <div class="row justify-content-center text-center text-light">
+            @foreach ($uniquePlaces as $place)
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    <img src="{{ asset('images/store/suhat.jpg') }}" alt="HAIRCUT">
+                    <img src="{{ asset('images/store/' . strtolower(str_replace(' ', '', $place)) . '.jpg') }}" alt="{{ strtoupper($place) }}">
                     <div class="card-body d-flex flex-column">
-                        <h4 class="card-title font-weight-bold">Soekarno Hatta</h4>
-                        <p class="card-text">Bunga Coklat St No.1, Jatimulyo, Lowokwaru District, Malang City, East Java 65141</p>
-                        <?php
-                        $place = 'Soekarno Hatta';
-                        echo '<a href="/book/service/' . $place . '">';
-                        echo '<button class="btn-pilih">SELECT</button>';
-                        echo '</a>';
-                        ?>
+                        <h4 class="card-title font-weight-bold">{{ $place }}</h4>
+                        <p class="card-text">{{ $place }} Address</p>
+                        <a href="/book/service/{{ $place }}">
+                            <button class="btn-pilih">SELECT</button>
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="{{ asset('images/store/ijen1.jpg') }}" alt="TREATMENT">
-                    <div class="card-body d-flex flex-column">
-                        <h4 class="card-title font-weight-bold">Ijen</h4>
-                        <p class="card-text">Ijen St No.86, Oro-oro Dowo, Klojen, Malang City, East Java 65119</p>
-                        <?php
-                        $place = 'Ijen';
-                        echo '<a href="/book/service/' . $place . '">';
-                        echo '<button class="btn-pilih">SELECT</button>';
-                        echo '</a>';
-                        ?>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="{{ asset('images/store/sigura.jpg') }}" alt="TREATMENT">
-                    <div class="card-body d-flex flex-column">
-                        <h4 class="card-title font-weight-bold">Sigura-gura</h4>
-                        <p class="card-text">Sigura - Gura St No.2 Kavling 4, Sumbersari, Lowokwaru District, Malang City, East Java 65145</p>
-                        <?php
-                        $place = 'Sigura-gura';
-                        echo '<a href="/book/service/' . $place . '">';
-                        echo '<button class="btn-pilih">SELECT</button>';
-                        echo '</a>';
-                        ?>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </main>
+
 
     <footer class="footer-socials">
         <div class="container">
