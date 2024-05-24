@@ -21,7 +21,7 @@ class AdminBookController extends Controller
 		return view('admin.book', ['transaction' => $transactions]);
 	}
 
-	public function detail($id)
+	public function detail_book($id)
 	{
 		$transaction = Transaction::with(['user', 'service', 'kapster'])->find($id);
 
@@ -44,13 +44,12 @@ class AdminBookController extends Controller
 			'kapster_id' => 'required|integer',
 			'service_id' => 'required|integer',
 			'total_price' => 'required|numeric',
-			'service_status' => 'required|string|max:4',
 			'payment_status' => 'required|boolean',
-			'rating' => 'nullable|integer',
-			'comment' => 'nullable|string|max:255'
 		]);
 
 		try {
+			$validated['service_status'] = 'verified';
+
 			// Add the current user's ID as the customer_id
 			$validated['customer_id'] = Auth::id();
 
