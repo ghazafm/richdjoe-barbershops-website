@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminBookController;
 use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminKapsterController;
+use App\Http\Controllers\Admin\AdminPaymentController;
 use App\Http\Controllers\User\UserBookController;
 use App\Http\Controllers\Malicious\MaliciousController;
 use App\Http\Controllers\ProfileController;
@@ -48,5 +49,5 @@ Route::get('/admin/book/{id}', [AdminBookController::class, 'detail'])->middlewa
 Route::get('/admin/book/add', [AdminBookController::class, 'add_book'])->middleware(['auth', 'admin']);
 Route::get('/admin/service', [AdminServiceController::class, 'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/hairartist', [AdminKapsterController::class, 'index'])->middleware(['auth', 'admin']);
-Route::get('/admin/payment', [AdminBookController::class, 'payment'])->middleware(['auth', 'admin']);
-Route::get('/admin/payment/{id}', [AdminBookController::class, 'detail_payment'])->middleware(['auth', 'admin']);
+Route::get('/admin/payment', [AdminPaymentController::class, 'payment'])->middleware(['auth', 'admin']);
+Route::get('/admin/payment/{id}', [AdminPaymentController::class, 'detail_payment'])->middleware(['auth', 'admin']);
