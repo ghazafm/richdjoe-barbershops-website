@@ -124,7 +124,7 @@
                         <a href="{{ url('book/service/haircut/kapster/schedule/'.$place.'/'.$service.'/'.$kapster->id) }}">
                             <button class="btn-pilih">SELECT</button>
                         </a>
-                        <a href="{{ url('/profil_kapster/' .$kapster->id) }}">
+                        <a href="{{ url('/profil_kapster/' .$place.'/'.$service.'/'.$kapster->id) }}">
                             <button class="btn-profil">PROFILE</button>
                         </a>
                     </div>

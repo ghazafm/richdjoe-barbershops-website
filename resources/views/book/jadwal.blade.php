@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Richdjoe Barbershops</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" rel="stylesheet">
     <link rel="stylesheet" href="tes.css">
     <style>
         body {
@@ -22,31 +22,6 @@
             max-width: 100%;
             position: relative;
             color: black;
-        }
-
-        .card img {
-            object-fit: cover;
-            width: 100%;
-        }
-
-        .card-body {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .btn-pilih {
-            background-color: rgb(255, 250, 230);
-            border-radius: 15px;
-            border: none;
-            margin-top: auto;
-            width: 100%;
-            padding: 5px 0;
-        }
-
-        .btn-pilih:hover {
-            background-color: black;
-            color: white;
         }
 
         .footer-socials {
@@ -70,7 +45,7 @@
             height: 65px;
         }
 
-        .capster {
+        .schedule {
             padding-bottom: 100px;
         }
 
@@ -83,45 +58,59 @@
             font-size: 18px;
         }
 
-        .list-group-item {
-            background-color: #4a5568;
-            color: white;
-            border: 1px solid #6c757d;
-            cursor: pointer;
-        }
-
-        .list-group-item:hover {
-            background-color: #6c757d;
-        }
-
         #calendar {
             max-width: 100%;
             height: 450px;
-            background-color: white;
-            border-radius: 10px;
+            background-color: rgb(246, 220, 172);
+            border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
+            color: black;
+        }
+
+        .fc-day-header {
+            border: 1px solid black;
+        }
+
+        .fc-daygrid-day-frame {
+            border: 1px solid black;
+        }
+
+        /* .fc-daygrid {
+            border: 1px solid black;
+        } */
+
+        .fc-day-today {
+            background-color: rgb(254, 200, 150) !important;
+        }
+
+        .fc-daygrid-day-number {
+            color: black;
+        }
+
+        .fc-col-header-cell-cushion {
+            color: black;
+        }
+
+        .fc-daygrid-day {
+            background-color: rgb(255, 250, 230);
         }
 
         .fc-daygrid-day:hover {
-            background-color: #e2e6ea;
+            background-color: rgb(254, 174, 111);
             cursor: pointer;
         }
 
-        .fc-daygrid-day.fc-day-today {
-            background-color: #ffeb3b !important;
-        }
-
         .fc-daygrid-day-selected {
-            background-color: #00b5ad !important;
-            color: white;
+            background-color: rgb(254, 174, 111);
+            color: black;
         }
 
         .time-slot-button {
             width: 100%;
             margin-bottom: 10px;
-            background-color: #00b5ad;
-            color: white;
+            background-color: rgb(255, 250, 230);
+            color: black;
             border: none;
             border-radius: 5px;
             padding: 10px;
@@ -129,23 +118,23 @@
         }
 
         .time-slot-button:hover {
-            background-color: #009c95;
+            background-color: rgb(254, 174, 111);
         }
 
         #redirect-button {
             width: 100%;
             margin-top: 20px;
-            background-color: #343a40;
-            color: white;
+            background-color: rgb(255, 250, 230);
+            color: black;
             border: none;
-            border-radius: 5px;
+            border-radius: 15px;
             padding: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             cursor: pointer;
         }
 
         #redirect-button:hover {
-            background-color: #6c757d;
+            background-color: rgb(254, 174, 111);
         }
     </style>
 </head>
@@ -168,7 +157,7 @@
         </div>
     </header>
 
-    <div class="container mt-5">
+    <div class="container schedule" id="schedule">
         <h1 class="text-center">Available Schedule</h1>
         <div class="row mt-4">
             <div class="col-md-8">
@@ -236,7 +225,6 @@
             let selectedTime = null;
             let selectedEl = null;
 
-            // Determine the minimum date for the valid range (today)
             let today = new Date();
             let minDate =
                 today.getFullYear() +
@@ -245,7 +233,6 @@
                 "-" +
                 today.getDate().toString().padStart(2, "0");
 
-            // Initialize the calendar with the valid range
             var calendarEl = document.getElementById("calendar");
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: "dayGridMonth",
@@ -264,16 +251,15 @@
             });
             calendar.render();
 
-            // Add click events to time slot buttons
+
             const timeSlotButtons = document.querySelectorAll(".time-slot-button");
             timeSlotButtons.forEach((button) => {
                 button.addEventListener("click", () => {
                     let selectedDateTime = new Date(
                         selectedDate + " " + button.textContent
-                    ); // Gabungkan tanggal dan waktu yang dipilih
-                    let now = new Date(); // Ambil waktu saat ini
+                    );
+                    let now = new Date();
                     if (selectedDateTime < now) {
-                        // Jika waktu yang dipilih lebih kecil dari waktu saat ini
                         alert("You cannot select a past time.");
                     } else {
                         selectedTime = button.textContent;
@@ -281,7 +267,6 @@
                 });
             });
 
-            // Add click event to redirect button
             const redirectButton = document.getElementById("redirect-button");
             redirectButton.addEventListener("click", () => {
                 if (selectedDate) {
@@ -295,13 +280,13 @@
                 }
             });
 
-            // Function to redirect to new page
             function redirectToNewPage() {
+                let url = "{{ url('book/service/haircut/kapster/schedule/confirmation/'.$place.'/'.$service.'/'.$kapster.'/'.$schedule) }}";
                 let queryString = `date=${selectedDate}`;
                 if (selectedTime) {
                     queryString += `&time=${selectedTime}`;
                 }
-                window.location.href = `newpage.html?${queryString}`;
+                window.location.href = url + '?' + queryString;
             }
         });
     </script>
