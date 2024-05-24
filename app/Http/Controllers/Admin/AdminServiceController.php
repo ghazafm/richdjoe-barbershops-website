@@ -19,7 +19,7 @@ class AdminServiceController extends Controller
 
     public function add()
     {
-        return view('admin.service.add');
+        return view('admin.addservice');
     }
 
     public function addsave(Request $req)
@@ -27,12 +27,12 @@ class AdminServiceController extends Controller
         // Create a new Service
         Service::create([
             'name' => $req->name,
-            'description' => $req->name,
+            'description' => $req->description,
             'price' => $req->price,
         ]);
 
         // Redirect to the Service page
-        return redirect('/admin/Service');
+        return redirect('/admin/service');
     }
 
     public function edit($id)
@@ -41,7 +41,7 @@ class AdminServiceController extends Controller
         $service = Service::find($id);
 
         // Pass the data to the view
-        return view('admin.service.edit', ['service' => $service]);
+        return view('admin.editservice', ['service' => $service]);
     }
 
     public function editsave(Request $req)
@@ -49,12 +49,12 @@ class AdminServiceController extends Controller
         // Update the Service
         Service::where('id', $req->id)->update([
             'name' => $req->name,
-            'description' => $req->name,
+            'description' => $req->description,
             'price' => $req->price,
         ]);
 
         // Redirect to the Service page
-        return redirect('/admin/Service');
+        return redirect('/admin/service');
     }
 
     public function delete($id)
@@ -63,7 +63,7 @@ class AdminServiceController extends Controller
         Service::where('id', $id)->delete();
 
         // Redirect to the Service page
-        return redirect('/admin/Service');
+        return redirect('/admin/service');
     }
 
     public function search(Request $req)

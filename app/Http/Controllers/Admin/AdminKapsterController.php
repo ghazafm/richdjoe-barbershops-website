@@ -19,7 +19,7 @@ class AdminKapsterController extends Controller
 
     public function add()
     {
-        return view('admin.kapster.add');
+        return view('admin.addhairartist');
     }
 
     public function addsave(Request $req)
@@ -33,7 +33,7 @@ class AdminKapsterController extends Controller
         ]);
 
         // Redirect to the kapster page
-        return redirect('/admin/kapster');
+        return redirect('/admin/hairartist');
     }
 
     public function edit($id)
@@ -49,14 +49,14 @@ class AdminKapsterController extends Controller
     {
         // Update the kapster
         Kapster::where('id', $req->id)->update([
-            'name' => $req->name,
+            // 'name' => $req->name,
             'photo' => $req->photo,
             'place' => $req->place,
             'schedule' => $req->schedule,
         ]);
 
         // Redirect to the kapster page
-        return redirect('/admin/kapster');
+        return redirect('/admin/hairartist');
     }
 
     public function delete($id)
@@ -65,7 +65,7 @@ class AdminKapsterController extends Controller
         Kapster::where('id', $id)->delete();
 
         // Redirect to the kapster page
-        return redirect('/admin/kapster');
+        return redirect('/admin/hairartist');
     }
 
     public function search(Request $req)

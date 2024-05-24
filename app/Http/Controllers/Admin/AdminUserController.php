@@ -19,7 +19,7 @@ class AdminUserController extends Controller
 
     public function add()
     {
-        return view('admin.user.add');
+        return view('admin.adduser');
     }
 
     public function addsave(Request $req)
@@ -44,7 +44,7 @@ class AdminUserController extends Controller
         $user = User::find($id);
 
         // Pass the data to the view
-        return view('admin.user.edit', ['user' => $user]);
+        return view('admin.edituser', ['user' => $user]);
     }
 
     public function editsave(Request $req)
@@ -53,7 +53,7 @@ class AdminUserController extends Controller
         User::where('id', $req->id)->update([
             'name' => $req->name,
             'email' => $req->email,
-            'usertype' => $req->usertype,
+            // 'usertype' => $req->usertype,
             'phone' => $req->phone,
             'address' => $req->address,
             'password' => bcrypt($req->password),

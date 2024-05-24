@@ -25,7 +25,7 @@
         <div class="page-header">
             <div class="container-fluid">
                 <h3>Data Services</h3>
-                <a href="/admin/add">+ Add Service</a>
+                <a href="/admin/service/add">+ Add Service</a>
                 <br />
                 <br />
                 <p>Search ID Services:</p>
@@ -34,40 +34,104 @@
                     <input type="submit" value="Search" class="btn btn-primary">
                 </form>
 
-                <table class="table table-bordered table-striped">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>ID Service</th>
-                        <th>Service Name</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Option</th>
-                    </tr>
-                    </thead>
-                    @foreach ($services as $svc)
+                <table id="serviceTable" class="table table-bordered table-striped">
+                    <thead class="thead-dark">
                         <tr>
-                            <td>{{ $svc->id }}</td>
-                            <td>{{ $svc->name }}</td>
-                            <td>{{ $svc->description }}</td>
-                            <td>{{ $svc->price }}</td>
-            
-                            <td>
-                                <a class="btn btn-warning btn-sm" href="/admin/detail/{{ $svc->id }}">Detail</a>
+                            <th class="sortable text-center" data-column="id">ID Service</th>
+                            <th class="sortable text-center" data-column="name">Service Name</th>
+                            <th class="sortable text-center" data-column="description">Description</th>
+                            <th class="sortable text-center" data-column="price">Price</th>
+                            <th class="text-center">Option</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($services as $svc)
+                        <tr>
+                            <td class="text-center">{{ $svc->id }}</td>
+                            <td class="text-center">{{ $svc->name }}</td>
+                            <td class="text-center">{{ $svc->description }}</td>
+                            <td class="text-center">{{ $svc->price }}</td>
+                            <td class="text-center">
+                                <a class="btn btn-warning btn-sm" href="/admin/service/edit/{{ $svc->id }}">Edit</a>
+                                <a class="btn btn-danger btn-sm" href="/admin/service/delete/{{ $svc->id }}">Delete</a>
                             </td>
                         </tr>
                         @endforeach
+                    </tbody>
                 </table>
+                
+                
 
                 <br>
-                {{-- Halaman : {{$mahasiswa->currentPage()}} <br>
-                    Jumlah Data : {{$mahasiswa->total()}} <br>
-                    Data Per Halaman : {{$mahasiswa->perPage()}} <br>
-                    {{$mahasiswa->links('pagination::bootstrap-5')}}
-                    --}}
+                Halaman : {{$services->currentPage()}} <br>
+                    Jumlah Data : {{$services->total()}} <br>
+                    Data Per Halaman : {{$services->perPage()}} <br>
+                    {{$services->links('pagination::bootstrap-5')}}
+                   
             </div>
         </div>
     </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const table = document.getElementById("serviceTable");
+            const headers = table.querySelectorAll("th.sortable");
+    
+            headers.forEach(function(header) {
+                header.addEventListener("click", function() {
+                    const column = this.dataset.column;
+                    const isAscending = this.classList.contains("ascending");
+                    const sortedRows = Array.from(table.querySelectorAll("tbody tr"));
+    
+                    sortedRows.sort(function(a, b) {
+                        let aValue = getValue(a, column);
+                        let bValue = getValue(b, column);
+    
+                        // For specific columns (ID and price), convert the values to numbers
+                        if (column === "id" || column === "price") {
+                            aValue = parseInt(aValue);
+                            bValue = parseInt(bValue);
+                            return isAscending ? aValue - bValue : bValue - aValue;
+                        }
+    
+                        // For other columns, perform alphabetical sorting using localeCompare
+                        return isAscending ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+                    });
+    
+                    const tbody = table.querySelector("tbody");
+                    tbody.innerHTML = "";
+                    sortedRows.forEach(function(row) {
+                        tbody.appendChild(row);
+                    });
+    
+                    headers.forEach(function(header) {
+                        header.classList.remove("ascending", "descending");
+                        // Remove any existing arrow emojis
+                        header.innerHTML = header.innerHTML.replace("↓", "").replace("↑", "");
+                    });
+                    
+                    // Add arrow emoji to indicate sorting order
+                    this.innerHTML += isAscending ? " ↑" : " ↓";
+    
+                    this.classList.toggle(isAscending ? "descending" : "ascending");
+                });
+            });
+    
+            function getValue(row, column) {
+                const columnIndex = getColumnIndex(column);
+                return row.cells[columnIndex].textContent.trim();
+            }
+    
+            function getColumnIndex(columnName) {
+                const headers = Array.from(table.querySelectorAll("thead th"));
+                return headers.findIndex(header => header.dataset.column === columnName);
+            }
+        });
+    </script>
+    
+    
+    
+    
 </body>
 
 </html>

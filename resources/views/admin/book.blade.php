@@ -11,8 +11,8 @@
             border-left: 1px solid #dee2e6;
             border-right: 1px solid #dee2e6;
 
-        }
-    </style>
+        }
+    </style>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> <!-- Full version of jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -26,53 +26,59 @@
         <div class="page-header">
             <div class="container-fluid">
                 <h3>Booking Data</h3>
-                <a href="{{url('/admin/book/add')}}">+ Add Booking Data</a>
+                <a href="{{ url('/admin/book/add') }}">+ Add Booking Data</a>
                 <br />
                 <br />
                 <p>Search Transaction ID:</p>
                 <form action="/admin/search" method="GET" class="form-inline mb-3">
-                    <input type="text" name="search" class="form-control mr-2" placeholder="Transaction ID" value="{{ old('search') }}">
+                    <input type="text" name="search" class="form-control mr-2" placeholder="Transaction ID"
+                        value="{{ old('search') }}">
                     <input type="submit" class="btn btn-primary" value="Search">
                 </form>
 
-                <table class="table table-bordered table-striped">
+                <table id="transactionTable" class="table table-bordered table-striped">
                     <thead class="thead-dark">
                         <tr>
-                            <th>ID</th>
-                            <th>Username</th>
-                            <th>Service</th>
-                            <th>Hair Artist</th>
-                            <th>Schedule</th>
-                            <th>Total Price</th>
-                            <th>Option</th>
+                            <th class="sortable text-center" data-column="id">ID</th>
+                            <th class="sortable text-center" data-column="username">Username</th>
+                            <th class="sortable text-center" data-column="service">Service</th>
+                            <th class="sortable text-center" data-column="hair_artist">Hair Artist</th>
+                            <th class="sortable text-center" data-column="schedule">Schedule</th>
+                            <th class="sortable text-center" data-column="total_price">Total Price</th>
+                            <th class="text-center">Actions</th>
                         </tr>
                     </thead>
-                    
-                    @foreach ($transaction as $trn)
-                    <tr>
-                        <td>{{ $trn->id }}</td>
-                        <td>{{ $trn->user->name }}</td>
-                        <td>{{ $trn->service->name }}</td>
-                        <td>{{ $trn->kapster->name }}</td>
-                        <td>{{ $trn->jadwal }}</td>
-                        <td>{{ $trn->total_price }}</td>
-                        <td>
-                            <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#detailModal" data-id="{{ $trn->id }}">Detail</button>
-                        </td>
-                    </tr>
-                    @endforeach
+                    <tbody>
+                        @foreach ($transaction as $trn)
+                            <tr>
+                                <td class="text-center">{{ $trn->id }}</td>
+                                <td class="text-center">{{ $trn->user->name }}</td>
+                                <td class="text-center">{{ $trn->service->name }}</td>
+                                <td class="text-center">{{ $trn->kapster->name }}</td>
+                                <td class="text-center">{{ $trn->schedule }}</td>
+                                <td class="text-center">{{ $trn->total_price }}</td>
+                                <td class="text-center">
+                                    <button class="btn btn-warning btn-sm detail-btn " data-toggle="modal"
+                                        data-target="#detailModal" data-id="{{ $trn->id }}">Detail</button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
+
+
                 <br>
-                Halaman : {{$transaction->currentPage()}} <br>
-                Jumlah Data : {{$transaction->total()}} <br>
-                Data Per Halaman : {{$transaction->perPage()}} <br>
-                {{$transaction->links('pagination::bootstrap-5')}}
+                Halaman : {{ $transaction->currentPage() }} <br>
+                Jumlah Data : {{ $transaction->total() }} <br>
+                Data Per Halaman : {{ $transaction->perPage() }} <br>
+                {{ $transaction->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -94,13 +100,13 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
 
     <script>
-        $('#detailModal').on('show.bs.modal', function (event) {
+        $('#detailModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget); // Button that triggered the modal
             var id = button.data('id'); // Extract info from data-* attributes
 
@@ -108,21 +114,84 @@
             $.ajax({
                 url: '/admin/book/' + id, // URL to fetch detail data
                 method: 'GET',
-                success: function (data) {
+                success: function(data) {
                     var modal = $('#detailModal');
                     modal.find('.modal-body').html(data); // Load the data into the modal body
                 },
-                error: function () {
+                error: function() {
                     var modal = $('#detailModal');
-                    modal.find('.modal-body').html('<p>Error retrieving booking details.</p>'); // Error handling
+                    modal.find('.modal-body').html(
+                    '<p>Error retrieving booking details.</p>'); // Error handling
                 }
             });
         });
-        $('#detailModal').on('hidden.bs.modal', function (e) {
-        // Merefresh halaman
-        location.reload();
-    });
+        $('#detailModal').on('hidden.bs.modal', function(e) {
+            // Merefresh halaman
+            location.reload();
+        });
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const table = document.getElementById("transactionTable");
+            const headers = table.querySelectorAll("th.sortable");
+
+            headers.forEach(function(header) {
+                header.addEventListener("click", function() {
+                    const column = this.dataset.column;
+                    const isAscending = this.classList.contains("ascending");
+                    const sortedRows = Array.from(table.querySelectorAll("tbody tr"));
+
+                    sortedRows.sort(function(a, b) {
+                        let aValue = getValue(a, column);
+                        let bValue = getValue(b, column);
+
+                        // Convert the values to numbers for the ID column
+                        if (column === "id") {
+                            aValue = parseInt(aValue);
+                            bValue = parseInt(bValue);
+                            return isAscending ? aValue - bValue : bValue - aValue;
+                        }
+
+                        // For other columns, perform alphabetical sorting
+                        return isAscending ? aValue.localeCompare(bValue) : bValue
+                            .localeCompare(aValue);
+                    });
+
+                    const tbody = table.querySelector("tbody");
+                    tbody.innerHTML = "";
+                    sortedRows.forEach(function(row) {
+                        tbody.appendChild(row);
+                    });
+
+                    headers.forEach(function(header) {
+                        header.classList.remove("ascending", "descending");
+                        // Remove any existing arrow emojis
+                        header.innerHTML = header.innerHTML.replace("↓", "").replace("↑",
+                            "");
+                    });
+
+                    // Add arrow emoji to indicate sorting order
+                    this.innerHTML += isAscending ? " ↑" : " ↓";
+
+                    this.classList.toggle(isAscending ? "descending" : "ascending");
+                });
+            });
+
+            function getValue(row, column) {
+                const columnIndex = getColumnIndex(column);
+                return row.cells[columnIndex].textContent.trim();
+            }
+
+            function getColumnIndex(columnName) {
+                const headers = Array.from(table.querySelectorAll("thead th"));
+                return headers.findIndex(header => header.dataset.column === columnName);
+            }
+        });
+    </script>
+
+
+
+
 </body>
 
 </html>

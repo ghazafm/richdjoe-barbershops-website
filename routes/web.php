@@ -49,14 +49,29 @@ Route::get('/admin/book/add', [AdminBookController::class, 'add'])->middleware([
 Route::get('/admin/book', [AdminBookController::class, 'book'])->middleware(['auth', 'admin']);
 Route::get('/admin/book/{id}', [AdminBookController::class, 'detail_book'])->middleware(['auth', 'admin']);
 Route::get('/admin/book/add', [AdminBookController::class, 'add'])->middleware(['auth', 'admin']);
+Route::post('/admin/book/addsave', [AdminBookController::class, 'addsave'])->middleware(['auth', 'admin']);
 Route::get('/admin/service', [AdminServiceController::class, 'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/hairartist', [AdminKapsterController::class, 'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/hairartist/edit/{id}', [AdminKapsterController::class, 'edit'])->middleware(['auth', 'admin']);
-Route::post('/admin/book/addsave', [AdminBookController::class, 'addsave'])->middleware(['auth', 'admin']);
+Route::post('/admin/hairartist/editsave', [AdminKapsterController::class, 'editsave'])->middleware(['auth', 'admin']);
+Route::get('/admin/hairartist/delete/{id}', [AdminKapsterController::class, 'delete'])->middleware(['auth', 'admin']);
+Route::get('/admin/hairartist/add', [AdminKapsterController::class, 'add'])->middleware(['auth', 'admin']);
+Route::post('/admin/hairartist/addsave', [AdminKapsterController::class, 'addsave'])->middleware(['auth', 'admin']);
+
 
 
 // Admin Paymet
 Route::get('/admin/payment', [AdminPaymentController::class, 'payment'])->middleware(['auth', 'admin']);
 Route::get('/admin/payment/{id}', [AdminPaymentController::class, 'detail'])->middleware(['auth', 'admin']);
 Route::get('/admin/user', [AdminUserController::class, 'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/user/add', [AdminUserController::class, 'add'])->middleware(['auth', 'admin']);
+Route::post('/admin/user/addsave', [AdminUserController::class, 'addsave'])->middleware(['auth', 'admin']);
+Route::get('/admin/service/add', [AdminServiceController::class, 'add'])->middleware(['auth', 'admin']);
+Route::post('/admin/service/addsave', [AdminServiceController::class, 'addsave'])->middleware(['auth', 'admin']);
+Route::get('/admin/service/edit/{id}', [AdminServiceController::class, 'edit'])->middleware(['auth', 'admin']);
+Route::post('/admin/service/editsave', [AdminServiceController::class, 'editsave'])->middleware(['auth', 'admin']);
+Route::get('/admin/service/delete/{id}', [AdminServiceController::class, 'delete'])->middleware(['auth', 'admin']);
+Route::get('/admin/user/edit/{id}', [AdminUserController::class, 'edit'])->middleware(['auth', 'admin']);
+Route::post('/admin/user/editsave', [AdminUserController::class, 'editsave'])->middleware(['auth', 'admin']);
+Route::get('/admin/user/delete/{id}', [AdminUserController::class, 'delete'])->middleware(['auth', 'admin']);
 
