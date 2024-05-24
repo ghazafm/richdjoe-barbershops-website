@@ -46,26 +46,30 @@ class AdminBookController extends Controller
 			'service_id' => 'required|integer',
 		]);
 
-		// Add the current user's ID as the customer_id
-		$user = Auth::user();
-		$validated['user_id'] = $user->id;
+		try {
+			$validated['service_status'] = 'verified';
 
-		$validated['service_status'] = 'verified';
+			$service = Service::findOrFail($validated['service_id']);
 
-		$service = Service::findOrFail($validated['service_id']);
+			// Calculate the total price based on the service price
+			$totalPrice = $service->price;
+			$validated['total_price'] = $totalPrice;
 
-		// Calculate the total price based on the service price
-		$totalPrice = $service->price;
-		$validated['total_price'] = $totalPrice;
+			// Add the current user's ID as the customer_id
+			$validated['user_id'] = Auth::id();
 
-		// Add the current timestamp for the 'schedule' field
-		$validated['schedule'] = now();
+			// Add the current timestamp for the 'schedule' field
+			$validated['schedule'] = now();
 
-		// Create a new transaction record using Eloquent
-		Transaction::create($validated);
+			// Create a new transaction record using Eloquent
+			Transaction::create($validated);
 
-		// Redirect to the booking page with a success message
-		return redirect('/admin/book');
+			// Redirect to the booking page with a success message
+			return redirect('/admin/book')->with('success', 'Transaction added successfully.');
+		} catch (\Exception $e) {
+			// Handle any exceptions and redirect back with an error message
+			return redirect()->back()->with('error', 'Failed to add transaction: ' . $e->getMessage());
+		}
 	}
 
 	public function edit($id)
