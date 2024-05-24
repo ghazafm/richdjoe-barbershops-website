@@ -21,7 +21,7 @@ class AdminBookController extends Controller
 		return view('admin.book', ['transaction' => $transactions]);
 	}
 
-	public function detail($id)
+	public function detail_book($id)
 	{
 		$transaction = Transaction::with(['user', 'service', 'kapster'])->find($id);
 
