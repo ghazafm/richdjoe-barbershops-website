@@ -49,3 +49,4 @@ Route::get('/admin/book/add', [AdminBookController::class, 'add_book'])->middlew
 Route::get('/admin/service', [AdminServiceController::class, 'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/hairartist', [AdminKapsterController::class, 'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/payment', [AdminBookController::class, 'payment'])->middleware(['auth', 'admin']);
+Route::get('/admin/payment/{id}', [AdminBookController::class, 'detail_payment'])->middleware(['auth', 'admin']);

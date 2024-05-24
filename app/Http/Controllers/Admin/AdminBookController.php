@@ -270,7 +270,15 @@ class AdminBookController extends Controller
 		return view('admin.payment', ['transactions' => $transactions]);
 	}
 
+	public function detail_payment(Request $id){
+		$transaction = Transaction::with(['user', 'service', 'kapster'])->find($id);
 
+		if ($transaction) {
+			return view('admin.book_detail', compact('transaction'));
+		} else {
+			return response()->view('admin.book_detail', ['error' => 'Booking not found'], 404);
+		}
+	}
 	public function verify_payment(Request $request)
 	{
 		// Validate the request
