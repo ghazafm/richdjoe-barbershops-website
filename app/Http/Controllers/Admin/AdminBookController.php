@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Import Auth facade
@@ -44,11 +45,16 @@ class AdminBookController extends Controller
 			'kapster_id' => 'required|integer',
 			'service_id' => 'required|integer',
 			'total_price' => 'required|numeric',
-			'payment_status' => 'required|boolean',
 		]);
 
 		try {
 			$validated['service_status'] = 'verified';
+
+			$service = Service::findOrFail($validated['service_id']);
+
+			// Calculate the total price based on the service price
+			$totalPrice = $service->price;
+			$validated['total_price'] = $totalPrice;
 
 			// Add the current user's ID as the customer_id
 			$validated['customer_id'] = Auth::id();
