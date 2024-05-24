@@ -41,9 +41,24 @@
             margin-top: auto;
             width: 100%;
             padding: 5px 0;
+            margin-bottom: 10px;
         }
 
         .btn-pilih:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .btn-profil {
+            background-color: rgb(255, 250, 230);
+            border-radius: 15px;
+            border: none;
+            margin-top: auto;
+            width: 100%;
+            padding: 5px 0;
+        }
+
+        .btn-profil:hover {
             background-color: black;
             color: white;
         }
@@ -106,8 +121,11 @@
                     <img src="{{ asset($kapster->image) }}" alt="{{ $kapster->name }}">
                     <div class="card-body d-flex flex-column">
                         <h4 class="card-title fw-bold">{{ $kapster->name }}</h4>
-                        <a href="{{ url('/book/service/haircut/profil_kapster/' .$kapster->id) }}">
+                        <a href="{{ url('book/service/haircut/kapster/schedule/'.$place.'/'.$service.'/'.$kapster->id) }}">
                             <button class="btn-pilih">SELECT</button>
+                        </a>
+                        <a href="{{ url('/profil_kapster/' .$kapster->id) }}">
+                            <button class="btn-profil">PROFILE</button>
                         </a>
                     </div>
                 </div>

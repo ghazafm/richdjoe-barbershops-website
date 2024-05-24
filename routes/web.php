@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminBookController;
 use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminKapsterController;
+use App\Http\Controllers\Admin\AdminPaymentController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\User\UserBookController;
 use App\Http\Controllers\Malicious\MaliciousController;
 use App\Http\Controllers\ProfileController;
@@ -35,9 +37,10 @@ Route::get('/book/service/{place}', [UserBookController::class,'services'])->mid
 Route::get('/book/service/haircut/{place}', [UserBookController::class,'haircut'])->middleware('auth', 'verified');
 Route::get('/book/service/haircut/kapster/{place}/{service}', [UserBookController::class,'kapsters'])->middleware('auth', 'verified');
 Route::get('/book/service/haircut/profil_kapster/{kapster}', [UserBookController::class,'showKapster'])->middleware('auth', 'verified');
+Route::get('/book/service/haircut/kapster/schedule/{place}/{service}/{kapster}', [UserBookController::class,'schedule'])->middleware('auth', 'verified');
 
 
-//A dmin Book
+//Admin Book
 Route::get('/admin', function () {
     return redirect('/admin/dashboard');
 })->middleware(['auth', 'admin']);
@@ -53,4 +56,7 @@ Route::post('/admin/book/addsave', [AdminBookController::class, 'addsave'])->mid
 
 
 // Admin Paymet
-Route::get('/admin/payment', [AdminBookController::class, 'payment'])->middleware(['auth', 'admin']);
+Route::get('/admin/payment', [AdminPaymentController::class, 'payment'])->middleware(['auth', 'admin']);
+Route::get('/admin/payment/{id}', [AdminPaymentController::class, 'detail'])->middleware(['auth', 'admin']);
+Route::get('/admin/user', [AdminUserController::class, 'index'])->middleware(['auth', 'admin']);
+
