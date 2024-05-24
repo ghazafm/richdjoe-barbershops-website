@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TransactionLog;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class TransactionLogController extends Controller
@@ -14,6 +15,25 @@ class TransactionLogController extends Controller
     {
         $transactionLogs = TransactionLog::all();
         return response()->json($transactionLogs);
+    }
+
+    public static function logTransaction(Transaction $transaction)
+    {
+        // Log the transaction
+        TransactionLog::create([
+            'user_name' => $transaction->user->name,
+            'user_address' => $transaction->user->address,
+            'kapster_name' => $transaction->kapster->name,
+            'kapster_place' => $transaction->kapster->place,
+            'service_name' => $transaction->service->name,
+            'service_type' => $transaction->service->type,
+            'total_price' => $transaction->total_price,
+            'service_status' => $transaction->service_status,
+            'payment_status' => $transaction->payment_status,
+            'rating' => $transaction->rating,
+            'comment' => $transaction->comment,
+            // Add other fields as needed
+        ]);
     }
 
     /**

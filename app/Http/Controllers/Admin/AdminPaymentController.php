@@ -39,7 +39,7 @@ class AdminPaymentController extends Controller
             // Update the payment_status to "verified"
             $transaction->update(['payment_status' => 'verified']);
 
-            // Call the method to log the transaction in TransactionLogController
+            // Log the transaction
             TransactionLogController::logTransaction($transaction);
 
             // Redirect back with a success message
