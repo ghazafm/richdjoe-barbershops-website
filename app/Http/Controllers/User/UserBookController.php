@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use App\Models\Kapster;
 use App\Models\Service;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,6 +48,12 @@ class UserBookController extends Controller
 
 		// Pass the data to the view
 		return view('book.profil_kapster', ['kapsters' => $kapsters]);
+	}
+
+	public function schedule($place, $service, $kapster)
+	{
+		// Pass the data to the view
+		return view('book.kapster', ['kapsters' => $kapster, 'service_id' => $service, 'place' => $place]);
 	}
 
 
