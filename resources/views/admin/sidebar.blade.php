@@ -38,8 +38,8 @@
                 <i class="fa fa-user-tie"></i>HairArtist
             </a>
         </li>
-        <li class="{{ Request::is('user.html') ? 'active' : '' }}">
-            <a href="user.html">
+        <li class="{{ Request::is('admin/user') ? 'active' : '' }}">
+            <a href="{{ url('/admin/user')}}">
                 <i class="fa fa-user"></i>User
             </a>
         </li>

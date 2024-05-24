@@ -1,5 +1,5 @@
 <style>
-    .transaction-details {
+    .payment-details {
     padding: 20px;
     background-color: #f8f9fa;
     border: 1px solid #ced4da;
@@ -32,7 +32,7 @@
 </style>
 
 <div class="payment-details">
-    <h2 class="detail-heading">Transaction Details</h2>
+    <h2 class="detail-heading">Payment Details</h2>
     <div class="detail-item">
         <span class="detail-label">ID:</span>
         <span class="detail-value">{{ $transaction->id }}</span>
@@ -42,17 +42,17 @@
         <span class="detail-value">{{ $transaction->user->name }}</span>
     </div>
     <div class="detail-item">
-        <span class="detail-label">Service:</span>
-        <span class="detail-value">{{ $transaction->service->name }}</span>
+        <span class="detail-label">Kapster Name:</span>
+        <span class="detail-value">{{ $transaction->kapster->name }}</span>
     </div>
     
     <div class="detail-item">
-        <span class="detail-label">Schedule:</span>
-        <span class="detail-value">{{ $transaction->schedule }}</span>
+        <span class="detail-label">Service Name:</span>
+        <span class="detail-value">{{ $transaction->service->name }}</span>
     </div>
     <div class="detail-item">
-        <span class="detail-label">Total Price:</span>
-        <span class="detail-value">{{ $transaction->total_price }}</span>
+        <span class="detail-label">Service Price:</span>
+        <span class="detail-value">{{ $transaction->service->price }}</span>
     </div>
     <div class="detail-item">
         <span class="detail-label">Service Status:</span>
