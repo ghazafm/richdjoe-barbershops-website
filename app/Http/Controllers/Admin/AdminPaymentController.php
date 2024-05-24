@@ -24,6 +24,17 @@ class AdminPaymentController extends Controller
         return view('admin.payment', ['transactions' => $transactions]);
     }
 
+    public function detail($id)
+	{
+		$transaction = Transaction::with(['user', 'service', 'kapster'])->find($id);
+
+		if ($transaction) {
+			return view('admin.payment_detail', compact('transaction'));
+		} else {
+			return response()->view('admin.payment_detail', ['error' => 'Payment not found'], 404);
+		}
+	}
+
 
     public function verify_payment(Request $request)
     {
