@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\TransactionLogController;
 
 
 class AdminPaymentController extends Controller
@@ -31,14 +32,22 @@ class AdminPaymentController extends Controller
             'transaction_id' => 'required|exists:transactions,id',
         ]);
 
-        // Find the transaction by its ID
-        $transaction = Transaction::findOrFail($request->input('transaction_id'));
+        try {
+            // Find the transaction by its ID
+            $transaction = Transaction::findOrFail($request->input('transaction_id'));
 
-        // Update the payment_status to "verified"
-        $transaction->update(['payment_status' => 'verified']);
+            // Update the payment_status to "verified"
+            $transaction->update(['payment_status' => 'verified']);
 
-        // Redirect back with a success message
-        return redirect()->back()->with('success', 'Payment verified successfully.');
+            // Call the method to log the transaction in TransactionLogController
+            TransactionLogController::logTransaction($transaction);
+
+            // Redirect back with a success message
+            return redirect()->back()->with('success', 'Payment verified successfully.');
+        } catch (\Exception $e) {
+            // Handle any exceptions and redirect back with an error message
+            return redirect()->back()->with('error', 'Failed to verify payment: ' . $e->getMessage());
+        }
     }
 
     public function filter_payment(Request $req)
@@ -118,9 +127,9 @@ class AdminPaymentController extends Controller
     }
 
 
-	// Helper =============================================================================================
-	private function sortTransactions($transactions, $sortBy, $sortOrder)
-	{
-		return $transactions->orderBy($sortBy, $sortOrder)->paginate(10);
-	}
+    // Helper =============================================================================================
+    private function sortTransactions($transactions, $sortBy, $sortOrder)
+    {
+        return $transactions->orderBy($sortBy, $sortOrder)->paginate(10);
+    }
 }
