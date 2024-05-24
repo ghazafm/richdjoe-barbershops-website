@@ -13,12 +13,20 @@ return new class extends Migration
     {
         Schema::create('transaction_logs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('transaction_id');
-            $table->timestamp('action_time')->useCurrent();
-            $table->string('action'); // For example: 'created', 'updated', 'deleted'
-            $table->text('details')->nullable(); // Additional details about the action
+            $table->unsignedBigInteger('user_id');
+            $table->string('user_name');
+            $table->string('user_email');
+            $table->unsignedBigInteger('kapster_id');
+            $table->string('kapster_name');
+            $table->unsignedBigInteger('service_id');
+            $table->string('service_name');
+            $table->timestamp('schedule');
+            $table->decimal('total_price', 10, 2);
+            $table->enum('service_status', ['wait', 'decline', 'verified'])->default('wait');
+            $table->enum('payment_status', ['process', 'verified'])->default('process');
+            $table->tinyInteger('rating')->nullable()->default(null);
+            $table->string('comment', 255)->nullable();
             $table->timestamps();
-            
         });
     }
 

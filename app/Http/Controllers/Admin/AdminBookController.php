@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth; // Import Auth facade
 
 class AdminBookController extends Controller
 {
@@ -31,6 +32,42 @@ class AdminBookController extends Controller
 		}
 	}
 
+	public function add()
+	{
+		return view('admin.add');
+	}
+
+	public function addsave(Request $req)
+	{
+		// Validate the incoming request data
+		$validated = $req->validate([
+			'kapster_id' => 'required|integer',
+			'service_id' => 'required|integer',
+			'total_price' => 'required|numeric',
+			'service_status' => 'required|string|max:4',
+			'payment_status' => 'required|boolean',
+			'rating' => 'nullable|integer',
+			'comment' => 'nullable|string|max:255'
+		]);
+
+		try {
+			// Add the current user's ID as the customer_id
+			$validated['customer_id'] = Auth::id();
+
+			// Add the current timestamp for the 'schedule' field
+			$validated['schedule'] = now();
+
+			// Create a new transaction record using Eloquent
+			Transaction::create($validated);
+
+			// Redirect to the booking page with a success message
+			return redirect()->route('admin.book')->with('success', 'Transaction added successfully.');
+		} catch (\Exception $e) {
+			// Handle any exceptions and redirect back with an error message
+			return redirect()->back()->with('error', 'Failed to add transaction: ' . $e->getMessage());
+		}
+	}
+
 	public function edit($id)
 	{
 		// Fetch transaction data by ID using Eloquent
@@ -43,10 +80,9 @@ class AdminBookController extends Controller
 	public function editsave(Request $req)
 	{
 		$validated = $req->validate([
-			'id' => 'required|integer|exists:transactions,id',
-			'customer_id' => 'required|integer',
-			'kapster_id' => 'required|integer',
-			'service_id' => 'required|integer',
+			// 'customer_id' => 'required|integer',
+			// 'kapster_id' => 'required|integer',
+			// 'service_id' => 'required|integer',
 			'total_price' => 'required|numeric',
 			'service_status' => 'required|string|max:4',
 			'payment_status' => 'required|boolean',
