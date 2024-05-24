@@ -24,7 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require _DIR_ . '/auth.php';
+require __DIR__ . '/auth.php';
 
 //Malicious
 Route::get('/malicious', [MaliciousController::class, 'index']);
