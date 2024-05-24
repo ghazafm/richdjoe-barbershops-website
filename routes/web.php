@@ -38,7 +38,7 @@ Route::get('/book/service/haircut/kapster/{place}/{service}', [UserBookControlle
 Route::get('/book/service/haircut/profil_kapster/{kapster}', [UserBookController::class,'showKapster'])->middleware('auth', 'verified');
 
 
-//Admin
+//Admin Book
 Route::get('/admin', function () {
     return redirect('/admin/dashboard');
 })->middleware(['auth', 'admin']);
@@ -49,5 +49,7 @@ Route::get('/admin/book/{id}', [AdminBookController::class, 'detail'])->middlewa
 Route::get('/admin/book/add', [AdminBookController::class, 'add_book'])->middleware(['auth', 'admin']);
 Route::get('/admin/service', [AdminServiceController::class, 'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/hairartist', [AdminKapsterController::class, 'index'])->middleware(['auth', 'admin']);
+
+//Admin Book
 Route::get('/admin/payment', [AdminPaymentController::class, 'payment'])->middleware(['auth', 'admin']);
 Route::get('/admin/payment/{id}', [AdminPaymentController::class, 'detail_payment'])->middleware(['auth', 'admin']);
