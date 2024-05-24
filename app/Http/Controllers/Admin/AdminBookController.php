@@ -34,7 +34,7 @@ class AdminBookController extends Controller
 
 	public function add()
 	{
-		return view('admin.add');
+		return view('admin.addbook');
 	}
 
 	public function addsave(Request $req)
