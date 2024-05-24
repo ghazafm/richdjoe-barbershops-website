@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\TransactionLogController;
+use App\Http\Controllers\Admin\TransactionLogController;
 
 
 class AdminPaymentController extends Controller
