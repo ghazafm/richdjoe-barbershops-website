@@ -39,31 +39,32 @@ class UserBookController extends Controller
 		$kapsters = Kapster::where('place', 'LIKE', $place)->get();
 
 		// Pass the data to the view
-		return view('book.kapster', ['kapsters' => $kapsters, 'service_id' => $service, 'place' => $place]);
+		return view('book.kapster', ['kapsters' => $kapsters, 'service' => $service, 'place' => $place]);
 	}
 
 	public function showKapster($id)
 	{
-		$kapsters = Kapster::where('id', 'LIKE', $id)->get();
+		$kapsters = Kapster::find($id);
 
 		// Pass the data to the view
 		return view('book.profil_kapster', ['kapsters' => $kapsters]);
 	}
 
-	public function schedule($place, $service, $kapster)
+	public function schedule($place, $service, $kapsters)
 	{
 		// Pass the data to the view
-		return view('book.kapster', ['kapsters' => $kapster, 'service_id' => $service, 'place' => $place]);
+		return view('book.jadwal', ['kapsters' => $kapsters, 'service_id' => $service, 'place' => $place]);
 	}
 
 
-	public function confirmation($place, $service, $kapster)
+	public function confirmation($place, $service, $kapster, $schedule)
 	{
 		$user = auth()->user();
 		$transactionData = [
 			'customer_id' => $user->id, // Replace with actual customer ID
 			'kapster_id' => $kapster->id, // Assuming $kapster is an object
 			'service_id' => $service->id, // Assuming $service is an object
+			'schedule' => $schedule,
 			'total_price' => $service->price, // Replace with actual total price
 		];
 
