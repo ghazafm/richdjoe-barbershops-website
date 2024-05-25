@@ -76,14 +76,14 @@
             background-color: rgb(246, 220, 172);
             color: black;
             border: none;
-            padding: 10px 30px;
+            padding: 10px 25px;
             font-size: 1.25rem;
-            border-radius: 25px;
+            border-radius: 15px;
             margin-top: 20px;
         }
 
         .btn-book:hover {
-            background-color: rgb(236, 177, 118);
+            background-color: rgb(254, 174, 111);
         }
 
         .navbar-center {
@@ -98,10 +98,14 @@
         }
 
         .btn-sign {
-            background-color: #ff4d4d;
+            background-color: rgb(254, 174, 111);;
             color: #fff;
             border: none;
             margin-left: 10px;
+        }
+
+        .btn-sign:hover {
+            background-color: rgb(246, 220, 172);
         }
 
         .card {
@@ -141,7 +145,7 @@
         }
 
         .btn-contact:hover {
-            background-color: rgb(236, 177, 118);
+            background-color: rgb(254, 174, 111);
             color: black;
         }
 
@@ -276,12 +280,8 @@
                     </ul>
                 </div>
                 @else
-                <li class="nav-item">
                     <a class="nav-link btn btn-sign ms-2" href="{{ route('register') }}">SIGN UP</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link btn btn-sign ms-2" href="{{ route('login') }}">SIGN IN</a>
-                </li>
                 @endauth
                 @endif
             </div>

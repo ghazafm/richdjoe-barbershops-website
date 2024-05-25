@@ -19,7 +19,6 @@
             background-color: rgb(246, 220, 172);
             position: relative;
             color: black;
-            margin-bottom: 20px;
         }
 
         .card img {
@@ -54,17 +53,6 @@
             height: 65px;
         }
 
-        .btn-sign {
-            background-color: rgb(254, 174, 111);;
-            color: #fff;
-            border: none;
-            margin-left: 10px;
-        }
-
-        .btn-sign:hover {
-            background-color: rgb(246, 220, 172);
-        }
-
         .form-inline .form-group {
             margin-bottom: 1rem;
         }
@@ -78,7 +66,7 @@
         }
 
         .card-body p {
-            margin-bottom: 1rem;
+            margin-bottom: 5px;
         }
 
         .form-group {
@@ -94,18 +82,63 @@
             margin: 5px;
         }
 
-        .btn-confirm {
-            background-color: #007bff;
-            color: white;
+        .btn-sign {
+            background-color: rgb(254, 174, 111);;
+            color: #fff;
+            border: none;
+            margin-left: 10px;
+        }
+
+        .btn-sign:hover {
+            background-color: rgb(246, 220, 172);
+        }
+
+        .btn-custom {
             border-radius: 15px;
             border: none;
             padding: 10px 20px;
             cursor: pointer;
-            margin-bottom: 100px;
+            margin: 10px 5px;
+            width: 47%;
         }
 
-        .btn-confirm:hover {
-            background-color: #0056b3;
+        .btn-custom,
+        .btn-cancel {
+            margin-bottom: 1px;
+        }
+
+        .btn-order {
+            background-color: rgb(255, 255, 255);
+            color: black;
+        }
+
+        .btn-order:hover {
+            background-color: lightgray;
+            color: black;
+        }
+
+        .btn-reschedule {
+            background-color: #dc830f;
+            color: white;
+        }
+
+        .btn-reschedule:hover {
+            background-color: rgb(201, 104, 30);
+            color: white;
+        }
+
+        .btn-cancel {
+            background-color: #b61d1d;
+            color: white;
+        }
+
+        .btn-cancel:hover {
+            background-color: darkred;
+            color: white;
+        }
+
+        .detail {
+            padding-bottom: 100px;
         }
     </style>
 </head>
@@ -127,74 +160,71 @@
             <button class="btn btn-sign">Sign Out</button>
         </div>
     </header>
-    <div class="container mt-5">
-        <h1 class="text-center">Booking Confirmation</h1>
+    <div class="container detail">
+        <h1 class="text-center">Booking Detail</h1>
         <div class="row justify-content-center mt-4">
             <div class="col-md-5">
                 <div class="card">
                     <div class="card-body">
-                        <form class="form-inline">
-                            <div class="form-group w-100 bg-transparent">
-                                <label for="name">Name</label>
-                                <span>:</span>
-                                <input type="text" class="form-control" id="name" value="Azril Januar" style="background-color: transparent; border-color: black;">
-                            </div>
-                            <div class="form-group w-100">
-                                <label for="email">Email</label>
-                                <span>:</span>
-                                <input type="email" class="form-control" id="email" value="azriljanuar661@gmail.com" style="background-color: transparent; border-color: black;">
-                            </div>
-                            <div class="form-group w-100">
-                                <label for="phone">No Hp</label>
-                                <span>:</span>
-                                <input type="text" class="form-control" id="phone" value="082342636663" style="background-color: transparent; border-color: black;">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-5">
-                <div class="card">
-                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-3 border-bottom border-dark font-weight-bold">
+                            <span>Proof of Booking</span>
+                            <span>@Soekarno Hatta</span>
+                        </div>
                         <form class="form-inline">
                             <div class="form-group w-100">
                                 <label for="tanggal">Date</label>
                                 <span>:</span>
-                                <p>{{ $transaction->schedule }}</p>     
+                                <p>{{ $transaction->schedule }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="jam">Time</label>
                                 <span>:</span>
-                                <p>{{ $transaction->schedule }}</p>     
+                                <p>{{ $transaction->schedule }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="service">Service</label>
                                 <span>:</span>
-                                <p>{{ $service->name }}</p>     
+                                <p>{{ $service->name }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="artist">Hair Artist</label>
                                 <span>:</span>
-                                <p>{{ $kapster->name }}</p>     
+                                <p>{{ $kapster->name }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="price">Price</label>
                                 <span>:</span>
-                                <p>{{ $transaction->total_price }}</p>    
+                                <p>{{ $transaction->total_price }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="store">Store</label>
                                 <span>:</span>
-                                <p>{{ $place }}</p>    
+                                <p>{{ $place }}</p>
+                            </div>
+                            <div class="form-group w-100">
+                                <label for="code">Code</label>
+                                <span>:</span>
+                                <p>{{ $place }}</p>
+                            </div>
+                            <div class="form-group w-100">
+                                <label for="status">Status</label>
+                                <span>:</span>
+                                <p>{{ $place }}</p>
                             </div>
                         </form>
                     </div>
                 </div>
-                <button class="btn btn-confirm">Confirm Booking</button>
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-reschedule btn-custom">Reschedule</button>
+                    <button class="btn btn-cancel btn-custom">Cancel</button>
+                </div>
+                <div>
+                    <button class="btn btn-order btn-custom">Order More</button>
+                </div>
             </div>
         </div>
     </div>
-    
+
     <footer class="footer-socials">
         <div class="container">
             <div class="row">
