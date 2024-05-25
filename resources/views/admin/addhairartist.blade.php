@@ -34,19 +34,27 @@
                 <div class="card">
                     <div class="card-header">
                         <h2 class="text-center">Dashboard</h2>
-                        <h3 class="text-center">Booking Data</h3>
+                        <h3 class="text-center">Hair Artist Data</h3>
                     </div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/book') }}" class="btn btn-secondary mb-3">Back</a>
-                        <form action="{{ url('/admin/book/addsave') }}" method="post">
+                        <a href="{{ url('/admin/hairartist') }}" class="btn btn-secondary mb-3">Back</a>
+                        <form action="{{ url('/admin/hairartist/addsave') }}" method="post">
                             @csrf
                             <div class="mb-3">
-                                <label for="kapster_id" class="form-label">Kapster ID:</label>
-                                <input type="text" id="kapster_id" name="kapster_id" class="form-control" required>
+                                <label for="name" class="form-label">Hair Artist Name: </label>
+                                <input type="text" id="name" name="name" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label for="service_id" class="form-label">Service ID:</label>
-                                <input type="text" id="service_id" name="service_id" class="form-control" required>
+                                <label for="photo" class="form-label">Photo: </label>
+                                <input type="text" id="photo" name="photo" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="place" class="form-label">Place: </label>
+                                <input type="text" id="place" name="place" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="schedule" class="form-label">Schedule: </label>
+                                <input type="text" id="schedule" name="schedule" class="form-control" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>

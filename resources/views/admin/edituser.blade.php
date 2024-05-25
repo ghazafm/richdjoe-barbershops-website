@@ -34,21 +34,34 @@
                 <div class="card">
                     <div class="card-header">
                         <h2 class="text-center">Dashboard</h2>
-                        <h3 class="text-center">Booking Data</h3>
+                        <h3 class="text-center">Ubah data mahasiswa</h3>
                     </div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/book') }}" class="btn btn-secondary mb-3">Back</a>
-                        <form action="{{ url('/admin/book/addsave') }}" method="post">
-                            @csrf
+                        <a href="/admin/user" class="btn btn-secondary mb-3">Kembali</a>
+                        <form action="/admin/user/editsave" method="post">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="id" value="{{ $user->id }}">
                             <div class="mb-3">
-                                <label for="kapster_id" class="form-label">Kapster ID:</label>
-                                <input type="text" id="kapster_id" name="kapster_id" class="form-control" required>
+                                <label for="userId" class="form-label">ID:</label>
+                                <input type="text" id="userId" value="{{ $user->id }}" class="form-control" disabled>
                             </div>
                             <div class="mb-3">
-                                <label for="service_id" class="form-label">Service ID:</label>
-                                <input type="text" id="service_id" name="service_id" class="form-control" required>
+                                <label for="userName" class="form-label">Username:</label>
+                                <input type="text" id="userName" name="name" value="{{ $user->name }}" class="form-control">
                             </div>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email:</label>
+                                <textarea name="email" id="email" class="form-control" required>{{ $user->email }}</textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone:</label>
+                                <input type="text" id="phone" name="phone" value="{{ $user->phone }}" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Adress:</label>
+                                <input type="text" id="adress" name="address" value="{{ $user->address }}" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Simpan Data</button>
                         </form>
                     </div>
                 </div>
@@ -56,5 +69,4 @@
         </div>
     </div>
 </body>
-
 </html>

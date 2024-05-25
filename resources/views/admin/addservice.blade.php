@@ -34,19 +34,23 @@
                 <div class="card">
                     <div class="card-header">
                         <h2 class="text-center">Dashboard</h2>
-                        <h3 class="text-center">Booking Data</h3>
+                        <h3 class="text-center">Data Service</h3>
                     </div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/book') }}" class="btn btn-secondary mb-3">Back</a>
-                        <form action="{{ url('/admin/book/addsave') }}" method="post">
+                        <a href="{{ url('/admin/service') }}" class="btn btn-secondary mb-3">Back</a>
+                        <form action="{{ url('/admin/service/addsave') }}" method="post">
                             @csrf
                             <div class="mb-3">
-                                <label for="kapster_id" class="form-label">Kapster ID:</label>
-                                <input type="text" id="kapster_id" name="kapster_id" class="form-control" required>
+                                <label for="name" class="form-label">Service Name:</label>
+                                <input type="text" id="name" name="name" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label for="service_id" class="form-label">Service ID:</label>
-                                <input type="text" id="service_id" name="service_id" class="form-control" required>
+                                <label for="description" class="form-label">Description:</label>
+                                <input type="text" id="description" name="description" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="price" class="form-label">Price:</label>
+                                <input type="text" id="price" name="price" class="form-control" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>

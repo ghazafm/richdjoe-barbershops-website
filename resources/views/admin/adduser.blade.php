@@ -34,19 +34,35 @@
                 <div class="card">
                     <div class="card-header">
                         <h2 class="text-center">Dashboard</h2>
-                        <h3 class="text-center">Booking Data</h3>
+                        <h3 class="text-center">Data Service</h3>
                     </div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/book') }}" class="btn btn-secondary mb-3">Back</a>
-                        <form action="{{ url('/admin/book/addsave') }}" method="post">
+                        <a href="{{ url('/admin/user') }}" class="btn btn-secondary mb-3">Back</a>
+                        <form action="{{ url('/admin/user/addsave') }}" method="post">
                             @csrf
                             <div class="mb-3">
-                                <label for="kapster_id" class="form-label">Kapster ID:</label>
-                                <input type="text" id="kapster_id" name="kapster_id" class="form-control" required>
+                                <label for="name" class="form-label">Username:</label>
+                                <input type="text" id="name" name="name" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label for="service_id" class="form-label">Service ID:</label>
-                                <input type="text" id="service_id" name="service_id" class="form-control" required>
+                                <label for="email" class="form-label">Email:</label>
+                                <input type="text" id="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="usertype" class="form-label">Usertype:</label>
+                                <input type="text" id="usertype" name="usertype" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone:</label>
+                                <input type="text" id="phone" name="phone" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Address:</label>
+                                <input type="text" id="address" name="address" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password:</label>
+                                <input type="text" id="password" name="password" class="form-control" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>
