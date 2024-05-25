@@ -4,8 +4,6 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminBookController;
 use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminKapsterController;
-use App\Http\Controllers\Admin\AdminPaymentController;
-use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\User\UserBookController;
 use App\Http\Controllers\Malicious\MaliciousController;
 use App\Http\Controllers\ProfileController;
@@ -36,16 +34,17 @@ Route::get('/book', [UserBookController::class,'index'])->middleware('auth', 've
 Route::get('/book/service/{place}', [UserBookController::class,'services'])->middleware('auth', 'verified');
 Route::get('/book/service/haircut/{place}', [UserBookController::class,'haircut'])->middleware('auth', 'verified');
 Route::get('/book/service/haircut/kapster/{place}/{service}', [UserBookController::class,'kapsters'])->middleware('auth', 'verified');
-Route::get('/book/service/haircut/profil_kapster/{kapster}', [UserBookController::class,'showKapster'])->middleware('auth', 'verified');
+Route::get('/profil_kapster/{place}/{service}/{kapster}', [UserBookController::class,'showKapster'])->middleware('auth', 'verified');
 Route::get('/book/service/haircut/kapster/schedule/{place}/{service}/{kapster}', [UserBookController::class,'schedule'])->middleware('auth', 'verified');
+Route::get('/book/service/haircut/kapster/schedule/confirmation/{place}/{service}/{kapster}/{schedule}', [UserBookController::class,'confirmation'])->middleware('auth', 'verified');
 
 
-//Admin Book
+//Admin
 Route::get('/admin', function () {
     return redirect('/admin/dashboard');
 })->middleware(['auth', 'admin']);
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware(['auth', 'admin']);
-Route::get('/admin/book/add', [AdminBookController::class, 'add'])->middleware(['auth', 'admin']);
+Route::get('/admin/book/add', [AdminBookController::class, 'book'])->middleware(['auth', 'admin']);
 Route::get('/admin/book', [AdminBookController::class, 'book'])->middleware(['auth', 'admin']);
 Route::get('/admin/book/{id}', [AdminBookController::class, 'detail_book'])->middleware(['auth', 'admin']);
 Route::get('/admin/book/add', [AdminBookController::class, 'add'])->middleware(['auth', 'admin']);
