@@ -64,7 +64,6 @@ class UserBookController extends Controller
 	{
 		// Ensure the user is authenticated
 		if (Auth::check()) {
-			$userId = Auth::id(); // Get the authenticated user's ID
 
 			// Find the service by ID and extract its price
 			$service = Service::find($serviceId);
