@@ -50,7 +50,8 @@
         }
 
         .btn-sign {
-            background-color: rgb(254, 174, 111);;
+            background-color: rgb(254, 174, 111);
+            ;
             color: #fff;
             border: none;
             margin-left: 10px;
@@ -258,7 +259,6 @@
             });
             calendar.render();
 
-
             const timeSlotButtons = document.querySelectorAll(".time-slot-button");
             timeSlotButtons.forEach((button) => {
                 button.addEventListener("click", () => {
@@ -288,7 +288,12 @@
             });
 
             function redirectToNewPage() {
-                let url = "/book/service/haircut/kapster/schedule/confirmation/{{ $place }}/{{ $service }}/{{ $kapster }}/{{ $schedule }}";
+                const scheduleElement = document.getElementById('schedule');
+                const place = scheduleElement.getAttribute('data-place');
+                const service = scheduleElement.getAttribute('data-service');
+                const kapster = scheduleElement.getAttribute('data-kapster');
+
+                let url = `/book/service/haircut/kapster/schedule/confirmation/${place}/${service}/${kapster}`;
                 let queryString = `date=${selectedDate}`;
                 if (selectedTime) {
                     queryString += `&time=${selectedTime}`;

@@ -50,11 +50,12 @@ class UserBookController extends Controller
 		return view('book.profil_kapster', ['place' => $place, 'service' => $service, 'kapsters' => $kapsters]);
 	}
 
-	public function schedule($place, $service, $kapsters)
+	public function schedule($place, $service, $kapster)
 	{
 		// Pass the data to the view
-		return view('book.jadwal', ['kapsters' => $kapsters, 'service_id' => $service, 'place' => $place]);
+		return view('book.jadwal', ['kapster' => $kapster, 'service' => $service, 'place' => $place]);
 	}
+
 
 
 	public function confirmation($place, $service, $kapster, $schedule)
