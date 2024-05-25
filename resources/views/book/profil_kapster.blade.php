@@ -73,8 +73,15 @@
             padding-bottom: 100px;
         }
 
-        .btn-danger {
-            background-color: rgb(254, 174, 111);
+        .btn-sign {
+            background-color: rgb(254, 174, 111);;
+            color: #fff;
+            border: none;
+            margin-left: 10px;
+        }
+
+        .btn-sign:hover {
+            background-color: rgb(246, 220, 172);
         }
     </style>
 </head>
@@ -93,7 +100,7 @@
                 <a href="" class="text-white">Awan, </a>
                 <span class="text-muted">17 May 2024, 11:11</span>
             </div>
-            <button class="btn btn-danger">Sign Out</button>
+            <button class="btn btn-sign">Sign Out</button>
         </div>
     </header>
     <main class="container profil-capster" id="profil-capster">
@@ -104,7 +111,7 @@
                     <img src="{{ asset($kapsters->photo) }}" alt="{{ $kapsters->name }}">
                     <div class="card-body d-flex flex-column">
                         <h4 class="card-title fw-bold">{{ $kapsters->name }}</h4>
-                        <a href="{{ url('book/service/haircut/kapster/schedule/'.$place.'/'.$service.'/'.$kapster->id) }}">
+                        <a href="/book/service/haircut/kapster/schedule/{{ $place }}/{{ $service }}/{{ $kapsters->id }}">
                             <button class="btn-pilih">SELECT</button>
                         </a>
                     </div>

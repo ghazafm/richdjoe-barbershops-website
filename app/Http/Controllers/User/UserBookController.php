@@ -42,12 +42,12 @@ class UserBookController extends Controller
 		return view('book.kapster', ['kapsters' => $kapsters, 'service' => $service, 'place' => $place]);
 	}
 
-	public function showKapster($id)
+	public function showKapster($place, $service, $id)
 	{
 		$kapsters = Kapster::find($id);
 
 		// Pass the data to the view
-		return view('book.profil_kapster', ['kapsters' => $kapsters]);
+		return view('book.profil_kapster', ['place' => $place, 'service' => $service, 'kapsters' => $kapsters]);
 	}
 
 	public function schedule($place, $service, $kapsters)
@@ -72,7 +72,7 @@ class UserBookController extends Controller
 		$transaction = Transaction::create($transactionData);
 
 		// Pass the data to the view
-		return view('book.confirmation', [
+		return view('book.konfirmasi', [
 			'kapster' => $kapster,
 			'service' => $service,
 			'place' => $place,
