@@ -49,6 +49,7 @@ Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware(['
 Route::get('/admin/book/add', [AdminBookController::class, 'book'])->middleware(['auth', 'admin']);
 Route::get('/admin/book', [AdminBookController::class, 'book'])->middleware(['auth', 'admin']);
 Route::get('/admin/book/{id}', [AdminBookController::class, 'detail_book'])->middleware(['auth', 'admin']);
+Route::get('/admin/book/verify/{id}', [AdminBookController::class, 'verify_service'])->middleware(['auth', 'admin']);
 Route::get('/admin/book/add', [AdminBookController::class, 'add'])->middleware(['auth', 'admin']);
 Route::post('/admin/book/addsave', [AdminBookController::class, 'addsave'])->middleware(['auth', 'admin']);
 Route::get('/admin/service', [AdminServiceController::class, 'index'])->middleware(['auth', 'admin']);
