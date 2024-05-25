@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminBookController;
 use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminKapsterController;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminPaymentController;
 use App\Http\Controllers\User\UserBookController;
 use App\Http\Controllers\Malicious\MaliciousController;
 use App\Http\Controllers\ProfileController;
