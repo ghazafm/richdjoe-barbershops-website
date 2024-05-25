@@ -121,10 +121,10 @@
                     <img src="{{ asset($kapster->image) }}" alt="{{ $kapster->name }}">
                     <div class="card-body d-flex flex-column">
                         <h4 class="card-title fw-bold">{{ $kapster->name }}</h4>
-                        <a href="{{ url('book/service/haircut/kapster/schedule/'.$place.'/'.$service.'/'.$kapster->id) }}">
+                        <a href="/book/service/haircut/kapster/schedule/{{ $place }}/{{ $service }}/{{ $kapster->id }}">
                             <button class="btn-pilih">SELECT</button>
                         </a>
-                        <a href="{{ url('/profil_kapster/' .$place.'/'.$service.'/'.$kapster->id) }}">
+                        <a href="/profil_kapster/{{ $place }}/{{ $service }}/{{ $kapster->id }}">
                             <button class="btn-profil">PROFILE</button>
                         </a>
                     </div>

@@ -281,7 +281,7 @@
             });
 
             function redirectToNewPage() {
-                let url = "{{ url('book/service/haircut/kapster/schedule/confirmation/'.$place.'/'.$service.'/'.$kapster.'/'.$schedule) }}";
+                let url = "/book/service/haircut/kapster/schedule/confirmation/{{ $place }}/{{ $service }}/{{ $kapster }}/{{ $schedule }}";
                 let queryString = `date=${selectedDate}`;
                 if (selectedTime) {
                     queryString += `&time=${selectedTime}`;

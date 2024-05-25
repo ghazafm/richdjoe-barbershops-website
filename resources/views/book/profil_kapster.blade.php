@@ -104,7 +104,7 @@
                     <img src="{{ asset($kapsters->photo) }}" alt="{{ $kapsters->name }}">
                     <div class="card-body d-flex flex-column">
                         <h4 class="card-title fw-bold">{{ $kapsters->name }}</h4>
-                        <a href="{{ url('book/service/haircut/kapster/schedule/'.$place.'/'.$service.'/'.$kapsters->id) }}">
+                        <a href="/book/service/haircut/kapster/schedule/{{ $place }}/{{ $service }}/{{ $kapsters->id }}">
                             <button class="btn-pilih">SELECT</button>
                         </a>
                     </div>
