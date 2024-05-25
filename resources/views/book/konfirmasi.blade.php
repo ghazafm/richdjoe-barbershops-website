@@ -154,32 +154,32 @@
                             <div class="form-group w-100">
                                 <label for="tanggal">Date</label>
                                 <span>:</span>
-                                <input type="text" class="form-control" id="tanggal" value="29 May 2024" readonly style="background-color: transparent; border-color: transparent;">
+                                <p>{{ $transaction->schedule }}</p>     
                             </div>
                             <div class="form-group w-100">
                                 <label for="jam">Time</label>
                                 <span>:</span>
-                                <input type="text" class="form-control" id="jam" value="13:00" readonly style="background-color: transparent; border-color: transparent;">
+                                <p>{{ $transaction->schedule }}</p>     
                             </div>
                             <div class="form-group w-100">
                                 <label for="service">Service</label>
                                 <span>:</span>
-                                <input type="text" class="form-control" id="service" value="Haircut" readonly style="background-color: transparent; border-color: transparent;">
+                                <p>{{ $service->name }}</p>     
                             </div>
                             <div class="form-group w-100">
                                 <label for="artist">Hair Artist</label>
                                 <span>:</span>
-                                <input type="text" class="form-control" id="artist" value="Patrick" readonly style="background-color: transparent; border-color: transparent;">
+                                <p>{{ $kapster->name }}</p>     
                             </div>
                             <div class="form-group w-100">
                                 <label for="price">Price</label>
                                 <span>:</span>
-                                <input type="text" class="form-control" id="price" value="Start From IDR 185,000.00" readonly style="background-color: transparent; border-color: transparent;">
+                                <p>{{ $transaction->total_price }}</p>    
                             </div>
                             <div class="form-group w-100">
                                 <label for="store">Store</label>
                                 <span>:</span>
-                                <input type="text" class="form-control" id="store" value="Kebayoran Baru" readonly style="background-color: transparent; border-color: transparent;">
+                                <p>{{ $place }}</p>    
                             </div>
                         </form>
                     </div>
