@@ -38,8 +38,7 @@ Route::get('/book/service/haircut/{place}', [UserBookController::class,'haircut'
 Route::get('/book/service/haircut/kapster/{place}/{service}', [UserBookController::class,'kapsters'])->middleware('auth', 'verified');
 Route::get('/profil_kapster/{place}/{service}/{kapster}', [UserBookController::class,'showKapster'])->middleware('auth', 'verified');
 Route::get('/book/service/haircut/kapster/schedule/{kapster}/{service}/{place}', [UserBookController::class,'schedule'])->middleware('auth', 'verified');
-Route::get('/book/service/haircut/kapster/schedule/confirmation/{place}/{service}/{kapster}/{schedule}', [UserBookController::class,'confirmation'])->middleware('auth', 'verified');
-
+Route::get('/book/service/haircut/kapster/schedule/confirmation/{place}/{service}/{kapster}', [UserBookController::class, 'confirmation'])->middleware('auth', 'verified');
 
 //Admin
 Route::get('/admin', function () {

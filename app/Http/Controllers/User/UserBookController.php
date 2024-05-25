@@ -9,6 +9,8 @@ use App\Models\Service;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
+
 
 class UserBookController extends Controller
 {
@@ -58,28 +60,64 @@ class UserBookController extends Controller
 
 
 
-	public function confirmation($place, $service, $kapster, $schedule)
+	public function confirmation($place, $serviceId, $kapsterId, Request $request)
 	{
-		$user = auth()->user();
-		$transactionData = [
-			'customer_id' => $user->id, // Replace with actual customer ID
-			'kapster_id' => $kapster->id, // Assuming $kapster is an object
-			'service_id' => $service->id, // Assuming $service is an object
-			'schedule' => $schedule,
-			'total_price' => $service->price, // Replace with actual total price
-		];
+		// Ensure the user is authenticated
+		if (Auth::check()) {
+			$userId = Auth::id(); // Get the authenticated user's ID
 
-		// Create the transaction
-		$transaction = Transaction::create($transactionData);
+			// Find the service by ID and extract its price
+			$service = Service::find($serviceId);
+			if (!$service) {
+				return redirect()->back()->with('error', 'Invalid Service');
+			}
 
-		// Pass the data to the view
-		return view('book.konfirmasi', [
-			'kapster' => $kapster,
-			'service' => $service,
-			'place' => $place,
-			'transaction' => $transaction // Pass the transaction to the view if needed
-		]);
+			// Find the kapster by ID
+			$kapster = Kapster::find($kapsterId);
+			if (!$kapster) {
+				return redirect()->back()->with('error', 'Invalid Kapster');
+			}
+
+			// Get the date and time from the query parameters
+			$date = $request->query('date');
+			$time = $request->query('time');
+
+			// Construct the datetime value for the schedule
+			if ($date && $time) {
+				try {
+					$schedule = Carbon::createFromFormat('Y-m-d H:i', $date . ' ' . $time);
+				} catch (\Exception $e) {
+					return redirect()->back()->with('error', 'Invalid date or time format');
+				}
+			} else {
+				return redirect()->back()->with('error', 'Date and time are required');
+			}
+
+			// Prepare transaction data
+			$user = Auth::user();
+			$transactionData = [
+				'user_id' => $user->id,
+				'kapster_id' => $kapster->id,
+				'service_id' => $service->id,
+				'schedule' => $schedule, // Store the constructed datetime value
+				'total_price' => $service->price, // Use the service's price
+			];
+
+			// Create the transaction
+			$transaction = Transaction::create($transactionData);
+
+			// Pass the data to the view
+			return view('book.konfirmasi', [
+				'kapster' => $kapster,
+				'service' => $service,
+				'place' => $place,
+				'transaction' => $transaction // Pass the transaction to the view if needed
+			]);
+		} else {
+			return redirect()->route('login')->with('error', 'You must be logged in to confirm a booking.');
+		}
 	}
+
 
 	public function confirm($transaction)
 	{
