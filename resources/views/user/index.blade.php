@@ -98,7 +98,8 @@
         }
 
         .btn-sign {
-            background-color: rgb(254, 174, 111);;
+            background-color: rgb(254, 174, 111);
+            ;
             color: #fff;
             border: none;
             margin-left: 10px;
@@ -126,8 +127,9 @@
             background-color: rgb(255, 250, 230);
             border-radius: 15px;
             border: none;
-            margin-top: auto;
+            width: 100%;
             padding: 5px 0;
+            margin-top: auto;
         }
 
         .btn-buy:hover {
@@ -280,8 +282,8 @@
                     </ul>
                 </div>
                 @else
-                    <a class="nav-link btn btn-sign ms-2" href="{{ route('register') }}">SIGN UP</a>
-                    <a class="nav-link btn btn-sign ms-2" href="{{ route('login') }}">SIGN IN</a>
+                <a class="nav-link btn btn-sign ms-2" href="{{ route('register') }}">SIGN UP</a>
+                <a class="nav-link btn btn-sign ms-2" href="{{ route('login') }}">SIGN IN</a>
                 @endauth
                 @endif
             </div>
@@ -488,7 +490,11 @@
                     <img src="{{ asset('images/product/clay.jpeg') }}" alt="HAIRCUT">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">POMADE CLAY HAIRSTYLING</h5>
-                        <button class="btn-buy">BUY NOW</button>
+                        <div class="mt-auto">
+                            <a href="https://shorturl.at/l1RtX">
+                                <button class="btn-buy">BUY NOW</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -497,7 +503,11 @@
                     <img src="{{ asset('images/product/kids.jpeg') }}" alt="TREATMENT">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">POMADE ANAK WATERBASED KIDS (JUNIOR)</h5>
-                        <button class="btn-buy">BUY NOW</button>
+                        <div class="mt-auto">
+                            <a href="https://shorturl.at/bDamx">
+                                <button class="btn-buy">BUY NOW</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -506,7 +516,11 @@
                     <img src="{{ asset('images/product/stronghold.jpeg') }}" alt="TREATMENT">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">POMADE WATERBASED STRONGHOLD</h5>
-                        <button class="btn-buy">BUY NOW</button>
+                        <div class="mt-auto">
+                            <a href="https://shorturl.at/VZJIR">
+                                <button class="btn-buy">BUY NOW</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -517,9 +531,9 @@
         <div class="row align-items-center">
             <div class="history col-md-6">
                 <h1>OUR HISTORY</h1>
-                <span>Richdjoe Barbershops is one of the businesses that utilizes the development of the lifestyle of the 
-                    Indonesian people as a new business, especially in Malang City. Richdjoe Barbershops was established on 
-                    February 15, 2015. This business began with the move of the owner, Mr. Djoko Prihatin, from Jakarta and 
+                <span>Richdjoe Barbershops is one of the businesses that utilizes the development of the lifestyle of the
+                    Indonesian people as a new business, especially in Malang City. Richdjoe Barbershops was established on
+                    February 15, 2015. This business began with the move of the owner, Mr. Djoko Prihatin, from Jakarta and
                     settled in Malang.</span>
             </div>
             <div class="col-md-6">

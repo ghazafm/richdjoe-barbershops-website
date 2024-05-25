@@ -55,7 +55,7 @@
         }
 
         .btn-sign {
-            background-color: rgb(254, 174, 111);;
+            background-color: rgb(254, 174, 111);
             color: #fff;
             border: none;
             margin-left: 10px;
@@ -78,7 +78,7 @@
         }
 
         .card-body p {
-            margin-bottom: 1rem;
+            margin-bottom: 1px;
         }
 
         .form-group {
@@ -106,6 +106,11 @@
 
         .btn-confirm:hover {
             background-color: #0056b3;
+            color: white;
+        }
+
+        .konfirmasi {
+            padding-bottom: 100px;
         }
     </style>
 </head>
@@ -121,13 +126,18 @@
             </div>
             <div class="text-right ml-auto mr-3">
                 <a href="" class="d-block text-white">My Booking</a>
-                <a href="" class="text-white">Awan, </a>
-                <span class="text-muted">17 May 2024, 11:11</span>
+                <a href="{{ route('profile.edit') }}" class="text-white">{{ Auth::user()->name }}, </a>
+                <span id="current-time" class="text-muted"></span>
             </div>
-            <button class="btn btn-sign">Sign Out</button>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <button class="btn btn-sign">Sign Out</button>
+                </a>
+            </form>
         </div>
     </header>
-    <div class="container mt-5">
+    <div class="container konfirmasi">
         <h1 class="text-center">Booking Confirmation</h1>
         <div class="row justify-content-center mt-4">
             <div class="col-md-5">
@@ -137,17 +147,17 @@
                             <div class="form-group w-100 bg-transparent">
                                 <label for="name">Name</label>
                                 <span>:</span>
-                                <input type="text" class="form-control" id="name" value="Azril Januar" style="background-color: transparent; border-color: black;">
+                                <p>{{ $user->name }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="email">Email</label>
                                 <span>:</span>
-                                <input type="email" class="form-control" id="email" value="azriljanuar661@gmail.com" style="background-color: transparent; border-color: black;">
+                                <p>{{ $user->email }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="phone">No Hp</label>
                                 <span>:</span>
-                                <input type="text" class="form-control" id="phone" value="082342636663" style="background-color: transparent; border-color: black;">
+                                <p>{{ $user->phone }}</p>
                             </div>
                         </form>
                     </div>
@@ -160,41 +170,43 @@
                             <div class="form-group w-100">
                                 <label for="tanggal">Date</label>
                                 <span>:</span>
-                                <p>{{ $transaction->schedule }}</p>     
+                                <p>{{ $transaction->schedule->format('Y-m-d') }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="jam">Time</label>
                                 <span>:</span>
-                                <p>{{ $transaction->schedule }}</p>     
+                                <p>{{ $transaction->schedule->format('H:i') }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="service">Service</label>
                                 <span>:</span>
-                                <p>{{ $service->name }}</p>     
+                                <p>{{ $service->name }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="artist">Hair Artist</label>
                                 <span>:</span>
-                                <p>{{ $kapster->name }}</p>     
+                                <p>{{ $kapster->name }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="price">Price</label>
                                 <span>:</span>
-                                <p>{{ $transaction->total_price }}</p>    
+                                <p>{{ $transaction->total_price }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="store">Store</label>
                                 <span>:</span>
-                                <p>{{ $place }}</p>    
+                                <p>{{ $place }}</p>
                             </div>
                         </form>
                     </div>
                 </div>
-                <button class="btn btn-confirm">Confirm Booking</button>
+                <a href="/book/service/haircut/kapster/schedule/confirmation/{{ $place }}/{{ $service }}/{{ $kapster }}/{{ $transaction->id }}">
+                    <button class="btn btn-confirm">Confirm Booking</button>
+                </a>
             </div>
         </div>
     </div>
-    
+
     <footer class="footer-socials">
         <div class="container">
             <div class="row">
@@ -214,6 +226,26 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
+        function updateTime() {
+            const currentTimeElement = document.getElementById('current-time');
+            const now = new Date();
+            const options = {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            const formattedTime = now.toLocaleDateString('en-GB', options).replace(/,/g, '');
+            currentTimeElement.textContent = formattedTime;
+        }
+
+        // Update time every second
+        setInterval(updateTime, 1000);
+
+        // Set initial time
+        updateTime();
+
         function goBack() {
             window.history.back();
         }

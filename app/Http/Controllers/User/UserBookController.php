@@ -107,6 +107,7 @@ class UserBookController extends Controller
 
 			// Pass the data to the view
 			return view('book.konfirmasi', [
+				'user' => $user,
 				'kapster' => $kapster,
 				'service' => $service,
 				'place' => $place,
@@ -118,9 +119,9 @@ class UserBookController extends Controller
 	}
 
 
-	public function confirm($transaction)
+	public function detail($transaction)
 	{
-		return view('book.log', ['transaction' => $transaction]);
+		return view('book.detail_book', ['transaction' => $transaction]);
 	}
 
 
