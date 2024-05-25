@@ -172,12 +172,12 @@
                         </div>
                         <form class="form-inline">
                             <div class="form-group w-100">
-                                <label for="tanggal">Date</label>
+                                <label for="date">Date</label>
                                 <span>:</span>
                                 <p>{{ $transaction->schedule }}</p>
                             </div>
                             <div class="form-group w-100">
-                                <label for="jam">Time</label>
+                                <label for="time">Time</label>
                                 <span>:</span>
                                 <p>{{ $transaction->schedule }}</p>
                             </div>
