@@ -141,7 +141,7 @@
             border: none;
             padding: 10px 20px;
             font-size: 14px;
-            border-radius: 25px;
+            border-radius: 15px;
         }
 
         .btn-contact:hover {
