@@ -137,6 +137,7 @@ class UserBookController extends Controller
 
 		// Update the payment_status to "verified"
 		$transaction->update(['service_status' => 'cancelled']);
+		
 
 		// Redirect back with a success message
 		return redirect()->back()->with('success', 'Payment cancelled.');
