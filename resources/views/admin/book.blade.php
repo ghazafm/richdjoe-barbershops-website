@@ -30,11 +30,12 @@
                 <br />
                 <br />
                 <p>Search Transaction ID:</p>
-                <form action="/admin/search" method="GET" class="form-inline mb-3">
+                <form action="/admin/book/book/search" method="GET" class="form-inline mb-3">
                     <input type="text" name="search" class="form-control mr-2" placeholder="Transaction ID"
                         value="{{ old('search') }}">
-                    <input type="submit" class="btn btn-primary" value="Search">
+                    <input type="submit" class="btn btn-primary" value="search">
                 </form>
+                
 
                 <table id="transactionTable" class="table table-bordered table-striped">
                     <thead class="thead-dark">
@@ -93,14 +94,12 @@
                 <div class="modal-footer justify-content-start">
                     <div class="row">
                         <div class="col">
-                            <a id="acceptBtn" href="#" class="btn btn-success btn-block">Accept</a>
-                        </div>                        
+                            <button type="button" class="btn btn-success btn-block">Accept</button>
+                        </div>
                         <div class="col">
                             <button type="button" class="btn btn-danger btn-block">Decline</button>
                         </div>
                     </div>
-                    
-
                 </div>
 
             </div>
@@ -132,7 +131,8 @@
             location.reload();
         });
     </script>
-    <script>
+     <script>
+        // JavaScript code to handle sorting when column headers are clicked
         document.addEventListener("DOMContentLoaded", function() {
             const table = document.getElementById("transactionTable");
             const headers = table.querySelectorAll("th.sortable");
@@ -155,8 +155,7 @@
                         }
 
                         // For other columns, perform alphabetical sorting
-                        return isAscending ? aValue.localeCompare(bValue) : bValue
-                            .localeCompare(aValue);
+                        return isAscending ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
                     });
 
                     const tbody = table.querySelector("tbody");
@@ -168,8 +167,7 @@
                     headers.forEach(function(header) {
                         header.classList.remove("ascending", "descending");
                         // Remove any existing arrow emojis
-                        header.innerHTML = header.innerHTML.replace("↓", "").replace("↑",
-                            "");
+                        header.innerHTML = header.innerHTML.replace(" ↓", "").replace(" ↑", "");
                     });
 
                     // Add arrow emoji to indicate sorting order
@@ -190,7 +188,6 @@
             }
         });
     </script>
-
 
 
 
