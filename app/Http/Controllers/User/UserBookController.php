@@ -166,6 +166,7 @@ class UserBookController extends Controller
 	{
 		$user = Auth::user();
 		$transactions = Transaction::where('user_id', $user->id)->get();
-		return $transactions;
+		return view('book.my_book', ['transactions' => $transactions]);
+		// return $transactions;
 	}
 }

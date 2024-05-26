@@ -137,6 +137,35 @@
         .detail {
             padding-bottom: 100px;
         }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            color: black;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            width: 500px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
     </style>
 </head>
 
@@ -150,7 +179,7 @@
                 <button class="btn btn-outline-secondary text-white" onclick="goBack()">⬅️ Back</button>
             </div>
             <div class="text-right ml-auto mr-3">
-                <a href="" class="d-block text-white">My Booking</a>
+                <a href="/mybook" class="d-block text-white">My Booking</a>
                 <a href="{{ route('profile.edit') }}" class="text-white">{{ Auth::user()->name }}, </a>
                 <span id="current-time" class="text-muted"></span>
             </div>
@@ -212,12 +241,8 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-between">
-                    <a href="">
-                        <button class="btn btn-reschedule btn-custom">Reschedule</button>
-                    </a>
-                    <a href="">
-                        <button class="btn btn-cancel btn-custom">Cancel</button>
-                    </a>
+                    <button class="btn btn-reschedule btn-custom" onclick="showReschedulePopup()">Reschedule</button>
+                    <button class="btn btn-cancel btn-custom" onclick="showCancelPopup()">Cancel</button>
                 </div>
                 <div>
                     <a href="/book">
@@ -225,6 +250,15 @@
                     </a>
                 </div>
             </div>
+        </div>
+    </div>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="hidePopup()">&times;</span>
+            <h2 id="popup-title"></h2>
+            <p id="popup-message"></p>
+            <p>Whatsapp : +62 817-9003-008</p>
+            <p>Email : richdjoe@gmail.com</p>
         </div>
     </div>
 
@@ -275,27 +309,21 @@
         }
     </script>
     <script>
-        document.getElementById('cancelBtn').addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent the default link behavior
+        function showReschedulePopup() {
+            document.getElementById('popup-title').innerText = 'Reschedule Booking';
+            document.getElementById('popup-message').innerText = 'Please contact the admin to make changes to the booking schedule';
+            document.getElementById('popup').style.display = 'flex';
+        }
 
-            // Make an AJAX request to cancel the booking
-            fetch(this.href)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // If cancellation is successful, display a pop-up message
-                        alert(data.message);
-                        // You can customize the pop-up message using a modal or any other UI component
-                    } else {
-                        // If cancellation fails, handle the error
-                        alert('Failed to cancel booking.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('An error occurred while cancelling the booking.');
-                });
-        });
+        function showCancelPopup() {
+            document.getElementById('popup-title').innerText = 'Cancel Booking';
+            document.getElementById('popup-message').innerText = 'Please contact the admin to cancel the booking.';
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        function hidePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
     </script>
 
 </body>
