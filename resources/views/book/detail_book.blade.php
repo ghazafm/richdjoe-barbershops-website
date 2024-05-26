@@ -66,7 +66,7 @@
         }
 
         .card-body p {
-            margin-bottom: 5px;
+            margin-bottom: 1px;
         }
 
         .form-group {
@@ -199,11 +199,6 @@
                                 <p>{{ $transaction->total_price }}</p>
                             </div>
                             <div class="form-group w-100">
-                                <label for="store">Store</label>
-                                <span>:</span>
-                                <p>{{ $transaction->kapster->place }}</p>
-                            </div>
-                            <div class="form-group w-100">
                                 <label for="code">Code</label>
                                 <span>:</span>
                                 <p>{{ $transaction->id }}</p>
@@ -220,12 +215,12 @@
                     <a href="">
                         <button class="btn btn-reschedule btn-custom">Reschedule</button>
                     </a>
-                    <a href="/book/service/haircut/kapster/schedule/confirmation/cancelled/{{ $transaction->id }}">
+                    <a href="">
                         <button class="btn btn-cancel btn-custom">Cancel</button>
                     </a>
                 </div>
                 <div>
-                    <a href="">
+                    <a href="/book">
                         <button class="btn btn-order btn-custom">Order More</button>
                     </a>
                 </div>

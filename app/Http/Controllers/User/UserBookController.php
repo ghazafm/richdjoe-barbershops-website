@@ -127,7 +127,7 @@ class UserBookController extends Controller
 
 		$transaction = Transaction::create($transactionData);
 
-			// Pass the data to the view
+		// Pass the data to the view
 		return view('book.detail_book', ['transaction' => $transaction]);
 	}
 
@@ -138,7 +138,7 @@ class UserBookController extends Controller
 
 		// Update the payment_status to "verified"
 		$transaction->update(['service_status' => 'cancelled']);
-		
+
 		TransactionLog::create([
 			'id' => $transaction->id,
 			'user_id' => $transaction->user->id,
@@ -157,7 +157,7 @@ class UserBookController extends Controller
 		]);
 
 		// Redirect back with a success message
-		return redirect()->back()->with('success', 'Payment cancelled.');
+		return redirect('/');
 	}
 
 
