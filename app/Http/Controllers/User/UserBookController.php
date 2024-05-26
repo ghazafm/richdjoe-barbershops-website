@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use App\Models\TransactionLog;
 use App\Models\Kapster;
 use App\Models\Service;
 use App\Models\User;
@@ -138,6 +139,22 @@ class UserBookController extends Controller
 		// Update the payment_status to "verified"
 		$transaction->update(['service_status' => 'cancelled']);
 		
+		TransactionLog::create([
+			'id' => $transaction->id,
+			'user_id' => $transaction->user->id,
+			'user_name' => $transaction->user->name,
+			'user_email' => $transaction->user->email,
+			'kapster_id' => $transaction->kapster->id,
+			'kapster_name' => $transaction->kapster->name,
+			'service_id' => $transaction->service->id,
+			'service_name' => $transaction->service->name,
+			'schedule' => $transaction->schecule,
+			'total_price' => $transaction->total_price,
+			'service_status' => $transaction->service_status,
+			'payment_status' => $transaction->payment_status,
+			'rating' => $transaction->rating,
+			'comment' => $transaction->comment
+		]);
 
 		// Redirect back with a success message
 		return redirect()->back()->with('success', 'Payment cancelled.');
