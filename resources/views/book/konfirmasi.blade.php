@@ -170,12 +170,12 @@
                             <div class="form-group w-100">
                                 <label for="tanggal">Date</label>
                                 <span>:</span>
-                                <p>{{ $transaction->schedule->format('Y-m-d') }}</p>
+                                <p>{{ $schedule->format('Y-m-d') }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="jam">Time</label>
                                 <span>:</span>
-                                <p>{{ $transaction->schedule->format('H:i') }}</p>
+                                <p>{{ $schedule->format('H:i') }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="service">Service</label>
@@ -190,17 +190,17 @@
                             <div class="form-group w-100">
                                 <label for="price">Price</label>
                                 <span>:</span>
-                                <p>{{ $transaction->total_price }}</p>
+                                <p>{{ $service->price }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="store">Store</label>
                                 <span>:</span>
-                                <p>{{ $place }}</p>
+                                <p>{{ $kapster->place }}</p>
                             </div>
                         </form>
                     </div>
                 </div>
-                <a href="/book/service/haircut/kapster/schedule/confirmation/{{ $place }}/{{ $service }}/{{ $kapster }}/{{ $transaction->id }}">
+                <a href="/book/service/haircut/kapster/schedule/confirmation/{{ $kapster->place }}/{{ $service->id }}/{{ $kapster->id }}/{{ $schedule }}">
                     <button class="btn btn-confirm">Confirm Booking</button>
                 </a>
             </div>

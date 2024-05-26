@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use App\Models\Kapster;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -94,34 +95,51 @@ class UserBookController extends Controller
 
 			// Prepare transaction data
 			$user = Auth::user();
-			$transactionData = [
-				'user_id' => $user->id,
-				'kapster_id' => $kapster->id,
-				'service_id' => $service->id,
-				'schedule' => $schedule, // Store the constructed datetime value
-				'total_price' => $service->price, // Use the service's price
-			];
-
 			// Create the transaction
-			$transaction = Transaction::create($transactionData);
 
 			// Pass the data to the view
 			return view('book.konfirmasi', [
 				'user' => $user,
 				'kapster' => $kapster,
 				'service' => $service,
-				'place' => $place,
-				'transaction' => $transaction // Pass the transaction to the view if needed
+				'schedule' => $schedule, // Store the constructed datetime value
 			]);
 		} else {
 			return redirect()->route('login')->with('error', 'You must be logged in to confirm a booking.');
 		}
 	}
 
-
-	public function detail($transaction)
+	public function confirm($user_id, $service_id, $kapster_id, $schedule)
 	{
+		// return view('book.log', ['transaction' => $transaction]);
+		$user = Auth::user();
+		$service = Service::find($service_id);
+		$kapster = Kapster::find($kapster_id);
+
+		$transactionData = [
+			'user_id' => $user->id,
+			'kapster_id' => $kapster->id,
+			'service_id' => $service->id,
+			'schedule' => $schedule, // Store the constructed datetime value
+			'total_price' => $service->price, // Use the service's price
+		];
+
+		$transaction = Transaction::create($transactionData);
+
+			// Pass the data to the view
 		return view('book.detail_book', ['transaction' => $transaction]);
+	}
+
+	public function cancel($id)
+	{
+		// Find the transaction by its ID
+		$transaction = Transaction::findOrFail($id);
+
+		// Update the payment_status to "verified"
+		$transaction->update(['service_status' => 'cancelled']);
+
+		// Redirect back with a success message
+		return redirect()->back()->with('success', 'Payment cancelled.');
 	}
 
 

@@ -100,7 +100,7 @@
             padding: 10px 20px;
             cursor: pointer;
             margin: 10px 5px;
-            width: 47%;
+            width: 210px;
             margin-bottom: 1px;
         }
 
@@ -170,7 +170,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3 border-bottom border-dark font-weight-bold">
                             <span>Proof of Booking</span>
-                            <span>@Soekarno Hatta</span>
+                            <span>@ {{ $transaction->kapster->place }}</span>
                         </div>
                         <form class="form-inline">
                             <div class="form-group w-100">
@@ -186,12 +186,12 @@
                             <div class="form-group w-100">
                                 <label for="service">Service</label>
                                 <span>:</span>
-                                <p>{{ $service->name }}</p>
+                                <p>{{ $transaction->service->name }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="artist">Hair Artist</label>
                                 <span>:</span>
-                                <p>{{ $kapster->name }}</p>
+                                <p>{{ $transaction->kapster->name }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="price">Price</label>
@@ -201,27 +201,33 @@
                             <div class="form-group w-100">
                                 <label for="store">Store</label>
                                 <span>:</span>
-                                <p>{{ $place }}</p>
+                                <p>{{ $transaction->kapster->place }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="code">Code</label>
                                 <span>:</span>
-                                <p>{{ $place }}</p>
+                                <p>{{ $transaction->id }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="status">Status</label>
                                 <span>:</span>
-                                <p>{{ $place }}</p>
+                                <p>{{ $transaction->service_status }}</p>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between">
-                    <button class="btn btn-reschedule btn-custom">Reschedule</button>
-                    <button class="btn btn-cancel btn-custom">Cancel</button>
+                    <a href="">
+                        <button class="btn btn-reschedule btn-custom">Reschedule</button>
+                    </a>
+                    <a href="/book/service/haircut/kapster/schedule/confirmation/cancelled/{{ $transaction->id }}">
+                        <button class="btn btn-cancel btn-custom">Cancel</button>
+                    </a>
                 </div>
                 <div>
-                    <button class="btn btn-order btn-custom">Order More</button>
+                    <a href="">
+                        <button class="btn btn-order btn-custom">Order More</button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -245,6 +251,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function updateTime() {
             const currentTimeElement = document.getElementById('current-time');
@@ -270,6 +279,30 @@
             window.history.back();
         }
     </script>
+    <script>
+        document.getElementById('cancelBtn').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default link behavior
+
+            // Make an AJAX request to cancel the booking
+            fetch(this.href)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // If cancellation is successful, display a pop-up message
+                        alert(data.message);
+                        // You can customize the pop-up message using a modal or any other UI component
+                    } else {
+                        // If cancellation fails, handle the error
+                        alert('Failed to cancel booking.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while cancelling the booking.');
+                });
+        });
+    </script>
+
 </body>
 
 </html>
