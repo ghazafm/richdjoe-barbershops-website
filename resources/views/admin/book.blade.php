@@ -93,14 +93,14 @@
                 <div class="modal-footer justify-content-start">
                     <div class="row">
                         <div class="col">
-                            <a href="/admin/book/verify/{id}">
-                                <button type="button" class="btn btn-success btn-block">Accept</button>
-                            </a>
-                        </div>
+                            <a id="acceptBtn" href="#" class="btn btn-success btn-block">Accept</a>
+                        </div>                        
                         <div class="col">
                             <button type="button" class="btn btn-danger btn-block">Decline</button>
                         </div>
                     </div>
+                    
+
                 </div>
 
             </div>

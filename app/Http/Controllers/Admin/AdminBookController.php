@@ -216,11 +216,11 @@ class AdminBookController extends Controller
 	{
 		// Validate the request
 		$request->validate([
-			'id' => 'required|exists:transactions,id',
+			'transaction_id' => 'required|exists:transactions,id',
 		]);
 
 		// Find the transaction by its ID
-		$transaction = Transaction::findOrFail($request->input('id'));
+		$transaction = Transaction::findOrFail($request->input('transaction_id'));
 
 		// Update the payment_status to "verified"
 		$transaction->update(['service_status' => 'verified']);
