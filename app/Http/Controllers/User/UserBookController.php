@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use App\Models\Kapster;
 use App\Models\Service;
+use App\Models\TransactionLog;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -67,9 +68,27 @@ class UserBookController extends Controller
 			'schedule' => $schedule,
 			'total_price' => $service->price, // Replace with actual total price
 		];
+		$transactionLog = [
+			'id',
+			'user_id',
+			'user_name',
+			'user_email',
+			'kapster_id',
+			'kapster_name',
+			'service_id',
+			'service_name',
+			'schedule',
+			'total_price',
+			'service_status',
+			'payment_status',
+			'rating',
+			'comment',
+		];
+	
 
 		// Create the transaction
 		$transaction = Transaction::create($transactionData);
+		$transaction = TransactionLog::create($transactionData);
 
 		// Pass the data to the view
 		return view('book.konfirmasi', [
