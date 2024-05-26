@@ -161,7 +161,11 @@ class UserBookController extends Controller
 	}
 
 
-	// History booking
-	public function 
-
+	// History booking ============================================================
+	public function mybook()
+	{
+		$user = Auth::user();
+		$transactions = Transaction::where('user_id', $user->id)->get();
+		return $transactions;
+	}
 }
