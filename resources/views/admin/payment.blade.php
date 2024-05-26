@@ -37,11 +37,12 @@
                         <tr>
                             <th class="sortable text-center" data-column="id">ID</th>
                             <th class="sortable text-center" data-column="username">Username</th>
-                            <th class="sortable text-center" data-column="kapster">Kapster Name</th>
-                            <th class="sortable text-center" data-column="service">Service Name</th>
-                            <th class="sortable text-center" data-column="price">Service Price</th>
+                            <th class="sortable text-center" data-column="service">Service</th>
+                            <th class="sortable text-center" data-column="kapster">Hair Artist</th>
+                            
+                            <th class="sortable text-center" data-column="price">Total Price</th>
                             <th class="sortable text-center" data-column="created_at">Created At</th>
-                            <th class="text-center">Actions</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,8 +50,9 @@
                         <tr>
                             <td class="text-center">{{ $transaction->id }}</td>
                             <td class="text-center">{{ $transaction->user->name }}</td>
-                            <td class="text-center">{{ $transaction->kapster->name }}</td>
                             <td class="text-center">{{ $transaction->service->name }}</td>
+
+                            <td class="text-center">{{ $transaction->kapster->name }}</td>
                             <td class="text-center">{{ $transaction->service->price }}</td>
                             <td class="text-center">{{ $transaction->created_at }}</td>
                             <td class="text-center">

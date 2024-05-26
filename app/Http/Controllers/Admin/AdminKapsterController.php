@@ -11,10 +11,11 @@ class AdminKapsterController extends Controller
     public function index()
     {
         // Retrieve kapsters with pagination
-        $kapsters = Kapster::paginate(10);
+        $kapsters = Kapster::get();
+        $kapstersCount = $kapsters->count();
 
         // Pass the data to the view
-        return view('admin.hairartist', ['kapsters' => $kapsters]);
+        return view('admin.hairartist', ['kapsters' => $kapsters, 'kapstersCount' => $kapstersCount]);
     }
 
     public function add()

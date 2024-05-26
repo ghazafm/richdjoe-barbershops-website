@@ -45,11 +45,12 @@ Route::get('/book/service/haircut/kapster/schedule/confirmation/{place}/{service
 Route::get('/admin', function () {
     return redirect('/admin/dashboard');
 })->middleware(['auth', 'admin']);
-Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/dashboard', [AdminUserController::class, 'dashboard'])->middleware(['auth', 'admin']);
 Route::get('/admin/book/add', [AdminBookController::class, 'book'])->middleware(['auth', 'admin']);
 Route::get('/admin/book', [AdminBookController::class, 'book'])->middleware(['auth', 'admin']);
 Route::get('/admin/book/{id}', [AdminBookController::class, 'detail_book'])->middleware(['auth', 'admin']);
-Route::get('/admin/book/verify/{id}', [AdminBookController::class, 'verify_service'])->middleware(['auth', 'admin']);
+Route::post('/admin/book/verify/{id}', [AdminBookController::class, 'verify_service'])->middleware(['auth', 'admin']);
+Route::post('/admin/book/decline/{id}', [AdminBookController::class, 'decline_service'])->middleware(['auth', 'admin']);
 Route::get('/admin/book/add', [AdminBookController::class, 'add'])->middleware(['auth', 'admin']);
 Route::post('/admin/book/addsave', [AdminBookController::class, 'addsave'])->middleware(['auth', 'admin']);
 Route::get('/admin/service', [AdminServiceController::class, 'index'])->middleware(['auth', 'admin']);
@@ -59,6 +60,7 @@ Route::post('/admin/hairartist/editsave', [AdminKapsterController::class, 'edits
 Route::get('/admin/hairartist/delete/{id}', [AdminKapsterController::class, 'delete'])->middleware(['auth', 'admin']);
 Route::get('/admin/hairartist/add', [AdminKapsterController::class, 'add'])->middleware(['auth', 'admin']);
 Route::post('/admin/hairartist/addsave', [AdminKapsterController::class, 'addsave'])->middleware(['auth', 'admin']);
+Route::get('/admin/book/history', [AdminBookController::class, 'add'])->middleware(['auth', 'admin']);
 
 
 
