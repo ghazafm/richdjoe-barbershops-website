@@ -212,39 +212,31 @@ class AdminBookController extends Controller
 		return view('admin.book', ['transactions' => $transactions]);
 	}
 
-	public function verify_service(Request $request)
+	public function verify_service($id)
 	{
-		// Validate the request
-		$request->validate([
-			'transaction_id' => 'required|exists:transactions,id',
-		]);
-
 		// Find the transaction by its ID
-		$transaction = Transaction::findOrFail($request->input('transaction_id'));
+		$transaction = Transaction::findOrFail($id);
 
-		// Update the payment_status to "verified"
+		// Update the service_status to "verified"
 		$transaction->update(['service_status' => 'verified']);
 
 		// Redirect back with a success message
-		return redirect()->back()->with('success', 'Payment verified successfully.');
+		return redirect()->back()->with('success', 'Service verified successfully.');
 	}
 
-	public function decline_service(Request $request)
+
+	public function decline_service($id)
 	{
-		// Validate the request
-		$request->validate([
-			'transaction_id' => 'required|exists:transactions,id',
-		]);
-
 		// Find the transaction by its ID
-		$transaction = Transaction::findOrFail($request->input('transaction_id'));
+		$transaction = Transaction::findOrFail($id);
 
-		// Update the payment_status to "verified"
+		// Update the service_status to "decline"
 		$transaction->update(['service_status' => 'decline']);
 
 		// Redirect back with a success message
-		return redirect()->back()->with('success', 'Payment declined.');
+		return redirect()->back()->with('success', 'Service declined.');
 	}
+
 
 
 

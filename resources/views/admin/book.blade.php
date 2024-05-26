@@ -10,7 +10,6 @@
             border-top: 1px solid #dee2e6;
             border-left: 1px solid #dee2e6;
             border-right: 1px solid #dee2e6;
-
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> <!-- Full version of jQuery -->
@@ -58,14 +57,13 @@
                                 <td class="text-center">{{ $trn->schedule }}</td>
                                 <td class="text-center">{{ $trn->total_price }}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-warning btn-sm detail-btn " data-toggle="modal"
+                                    <button class="btn btn-warning btn-sm detail-btn" data-toggle="modal"
                                         data-target="#detailModal" data-id="{{ $trn->id }}">Detail</button>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-
 
                 <br>
                 Halaman : {{ $transaction->currentPage() }} <br>
@@ -93,16 +91,19 @@
                 <div class="modal-footer justify-content-start">
                     <div class="row">
                         <div class="col">
-                            <a id="acceptBtn" href="#" class="btn btn-success btn-block">Accept</a>
-                        </div>                        
+                            <form id="verifyForm" method="POST" style="display:inline-block;">
+                                @csrf
+                                <button type="submit" class="btn btn-success btn-block">Verify</button>
+                            </form>
+                        </div>
                         <div class="col">
-                            <button type="button" class="btn btn-danger btn-block">Decline</button>
+                            <form id="declineForm" method="POST" style="display:inline-block;">
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-block">Decline</button>
+                            </form>
                         </div>
                     </div>
-                    
-
                 </div>
-
             </div>
         </div>
     </div>
@@ -111,6 +112,10 @@
         $('#detailModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget); // Button that triggered the modal
             var id = button.data('id'); // Extract info from data-* attributes
+
+            // Set the action attribute for the forms
+            $('#verifyForm').attr('action', '/admin/book/verify/' + id);
+            $('#declineForm').attr('action', '/admin/book/decline/' + id);
 
             // AJAX request to get the detail data
             $.ajax({
@@ -127,6 +132,7 @@
                 }
             });
         });
+
         $('#detailModal').on('hidden.bs.modal', function(e) {
             // Merefresh halaman
             location.reload();
@@ -190,10 +196,6 @@
             }
         });
     </script>
-
-
-
-
 </body>
 
 </html>
