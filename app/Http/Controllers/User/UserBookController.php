@@ -110,9 +110,8 @@ class UserBookController extends Controller
 		}
 	}
 
-	public function confirm($user_id, $service_id, $kapster_id, $schedule)
+	public function confirm($place, $service_id, $kapster_id, $schedule)
 	{
-		// return view('book.log', ['transaction' => $transaction]);
 		$user = Auth::user();
 		$service = Service::find($service_id);
 		$kapster = Kapster::find($kapster_id);
@@ -127,9 +126,10 @@ class UserBookController extends Controller
 
 		$transaction = Transaction::create($transactionData);
 
-		// Pass the data to the view
-		return view('book.detail_book', ['transaction' => $transaction]);
+		// Redirect to a route that shows the details of the booking
+		return redirect()->route('transaction.detail', ['transaction' => $transaction->id]);
 	}
+
 
 	public function cancel($id)
 	{
@@ -159,6 +159,12 @@ class UserBookController extends Controller
 		// Redirect back with a success message
 		return redirect('/');
 	}
+
+	public function showTransactionDetail(Transaction $transaction)
+	{
+		return view('book.detail_book', ['transaction' => $transaction]);
+	}
+
 
 
 	// History booking ============================================================
