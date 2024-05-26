@@ -19,10 +19,13 @@ class AdminPaymentController extends Controller
         // Retrieve transactions with service_status set to "verified"
         $transactions = Transaction::with(['user', 'kapster', 'service'])
             ->where('service_status', 'verified')
-            ->paginate(10);
+            ->where('payment_status', 'process')
+            ->get();
+            $paymentCount = $transactions->count();
+
 
         // Pass the data to the view
-        return view('admin.payment', ['transactions' => $transactions]);
+        return view('admin.payment', ['transactions' => $transactions, 'paymentCount' => $paymentCount]);
     }
 
     public function detail($id)
@@ -37,16 +40,13 @@ class AdminPaymentController extends Controller
     }
 
 
-    public function verify_payment(Request $request)
+    public function verify_payment($id)
     {
         // Validate the request
-        $request->validate([
-            'transaction_id' => 'required|exists:transactions,id',
-        ]);
+      
 
-        try {
             // Find the transaction by its ID
-            $transaction = Transaction::findOrFail($request->input('transaction_id'));
+            $transaction = Transaction::findOrFail($id);
 
             // Update the payment_status to "verified"
             $transaction->update(['payment_status' => 'verified']);
@@ -73,10 +73,7 @@ class AdminPaymentController extends Controller
 
             // Redirect back with a success message
             return redirect()->back()->with('success', 'Payment verified successfully.');
-        } catch (\Exception $e) {
-            // Handle any exceptions and redirect back with an error message
-            return redirect()->back()->with('error', 'Failed to verify payment: ' . $e->getMessage());
-        }
+       
     }
 
     public function filter_payment(Request $req)

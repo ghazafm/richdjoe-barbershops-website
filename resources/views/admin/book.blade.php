@@ -34,6 +34,14 @@
                         value="{{ old('search') }}">
                     <input type="submit" class="btn btn-primary" value="search">
                 </form>
+                <p>Filter:</p>
+                <form action="/admin/book/book/filter" method="GET" class="form-inline mb-3">
+                    <input type="date" name="schedule_from" class="form-control mx-2" placeholder="Schedule From">
+                    <input type="date" name="schedule_to" class="form-control mx-2" placeholder="Schedule To">
+                    <input type="number" name="price_from" class="form-control mx-2" placeholder="Price From" step="5000" min="0">
+                    <input type="number" name="price_to" class="form-control mx-2" placeholder="Price To" step="5000" min="0">
+                    <input type="submit" class="btn btn-secondary" value="Filter">
+                </form>
                 
 
                 <table id="transactionTable" class="table table-bordered table-striped">

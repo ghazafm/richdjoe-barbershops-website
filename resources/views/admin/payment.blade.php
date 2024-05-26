@@ -39,7 +39,6 @@
                             <th class="sortable text-center" data-column="username">Username</th>
                             <th class="sortable text-center" data-column="service">Service</th>
                             <th class="sortable text-center" data-column="kapster">Hair Artist</th>
-                            
                             <th class="sortable text-center" data-column="price">Total Price</th>
                             <th class="sortable text-center" data-column="created_at">Created At</th>
                             <th class="text-center">Action</th>
@@ -51,7 +50,6 @@
                             <td class="text-center">{{ $transaction->id }}</td>
                             <td class="text-center">{{ $transaction->user->name }}</td>
                             <td class="text-center">{{ $transaction->service->name }}</td>
-
                             <td class="text-center">{{ $transaction->kapster->name }}</td>
                             <td class="text-center">{{ $transaction->service->price }}</td>
                             <td class="text-center">{{ $transaction->created_at }}</td>
@@ -65,10 +63,8 @@
                 
 
                 <br>
-                Halaman : {{ $transactions->currentPage() }} <br>
-                Jumlah Data : {{ $transactions->total() }} <br>
-                Data Per Halaman : {{ $transactions->perPage() }} <br>
-                {{ $transactions->links('pagination::bootstrap-5') }}
+                Jumlah Data : {{$paymentCount}} <br>
+
             </div>
         </div>
     </div>
@@ -88,7 +84,10 @@
                 <div class="modal-footer justify-content-start">
                     <div class="row">
                         <div class="col">
-                            <button type="button" class="btn btn-success btn-block">Confirm</button>
+                            <form id="confirmForm" method="POST" style="display:inline-block;">
+                                @csrf
+                                <button type="submit" class="btn btn-success btn-block">Confirm</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -101,7 +100,7 @@
             var button = $(event.relatedTarget); // Button that triggered the modal
             var id = button.data('id'); // Extract info from data-* attributes
 
-            console.log('Fetching details for ID:', id); // Debugging
+            $('#confirmForm').attr('action', '/admin/payment/verify/' + id);
 
             // AJAX request to get the detail data
             $.ajax({
