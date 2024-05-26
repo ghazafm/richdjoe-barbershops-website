@@ -83,7 +83,7 @@ class AdminKapsterController extends Controller
             ->paginate();
 
         // Pass the data to the view
-        return view('admin.kapster.index', ['kapsters' => $kapsters]);
+        return view('admin.hairartist', ['kapsters' => $kapsters]);
     }
 
     public function filter(Request $req)

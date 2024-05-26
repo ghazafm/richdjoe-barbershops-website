@@ -27,7 +27,7 @@
                 <br />
                 <p>Search Payments:</p>
 
-                <form action="/admin/search" method="GET" class="form-inline mb-3">
+                <form action="/admin/payment/payment/search" method="GET" class="form-inline mb-3">
                     <input type="text" name="search" class="form-control mr-2" placeholder="Search Payment ID" value="{{ old('search') }}">
                     <input type="submit" value="Search" class="btn btn-primary">
                 </form>
@@ -37,8 +37,8 @@
                         <tr>
                             <th class="sortable text-center" data-column="id">ID</th>
                             <th class="sortable text-center" data-column="username">Username</th>
-                            <th class="sortable text-center" data-column="kapster">Kapster Name</th>
-                            <th class="sortable text-center" data-column="service">Service Name</th>
+                            <th class="sortable text-center" data-column="kapster">Hair Artist</th>
+                            <th class="sortable text-center" data-column="service">Service</th>
                             <th class="sortable text-center" data-column="price">Service Price</th>
                             <th class="sortable text-center" data-column="created_at">Created At</th>
                             <th class="text-center">Actions</th>

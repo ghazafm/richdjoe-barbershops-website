@@ -127,7 +127,7 @@ class AdminBookController extends Controller
 
 		// Search transactions using Eloquent
 		$transactions = Transaction::where('id', 'LIKE', '%' . $search . '%')
-			->orwhere('customer_id', 'like', '%' . $search . '%')
+			->orwhere('user_id', 'like', '%' . $search . '%')
 			->orWhere('kapster_id', 'like', '%' . $search . '%')
 			->orWhere('service_id', 'like', '%' . $search . '%')
 			->orWhere('total_price', 'like', '%' . $search . '%')
@@ -140,7 +140,7 @@ class AdminBookController extends Controller
 			->paginate();
 
 		// Return view with search results
-		return view('student.index', ['transactions' => $transactions]);
+		return view('admin.book', ['transaction' => $transactions]);
 	}
 
 	public function filter_book(Request $req)
@@ -209,7 +209,7 @@ class AdminBookController extends Controller
 		$transactions = $transactions->paginate(10);
 
 		// Pass the data to the view
-		return view('admin.book', ['transactions' => $transactions]);
+		return view('admin.book', ['transaction' => $transactions]);
 	}
 
 	public function verify_service(Request $request)

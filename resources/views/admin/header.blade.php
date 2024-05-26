@@ -13,7 +13,7 @@
       </div>
       <div class="container-fluid d-flex align-items-center justify-content-between">
         <div class="navbar-header">
-          <!-- Navbar Header--><a href="index.html" class="navbar-brand">
+          <!-- Navbar Header--><a href="/admin/dashboard" class="navbar-brand">
             <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">Richdjoe</strong><strong>Admin</strong></div>
             <div class="brand-text brand-sm"><strong class="text-primary">R</strong><strong>A</strong></div></a>
           <!-- Sidebar Toggle Btn-->

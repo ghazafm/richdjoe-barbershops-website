@@ -8,7 +8,7 @@
       <div class="statistic-block block">
         <div class="progress-details d-flex align-items-end justify-content-between">
           <div class="title">
-            <div class="icon"><i class="icon-user-1"></i></div><strong>New Clients</strong>
+            <div class="icon"><i class="icon-user-1"></i></div><strong>Users</strong>
           </div>
           <div class="number dashtext-1">27</div>
         </div>
