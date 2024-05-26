@@ -171,7 +171,7 @@ class UserBookController extends Controller
 	public function mybook()
 	{
 		$user = Auth::user();
-		$transactions = Transaction::where('user_id', $user->id)->paginate(10); // Adjust the number as needed
-		return view('book.mybook', ['transactions' => $transactions]);
+		$transactions = Transaction::where('user_id', $user->id)->get();
+		return $transactions;
 	}
 }

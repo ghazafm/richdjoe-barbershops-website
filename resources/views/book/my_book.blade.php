@@ -66,7 +66,7 @@
         }
 
         .card-body p {
-            margin-bottom: 1px;
+            margin-bottom: 5px;
         }
 
         .form-group {
@@ -142,54 +142,46 @@
         </div>
     </header>
     <div class="container mybook">
-        <h1 class="text-center">My Booking</h1>
+        <h1 class="text-center">My Bookings</h1>
         <div class="row justify-content-center mt-4">
-            @foreach($transactions as $transaction)
-            <div class="col-md-5 mt-4">
+            <div class="col-md-5">
                 <div class="card">
                     <div class="card-body">
                         <form class="form-inline">
                             <div class="form-group w-100">
                                 <label for="date">Date</label>
                                 <span>:</span>
-                                <p>{{ $transaction->schedule->format('Y-m-d') }}</p>
+                                <p>{{ $transaction->schedule }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="time">Time</label>
                                 <span>:</span>
-                                <p>{{ $transaction->schedule->format('H:i') }}</p>
+                                <p>{{ $transaction->schedule }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="service">Service</label>
                                 <span>:</span>
-                                <p>{{ $transaction->service->name }}</p>
+                                <p>{{ $service->name }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="artist">Hair Artist</label>
                                 <span>:</span>
-                                <p>{{ $transaction->kapster->name }}</p>
+                                <p>{{ $kapster->name }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="store">Store</label>
                                 <span>:</span>
-                                <p>{{ $transaction->kapster->place }}</p>
-                            </div>
-                            <div class="form-group w-100">
-                                <label for="code">Code</label>
-                                <span>:</span>
-                                <p>{{ $transaction->id }}</p>
+                                <p>{{ $place }}</p>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">
-                    
-                    <a href="/book"></a>
-                        <button class="btn btn-order btn-custom">Order More</button>
+                    <a href=""></a>
+                    <button class="btn btn-order btn-custom">Order More</button>
                     </a>
                 </div>
             </div>
-            @endforeach
         </div>
     </div>
 
