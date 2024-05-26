@@ -40,6 +40,7 @@ Route::get('/profil_kapster/{place}/{service}/{kapster}', [UserBookController::c
 Route::get('/book/service/haircut/kapster/schedule/{kapster}/{service}/{place}', [UserBookController::class,'schedule'])->middleware('auth', 'verified');
 Route::get('/book/service/haircut/kapster/schedule/confirmation/{place}/{service}/{kapster}', [UserBookController::class, 'confirmation'])->middleware('auth', 'verified');
 Route::get('/book/service/haircut/kapster/schedule/confirmation/{place}/{service}/{kapster}/{schedule}', [UserBookController::class, 'confirm'])->middleware('auth', 'verified');
+Route::get('/transaction/detail/{transaction}', [UserBookController::class, 'showTransactionDetail'])->name('transaction.detail');
 // Route::get('/book/service/haircut/kapster/schedule/confirmation/cancelled/{id}', [UserBookController::class, 'cancel'])->middleware('auth', 'verified');
 Route::get('/mybook', [UserBookController::class,'mybook'])->middleware('auth', 'verified');
 
