@@ -66,7 +66,7 @@
         }
 
         .card-body p {
-            margin-bottom: 5px;
+            margin-bottom: 1px;
         }
 
         .form-group {
@@ -100,7 +100,7 @@
             padding: 10px 20px;
             cursor: pointer;
             margin: 10px 5px;
-            width: 47%;
+            width: 100%;
         }
 
         .btn-order {
@@ -111,6 +111,16 @@
         .btn-order:hover {
             background-color: lightgray;
             color: black;
+        }
+
+        .btn-detail {
+            background-color: #dc830f;
+            color: white;
+        }
+
+        .btn-detail:hover {
+            background-color: rgb(201, 104, 30);
+            color: white;
         }
 
         .mybook {
@@ -144,44 +154,56 @@
     <div class="container mybook">
         <h1 class="text-center">My Bookings</h1>
         <div class="row justify-content-center mt-4">
-            <div class="col-md-5">
+            @foreach($transactions as $transaction)
+            <div class="col-md-5 mb-5">
                 <div class="card">
                     <div class="card-body">
                         <form class="form-inline">
                             <div class="form-group w-100">
                                 <label for="date">Date</label>
                                 <span>:</span>
-                                <p>{{ $transaction->schedule }}</p>
+                                <p>{{ $transaction->schedule->format('Y-m-d') }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="time">Time</label>
                                 <span>:</span>
-                                <p>{{ $transaction->schedule }}</p>
+                                <p>{{ $transaction->schedule->format('H:i') }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="service">Service</label>
                                 <span>:</span>
-                                <p>{{ $service->name }}</p>
+                                <p>{{ $transaction->service->name }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="artist">Hair Artist</label>
                                 <span>:</span>
-                                <p>{{ $kapster->name }}</p>
+                                <p>{{ $transaction->kapster->name }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="store">Store</label>
                                 <span>:</span>
-                                <p>{{ $place }}</p>
+                                <p>{{ $transaction->kapster->place }}</p>
+                            </div>
+                            <div class="form-group w-100">
+                                <label for="code">Code</label>
+                                <span>:</span>
+                                <p>{{ $transaction->id }}</p>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <a href=""></a>
-                    <button class="btn btn-order btn-custom">Order More</button>
+                    <a href="/transaction/detail/{{ $transaction->id }}">
+                        <button class="btn btn-detail btn-custom">Show Detail</button>
                     </a>
                 </div>
             </div>
+            @endforeach
+        </div>
+        <div class="d-flex justify-content-center mt-2">
+            <a href="/book">
+                <button class="btn btn-order btn-custom">Order More</button>
+            </a>
         </div>
     </div>
 
