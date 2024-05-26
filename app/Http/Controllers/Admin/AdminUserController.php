@@ -19,16 +19,7 @@ class AdminUserController extends Controller
         return view('admin.user', ['users' => $users, 'userCount' => $userCount]);
     }
 
-    public function dashboard()
-    {
-        // Retrieve users with pagination
-        $users = User::get();
-        $userCount = $users->count();
-
-
-        // Pass the data to the view
-        return view('admin.index', ['users' => $users, 'userCount' => $userCount]);
-    }
+    
 
     public function add()
     {
