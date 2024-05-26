@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use App\Models\TransactionLog;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\TransactionLogController;
@@ -25,15 +26,15 @@ class AdminPaymentController extends Controller
     }
 
     public function detail($id)
-	{
-		$transaction = Transaction::with(['user', 'service', 'kapster'])->find($id);
+    {
+        $transaction = Transaction::with(['user', 'service', 'kapster'])->find($id);
 
-		if ($transaction) {
-			return view('admin.payment_detail', compact('transaction'));
-		} else {
-			return response()->view('admin.payment_detail', ['error' => 'Payment not found'], 404);
-		}
-	}
+        if ($transaction) {
+            return view('admin.payment_detail', compact('transaction'));
+        } else {
+            return response()->view('admin.payment_detail', ['error' => 'Payment not found'], 404);
+        }
+    }
 
 
     public function verify_payment(Request $request)
@@ -51,7 +52,24 @@ class AdminPaymentController extends Controller
             $transaction->update(['payment_status' => 'verified']);
 
             // Log the transaction
-            TransactionLogController::logTransaction($transaction);
+
+            TransactionLog::create([
+                'id' => $transaction->id,
+                'user_id' => $transaction->user->id,
+                'user_name' => $transaction->user->name,
+                'user_email' => $transaction->user->email,
+                'kapster_id' => $transaction->kapster->id,
+                'kapster_name' => $transaction->kapster->name,
+                'service_id' => $transaction->service->id,
+                'service_name' => $transaction->service->name,
+                'schedule' => $transaction->schecule,
+                'total_price' => $transaction->total_price,
+                'service_status' => $transaction->service_status,
+                'payment_status' => $transaction->payment_status,
+                'rating' => $transaction->rating,
+                'comment' => $transaction->comment
+            ]);
+
 
             // Redirect back with a success message
             return redirect()->back()->with('success', 'Payment verified successfully.');

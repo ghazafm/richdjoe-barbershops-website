@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use App\Models\TransactionLog;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -229,6 +230,23 @@ class AdminBookController extends Controller
 	{
 		// Find the transaction by its ID
 		$transaction = Transaction::findOrFail($id);
+		TransactionLog::create([
+			'id' => $transaction->id,
+			'user_id' => $transaction->user->id,
+			'user_name' => $transaction->user->name,
+			'user_email' => $transaction->user->email,
+			'kapster_id' => $transaction->kapster->id,
+			'kapster_name' => $transaction->kapster->name,
+			'service_id' => $transaction->service->id,
+			'service_name' => $transaction->service->name,
+			'schedule' => $transaction->schecule,
+			'total_price' => $transaction->total_price,
+			'service_status' => $transaction->service_status,
+			'payment_status' => $transaction->payment_status,
+			'rating' => $transaction->rating,
+			'comment' => $transaction->comment
+		]);
+
 
 		// Update the service_status to "decline"
 		$transaction->update(['service_status' => 'decline']);
