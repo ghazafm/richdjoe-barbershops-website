@@ -161,25 +161,7 @@ class UserBookController extends Controller
 	}
 
 
-	// Back button ===============================================================
-	public function backIndex()
-	{
-		$uniquePlaces = Kapster::distinct()->pluck('place');
-		// Pass the data to the view
-		return view('book.index', ['uniquePlaces' => $uniquePlaces]);
-	}
-	public function backServices($place)
-	{
-		// Retrieve Services with pagination
-		$services = Service::where('type', 'LIKE', 'other');
+	// History booking
+	public function 
 
-		// Pass the data to the view
-		return view('book.service', ['services' => $services, 'place' => $place]);
-	}
-	public function backKapster($place, $service)
-	{
-		$kapsters = Kapster::where('place', 'LIKE', $place);
-		// Pass the data to the view
-		return view('book.kapster', ['kapsters' => $kapsters, 'service' => $service, 'place' => $place]);
-	}
 }
