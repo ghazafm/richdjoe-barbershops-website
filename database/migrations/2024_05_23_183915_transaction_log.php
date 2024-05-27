@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('service_name');
             $table->timestamp('schedule');
             $table->decimal('total_price', 10, 2);
-            $table->enum('service_status', ['wait', 'decline', 'verified'])->default('wait');
+            $table->enum('service_status', ['wait', 'decline', 'verified', 'cancelled'])->default('wait');
             $table->enum('payment_status', ['process', 'verified'])->default('process');
             $table->tinyInteger('rating')->nullable()->default(null);
             $table->string('comment', 255)->nullable();

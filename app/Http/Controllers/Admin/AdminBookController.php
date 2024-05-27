@@ -21,6 +21,33 @@ class AdminBookController extends Controller
 		// Pass the data to the view
 		return view('admin.book', ['transaction' => $transactions]);
 	}
+	public function book_asc(Request $request)
+	{
+		$sortBy = $request->input('sort_by', 'id');
+
+		// Get transactions sorted in ascending order based on the specified column
+		$transactions = Transaction::with(['user', 'kapster', 'service'])
+			->where('service_status', 'wait')
+			->orderBy($sortBy, 'asc')
+			->paginate(10);
+
+		// Pass the data to the view
+		return view('admin.book', ['transactions' => $transactions]);
+	}
+	public function book_desc(Request $request)
+	{
+		$sortBy = $request->input('sort_by', 'id');
+
+		// Get transactions sorted in ascending order based on the specified column
+		$transactions = Transaction::with(['user', 'kapster', 'service'])
+			->where('service_status', 'wait')
+			->orderBy($sortBy, 'desc')
+			->paginate(10);
+
+		// Pass the data to the view
+		return view('admin.book', ['transactions' => $transactions]);
+	}
+
 
 	public function detail_book($id)
 	{
@@ -212,22 +239,18 @@ class AdminBookController extends Controller
 		return view('admin.book', ['transaction' => $transactions]);
 	}
 
-	public function verify_service(Request $request)
+	public function verify_service($id)
 	{
-		// Validate the request
-		$request->validate([
-			'transaction_id' => 'required|exists:transactions,id',
-		]);
-
 		// Find the transaction by its ID
-		$transaction = Transaction::findOrFail($request->input('transaction_id'));
+		$transaction = Transaction::find($id);
 
-		// Update the payment_status to "verified"
+		// Update the service_status to "verified"
 		$transaction->update(['service_status' => 'verified']);
 
 		// Redirect back with a success message
-		return redirect()->back()->with('success', 'Payment verified successfully.');
+		return redirect()->back()->with('success', 'Service verified successfully.');
 	}
+
 
 	public function decline_service(Request $request)
 	{
