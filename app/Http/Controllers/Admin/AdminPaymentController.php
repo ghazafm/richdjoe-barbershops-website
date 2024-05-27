@@ -61,6 +61,28 @@ class AdminPaymentController extends Controller
         }
     }
 
+    public function search_payment(Request $req)
+	{
+		$search = $req->input('search');
+
+		// Search transactions using Eloquent
+		$transactions = Transaction::where('id', 'LIKE', '%' . $search . '%')
+			->orwhere('user_id', 'like', '%' . $search . '%')
+			->orWhere('kapster_id', 'like', '%' . $search . '%')
+			->orWhere('service_id', 'like', '%' . $search . '%')
+			->orWhere('total_price', 'like', '%' . $search . '%')
+			->orWhere('service_status', 'like', '%' . $search . '%')
+			->orWhere('payment_status', 'like', '%' . $search . '%')
+			->orWhere('rating', 'like', '%' . $search . '%')
+			->orWhere('comment', 'like', '%' . $search . '%')
+			->orWhere('created_at', 'like', '%' . $search . '%')
+			->orWhere('updated_at', 'like', '%' . $search . '%')
+			->paginate();
+
+		// Return view with search results
+		return view('admin.payment', ['transactions' => $transactions]);
+	}
+
     public function filter_payment(Request $req)
     {
         // Initialize a query builder
