@@ -37,7 +37,7 @@
                     <thead class="thead-dark">
                         <tr>
                             <th class="sortable text-center" data-column="id">ID</th>
-                            <th class="sortable text-center" data-column="name">Hair Artist Name</th>
+                            <th class="sortable text-center" data-column="name">Hair Artist</th>
                             <th class="sortable text-center" data-column="place">Place</th>
                             <th class="sortable text-center" data-column="schedule">Schedule</th>
                             <th class="text-center">Option</th>
@@ -61,10 +61,8 @@
                 
 
                 <br>
-                Halaman : {{ $kapsters->currentPage() }} <br>
-                Jumlah Data : {{ $kapsters->total() }} <br>
-                Data Per Halaman : {{ $kapsters->perPage() }} <br>
-                {{ $kapsters->links('pagination::bootstrap-5') }}
+                Jumlah Data : {{$kapstersCount}} <br>
+               
 
             </div>
         </div>

@@ -37,10 +37,10 @@
                 <table id="serviceTable" class="table table-bordered table-striped">
                     <thead class="thead-dark">
                         <tr>
-                            <th class="sortable text-center" data-column="id">ID Service</th>
-                            <th class="sortable text-center" data-column="name">Service Name</th>
+                            <th class="sortable text-center" data-column="id">ID</th>
+                            <th class="sortable text-center" data-column="name">Service</th>
                             <th class="sortable text-center" data-column="description">Description</th>
-                            <th class="sortable text-center" data-column="price">Price</th>
+                            <th class="sortable text-center" data-column="price">Total  Price</th>
                             <th class="text-center">Option</th>
                         </tr>
                     </thead>
@@ -62,11 +62,9 @@
                 
                 
 
+               
                 <br>
-                Halaman : {{$services->currentPage()}} <br>
-                    Jumlah Data : {{$services->total()}} <br>
-                    Data Per Halaman : {{$services->perPage()}} <br>
-                    {{$services->links('pagination::bootstrap-5')}}
+                Jumlah Data : {{$serviceCount}} <br>
                    
             </div>
         </div>

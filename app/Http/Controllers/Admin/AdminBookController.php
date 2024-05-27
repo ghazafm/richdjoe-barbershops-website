@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use App\Models\TransactionLog;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,10 +13,13 @@ use Illuminate\Support\Facades\Auth; // Import Auth facade
 class AdminBookController extends Controller
 {
 	public function book()
-	{
-		$transactions = Transaction::with(['user', 'kapster', 'service'])
-			->where('service_status', 'wait')
-			->paginate(10);
+{
+    $transactions = Transaction::with(['user', 'kapster', 'service'])
+        ->where('service_status', 'wait')
+        ->get();
+
+    // Menghitung jumlah transaksi
+    $transactionCount = $transactions->count();
 
 
 		// Pass the data to the view
@@ -173,6 +177,8 @@ class AdminBookController extends Controller
 	public function filter_book(Request $req)
 	{
 		$query = Transaction::query();
+		
+
 
 		if ($req->filled('id')) {
 			$query->where('id', $req->input('id'));
@@ -207,16 +213,18 @@ class AdminBookController extends Controller
 		}
 
 		if ($req->filled('price_from') && $req->filled('price_to')) {
-			$query->whereBetween('price', [$req->input('price_from'), $req->input('price_to')]);
+			$query->whereBetween('total_price', [$req->input('price_from'), $req->input('price_to')]);
 		}
 
 		if ($req->filled('date_from') && $req->filled('date_to')) {
 			$query->whereBetween('created_at', [$req->input('date_from'), $req->input('date_to')]);
 		}
 
-		$transactions = $query->paginate();
+		$transactions = $query->get();
+		$transactionCount = $transactions->count();
 
-		return view('admin.book', ['transactions' => $transactions]);
+
+		return view('admin.book', ['transaction' => $transactions, 'transactionCount' => $transactionCount]);
 	}
 
 	public function sort_book(Request $req)
@@ -254,20 +262,34 @@ class AdminBookController extends Controller
 
 	public function decline_service(Request $request)
 	{
-		// Validate the request
-		$request->validate([
-			'transaction_id' => 'required|exists:transactions,id',
-		]);
-
 		// Find the transaction by its ID
-		$transaction = Transaction::findOrFail($request->input('transaction_id'));
+		$transaction = Transaction::findOrFail($id);
 
-		// Update the payment_status to "verified"
+		// Update the service_status to "decline"
 		$transaction->update(['service_status' => 'decline']);
 
+		// Log
+		TransactionLog::create([
+			'id' => $transaction->id,
+			'user_id' => $transaction->user->id,
+			'user_name' => $transaction->user->name,
+			'user_email' => $transaction->user->email,
+			'kapster_id' => $transaction->kapster->id,
+			'kapster_name' => $transaction->kapster->name,
+			'service_id' => $transaction->service->id,
+			'service_name' => $transaction->service->name,
+			'schedule' => $transaction->schedule,
+			'total_price' => $transaction->total_price,
+			'service_status' => $transaction->service_status,
+			'payment_status' => $transaction->payment_status,
+			'rating' => $transaction->rating,
+			'comment' => $transaction->comment
+		]);
+
 		// Redirect back with a success message
-		return redirect()->back()->with('success', 'Payment declined.');
+		return redirect()->back()->with('success', 'Service declined.');
 	}
+
 
 
 
@@ -277,3 +299,4 @@ class AdminBookController extends Controller
 		return $transactions->orderBy($sortBy, $sortOrder)->paginate(10);
 	}
 }
+

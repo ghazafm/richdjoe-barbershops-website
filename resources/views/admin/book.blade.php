@@ -30,9 +30,18 @@
                 <br />
                 <p>Search Transaction ID:</p>
                 <form action="/admin/book/book/search" method="GET" class="form-inline mb-3">
+                <form action="/admin/book/book/search" method="GET" class="form-inline mb-3">
                     <input type="text" name="search" class="form-control mr-2" placeholder="Transaction ID"
                         value="{{ old('search') }}">
                     <input type="submit" class="btn btn-primary" value="search">
+                </form>
+                <p>Filter:</p>
+                <form action="/admin/book/book/filter" method="GET" class="form-inline mb-3">
+                    <input type="date" name="schedule_from" class="form-control mx-2" placeholder="Schedule From">
+                    <input type="date" name="schedule_to" class="form-control mx-2" placeholder="Schedule To">
+                    <input type="number" name="price_from" class="form-control mx-2" placeholder="Price From" step="5000" min="0">
+                    <input type="number" name="price_to" class="form-control mx-2" placeholder="Price To" step="5000" min="0">
+                    <input type="submit" class="btn btn-secondary" value="Filter">
                 </form>
                 
 
@@ -45,7 +54,7 @@
                             <th class="sortable text-center" data-column="hair_artist">Hair Artist</th>
                             <th class="sortable text-center" data-column="schedule">Schedule</th>
                             <th class="sortable text-center" data-column="total_price">Total Price</th>
-                            <th class="text-center">Actions</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,6 +68,7 @@
                                 <td class="text-center">{{ $trn->total_price }}</td>
                                 <td class="text-center">
                                     <button class="btn btn-warning btn-sm detail-btn" data-toggle="modal"
+                                    <button class="btn btn-warning btn-sm detail-btn" data-toggle="modal"
                                         data-target="#detailModal" data-id="{{ $trn->id }}">Detail</button>
                                 </td>
                             </tr>
@@ -67,10 +77,7 @@
                 </table>
 
                 <br>
-                Halaman : {{ $transaction->currentPage() }} <br>
-                Jumlah Data : {{ $transaction->total() }} <br>
-                Data Per Halaman : {{ $transaction->perPage() }} <br>
-                {{ $transaction->links('pagination::bootstrap-5') }}
+                Jumlah Data : {{ $transactionCount }} <br>
             </div>
         </div>
     </div>
@@ -96,8 +103,16 @@
                                 @csrf
                                 <button type="submit" class="btn btn-success btn-block">Verify</button>
                             </form>
+                            <form id="verifyForm" method="POST" style="display:inline-block;">
+                                @csrf
+                                <button type="submit" class="btn btn-success btn-block">Verify</button>
+                            </form>
                         </div>
                         <div class="col">
+                            <form id="declineForm" method="POST" style="display:inline-block;">
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-block">Decline</button>
+                            </form>
                             <form id="declineForm" method="POST" style="display:inline-block;">
                                 @csrf
                                 <button type="submit" class="btn btn-danger btn-block">Decline</button>
@@ -118,6 +133,10 @@
             $('#verifyForm').attr('action', '/admin/book/verify/' + id);
             $('#declineForm').attr('action', '/admin/book/decline/' + id);
 
+            // Set the action attribute for the forms
+            $('#verifyForm').attr('action', '/admin/book/verify/' + id);
+            $('#declineForm').attr('action', '/admin/book/decline/' + id);
+
             // AJAX request to get the detail data
             $.ajax({
                 url: '/admin/book/' + id, // URL to fetch detail data
@@ -133,11 +152,14 @@
             });
         });
 
+
         $('#detailModal').on('hidden.bs.modal', function(e) {
             // Merefresh halaman
             location.reload();
         });
     </script>
+     <script>
+        // JavaScript code to handle sorting when column headers are clicked
      <script>
         // JavaScript code to handle sorting when column headers are clicked
         document.addEventListener("DOMContentLoaded", function() {
@@ -163,7 +185,6 @@
 
                         // For other columns, perform alphabetical sorting
                         return isAscending ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
-                        return isAscending ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
                     });
 
                     const tbody = table.querySelector("tbody");
@@ -175,7 +196,7 @@
                     headers.forEach(function(header) {
                         header.classList.remove("ascending", "descending");
                         // Remove any existing arrow emojis
-                        header.innerHTML = header.innerHTML.replace("↓", "").replace("↑", "");
+                        header.innerHTML = header.innerHTML.replace(" ↓", "").replace(" ↑", "");
                     });
 
                     // Add arrow emoji to indicate sorting order
@@ -196,10 +217,6 @@
             }
         });
     </script>
-
-
-
-
 </body>
 
 </html>

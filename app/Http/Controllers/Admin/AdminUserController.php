@@ -11,11 +11,15 @@ class AdminUserController extends Controller
     public function index()
     {
         // Retrieve users with pagination
-        $users = User::paginate(10);
+        $users = User::get();
+        $userCount = $users->count();
+
 
         // Pass the data to the view
-        return view('admin.user', ['users' => $users]);
+        return view('admin.user', ['users' => $users, 'userCount' => $userCount]);
     }
+
+    
 
     public function add()
     {

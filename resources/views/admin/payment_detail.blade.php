@@ -58,4 +58,8 @@
         <span class="detail-label">Service Status:</span>
         <span class="detail-value">{{ $transaction->service_status }}</span>
     </div>
+    <div class="detail-item">
+        <span class="detail-label">Payment Status:</span>
+        <span class="detail-value">{{ $transaction->payment_status }}</span>
+    </div>
 </div>

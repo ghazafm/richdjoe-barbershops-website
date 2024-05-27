@@ -14,6 +14,7 @@ class TransactionLog extends Model
 
     // The attributes that are mass assignable
     protected $fillable = [
+        'id',
         'user_id',
         'user_name',
         'user_email',

@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\AdminBookController;
 use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminKapsterController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\Admin\TransactionLogController;
 use App\Http\Controllers\Admin\AdminPaymentController;
 use App\Http\Controllers\Admin\TransactionLogController;
 use App\Http\Controllers\User\UserBookController;
@@ -49,14 +51,15 @@ Route::get('/mybook', [UserBookController::class,'mybook'])->middleware('auth', 
 Route::get('/admin', function () {
     return redirect('/admin/dashboard');
 })->middleware(['auth', 'admin']);
-Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/book/add', [AdminBookController::class, 'book'])->middleware(['auth', 'admin']);
 Route::get('/admin/book', [AdminBookController::class, 'book'])->middleware(['auth', 'admin']);
 Route::get('/admin/book/{id}', [AdminBookController::class, 'detail_book'])->middleware(['auth', 'admin']);
-Route::post('/admin/book/verify/{id}', [AdminBookController::class, 'verify_service'])->name('admin.book.verify');
-Route::post('/admin/book/decline/{id}', [AdminBookController::class, 'decline_service'])->name('admin.book.decline');
+Route::post('/admin/book/verify/{id}', [AdminBookController::class, 'verify_service'])->middleware(['auth', 'admin']);
+Route::post('/admin/book/decline/{id}', [AdminBookController::class, 'decline_service'])->middleware(['auth', 'admin']);
 Route::get('/admin/book/add', [AdminBookController::class, 'add'])->middleware(['auth', 'admin']);
 Route::get('/admin/book/sort', [AdminBookController::class, 'sort_book'])->middleware(['auth', 'admin']);
+Route::get('/admin/book/book/filter', [AdminBookController::class, 'filter_book'])->middleware(['auth', 'admin']);
 Route::post('/admin/book/addsave', [AdminBookController::class, 'addsave'])->middleware(['auth', 'admin']);
 Route::get('/admin/book/asc', 'Admin\AdminBookController@book_asc')->name('book_asc');
 Route::get('/admin/book/sort', 'Admin\AdminBookController@sort')->name('sort_book');
@@ -70,6 +73,7 @@ Route::get('/admin/hairartist/delete/{id}', [AdminKapsterController::class, 'del
 Route::get('/admin/hairartist/add', [AdminKapsterController::class, 'add'])->middleware(['auth', 'admin']);
 Route::post('/admin/hairartist/addsave', [AdminKapsterController::class, 'addsave'])->middleware(['auth', 'admin']);
 Route::get('/admin/history', [TransactionLogController::class, 'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/history', [TransactionLogController::class, 'index'])->middleware(['auth', 'admin']);
 
 
 
@@ -77,8 +81,13 @@ Route::get('/admin/history', [TransactionLogController::class, 'index'])->middle
 Route::get('/admin/payment', [AdminPaymentController::class, 'payment'])->middleware(['auth', 'admin']);
 Route::get('/admin/payment/{id}', [AdminPaymentController::class, 'detail'])->middleware(['auth', 'admin']);
 Route::get('/admin/payment/payment/search', [AdminPaymentController::class, 'search_payment'])->middleware(['auth', 'admin']);
+Route::post('/admin/payment/verify/{id}', [AdminPaymentController::class, 'verify_payment'])->middleware(['auth', 'admin']);
+
+Route::get('/admin/user', [AdminUserController::class, 'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/user', [AdminUserController::class, 'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/user/search', [AdminUserController::class, 'search'])->middleware(['auth', 'admin']);
+
+
 Route::get('/admin/user/add', [AdminUserController::class, 'add'])->middleware(['auth', 'admin']);
 Route::post('/admin/user/addsave', [AdminUserController::class, 'addsave'])->middleware(['auth', 'admin']);
 Route::get('/admin/service/add', [AdminServiceController::class, 'add'])->middleware(['auth', 'admin']);

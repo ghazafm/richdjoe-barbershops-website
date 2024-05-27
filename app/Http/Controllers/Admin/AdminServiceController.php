@@ -11,10 +11,11 @@ class AdminServiceController extends Controller
     public function index()
     {
         // Retrieve Services with pagination
-        $services = Service::paginate(10);
+        $services = Service::get();;
+        $serviceCount = $services->count();
 
         // Pass the data to the view
-        return view('admin.service', ['services' => $services]);
+        return view('admin.service', ['services' => $services, 'serviceCount' => $serviceCount]);
     }
 
     public function add()

@@ -40,7 +40,7 @@
                 <table id="userTable" class="table table-bordered table-striped">
                     <thead class="thead-dark">
                         <tr>
-                            <th class="sortable" data-column="id">ID User</th>
+                            <th class="sortable" data-column="id">ID</th>
                             <th class="sortable" data-column="name">Username</th>
                             <th class="sortable" data-column="email">Email</th>
                             <th class="sortable" data-column="usertype">Usertype</th>
@@ -68,10 +68,8 @@
                 </table>
 
                 <br>
-                Halaman : {{$users->currentPage()}} <br>
-                Jumlah Data : {{$users->total()}} <br>
-                Data Per Halaman : {{$users->perPage()}} <br>
-                {{$users->links('pagination::bootstrap-5')}}
+                Jumlah Data : {{$userCount}} <br>
+                
                
             </div>
         </div>

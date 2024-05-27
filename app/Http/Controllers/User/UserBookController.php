@@ -8,6 +8,7 @@ use App\Models\TransactionLog;
 use App\Models\Kapster;
 use App\Models\Service;
 use App\Models\User;
+use App\Models\TransactionLog;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -61,42 +62,37 @@ class UserBookController extends Controller
 	}
 
 
-
-	public function confirmation($place, $serviceId, $kapsterId, Request $request)
+	public function confirmation($place, $service, $kapster, $schedule)
 	{
-		// Ensure the user is authenticated
-		if (Auth::check()) {
+		$user = auth()->user();
+		$transactionData = [
+			'customer_id' => $user->id, // Replace with actual customer ID
+			'kapster_id' => $kapster->id, // Assuming $kapster is an object
+			'service_id' => $service->id, // Assuming $service is an object
+			'schedule' => $schedule,
+			'total_price' => $service->price, // Replace with actual total price
+		];
+		$transactionLog = [
+			'id',
+			'user_id',
+			'user_name',
+			'user_email',
+			'kapster_id',
+			'kapster_name',
+			'service_id',
+			'service_name',
+			'schedule',
+			'total_price',
+			'service_status',
+			'payment_status',
+			'rating',
+			'comment',
+		];
+	
 
-			// Find the service by ID and extract its price
-			$service = Service::find($serviceId);
-			if (!$service) {
-				return redirect()->back()->with('error', 'Invalid Service');
-			}
-
-			// Find the kapster by ID
-			$kapster = Kapster::find($kapsterId);
-			if (!$kapster) {
-				return redirect()->back()->with('error', 'Invalid Kapster');
-			}
-
-			// Get the date and time from the query parameters
-			$date = $request->query('date');
-			$time = $request->query('time');
-
-			// Construct the datetime value for the schedule
-			if ($date && $time) {
-				try {
-					$schedule = Carbon::createFromFormat('Y-m-d H:i', $date . ' ' . $time);
-				} catch (\Exception $e) {
-					return redirect()->back()->with('error', 'Invalid date or time format');
-				}
-			} else {
-				return redirect()->back()->with('error', 'Date and time are required');
-			}
-
-			// Prepare transaction data
-			$user = Auth::user();
-			// Create the transaction
+		// Create the transaction
+		$transaction = Transaction::create($transactionData);
+		$transaction = TransactionLog::create($transactionData);
 
 			// Pass the data to the view
 			return view('book.konfirmasi', [

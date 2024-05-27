@@ -15,7 +15,7 @@ class TransactionLogController extends Controller
     public function index()
     {
         $transactionLogs = TransactionLog::all();
-        return response()->json($transactionLogs);
+        return view('admin.history', ['transactions' => $transactionLogs]);
     }
 
     public static function logTransaction(Transaction $transaction)
