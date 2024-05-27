@@ -21,7 +21,7 @@ class AdminPaymentController extends Controller
             ->where('service_status', 'verified')
             ->where('payment_status', 'process')
             ->get();
-            $paymentCount = $transactions->count();
+        $paymentCount = $transactions->count();
 
 
         // Pass the data to the view
@@ -95,7 +95,7 @@ class AdminPaymentController extends Controller
 			->paginate();
 
 		// Return view with search results
-		return view('admin.payment', ['transactions' => $transactions]);
+		return view('admin.payment', ['transactions' => $transactions, 'paymentCount' => $transactions->total()]);
 	}
 
     public function filter_payment(Request $req)

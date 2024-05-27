@@ -84,7 +84,7 @@ class AdminKapsterController extends Controller
             ->paginate();
 
         // Pass the data to the view
-        return view('admin.hairartist', ['kapsters' => $kapsters]);
+        return view('admin.hairartist', ['kapsters' => $kapsters, 'kapstersCount' => $kapsters->total()]);
     }
 
     public function filter(Request $req)
@@ -115,8 +115,8 @@ class AdminKapsterController extends Controller
             $query->whereBetween('created_at', [$req->input('date_from'), $req->input('date_to')]);
         }
 
-        $transactions = $query->paginate();
+        $kapsters = $query->get()->paginate();
 
-        return view('admin.book', ['transactions' => $transactions]);
+        return view('admin.book', ['kapsters' => $kapsters, 'kapsterCount' => $kapsters->total()]);
     }
 }

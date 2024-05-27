@@ -103,16 +103,9 @@
                                 @csrf
                                 <button type="submit" class="btn btn-success btn-block">Verify</button>
                             </form>
-                            <form id="verifyForm" method="POST" style="display:inline-block;">
-                                @csrf
-                                <button type="submit" class="btn btn-success btn-block">Verify</button>
-                            </form>
+
                         </div>
                         <div class="col">
-                            <form id="declineForm" method="POST" style="display:inline-block;">
-                                @csrf
-                                <button type="submit" class="btn btn-danger btn-block">Decline</button>
-                            </form>
                             <form id="declineForm" method="POST" style="display:inline-block;">
                                 @csrf
                                 <button type="submit" class="btn btn-danger btn-block">Decline</button>

@@ -23,7 +23,7 @@ class AdminBookController extends Controller
 
 
 		// Pass the data to the view
-		return view('admin.book', ['transaction' => $transactions]);
+		return view('admin.book', ['transaction' => $transactions, 'transactionCount' => $transactionCount]);
 	}
 	public function book_asc(Request $request)
 	{
@@ -154,7 +154,7 @@ class AdminBookController extends Controller
 
 	public function search_book(Request $req)
 	{
-		$search = $req->input('search');
+		$search = $req->search;
 
 		// Search transactions using Eloquent
 		$transactions = Transaction::where('id', 'LIKE', '%' . $search . '%')
@@ -171,7 +171,7 @@ class AdminBookController extends Controller
 			->paginate();
 
 		// Return view with search results
-		return view('admin.book', ['transaction' => $transactions]);
+		return view('admin.book', ['transaction' => $transactions, 'transactionCount' => $transactions->total()]);
 	}
 
 	public function filter_book(Request $req)
@@ -260,7 +260,7 @@ class AdminBookController extends Controller
 	}
 
 
-	public function decline_service(Request $request)
+	public function decline_service($id)
 	{
 		// Find the transaction by its ID
 		$transaction = Transaction::findOrFail($id);

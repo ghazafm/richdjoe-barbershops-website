@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminKapsterController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\AdminDashboardController;
-use App\Http\Controllers\Admin\TransactionLogController;
 use App\Http\Controllers\Admin\AdminPaymentController;
 use App\Http\Controllers\Admin\TransactionLogController;
 use App\Http\Controllers\User\UserBookController;
