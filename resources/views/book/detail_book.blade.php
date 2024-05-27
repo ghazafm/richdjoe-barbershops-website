@@ -66,7 +66,7 @@
         }
 
         .card-body p {
-            margin-bottom: 5px;
+            margin-bottom: 1px;
         }
 
         .form-group {
@@ -83,7 +83,8 @@
         }
 
         .btn-sign {
-            background-color: rgb(254, 174, 111);;
+            background-color: rgb(254, 174, 111);
+            ;
             color: #fff;
             border: none;
             margin-left: 10px;
@@ -99,11 +100,7 @@
             padding: 10px 20px;
             cursor: pointer;
             margin: 10px 5px;
-            width: 47%;
-        }
-
-        .btn-custom,
-        .btn-cancel {
+            width: 210px;
             margin-bottom: 1px;
         }
 
@@ -140,6 +137,35 @@
         .detail {
             padding-bottom: 100px;
         }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            color: black;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            width: 500px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
     </style>
 </head>
 
@@ -153,11 +179,16 @@
                 <button class="btn btn-outline-secondary text-white" onclick="goBack()">⬅️ Back</button>
             </div>
             <div class="text-right ml-auto mr-3">
-                <a href="" class="d-block text-white">My Booking</a>
-                <a href="" class="text-white">Awan, </a>
-                <span class="text-muted">17 May 2024, 11:11</span>
+                <a href="/mybook" class="d-block text-white">My Booking</a>
+                <a href="{{ route('profile.edit') }}" class="text-white">{{ Auth::user()->name }}, </a>
+                <span id="current-time" class="text-muted"></span>
             </div>
-            <button class="btn btn-sign">Sign Out</button>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <button class="btn btn-sign">Sign Out</button>
+                </a>
+            </form>
         </div>
     </header>
     <div class="container detail">
@@ -168,28 +199,28 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3 border-bottom border-dark font-weight-bold">
                             <span>Proof of Booking</span>
-                            <span>@Soekarno Hatta</span>
+                            <span>@ {{ $transaction->kapster->place }}</span>
                         </div>
                         <form class="form-inline">
                             <div class="form-group w-100">
                                 <label for="date">Date</label>
                                 <span>:</span>
-                                <p>{{ $transaction->schedule }}</p>
+                                <p>{{ $transaction->schedule->format('Y-m-d') }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="time">Time</label>
                                 <span>:</span>
-                                <p>{{ $transaction->schedule }}</p>
+                                <p>{{ $transaction->schedule->format('H:i') }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="service">Service</label>
                                 <span>:</span>
-                                <p>{{ $service->name }}</p>
+                                <p>{{ $transaction->service->name }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="artist">Hair Artist</label>
                                 <span>:</span>
-                                <p>{{ $kapster->name }}</p>
+                                <p>{{ $transaction->kapster->name }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="price">Price</label>
@@ -197,31 +228,37 @@
                                 <p>{{ $transaction->total_price }}</p>
                             </div>
                             <div class="form-group w-100">
-                                <label for="store">Store</label>
-                                <span>:</span>
-                                <p>{{ $place }}</p>
-                            </div>
-                            <div class="form-group w-100">
                                 <label for="code">Code</label>
                                 <span>:</span>
-                                <p>{{ $place }}</p>
+                                <p>{{ $transaction->id }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="status">Status</label>
                                 <span>:</span>
-                                <p>{{ $place }}</p>
+                                <p>{{ $transaction->service_status }}</p>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between">
-                    <button class="btn btn-reschedule btn-custom">Reschedule</button>
-                    <button class="btn btn-cancel btn-custom">Cancel</button>
+                    <button class="btn btn-reschedule btn-custom" onclick="showReschedulePopup()">Reschedule</button>
+                    <button class="btn btn-cancel btn-custom" onclick="showCancelPopup()">Cancel</button>
                 </div>
                 <div>
-                    <button class="btn btn-order btn-custom">Order More</button>
+                    <a href="/book">
+                        <button class="btn btn-order btn-custom">Order More</button>
+                    </a>
                 </div>
             </div>
+        </div>
+    </div>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="hidePopup()">&times;</span>
+            <h2 id="popup-title"></h2>
+            <p id="popup-message"></p>
+            <p>Whatsapp : +62 817-9003-008</p>
+            <p>Email : richdjoe@gmail.com</p>
         </div>
     </div>
 
@@ -243,11 +280,52 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        function updateTime() {
+            const currentTimeElement = document.getElementById('current-time');
+            const now = new Date();
+            const options = {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            const formattedTime = now.toLocaleDateString('en-GB', options).replace(/,/g, '');
+            currentTimeElement.textContent = formattedTime;
+        }
+
+        // Update time every second
+        setInterval(updateTime, 1000);
+
+        // Set initial time
+        updateTime();
+
         function goBack() {
             window.history.back();
         }
     </script>
+    <script>
+        function showReschedulePopup() {
+            document.getElementById('popup-title').innerText = 'Reschedule Booking';
+            document.getElementById('popup-message').innerText = 'Please contact the admin to make changes to the booking schedule';
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        function showCancelPopup() {
+            document.getElementById('popup-title').innerText = 'Cancel Booking';
+            document.getElementById('popup-message').innerText = 'Please contact the admin to cancel the booking.';
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        function hidePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+    </script>
+
 </body>
 
 </html>

@@ -89,7 +89,8 @@
         }
 
         .btn-sign {
-            background-color: rgb(254, 174, 111);;
+            background-color: rgb(254, 174, 111);
+            ;
             color: #fff;
             border: none;
             margin-left: 10px;
@@ -112,10 +113,15 @@
             </div>
             <div class="text-right ml-auto mr-3">
                 <a href="" class="d-block text-white">My Booking</a>
-                <a href="" class="text-white">Awan, </a>
-                <span class="text-muted">17 May 2024, 11:11</span>
+                <a href="{{ route('profile.edit') }}" class="text-white">{{ Auth::user()->name }}, </a>
+                <span id="current-time" class="text-muted"></span>
             </div>
-            <button class="btn btn-sign">Sign Out</button>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <button class="btn btn-sign">Sign Out</button>
+                </a>
+            </form>
         </div>
     </header>
 
@@ -141,7 +147,6 @@
         </div>
     </main>
 
-
     <footer class="footer-socials">
         <div class="container">
             <div class="row">
@@ -161,6 +166,26 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
+        function updateTime() {
+            const currentTimeElement = document.getElementById('current-time');
+            const now = new Date();
+            const options = {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            const formattedTime = now.toLocaleDateString('en-GB', options).replace(/,/g, '');
+            currentTimeElement.textContent = formattedTime;
+        }
+
+        // Update time every second
+        setInterval(updateTime, 1000);
+
+        // Set initial time
+        updateTime();
+
         function goBack() {
             window.history.back();
         }

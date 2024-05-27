@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     @include('admin.css')
     <style>
@@ -12,7 +13,10 @@
 
         }
     </style>
+        }
+    </style>
 </head>
+
 
 <body>
     @include('admin.header')
@@ -23,17 +27,19 @@
         <div class="page-header">
             <div class="container-fluid">
                 <h3>Hair Artist Data</h3>
-                <a href="/admin/add">+ Add Hair Artist Data</a>
+                <a href="/admin/hairartist/add">+ Add Hair Artist Data</a>
                 <br />
                 <br />
                 <p>Search Hair Artist ID:</p>
                 <form action="/admin/search"class="form-inline mb-3" method="GET">
                     <input type="text" name="search"class="form-control mr-2" placeholder="Hair Artist ID"
                         value="{{ old('search') }}">
+                    <input type="text" name="search"class="form-control mr-2" placeholder="Hair Artist ID"
+                        value="{{ old('search') }}">
                     <input type="submit" class="btn btn-primary" value="Search">
                 </form>
 
-                <table class="table table-bordered table-striped">
+                <table id="hairArtistTable" class="table table-bordered table-striped">
                     <thead class="thead-dark">
                         <tr>
                             <th>ID</th>
@@ -68,6 +74,7 @@
                         </tr>
                     @endforeach
                 </table>
+                
 
                 <br>
                 {{-- Jumlah Data : {{ $kapsters->total() }} <br> --}}
@@ -76,6 +83,66 @@
         </div>
     </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const table = document.getElementById("hairArtistTable");
+            const headers = table.querySelectorAll("th.sortable");
+
+            headers.forEach(function(header) {
+                header.addEventListener("click", function() {
+                    const column = this.dataset.column;
+                    const isAscending = this.classList.contains("ascending");
+                    const sortedRows = Array.from(table.querySelectorAll("tbody tr"));
+
+                    sortedRows.sort(function(a, b) {
+                        let aValue = getValue(a, column);
+                        let bValue = getValue(b, column);
+
+                        // For specific columns (ID), convert the values to numbers
+                        if (column === "id") {
+                            aValue = parseInt(aValue);
+                            bValue = parseInt(bValue);
+                            return isAscending ? aValue - bValue : bValue - aValue;
+                        }
+
+                        // For other columns, perform alphabetical sorting using localeCompare
+                        return isAscending ? aValue.localeCompare(bValue) : bValue
+                            .localeCompare(aValue);
+                    });
+
+                    const tbody = table.querySelector("tbody");
+                    tbody.innerHTML = "";
+                    sortedRows.forEach(function(row) {
+                        tbody.appendChild(row);
+                    });
+
+                    headers.forEach(function(header) {
+                        header.classList.remove("ascending", "descending");
+                        // Remove any existing arrow emojis
+                        header.innerHTML = header.innerHTML.replace("↓", "").replace("↑",
+                            "");
+                    });
+
+                    // Add arrow emoji to indicate sorting order
+                    this.innerHTML += isAscending ? " ↑" : " ↓";
+
+                    this.classList.toggle(isAscending ? "descending" : "ascending");
+                });
+            });
+
+            function getValue(row, column) {
+                const columnIndex = getColumnIndex(column);
+                return row.cells[columnIndex].textContent.trim();
+            }
+
+            function getColumnIndex(columnName) {
+                const headers = Array.from(table.querySelectorAll("thead th"));
+                return headers.findIndex(header => header.dataset.column === columnName);
+            }
+        });
+    </script>
 </body>
 
+
 </html>
+

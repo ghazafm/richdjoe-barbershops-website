@@ -16,6 +16,15 @@ class Transaction extends Model
         'service_status', 'payment_status', 'rating', 'comment'
     ];
 
+    
+    protected $casts = [
+        'schedule' => 'datetime',
+    ];
+
+    protected $attributes = [
+        'service_status' => 'wait', // Default value for service_status
+        'payment_status' => 'process', // Default value for payment_status
+    ];
     // Automatically manage created_at and updated_at fields
     public $timestamps = true;
 

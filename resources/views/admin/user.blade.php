@@ -31,7 +31,7 @@
                 <br />
                 <br />
                 <p>Search User:</p>
-                <form action="/admin/search" method="GET" class="form-inline mb-3">
+                <form action="/admin/user/search" method="GET" class="form-inline mb-3">
                     <input type="text" name="search" class="form-control mr-2" placeholder="ID User...."
                         value="{{ old('search') }}">
                     <input type="submit" value="Search" class="btn btn-primary">

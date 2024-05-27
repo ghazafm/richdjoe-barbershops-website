@@ -27,7 +27,7 @@
                 <br />
                 <p>Search Payments:</p>
 
-                <form action="/admin/search" method="GET" class="form-inline mb-3">
+                <form action="/admin/payment/payment/search" method="GET" class="form-inline mb-3">
                     <input type="text" name="search" class="form-control mr-2" placeholder="Search Payment ID" value="{{ old('search') }}">
                     <input type="submit" value="Search" class="btn btn-primary">
                 </form>

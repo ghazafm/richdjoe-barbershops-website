@@ -29,7 +29,7 @@
                 <br />
                 <br />
                 <p>Search ID Services:</p>
-                <form action="/admin/search" method="GET" class="form-inline mb-3">
+                <form action="/admin/service/search" method="GET" class="form-inline mb-3">
                     <input type="text" name="search" class="form-control mr-2" placeholder="ID Service...." value="{{ old('search') }}">
                     <input type="submit" value="Search" class="btn btn-primary">
                 </form>

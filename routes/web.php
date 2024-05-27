@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\Admin\TransactionLogController;
 use App\Http\Controllers\Admin\AdminPaymentController;
+use App\Http\Controllers\Admin\TransactionLogController;
 use App\Http\Controllers\User\UserBookController;
 use App\Http\Controllers\Malicious\MaliciousController;
 use App\Http\Controllers\ProfileController;
@@ -39,9 +40,12 @@ Route::get('/book/service/{place}', [UserBookController::class,'services'])->mid
 Route::get('/book/service/haircut/{place}', [UserBookController::class,'haircut'])->middleware('auth', 'verified');
 Route::get('/book/service/haircut/kapster/{place}/{service}', [UserBookController::class,'kapsters'])->middleware('auth', 'verified');
 Route::get('/profil_kapster/{place}/{service}/{kapster}', [UserBookController::class,'showKapster'])->middleware('auth', 'verified');
-Route::get('/book/service/haircut/kapster/schedule/{place}/{service}/{kapster}', [UserBookController::class,'schedule'])->middleware('auth', 'verified');
-Route::get('/book/service/haircut/kapster/schedule/confirmation/{place}/{service}/{kapster}/{schedule}', [UserBookController::class,'confirmation'])->middleware('auth', 'verified');
-
+Route::get('/book/service/haircut/kapster/schedule/{kapster}/{service}/{place}', [UserBookController::class,'schedule'])->middleware('auth', 'verified');
+Route::get('/book/service/haircut/kapster/schedule/confirmation/{place}/{service}/{kapster}', [UserBookController::class, 'confirmation'])->middleware('auth', 'verified');
+Route::get('/book/service/haircut/kapster/schedule/confirmation/{place}/{service}/{kapster}/{schedule}', [UserBookController::class, 'confirm'])->middleware('auth', 'verified');
+Route::get('/transaction/detail/{transaction}', [UserBookController::class, 'showTransactionDetail'])->name('transaction.detail');
+// Route::get('/book/service/haircut/kapster/schedule/confirmation/cancelled/{id}', [UserBookController::class, 'cancel'])->middleware('auth', 'verified');
+Route::get('/mybook', [UserBookController::class,'mybook'])->middleware('auth', 'verified');
 
 //Admin
 Route::get('/admin', function () {
@@ -54,15 +58,21 @@ Route::get('/admin/book/{id}', [AdminBookController::class, 'detail_book'])->mid
 Route::post('/admin/book/verify/{id}', [AdminBookController::class, 'verify_service'])->middleware(['auth', 'admin']);
 Route::post('/admin/book/decline/{id}', [AdminBookController::class, 'decline_service'])->middleware(['auth', 'admin']);
 Route::get('/admin/book/add', [AdminBookController::class, 'add'])->middleware(['auth', 'admin']);
+Route::get('/admin/book/sort', [AdminBookController::class, 'sort_book'])->middleware(['auth', 'admin']);
 Route::get('/admin/book/book/filter', [AdminBookController::class, 'filter_book'])->middleware(['auth', 'admin']);
 Route::post('/admin/book/addsave', [AdminBookController::class, 'addsave'])->middleware(['auth', 'admin']);
+Route::get('/admin/book/asc', 'Admin\AdminBookController@book_asc')->name('book_asc');
+Route::get('/admin/book/sort', 'Admin\AdminBookController@sort')->name('sort_book');
+Route::get('/admin/book/book/search', [AdminBookController::class, 'search_book'])->middleware(['auth', 'admin']);
 Route::get('/admin/service', [AdminServiceController::class, 'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/hairartist', [AdminKapsterController::class, 'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/hairartist/search', [AdminKapsterController::class, 'search'])->middleware(['auth', 'admin']);
 Route::get('/admin/hairartist/edit/{id}', [AdminKapsterController::class, 'edit'])->middleware(['auth', 'admin']);
 Route::post('/admin/hairartist/editsave', [AdminKapsterController::class, 'editsave'])->middleware(['auth', 'admin']);
 Route::get('/admin/hairartist/delete/{id}', [AdminKapsterController::class, 'delete'])->middleware(['auth', 'admin']);
 Route::get('/admin/hairartist/add', [AdminKapsterController::class, 'add'])->middleware(['auth', 'admin']);
 Route::post('/admin/hairartist/addsave', [AdminKapsterController::class, 'addsave'])->middleware(['auth', 'admin']);
+Route::get('/admin/history', [TransactionLogController::class, 'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/history', [TransactionLogController::class, 'index'])->middleware(['auth', 'admin']);
 
 
@@ -70,16 +80,19 @@ Route::get('/admin/history', [TransactionLogController::class, 'index'])->middle
 // Admin Paymet
 Route::get('/admin/payment', [AdminPaymentController::class, 'payment'])->middleware(['auth', 'admin']);
 Route::get('/admin/payment/{id}', [AdminPaymentController::class, 'detail'])->middleware(['auth', 'admin']);
+Route::get('/admin/payment/payment/search', [AdminPaymentController::class, 'search_payment'])->middleware(['auth', 'admin']);
 Route::post('/admin/payment/verify/{id}', [AdminPaymentController::class, 'verify_payment'])->middleware(['auth', 'admin']);
 
 Route::get('/admin/user', [AdminUserController::class, 'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/user', [AdminUserController::class, 'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/user/search', [AdminUserController::class, 'search'])->middleware(['auth', 'admin']);
 
 
 Route::get('/admin/user/add', [AdminUserController::class, 'add'])->middleware(['auth', 'admin']);
 Route::post('/admin/user/addsave', [AdminUserController::class, 'addsave'])->middleware(['auth', 'admin']);
 Route::get('/admin/service/add', [AdminServiceController::class, 'add'])->middleware(['auth', 'admin']);
 Route::post('/admin/service/addsave', [AdminServiceController::class, 'addsave'])->middleware(['auth', 'admin']);
+Route::get('/admin/service/search', [AdminServiceController::class, 'search'])->middleware(['auth', 'admin']);
 Route::get('/admin/service/edit/{id}', [AdminServiceController::class, 'edit'])->middleware(['auth', 'admin']);
 Route::post('/admin/service/editsave', [AdminServiceController::class, 'editsave'])->middleware(['auth', 'admin']);
 Route::get('/admin/service/delete/{id}', [AdminServiceController::class, 'delete'])->middleware(['auth', 'admin']);

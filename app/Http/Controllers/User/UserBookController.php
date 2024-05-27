@@ -4,12 +4,16 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use App\Models\TransactionLog;
 use App\Models\Kapster;
 use App\Models\Service;
+use App\Models\User;
 use App\Models\TransactionLog;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
+
 
 class UserBookController extends Controller
 {
@@ -51,10 +55,10 @@ class UserBookController extends Controller
 		return view('book.profil_kapster', ['place' => $place, 'service' => $service, 'kapsters' => $kapsters]);
 	}
 
-	public function schedule($place, $service, $kapsters)
+	public function schedule($place, $service, $kapster)
 	{
 		// Pass the data to the view
-		return view('book.jadwal', ['kapsters' => $kapsters, 'service_id' => $service, 'place' => $place]);
+		return view('book.jadwal', ['kapster' => $kapster, 'service' => $service, 'place' => $place]);
 	}
 
 
@@ -90,40 +94,80 @@ class UserBookController extends Controller
 		$transaction = Transaction::create($transactionData);
 		$transaction = TransactionLog::create($transactionData);
 
-		// Pass the data to the view
-		return view('book.konfirmasi', [
-			'kapster' => $kapster,
-			'service' => $service,
-			'place' => $place,
-			'transaction' => $transaction // Pass the transaction to the view if needed
+			// Pass the data to the view
+			return view('book.konfirmasi', [
+				'user' => $user,
+				'kapster' => $kapster,
+				'service' => $service,
+				'schedule' => $schedule, // Store the constructed datetime value
+			]);
+		} else {
+			return redirect()->route('login')->with('error', 'You must be logged in to confirm a booking.');
+		}
+	}
+
+	public function confirm($place, $service_id, $kapster_id, $schedule)
+	{
+		$user = Auth::user();
+		$service = Service::find($service_id);
+		$kapster = Kapster::find($kapster_id);
+
+		$transactionData = [
+			'user_id' => $user->id,
+			'kapster_id' => $kapster->id,
+			'service_id' => $service->id,
+			'schedule' => $schedule, // Store the constructed datetime value
+			'total_price' => $service->price, // Use the service's price
+		];
+
+		$transaction = Transaction::create($transactionData);
+
+		// Redirect to a route that shows the details of the booking
+		return redirect()->route('transaction.detail', ['transaction' => $transaction->id]);
+	}
+
+
+	public function cancel($id)
+	{
+		// Find the transaction by its ID
+		$transaction = Transaction::findOrFail($id);
+
+		// Update the payment_status to "verified"
+		$transaction->update(['service_status' => 'cancelled']);
+
+		TransactionLog::create([
+			'id' => $transaction->id,
+			'user_id' => $transaction->user->id,
+			'user_name' => $transaction->user->name,
+			'user_email' => $transaction->user->email,
+			'kapster_id' => $transaction->kapster->id,
+			'kapster_name' => $transaction->kapster->name,
+			'service_id' => $transaction->service->id,
+			'service_name' => $transaction->service->name,
+			'schedule' => $transaction->schecule,
+			'total_price' => $transaction->total_price,
+			'service_status' => $transaction->service_status,
+			'payment_status' => $transaction->payment_status,
+			'rating' => $transaction->rating,
+			'comment' => $transaction->comment
 		]);
+
+		// Redirect back with a success message
+		return redirect('/');
 	}
 
-	public function confirm($transaction)
+	public function showTransactionDetail(Transaction $transaction)
 	{
-		return view('book.log', ['transaction' => $transaction]);
+		return view('book.detail_book', ['transaction' => $transaction]);
 	}
 
 
-	// Back button ===============================================================
-	public function backIndex()
-	{
-		$uniquePlaces = Kapster::distinct()->pluck('place');
-		// Pass the data to the view
-		return view('book.index', ['uniquePlaces' => $uniquePlaces]);
-	}
-	public function backServices($place)
-	{
-		// Retrieve Services with pagination
-		$services = Service::where('type', 'LIKE', 'other');
 
-		// Pass the data to the view
-		return view('book.service', ['services' => $services, 'place' => $place]);
-	}
-	public function backKapster($place, $service)
+	// History booking ============================================================
+	public function mybook()
 	{
-		$kapsters = Kapster::where('place', 'LIKE', $place);
-		// Pass the data to the view
-		return view('book.kapster', ['kapsters' => $kapsters, 'service' => $service, 'place' => $place]);
+		$user = Auth::user();
+		$transactions = Transaction::where('user_id', $user->id)->get();
+		return view('book.my_book', ['transactions' => $transactions]);
 	}
 }

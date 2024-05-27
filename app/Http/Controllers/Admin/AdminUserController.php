@@ -83,6 +83,7 @@ class AdminUserController extends Controller
         // Search users by name or email
         $users = User::where('name', 'like', '%' . $search . '%')
             ->orWhere('email', 'like', '%' . $search . '%')
+            ->orwhere('id', 'like', '%' . $search . '%')
             ->paginate();
 
         // Pass the data to the view

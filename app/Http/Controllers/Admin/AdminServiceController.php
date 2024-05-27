@@ -81,7 +81,7 @@ class AdminServiceController extends Controller
             ->paginate();
 
         // Pass the data to the view
-        return view('admin.service.index', ['services' => $services]);
+        return view('admin.service', ['services' => $services]);
     }
 
     public function filter(Request $req)

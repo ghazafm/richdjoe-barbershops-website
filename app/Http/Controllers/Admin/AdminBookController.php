@@ -21,12 +21,36 @@ class AdminBookController extends Controller
     // Menghitung jumlah transaksi
     $transactionCount = $transactions->count();
 
-    // Pass data transaksi dan jumlah transaksi ke view
-    return view('admin.book', [
-        'transaction' => $transactions,
-        'transactionCount' => $transactionCount
-    ]);
-}
+
+		// Pass the data to the view
+		return view('admin.book', ['transaction' => $transactions]);
+	}
+	public function book_asc(Request $request)
+	{
+		$sortBy = $request->input('sort_by', 'id');
+
+		// Get transactions sorted in ascending order based on the specified column
+		$transactions = Transaction::with(['user', 'kapster', 'service'])
+			->where('service_status', 'wait')
+			->orderBy($sortBy, 'asc')
+			->paginate(10);
+
+		// Pass the data to the view
+		return view('admin.book', ['transactions' => $transactions]);
+	}
+	public function book_desc(Request $request)
+	{
+		$sortBy = $request->input('sort_by', 'id');
+
+		// Get transactions sorted in ascending order based on the specified column
+		$transactions = Transaction::with(['user', 'kapster', 'service'])
+			->where('service_status', 'wait')
+			->orderBy($sortBy, 'desc')
+			->paginate(10);
+
+		// Pass the data to the view
+		return view('admin.book', ['transactions' => $transactions]);
+	}
 
 
 	public function detail_book($id)
@@ -134,7 +158,7 @@ class AdminBookController extends Controller
 
 		// Search transactions using Eloquent
 		$transactions = Transaction::where('id', 'LIKE', '%' . $search . '%')
-			->orwhere('customer_id', 'like', '%' . $search . '%')
+			->orwhere('user_id', 'like', '%' . $search . '%')
 			->orWhere('kapster_id', 'like', '%' . $search . '%')
 			->orWhere('service_id', 'like', '%' . $search . '%')
 			->orWhere('total_price', 'like', '%' . $search . '%')
@@ -147,7 +171,7 @@ class AdminBookController extends Controller
 			->paginate();
 
 		// Return view with search results
-		return view('student.index', ['transactions' => $transactions]);
+		return view('admin.book', ['transaction' => $transactions]);
 	}
 
 	public function filter_book(Request $req)
@@ -220,13 +244,13 @@ class AdminBookController extends Controller
 		$transactions = $transactions->paginate(10);
 
 		// Pass the data to the view
-		return view('admin.book', ['transactions' => $transactions]);
+		return view('admin.book', ['transaction' => $transactions]);
 	}
 
 	public function verify_service($id)
 	{
 		// Find the transaction by its ID
-		$transaction = Transaction::findOrFail($id);
+		$transaction = Transaction::find($id);
 
 		// Update the service_status to "verified"
 		$transaction->update(['service_status' => 'verified']);
@@ -236,7 +260,7 @@ class AdminBookController extends Controller
 	}
 
 
-	public function decline_service($id)
+	public function decline_service(Request $request)
 	{
 		// Find the transaction by its ID
 		$transaction = Transaction::findOrFail($id);
@@ -275,3 +299,4 @@ class AdminBookController extends Controller
 		return $transactions->orderBy($sortBy, $sortOrder)->paginate(10);
 	}
 }
+
