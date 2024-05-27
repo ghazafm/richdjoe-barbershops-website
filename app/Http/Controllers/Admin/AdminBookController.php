@@ -254,7 +254,7 @@ class AdminBookController extends Controller
 			'kapster_name' => $transaction->kapster->name,
 			'service_id' => $transaction->service->id,
 			'service_name' => $transaction->service->name,
-			'schedule' => $transaction->schecule,
+			'schedule' => $transaction->schedule,
 			'total_price' => $transaction->total_price,
 			'service_status' => $transaction->service_status,
 			'payment_status' => $transaction->payment_status,
