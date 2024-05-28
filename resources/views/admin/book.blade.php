@@ -152,9 +152,6 @@
         });
     </script>
      <script>
-        // JavaScript code to handle sorting when column headers are clicked
-     <script>
-        // JavaScript code to handle sorting when column headers are clicked
         document.addEventListener("DOMContentLoaded", function() {
             const table = document.getElementById("transactionTable");
             const headers = table.querySelectorAll("th.sortable");
@@ -189,9 +186,9 @@
                     headers.forEach(function(header) {
                         header.classList.remove("ascending", "descending");
                         // Remove any existing arrow emojis
-                        header.innerHTML = header.innerHTML.replace(" ↓", "").replace(" ↑", "");
+                        header.innerHTML = header.innerHTML.replace("↓", "").replace("↑", "");
                     });
-
+                    
                     // Add arrow emoji to indicate sorting order
                     this.innerHTML += isAscending ? " ↑" : " ↓";
 
@@ -206,10 +203,10 @@
 
             function getColumnIndex(columnName) {
                 const headers = Array.from(table.querySelectorAll("thead th"));
-                return headers.findIndex(header => header.dataset.column === columnName);
-            }
-        });
-    </script>
+                return headers.findIndex(header => header.dataset.column ===columnName);
+}
+});
+</script>
 </body>
 
 </html>
