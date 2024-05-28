@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Auth; // Import Auth facade
 class AdminBookController extends Controller
 {
 	public function book()
-{
-    $transactions = Transaction::with(['user', 'kapster', 'service'])
-        ->where('service_status', 'wait')
-        ->get();
+	{
+		$transactions = Transaction::with(['user', 'kapster', 'service'])
+			->where('service_status', 'wait')
+			->get();
 
-    // Menghitung jumlah transaksi
-    $transactionCount = $transactions->count();
+		// Menghitung jumlah transaksi
+		$transactionCount = $transactions->count();
 
 
 		// Pass the data to the view
@@ -157,17 +157,29 @@ class AdminBookController extends Controller
 		$search = $req->search;
 
 		// Search transactions using Eloquent
-		$transactions = Transaction::where('id', 'LIKE', '%' . $search . '%')
-			->orwhere('user_id', 'like', '%' . $search . '%')
-			->orWhere('kapster_id', 'like', '%' . $search . '%')
-			->orWhere('service_id', 'like', '%' . $search . '%')
-			->orWhere('total_price', 'like', '%' . $search . '%')
-			->orWhere('service_status', 'like', '%' . $search . '%')
-			->orWhere('payment_status', 'like', '%' . $search . '%')
-			->orWhere('rating', 'like', '%' . $search . '%')
-			->orWhere('comment', 'like', '%' . $search . '%')
-			->orWhere('created_at', 'like', '%' . $search . '%')
-			->orWhere('updated_at', 'like', '%' . $search . '%')
+		$transactions = Transaction::where('service_status', 'wait')
+			->where(function ($query) use ($search) {
+				$query->where('id', 'LIKE', '%' . $search . '%')
+					->orWhere('user_id', 'like', '%' . $search . '%')
+					->orWhere('kapster_id', 'like', '%' . $search . '%')
+					->orWhere('service_id', 'like', '%' . $search . '%')
+					->orWhere('total_price', 'like', '%' . $search . '%')
+					->orWhere('service_status', 'like', '%' . $search . '%')
+					->orWhere('payment_status', 'like', '%' . $search . '%')
+					->orWhere('rating', 'like', '%' . $search . '%')
+					->orWhere('comment', 'like', '%' . $search . '%')
+					->orWhere('created_at', 'like', '%' . $search . '%')
+					->orWhere('updated_at', 'like', '%' . $search . '%')
+					->orWhereHas('user', function ($query) use ($search) {
+						$query->where('name', 'like', '%' . $search . '%');
+					})
+					->orWhereHas('kapster', function ($query) use ($search) {
+						$query->where('name', 'like', '%' . $search . '%');
+					})
+					->orWhereHas('service', function ($query) use ($search) {
+						$query->where('name', 'like', '%' . $search . '%');
+					});
+			})
 			->paginate();
 
 		// Return view with search results
@@ -176,9 +188,7 @@ class AdminBookController extends Controller
 
 	public function filter_book(Request $req)
 	{
-		$query = Transaction::query();
-		
-
+		$query = Transaction::query()->where('service_status', 'wait');
 
 		if ($req->filled('id')) {
 			$query->where('id', $req->input('id'));
@@ -222,7 +232,6 @@ class AdminBookController extends Controller
 
 		$transactions = $query->get();
 		$transactionCount = $transactions->count();
-
 
 		return view('admin.book', ['transaction' => $transactions, 'transactionCount' => $transactionCount]);
 	}
@@ -299,4 +308,3 @@ class AdminBookController extends Controller
 		return $transactions->orderBy($sortBy, $sortOrder)->paginate(10);
 	}
 }
-
