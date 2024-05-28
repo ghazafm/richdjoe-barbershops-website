@@ -132,9 +132,9 @@
                 <div class="col-12">
                     <h2>Our Socials</h2>
                     <div class="socials">
-                        <a href="#"><img src="{{ asset('images/home/instagram.png') }}" alt="Instagram"></a>
-                        <a href="#"><img src="{{ asset('images/home/wa.png') }}" alt="Whatsapp"></a>
-                        <a href="#"><img src="{{ asset('images/home/tt.png') }}" alt="TikTok"></a>
+                        <a href="https://www.instagram.com/richdjoebarbershops/" target="_blank"><img src="{{ asset('images/home/instagram.png') }}" alt="Instagram"></a>
+                        <a href="https://shorturl.at/Swdzg" target="_blank"><img src="{{ asset('images/home/wa.png') }}" alt="Whatsapp"></a>
+                        <a href="https://www.tiktok.com/@richdjoebarbershops?_t=8mfes20zxib&_r=1" target="_blank"><img src="{{ asset('images/home/tt.png') }}" alt="TikTok"></a>
                     </div>
                 </div>
             </div>
