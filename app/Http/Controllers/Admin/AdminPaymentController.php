@@ -43,65 +43,78 @@ class AdminPaymentController extends Controller
     public function verify_payment($id)
     {
         // Validate the request
-      
-
-            // Find the transaction by its ID
-            $transaction = Transaction::findOrFail($id);
-
-            // Update the payment_status to "verified"
-            $transaction->update(['payment_status' => 'verified']);
-
-            // Log the transaction
-
-            TransactionLog::create([
-                'id' => $transaction->id,
-                'user_id' => $transaction->user->id,
-                'user_name' => $transaction->user->name,
-                'user_email' => $transaction->user->email,
-                'kapster_id' => $transaction->kapster->id,
-                'kapster_name' => $transaction->kapster->name,
-                'service_id' => $transaction->service->id,
-                'service_name' => $transaction->service->name,
-                'schedule' => $transaction->schecule,
-                'total_price' => $transaction->total_price,
-                'service_status' => $transaction->service_status,
-                'payment_status' => $transaction->payment_status,
-                'rating' => $transaction->rating,
-                'comment' => $transaction->comment
-            ]);
 
 
-            // Redirect back with a success message
-            return redirect()->back()->with('success', 'Payment verified successfully.');
-       
+        // Find the transaction by its ID
+        $transaction = Transaction::findOrFail($id);
+
+        // Update the payment_status to "verified"
+        $transaction->update(['payment_status' => 'verified']);
+
+        // Log the transaction
+
+        TransactionLog::create([
+            'id' => $transaction->id,
+            'user_id' => $transaction->user->id,
+            'user_name' => $transaction->user->name,
+            'user_email' => $transaction->user->email,
+            'kapster_id' => $transaction->kapster->id,
+            'kapster_name' => $transaction->kapster->name,
+            'service_id' => $transaction->service->id,
+            'service_name' => $transaction->service->name,
+            'schedule' => $transaction->schecule,
+            'total_price' => $transaction->total_price,
+            'service_status' => $transaction->service_status,
+            'payment_status' => $transaction->payment_status,
+            'rating' => $transaction->rating,
+            'comment' => $transaction->comment
+        ]);
+
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Payment verified successfully.');
     }
 
     public function search_payment(Request $req)
-	{
-		$search = $req->input('search');
+    {
+        $search = $req->input('search');
 
-		// Search transactions using Eloquent
-		$transactions = Transaction::where('id', 'LIKE', '%' . $search . '%')
-			->orwhere('user_id', 'like', '%' . $search . '%')
-			->orWhere('kapster_id', 'like', '%' . $search . '%')
-			->orWhere('service_id', 'like', '%' . $search . '%')
-			->orWhere('total_price', 'like', '%' . $search . '%')
-			->orWhere('service_status', 'like', '%' . $search . '%')
-			->orWhere('payment_status', 'like', '%' . $search . '%')
-			->orWhere('rating', 'like', '%' . $search . '%')
-			->orWhere('comment', 'like', '%' . $search . '%')
-			->orWhere('created_at', 'like', '%' . $search . '%')
-			->orWhere('updated_at', 'like', '%' . $search . '%')
-			->paginate();
+        // Search transactions using Eloquent
+        $transactions = Transaction::where('service_status', 'verified')
+            ->where('payment_status', 'process')
+            ->where(function ($query) use ($search) {
+                $query->where('id', 'LIKE', '%' . $search . '%')
+                    ->orWhere('user_id', 'like', '%' . $search . '%')
+                    ->orWhere('kapster_id', 'like', '%' . $search . '%')
+                    ->orWhere('service_id', 'like', '%' . $search . '%')
+                    ->orWhere('total_price', 'like', '%' . $search . '%')
+                    ->orWhere('rating', 'like', '%' . $search . '%')
+                    ->orWhere('comment', 'like', '%' . $search . '%')
+                    ->orWhere('created_at', 'like', '%' . $search . '%')
+                    ->orWhere('updated_at', 'like', '%' . $search . '%')
+                    ->orWhereHas('user', function ($query) use ($search) {
+                        $query->where('name', 'like', '%' . $search . '%');
+                    })
+                    ->orWhereHas('kapster', function ($query) use ($search) {
+                        $query->where('name', 'like', '%' . $search . '%');
+                    })
+                    ->orWhereHas('service', function ($query) use ($search) {
+                        $query->where('name', 'like', '%' . $search . '%');
+                    });
+            })
+            ->paginate();
 
-		// Return view with search results
-		return view('admin.payment', ['transactions' => $transactions, 'paymentCount' => $transactions->total()]);
-	}
+        // Return view with search results
+        return view('admin.payment', ['transactions' => $transactions, 'paymentCount' => $transactions->total()]);
+    }
+
 
     public function filter_payment(Request $req)
     {
-        // Initialize a query builder
-        $query = Transaction::query();
+        // Initialize a query builder with fixed conditions for service_status and payment_status
+        $query = Transaction::query()
+            ->where('service_status', 'verified')
+            ->where('payment_status', 'process');
 
         // Apply filters based on the request
         if ($req->filled('id')) {
@@ -120,14 +133,6 @@ class AdminPaymentController extends Controller
             $query->where('service_id', $req->input('service_id'));
         }
 
-        if ($req->filled('service_status')) {
-            $query->where('service_status', $req->input('service_status'));
-        }
-
-        if ($req->filled('payment_status')) {
-            $query->where('payment_status', $req->input('payment_status'));
-        }
-
         if ($req->filled('rating')) {
             $query->where('rating', $req->input('rating'));
         }
@@ -144,21 +149,21 @@ class AdminPaymentController extends Controller
             $query->whereBetween('created_at', [$req->input('date_from'), $req->input('date_to')]);
         }
 
-        // Filter by service_status set to "verified"
-        $query->where('service_status', 'verified');
-
         // Retrieve filtered transactions with pagination
-        $transactions = $query->paginate(10);
+		$transactions = $query->get();
+		$transactionCount = $transactions->count();
 
         // Pass the data to the view
-        return view('admin.book', ['transactions' => $transactions]);
+        return view('admin.book', ['transaction' => $transactions, 'transactionCount' => $transactionCount]);
     }
+
 
     public function sort_payment(Request $req)
     {
         // Retrieve transactions with service_status set to "verified"
         $transactions = Transaction::with(['user', 'kapster', 'service'])
-            ->where('service_status', 'verified');
+            ->where('service_status', 'verified')
+            ->where('payment_status', 'process');
 
         // Apply sorting based on the request
         if ($req->filled('sort_by') && $req->filled('sort_order')) {
