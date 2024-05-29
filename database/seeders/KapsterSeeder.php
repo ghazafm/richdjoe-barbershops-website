@@ -30,17 +30,17 @@ class KapsterSeeder extends Seeder
     public function run(): void
     {
         $kapsters = [
-            ['name' => '', 'place' => 'ijen', 'schedule' => ''],
-            ['name' => '', 'place' => 'ijen', 'schedule' => ''],
-            ['name' => '', 'place' => 'ijen', 'schedule' => ''],
-            ['name' => '', 'place' => 'ijen', 'schedule' => ''],
-            ['name' => '', 'place' => 'ijen', 'schedule' => ''],
-            ['name' => '', 'place' => 'sigura-gura', 'schedule' => ''],
-            ['name' => '', 'place' => 'sigura-gura', 'schedule' => ''],
-            ['name' => '', 'place' => 'sigura-gura', 'schedule' => ''],
-            ['name' => '', 'place' => 'coklat', 'schedule' => ''],
-            ['name' => '', 'place' => 'coklat', 'schedule' => ''],
-            ['name' => '', 'place' => 'coklat', 'schedule' => ''],
+            ['name' => '', 'place' => '1', 'schedule' => ''],
+            ['name' => '', 'place' => '1', 'schedule' => ''],
+            ['name' => '', 'place' => '1', 'schedule' => ''],
+            ['name' => '', 'place' => '1', 'schedule' => ''],
+            ['name' => '', 'place' => '1', 'schedule' => ''],
+            ['name' => '', 'place' => '2', 'schedule' => ''],
+            ['name' => '', 'place' => '2', 'schedule' => ''],
+            ['name' => '', 'place' => '2', 'schedule' => ''],
+            ['name' => '', 'place' => '3', 'schedule' => ''],
+            ['name' => '', 'place' => '3', 'schedule' => ''],
+            ['name' => '', 'place' => '3', 'schedule' => ''],
         ];
 
         foreach ($kapsters as $kapster) {

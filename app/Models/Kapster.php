@@ -21,4 +21,9 @@ class Kapster extends Model
 
     // Disable timestamps if your table does not have created_at and updated_at columns automatically managed
     public $timestamps = true;
+
+    public function place()
+    {
+        return $this->belongsTo(Place::class);
+    }
 }
