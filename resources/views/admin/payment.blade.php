@@ -89,6 +89,13 @@
                                 <button type="submit" class="btn btn-success btn-block">Confirm</button>
                             </form>
                         </div>
+                        </div>
+                        <div class="col">
+                            <form id="cancelForm" method="POST" style="display:inline-block;">
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-block">Cancel</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
