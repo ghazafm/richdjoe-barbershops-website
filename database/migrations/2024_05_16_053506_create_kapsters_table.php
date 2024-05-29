@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('kapsters', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
-            $table->string('place');
+            $table->unsignedBigInteger('place');
             $table->string('schedule', 255)->nullable();
             $table->timestamps();
+
+            $table->foreign('place')->references('id')->on('places');
         });
     }
 
