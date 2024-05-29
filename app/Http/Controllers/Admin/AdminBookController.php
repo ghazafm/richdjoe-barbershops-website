@@ -227,7 +227,7 @@ class AdminBookController extends Controller
 		}
 
 		if ($req->filled('date_from') && $req->filled('date_to')) {
-			$query->whereBetween('created_at', [$req->input('date_from'), $req->input('date_to')]);
+			$query->whereBetween('schedule', [$req->input('date_from'), $req->input('date_to')]);
 		}
 
 		$transactions = $query->get();

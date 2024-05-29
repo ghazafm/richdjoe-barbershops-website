@@ -26,6 +26,8 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+  
+    
 </head>
 <body class="bg-dark">
     <div class="container mt-5">
@@ -50,7 +52,11 @@
                             </div>
                             <div class="mb-3">
                                 <label for="place" class="form-label">Place: </label>
-                                <input type="text" id="place" name="place" class="form-control" required>
+                                <select id="place" name="place" class="form-control" required>
+                                    <option value="Ijen">Ijen</option>
+                                    <option value="Sigura-gura">Sigura-gura</option>
+                                    <option value="Soekarno Hatta">Soekarno Hatta</option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="schedule" class="form-label">Schedule: </label>

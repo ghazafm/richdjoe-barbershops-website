@@ -23,12 +23,12 @@
         <div class="page-header">
             <div class="container-fluid">
                 <h3>Hair Artist Data</h3>
-                <a href="/admin/hairartist/add">+ Add Hair Artist Data</a>
+                <a href="/admin/hairartist/add">+ Add Hair Artist</a>
                 <br />
                 <br />
-                <p>Search Hair Artist ID:</p>
+                <p>Search Hair Artist:</p>
                 <form action="/admin/hairartist/search"class="form-inline mb-3" method="GET">
-                    <input type="text" name="search"class="form-control mr-2" placeholder="Hair Artist ID"
+                    <input type="text" name="search"class="form-control mr-2" placeholder="Search Hair Artist"
                         value="{{ old('search') }}">
                     <input type="submit" class="btn btn-primary" value="Search">
                 </form>

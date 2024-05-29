@@ -26,13 +26,13 @@
     <div class="page-content">
         <div class="page-header">
             <div class="container-fluid">
-                <h3>Data User</h3>
+                <h3>User Data</h3>
                 <a href="/admin/user/add">+ Add User</a>
                 <br />
                 <br />
                 <p>Search User:</p>
                 <form action="/admin/user/search" method="GET" class="form-inline mb-3">
-                    <input type="text" name="search" class="form-control mr-2" placeholder="ID User...."
+                    <input type="text" name="search" class="form-control mr-2" placeholder="Search User"
                         value="{{ old('search') }}">
                     <input type="submit" value="Search" class="btn btn-primary">
                 </form>

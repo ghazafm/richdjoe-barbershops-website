@@ -24,13 +24,13 @@
     <div class="page-content">
         <div class="page-header">
             <div class="container-fluid">
-                <h3>Data Services</h3>
+                <h3>Service Data</h3>
                 <a href="/admin/service/add">+ Add Service</a>
                 <br />
                 <br />
-                <p>Search ID Services:</p>
+                <p>Search Services:</p>
                 <form action="/admin/service/search" method="GET" class="form-inline mb-3">
-                    <input type="text" name="search" class="form-control mr-2" placeholder="ID Service...." value="{{ old('search') }}">
+                    <input type="text" name="search" class="form-control mr-2" placeholder="Search Service" value="{{ old('search') }}">
                     <input type="submit" value="Search" class="btn btn-primary">
                 </form>
 

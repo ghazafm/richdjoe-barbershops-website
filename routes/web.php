@@ -73,6 +73,7 @@ Route::get('/admin/hairartist/add', [AdminKapsterController::class, 'add'])->mid
 Route::post('/admin/hairartist/addsave', [AdminKapsterController::class, 'addsave'])->middleware(['auth', 'admin']);
 Route::get('/admin/history', [TransactionLogController::class, 'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/history', [TransactionLogController::class, 'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/history/search', [TransactionLogController::class, 'index'])->middleware(['auth', 'admin']);
 
 
 
