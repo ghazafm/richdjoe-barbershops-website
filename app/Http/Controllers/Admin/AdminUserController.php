@@ -86,8 +86,10 @@ class AdminUserController extends Controller
             ->orwhere('id', 'like', '%' . $search . '%')
             ->paginate();
 
+        $userCount = $users->count();
+            
         // Pass the data to the view
-        return view('admin.user', ['users' => $users]);
+        return view('admin.user', ['users' => $users, 'userCount' => $userCount]);
     }
 
     public function filter(Request $req)

@@ -23,12 +23,12 @@
     <div class="page-content">
         <div class="page-header">
             <div class="container-fluid">
-                <h3>Payment</h3>
+                <h3>Payment Data</h3>
                 <br />
-                <p>Search Payments:</p>
+                <p>Search Payment:</p>
 
                 <form action="/admin/payment/payment/search" method="GET" class="form-inline mb-3">
-                    <input type="text" name="search" class="form-control mr-2" placeholder="Search Payment ID" value="{{ old('search') }}">
+                    <input type="text" name="search" class="form-control mr-2" placeholder="Search Payment" value="{{ old('search') }}">
                     <input type="submit" value="Search" class="btn btn-primary">
                 </form>
 

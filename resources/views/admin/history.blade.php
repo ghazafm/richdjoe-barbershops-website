@@ -34,7 +34,7 @@
             <div class="container-fluid">
                 <h3>History Data</h3>
                 <br />
-                <p>Search Hair Artist ID:</p>
+                <p>Search History:</p>
                 <form action="/admin/search"class="form-inline mb-3" method="GET">
                     <input type="text" name="search"class="form-control mr-2" placeholder="Hair Artist ID"
                         value="{{ old('search') }}">
@@ -76,11 +76,9 @@
                         </tr>
                     @endforeach
                 </table>
-                
 
                 <br>
-                {{-- Jumlah Data : {{ $kapsters->total() }} <br> --}}
-
+                Jumlah Data : {{$transactionLogsCount}} <br>
             </div>
         </div>
     </div>

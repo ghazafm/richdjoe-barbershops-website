@@ -15,7 +15,9 @@ class TransactionLogController extends Controller
     public function index()
     {
         $transactionLogs = TransactionLog::all();
-        return view('admin.history', ['transactions' => $transactionLogs]);
+        $transactionLogsCount = $transactionLogs->count();
+
+        return view('admin.history', ['transactions' => $transactionLogs, 'transactionLogsCount' => $transactionLogsCount]);
     }
 
     public static function logTransaction(Transaction $transaction)

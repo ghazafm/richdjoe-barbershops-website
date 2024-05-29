@@ -25,20 +25,20 @@
         <div class="page-header">
             <div class="container-fluid">
                 <h3>Booking Data</h3>
-                <a href="{{ url('/admin/book/add') }}">+ Add Booking Data</a>
+                <a href="{{ url('/admin/book/add') }}">+ Add Booking</a>
                 <br />
                 <br />
-                <p>Search Transaction ID:</p>
+                <p>Search Transaction:</p>
                 <form action="/admin/book/book/search" method="GET" class="form-inline mb-3">
                 <form action="/admin/book/book/search" method="GET" class="form-inline mb-3">
-                    <input type="text" name="search" class="form-control mr-2" placeholder="Transaction ID"
+                    <input type="text" name="search" class="form-control mr-2" placeholder="Search Transaction"
                         value="{{ old('search') }}">
                     <input type="submit" class="btn btn-primary" value="search">
                 </form>
                 <p>Filter:</p>
                 <form action="/admin/book/book/filter" method="GET" class="form-inline mb-3">
-                    <input type="date" name="schedule_from" class="form-control mx-2" placeholder="Schedule From">
-                    <input type="date" name="schedule_to" class="form-control mx-2" placeholder="Schedule To">
+                    <input type="date" name="date_from" class="form-control mx-2" placeholder="Schedule From">
+                    <input type="date" name="date_to" class="form-control mx-2" placeholder="Schedule To">
                     <input type="number" name="price_from" class="form-control mx-2" placeholder="Price From" step="5000" min="0">
                     <input type="number" name="price_to" class="form-control mx-2" placeholder="Price To" step="5000" min="0">
                     <input type="submit" class="btn btn-secondary" value="Filter">
