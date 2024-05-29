@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kapsters', function (Blueprint $table) {
+        Schema::create('places', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100);
-            $table->unsignedBigInteger('place');
-            $table->string('schedule', 255)->nullable();
+            $table->string('name');
+            $table->string('address');
             $table->timestamps();
-
-            $table->foreign('place')->references('id')->on('places');
         });
     }
 
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kapsters');
+        Schema::dropIfExists('transaction_logs');
     }
 };

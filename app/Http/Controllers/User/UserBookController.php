@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use App\Models\TransactionLog;
 use App\Models\Kapster;
+use App\Models\Place;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Validation\Rule;
@@ -18,9 +19,9 @@ class UserBookController extends Controller
 {
 	public function index()
 	{
-		$uniquePlaces = Kapster::distinct()->pluck('place');
+		$places = Place::all();
 		// Pass the data to the view
-		return view('book.index', ['uniquePlaces' => $uniquePlaces]);
+		return view('book.index', ['places' => $places]);
 	}
 
 	public function services($place)

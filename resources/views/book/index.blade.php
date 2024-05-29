@@ -114,14 +114,14 @@
     <main class="container store" id="store">
         <h1 class="text-center mb-4">Please Select Your Store</h1>
         <div class="row justify-content-center text-center text-light">
-            @foreach ($uniquePlaces as $place)
+            @foreach ($places as $place)
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    <img src="{{ asset('images/store/' . strtolower(str_replace(' ', '', $place)) . '.jpg') }}" alt="{{ strtoupper($place) }}">
+                    <img src="{{ asset('images/store/' . strtolower(str_replace(' ', '', $place->id)) . '.jpg') }}" alt="{{ strtoupper($place->name) }}">
                     <div class="card-body d-flex flex-column">
-                        <h4 class="card-title font-weight-bold">{{ $place }}</h4>
-                        <p class="card-text">{{ $place }} Address</p>
-                        <a href="/book/service/{{ $place }}">
+                        <h4 class="card-title font-weight-bold">{{ $place->name }}</h4>
+                        <p class="card-text">{{ $place->address }} Address</p>
+                        <a href="/book/service/{{ $place->id }}">
                             <button class="btn-pilih">SELECT</button>
                         </a>
                     </div>
