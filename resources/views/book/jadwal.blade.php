@@ -129,7 +129,15 @@
             background-color: rgb(254, 174, 111);
         }
 
-        #redirect-button {
+        .time-slot-button:focus,
+        .time-slot-button:active {
+            background-color: rgb(254, 174, 111);
+            /* Sama dengan warna hover */
+            outline: none;
+            /* Hilangkan outline default */
+        }
+
+        .btn-pilih {
             width: 100%;
             margin-top: 20px;
             background-color: rgb(255, 250, 230);
@@ -141,7 +149,7 @@
             cursor: pointer;
         }
 
-        #redirect-button:hover {
+        .btn-pilih:hover {
             background-color: rgb(254, 174, 111);
         }
     </style>
@@ -208,7 +216,7 @@
                         </div>
                     </div>
                 </div>
-                <button id="redirect-button">Select Date and Time</button>
+                <button id="redirect-button" class="btn-pilih">Select Date and Time</button>
             </div>
         </div>
     </div>
@@ -219,9 +227,9 @@
                 <div class="col-12">
                     <h2>Our Socials</h2>
                     <div class="socials">
-                        <a href="#"><img src="{{ asset('images/home/instagram.png') }}" alt="Instagram"></a>
-                        <a href="#"><img src="{{ asset('images/home/wa.png') }}" alt="Whatsapp"></a>
-                        <a href="#"><img src="{{ asset('images/home/tt.png') }}" alt="TikTok"></a>
+                        <a href="https://www.instagram.com/richdjoebarbershops/" target="_blank"><img src="{{ asset('images/home/instagram.png') }}" alt="Instagram"></a>
+                        <a href="https://shorturl.at/Swdzg" target="_blank"><img src="{{ asset('images/home/wa.png') }}" alt="Whatsapp"></a>
+                        <a href="https://www.tiktok.com/@richdjoebarbershops?_t=8mfes20zxib&_r=1" target="_blank"><img src="{{ asset('images/home/tt.png') }}" alt="TikTok"></a>
                     </div>
                 </div>
             </div>
@@ -295,7 +303,7 @@
 
             function redirectToNewPage() {
                 let url =
-                    "/book/service/haircut/kapster/schedule/confirmation/{{ $place }}/{{ $service }}/{{ $kapster }}";
+                    "/book/service/kapster/schedule/confirmation/{{ $place }}/{{ $service }}/{{ $kapster }}";
                 let queryString = `?date=${selectedDate}`;
                 if (selectedTime) {
                     queryString += `&time=${selectedTime}`;

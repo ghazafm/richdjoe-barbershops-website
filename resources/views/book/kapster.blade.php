@@ -131,10 +131,10 @@
             @foreach($kapsters as $kapster)
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="{{ asset($kapster->image) }}" alt="{{ $kapster->name }}">
+                    <img src="{{ asset('images/kapster/' . strtolower(str_replace(' ', '', $kapster->id)) . '.jpg') }}" alt="{{ $kapster->name }}">
                     <div class="card-body d-flex flex-column">
                         <h4 class="card-title fw-bold">{{ $kapster->name }}</h4>
-                        <a href="/book/service/haircut/kapster/schedule/{{ $place }}/{{ $service }}/{{ $kapster->id }}">
+                        <a href="/book/service/kapster/schedule/{{ $place }}/{{ $service }}/{{ $kapster->id }}">
                             <button class="btn-pilih">SELECT</button>
                         </a>
                         <a href="/profil_kapster/{{ $place }}/{{ $service }}/{{ $kapster->id }}">
@@ -153,9 +153,9 @@
                 <div class="col-12">
                     <h2>Our Socials</h2>
                     <div class="socials">
-                        <a href="#"><img src="{{ asset('images/home/instagram.png') }}" alt="Instagram"></a>
-                        <a href="#"><img src="{{ asset('images/home/wa.png') }}" alt="Whatsapp"></a>
-                        <a href="#"><img src="{{ asset('images/home/tt.png') }}" alt="TikTok"></a>
+                        <a href="https://www.instagram.com/richdjoebarbershops/" target="_blank"><img src="{{ asset('images/home/instagram.png') }}" alt="Instagram"></a>
+                        <a href="https://shorturl.at/Swdzg" target="_blank"><img src="{{ asset('images/home/wa.png') }}" alt="Whatsapp"></a>
+                        <a href="https://www.tiktok.com/@richdjoebarbershops?_t=8mfes20zxib&_r=1" target="_blank"><img src="{{ asset('images/home/tt.png') }}" alt="TikTok"></a>
                     </div>
                 </div>
             </div>

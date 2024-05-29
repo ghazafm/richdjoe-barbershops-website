@@ -113,14 +113,26 @@
     <main class="container services" id="services">
         <h1 class="text-center mb-4">Please Choose the Type of Services</h1>
         <div class="row justify-content-center text-center text-light">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{{ asset('images/services/haircut.jpg') }}" alt="haircut">
+                    <div class="card-body d-flex flex-column">
+                        <h4 class="card-title fw-bold">Haircut</h4>
+                        <h6 class="card-text">IDR 85000 - 139000</h6>
+                        <a href="/book/service/haircut/{{ $place }}">
+                            <button class="btn-pilih">SELECT</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
             @foreach($services as $service)
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    <img src="{{ asset('images/services/' . $service->image) }}" alt="{{ $service->name }}">
+                    <img src="{{ asset('images/services/' . strtolower(str_replace(' ', '', $service->id)) . '.jpg') }}" alt="{{ $service->name }}">
                     <div class="card-body d-flex flex-column">
                         <h4 class="card-title fw-bold">{{ $service->name }}</h4>
                         <h6 class="card-text">IDR {{ number_format($service->price, 0, ',', '.') }}</h6>
-                        <a href="/book/service/haircut/kapster/{{ $place }}/{{ $service->id }}">
+                        <a href="/book/service/kapster/{{ $place }}/{{ $service->id }}">
                             <button class="btn-pilih">SELECT</button>
                         </a>
                     </div>
@@ -136,9 +148,9 @@
                 <div class="col-12">
                     <h2>Our Socials</h2>
                     <div class="socials">
-                        <a href="#"><img src="{{ asset('images/home/instagram.png') }}" alt="Instagram"></a>
-                        <a href="#"><img src="{{ asset('images/home/wa.png') }}" alt="Whatsapp"></a>
-                        <a href="#"><img src="{{ asset('images/home/tt.png') }}" alt="TikTok"></a>
+                        <a href="https://www.instagram.com/richdjoebarbershops/" target="_blank"><img src="{{ asset('images/home/instagram.png') }}" alt="Instagram"></a>
+                        <a href="https://shorturl.at/Swdzg" target="_blank"><img src="{{ asset('images/home/wa.png') }}" alt="Whatsapp"></a>
+                        <a href="https://www.tiktok.com/@richdjoebarbershops?_t=8mfes20zxib&_r=1" target="_blank"><img src="{{ asset('images/home/tt.png') }}" alt="TikTok"></a>
                     </div>
                 </div>
             </div>
