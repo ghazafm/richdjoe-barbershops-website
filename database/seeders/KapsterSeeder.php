@@ -27,35 +27,28 @@ class KapsterSeeder extends Seeder
     //         ]);
     //     }
     // }
-    public function run()
+    public function run(): void
     {
-        // Inisialisasi Faker untuk menghasilkan data acak
-        $faker = Faker::create();
-
-        // Definisikan array tempat
-        $places = ['Soekarno Hatta', 'Ijen', 'Sigura-gura'];
-
-        // Definisikan array path gambar lokal relatif terhadap direktori publik
-        $imagePaths = [
-
-            'image/services/service2.jpg',
-            'image/services/service3.jpg',
-            'image/services/service4.jpg',
-            'image/services/service5.jpg'
-            // Tambahkan lebih banyak path gambar jika diperlukan
+        $kapsters = [
+            ['name' => 'Basic Haircut', 'place' => 'A simple and clean haircut.', 'schedule' => 'ha'],
+            ['name' => 'Deluxe Haircut', 'place' => 'A stylish haircut with shampoo and blow-dry.', 'schedule' => ''],
+            ['name' => 'Kids Haircut', 'place' => 'Specialized haircut for children under 12.', 'schedule' => ''],
+            ['name' => 'Premium Haircut', 'place' => 'Specialized haircut for premium service.', 'schedule' => ''],
+            ['name' => 'Beard Trim', 'place' => 'Beard trimming and shaping.', 'schedule' => ''],
+            ['name' => 'Full Shave', 'place' => 'Complete shave with hot towel treatment.', 'schedule' => ''],
+            ['name' => 'Hair Coloring', 'place' => 'Professional hair coloring services.', 'schedule' => ''],
+            ['name' => 'Hair Highlights', 'place' => 'Add highlights to your hair.', 'schedule' => ''],
+            ['name' => 'Scalp Massage', 'place' => 'Relaxing scalp massage.', 'schedule' => ''],
+            ['name' => 'Hair Treatment', 'place' => 'Specialized treatment for hair health.', 'schedule' => ''],
+            ['name' => 'Shampoo and Blow-Dry', 'place' => 'Shampooing and blow-drying services.', 'schedule' => ''],
         ];
 
-        // Loop sebanyak 30 kali untuk membuat 30 record
-        for ($i = 0; $i < 30; $i++) {
-            // Buat record Kapster baru dengan field yang ditentukan
-            $kapster = Kapster::create([
-                'name' => $faker->name, // Menghasilkan nama acak
-                'place' => Arr::random($places), // Memilih tempat acak dari array
-                'schedule' => $faker->text(100), // Menghasilkan teks acak untuk jadwal
+        foreach ($kapsters as $kapster) {
+            Kapster::create([
+                'name' => $kapster['name'],
+                'place' => $kapster['place'],
+                'schedule' => $kapster['schedule'],
             ]);
-
-            $id = $kapster->id;
-            $kapster->update(['photo' => $id]);
         }
-    }    
+    }
 }

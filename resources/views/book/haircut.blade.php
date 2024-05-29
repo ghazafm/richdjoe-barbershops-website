@@ -117,7 +117,7 @@
             @foreach($services as $service)
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    <img src="{{ asset('images/services/' . $service->image) }}" alt="{{ $service->name }}">
+                    <img src="{{ asset('images/services/' . strtolower(str_replace(' ', '', $service->id)) . '.jpg') }}" alt="{{ $service->name }}">
                     <div class="card-body d-flex flex-column">
                         <h4 class="card-title fw-bold">{{ $service->name }}</h4>
                         <h6 class="card-text">IDR {{ number_format($service->price, 0, ',', '.') }}</h6>

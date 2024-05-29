@@ -131,10 +131,10 @@
             @foreach($kapsters as $kapster)
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="{{ asset($kapster->image) }}" alt="{{ $kapster->name }}">
+                    <img src="{{ asset('images/kapster/' . strtolower(str_replace(' ', '', $kapster->id)) . '.jpg') }}" alt="{{ $kapster->name }}">
                     <div class="card-body d-flex flex-column">
                         <h4 class="card-title fw-bold">{{ $kapster->name }}</h4>
-                        <a href="/book/service/haircut/kapster/schedule/{{ $place }}/{{ $service }}/{{ $kapster->id }}">
+                        <a href="/book/service/kapster/schedule/{{ $place }}/{{ $service }}/{{ $kapster->id }}">
                             <button class="btn-pilih">SELECT</button>
                         </a>
                         <a href="/profil_kapster/{{ $place }}/{{ $service }}/{{ $kapster->id }}">

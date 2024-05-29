@@ -200,7 +200,7 @@
                         </form>
                     </div>
                 </div>
-                <a href="/book/service/haircut/kapster/schedule/confirmation/{{ $kapster->place }}/{{ $service->id }}/{{ $kapster->id }}/{{ $schedule }}">
+                <a href="/book/service/kapster/schedule/confirmation/{{ $kapster->place }}/{{ $service->id }}/{{ $kapster->id }}/{{ $schedule }}">
                     <button class="btn btn-confirm">Confirm Booking</button>
                 </a>
             </div>

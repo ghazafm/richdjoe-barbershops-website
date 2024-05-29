@@ -303,7 +303,7 @@
 
             function redirectToNewPage() {
                 let url =
-                    "/book/service/haircut/kapster/schedule/confirmation/{{ $place }}/{{ $service }}/{{ $kapster }}";
+                    "/book/service/kapster/schedule/confirmation/{{ $place }}/{{ $service }}/{{ $kapster }}";
                 let queryString = `?date=${selectedDate}`;
                 if (selectedTime) {
                     queryString += `&time=${selectedTime}`;

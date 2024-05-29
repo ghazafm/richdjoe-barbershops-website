@@ -39,8 +39,6 @@ class TransactionSeeder extends Seeder
                 'service_id' => $service->id,
                 'schedule' => $schedule,
                 'total_price' => $service->price,
-                'service_status' => $faker->randomElement(['wait', 'decline', 'verified','cancelled']),
-                'payment_status' => $faker->randomElement(['process', 'verified']),
                 'rating' => $faker->optional()->numberBetween(1, 5),
                 'comment' => $faker->optional()->sentence,
                 'created_at' => now(),

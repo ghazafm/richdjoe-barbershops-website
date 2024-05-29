@@ -13,10 +13,10 @@ class ServiceSeeder extends Seeder
     public function run(): void
     {
         $services = [
-            ['name' => 'Basic Haircut', 'description' => 'A simple and clean haircut.', 'type' => 'haircut', 'price' => 15000],
-            ['name' => 'Deluxe Haircut', 'description' => 'A stylish haircut with shampoo and blow-dry.', 'type' => 'haircut', 'price' => 25000],
-            ['name' => 'Kids Haircut', 'description' => 'Specialized haircut for children under 12.', 'type' => 'haircut', 'price' => 12000],
-            ['name' => 'Premium Haircut', 'description' => 'Specialized haircut for premium service.', 'type' => 'haircut', 'price' => 120000],
+            ['name' => 'Basic Haircut', 'description' => 'A simple and clean haircut.', 'type' => 'haircut', 'price' => 90000],
+            ['name' => 'Deluxe Haircut', 'description' => 'A stylish haircut with shampoo and blow-dry.', 'type' => 'haircut', 'price' => 100000],
+            ['name' => 'Kids Haircut', 'description' => 'Specialized haircut for children under 12.', 'type' => 'haircut', 'price' => 85000],
+            ['name' => 'Premium Haircut', 'description' => 'Specialized haircut for premium service.', 'type' => 'haircut', 'price' => 139000],
             ['name' => 'Beard Trim', 'description' => 'Beard trimming and shaping.', 'type' => 'other', 'price' => 10000],
             ['name' => 'Full Shave', 'description' => 'Complete shave with hot towel treatment.', 'type' => 'other', 'price' => 20000],
             ['name' => 'Hair Coloring', 'description' => 'Professional hair coloring services.', 'type' => 'other', 'price' => 50000],

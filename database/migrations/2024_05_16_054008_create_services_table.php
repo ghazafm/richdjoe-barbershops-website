@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100);
             $table->string('description', 255)->nullable();
-            $table->string('photo')->nullable();
             $table->enum('type', ['haircut', 'other']);
             $table->decimal('price', 10, 2);
             $table->timestamps();
