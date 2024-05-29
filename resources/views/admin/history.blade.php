@@ -12,9 +12,15 @@
             border-right: 1px solid #dee2e6;
 
         }
+
+#HistoryTable th,
+#HistoryTable td {
+    text-align: center;
+    vertical-align: middle;
+}
+
     </style>
-        }
-    </style>
+        
 </head>
 
 
@@ -26,51 +32,47 @@
     <div class="page-content">
         <div class="page-header">
             <div class="container-fluid">
-                <h3>Hair Artist Data</h3>
-                <a href="/admin/hairartist/add">+ Add Hair Artist Data</a>
-                <br />
+                <h3>History Data</h3>
                 <br />
                 <p>Search Hair Artist ID:</p>
                 <form action="/admin/search"class="form-inline mb-3" method="GET">
                     <input type="text" name="search"class="form-control mr-2" placeholder="Hair Artist ID"
                         value="{{ old('search') }}">
-                    <input type="text" name="search"class="form-control mr-2" placeholder="Hair Artist ID"
-                        value="{{ old('search') }}">
                     <input type="submit" class="btn btn-primary" value="Search">
                 </form>
 
-                <table id="hairArtistTable" class="table table-bordered table-striped">
+                <table id="HistoryTable" class="table table-bordered table-striped">
                     <thead class="thead-dark">
                         <tr>
-                            <th>ID</th>
-                            <th>User ID</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Hair Artist ID</th>
-                            <th>Hair Artist</th>
-                            <th>Service ID</th>
-                            <th>Service</th>
-                            <th>Schedule</th>
-                            <th>Total Price</th>
-                            <th>Service Status</th>
-                            <th>Payment Status</th>
+                            <th class="sortable text-center" data-column="id">ID</th>
+                            <th class="sortable text-center" data-column="userid">User ID</th>
+                            <th class="sortable text-center" data-column="username">Username</th>
+                            <th class="sortable text-center" data-column="email">Email</th>
+                            <th class="sortable text-center" data-column="hairartistid">Hair Artist ID</th>
+                            <th class="sortable text-center" data-column="hairartist">Hair Artist</th>
+                            <th class="sortable text-center" data-column="serviceid">Service ID</th>
+                            <th class="sortable text-center" data-column="service">Service</th>
+                            <th class="sortable text-center" data-column="schedule">Schedule</th>
+                            <th class="sortable text-center" data-column="totalprice">Total Price</th>
+                            <th class="sortable text-center" data-column="servicestatus">Service Status</th>
+                            <th class="sortable text-center" data-column="paymentstatus">Payment Status</th>
                         </tr>
                     </thead>
 
                     @foreach ($transactions as $tlog)
                         <tr>
-                            <td>{{ $tlog->id }}</td>
-                            <td>{{ $tlog->user_id }}</td>
-                            <td>{{ $tlog->user_name }}</td>
-                            <td>{{ $tlog->user_email }}</td>
-                            <td>{{ $tlog->kapster_id }}</td>
-                            <td>{{ $tlog->kapster_name }}</td>
-                            <td>{{ $tlog->service_id }}</td>
-                            <td>{{ $tlog->service_name }}</td>
-                            <td>{{ $tlog->schedule }}</td>
-                            <td>{{ $tlog->total_price }}</td>
-                            <td>{{ $tlog->service_status }}</td>
-                            <td>{{ $tlog->payment_status }}</td>
+                            <td class="text-center">{{ $tlog->id }}</td>
+                            <td class="text-center">{{ $tlog->user_id }}</td>
+                            <td class="text-center">{{ $tlog->user_name }}</td>
+                            <td class="text-center">{{ $tlog->user_email }}</td>
+                            <td class="text-center">{{ $tlog->kapster_id }}</td>
+                            <td class="text-center">{{ $tlog->kapster_name }}</td>
+                            <td class="text-center">{{ $tlog->service_id }}</td>
+                            <td class="text-center">{{ $tlog->service_name }}</td>
+                            <td class="text-center">{{ $tlog->schedule }}</td>
+                            <td class="text-center">{{ $tlog->total_price }}</td>
+                            <td class="text-center">{{ $tlog->service_status }}</td>
+                            <td class="text-center">{{ $tlog->payment_status }}</td>
                         </tr>
                     @endforeach
                 </table>
@@ -85,7 +87,7 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const table = document.getElementById("hairArtistTable");
+            const table = document.getElementById("HistoryTable");
             const headers = table.querySelectorAll("th.sortable");
 
             headers.forEach(function(header) {
@@ -98,16 +100,15 @@
                         let aValue = getValue(a, column);
                         let bValue = getValue(b, column);
 
-                        // For specific columns (ID), convert the values to numbers
-                        if (column === "id") {
+                        // Convert the values to numbers for the ID column
+                        if (column === "id" || column === "userid" || column === "hairartistid" || column === "serviceid") {
                             aValue = parseInt(aValue);
                             bValue = parseInt(bValue);
                             return isAscending ? aValue - bValue : bValue - aValue;
                         }
 
-                        // For other columns, perform alphabetical sorting using localeCompare
-                        return isAscending ? aValue.localeCompare(bValue) : bValue
-                            .localeCompare(aValue);
+                        // For other columns, perform alphabetical sorting
+                        return isAscending ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
                     });
 
                     const tbody = table.querySelector("tbody");
@@ -119,10 +120,9 @@
                     headers.forEach(function(header) {
                         header.classList.remove("ascending", "descending");
                         // Remove any existing arrow emojis
-                        header.innerHTML = header.innerHTML.replace("↓", "").replace("↑",
-                            "");
+                        header.innerHTML = header.innerHTML.replace("↓", "").replace("↑", "");
                     });
-
+                    
                     // Add arrow emoji to indicate sorting order
                     this.innerHTML += isAscending ? " ↑" : " ↓";
 
@@ -137,10 +137,10 @@
 
             function getColumnIndex(columnName) {
                 const headers = Array.from(table.querySelectorAll("thead th"));
-                return headers.findIndex(header => header.dataset.column === columnName);
-            }
-        });
-    </script>
+                return headers.findIndex(header => header.dataset.column ===columnName);
+}
+});
+</script>
 </body>
 
 

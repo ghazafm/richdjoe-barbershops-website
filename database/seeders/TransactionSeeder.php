@@ -16,7 +16,7 @@ class TransactionSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
+        $faker = Faker::create('id_ID');
 
         // Get all user, kapster, and service IDs
         $users = User::all();
