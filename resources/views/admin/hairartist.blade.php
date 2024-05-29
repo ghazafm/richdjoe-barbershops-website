@@ -48,7 +48,7 @@
                         <tr>
                             <td class="text-center">{{ $kap->id }}</td>
                             <td class="text-center">{{ $kap->name }}</td>
-                            <td class="text-center">{{ $kap->place }}</td>
+                            <td class="text-center">{{ $kap->place->name }}</td>
                             <td class="text-center">{{ $kap->schedule }}</td>
                             <td class="text-center">
                                 <a class="btn btn-warning btn-sm" href="/admin/hairartist/edit/{{ $kap->id }}">Edit</a>

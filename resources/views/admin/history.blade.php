@@ -59,26 +59,26 @@
                         </tr>
                     </thead>
 
-                    @foreach ($transactions as $tlog)
+                    @foreach ($logs as $log)
                         <tr>
-                            <td class="text-center">{{ $tlog->id }}</td>
-                            <td class="text-center">{{ $tlog->user_id }}</td>
-                            <td class="text-center">{{ $tlog->user_name }}</td>
-                            <td class="text-center">{{ $tlog->user_email }}</td>
-                            <td class="text-center">{{ $tlog->kapster_id }}</td>
-                            <td class="text-center">{{ $tlog->kapster_name }}</td>
-                            <td class="text-center">{{ $tlog->service_id }}</td>
-                            <td class="text-center">{{ $tlog->service_name }}</td>
-                            <td class="text-center">{{ $tlog->schedule }}</td>
-                            <td class="text-center">{{ $tlog->total_price }}</td>
-                            <td class="text-center">{{ $tlog->service_status }}</td>
-                            <td class="text-center">{{ $tlog->payment_status }}</td>
+                            <td class="text-center">{{ $log->id }}</td>
+                            <td class="text-center">{{ $log->user_id }}</td>
+                            <td class="text-center">{{ $log->user_name }}</td>
+                            <td class="text-center">{{ $log->user_email }}</td>
+                            <td class="text-center">{{ $log->kapster_id }}</td>
+                            <td class="text-center">{{ $log->kapster_name }}</td>
+                            <td class="text-center">{{ $log->service_id }}</td>
+                            <td class="text-center">{{ $log->service_name }}</td>
+                            <td class="text-center">{{ $log->schedule }}</td>
+                            <td class="text-center">{{ $log->total_price }}</td>
+                            <td class="text-center">{{ $log->service_status }}</td>
+                            <td class="text-center">{{ $log->payment_status }}</td>
                         </tr>
                     @endforeach
                 </table>
 
                 <br>
-                Jumlah Data : {{$transactionLogsCount}} <br>
+                Jumlah Data : {{$logsCount}} <br>
             </div>
         </div>
     </div>

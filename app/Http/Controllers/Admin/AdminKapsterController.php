@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Kapster;
+use App\Models\Place;
 
 class AdminKapsterController extends Controller
 {
@@ -20,7 +21,8 @@ class AdminKapsterController extends Controller
 
     public function add()
     {
-        return view('admin.addhairartist');
+        $places = Place::all();
+        return view('admin.addhairartist',['places'=>$places]);
     }
 
     public function addsave(Request $req)

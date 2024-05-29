@@ -30,23 +30,23 @@ class KapsterSeeder extends Seeder
     public function run(): void
     {
         $kapsters = [
-            ['name' => '', 'place' => '1', 'schedule' => ''],
-            ['name' => '', 'place' => '1', 'schedule' => ''],
-            ['name' => '', 'place' => '1', 'schedule' => ''],
-            ['name' => '', 'place' => '1', 'schedule' => ''],
-            ['name' => '', 'place' => '1', 'schedule' => ''],
-            ['name' => '', 'place' => '2', 'schedule' => ''],
-            ['name' => '', 'place' => '2', 'schedule' => ''],
-            ['name' => '', 'place' => '2', 'schedule' => ''],
-            ['name' => '', 'place' => '3', 'schedule' => ''],
-            ['name' => '', 'place' => '3', 'schedule' => ''],
-            ['name' => '', 'place' => '3', 'schedule' => ''],
+            ['name' => 'Joko Samsul', 'place_id' => '1', 'schedule' => 'Besok pagi'],
+            ['name' => 'Joko Samsul', 'place_id' => '1', 'schedule' => 'Besok pagi'],
+            ['name' => 'Joko Samsul', 'place_id' => '1', 'schedule' => 'Besok pagi'],
+            ['name' => 'Joko Samsul', 'place_id' => '1', 'schedule' => 'Besok pagi'],
+            ['name' => 'Joko Samsul', 'place_id' => '1', 'schedule' => 'Besok pagi'],
+            ['name' => 'Joko Samsul', 'place_id' => '2', 'schedule' => 'Besok pagi'],
+            ['name' => 'Joko Samsul', 'place_id' => '2', 'schedule' => 'Besok pagi'],
+            ['name' => 'Joko Samsul', 'place_id' => '2', 'schedule' => 'Besok pagi'],
+            ['name' => 'Joko Samsul', 'place_id' => '3', 'schedule' => 'Besok pagi'],
+            ['name' => 'Joko Samsul', 'place_id' => '3', 'schedule' => 'Besok pagi'],
+            ['name' => 'Joko Samsul', 'place_id' => '3', 'schedule' => 'Besok pagi'],
         ];
 
         foreach ($kapsters as $kapster) {
             Kapster::create([
                 'name' => $kapster['name'],
-                'place' => $kapster['place'],
+                'place_id' => $kapster['place_id'],
                 'schedule' => $kapster['schedule'],
             ]);
         }

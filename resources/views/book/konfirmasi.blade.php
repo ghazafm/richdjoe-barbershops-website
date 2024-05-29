@@ -195,7 +195,7 @@
                             <div class="form-group w-100">
                                 <label for="store">Store</label>
                                 <span>:</span>
-                                <p>{{ $kapster->place }}</p>
+                                <p>{{ $kapster->place->name }}</p>
                             </div>
                         </form>
                     </div>

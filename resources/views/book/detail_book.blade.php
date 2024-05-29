@@ -199,7 +199,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3 border-bottom border-dark font-weight-bold">
                             <span>Proof of Booking</span>
-                            <span>@ {{ $transaction->kapster->place }}</span>
+                            <span>@ {{ $transaction->kapster->place->name }}</span>
                         </div>
                         <form class="form-inline">
                             <div class="form-group w-100">

@@ -15,7 +15,7 @@ class Kapster extends Model
     protected $fillable = [
         'name',
         'photo',
-        'place',
+        'place_id',
         'schedule'
     ];
 

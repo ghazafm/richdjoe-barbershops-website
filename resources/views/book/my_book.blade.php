@@ -182,7 +182,7 @@
                             <div class="form-group w-100">
                                 <label for="store">Store</label>
                                 <span>:</span>
-                                <p>{{ $transaction->kapster->place }}</p>
+                                <p>{{ $transaction->kapster->place->name }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="code">Code</label>

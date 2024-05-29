@@ -14,10 +14,10 @@ class TransactionLogController extends Controller
      */
     public function index()
     {
-        $transactionLogs = TransactionLog::all();
-        $transactionLogsCount = $transactionLogs->count();
+        $logs = TransactionLog::all();
+        $logsCount = $logs->count();
 
-        return view('admin.history', ['transactions' => $transactionLogs, 'transactionLogsCount' => $transactionLogsCount]);
+        return view('admin.history', ['logs' => $logs, 'logsCount' => $logsCount]);
     }
 
     public static function logTransaction(Transaction $transaction)
@@ -39,20 +39,33 @@ class TransactionLogController extends Controller
         ]);
     }
 
-
-
-    /**
-     * Display the specified transaction log.
-     */
-    public function show($id)
+    public function search_history(Request $req)
     {
-        $transactionLog = TransactionLog::findOrFail($id);
-        return response()->json($transactionLog);
-    }
+        $search = $req->search;
 
-    /**
-     * Update the specified transaction log in storage.
-     */
+        // Search transactions using Eloquent
+        $logs = Transaction::where('service_status', 'wait')
+            ->where('id', 'LIKE', '%' . $search . '%')
+            ->orWhere('user_id', 'like', '%' . $search . '%')
+            ->orWhere('user_name', 'like', '%' . $search . '%')
+            ->orWhere('kapster_id', 'like', '%' . $search . '%')
+            ->orWhere('kapster_name', 'like', '%' . $search . '%')
+            ->orWhere('service_id', 'like', '%' . $search . '%')
+            ->orWhere('service_name', 'like', '%' . $search . '%')
+            ->orWhere('schedule', 'like', '%' . $search . '%')
+            ->orWhere('total_price', 'like', '%' . $search . '%')
+            ->orWhere('service_status', 'like', '%' . $search . '%')
+            ->orWhere('payment_status', 'like', '%' . $search . '%')
+            ->orWhere('rating', 'like', '%' . $search . '%')
+            ->orWhere('comment', 'like', '%' . $search . '%')
+            ->orWhere('created_at', 'like', '%' . $search . '%')
+            ->orWhere('updated_at', 'like', '%' . $search . '%')
+            ->paginate();
+
+        // Return view with search results
+        return view('admin.book', ['logs' => $logs, 'logsCount' => $logs->total()]);
+    }
+    // Helper========================================================================
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -80,7 +93,7 @@ class TransactionLogController extends Controller
     /**
      * Remove the specified transaction log from storage.
      */
-    public function destroy($id)
+    public function delete($id)
     {
         $transactionLog = TransactionLog::findOrFail($id);
         $transactionLog->delete();

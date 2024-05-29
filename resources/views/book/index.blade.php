@@ -120,7 +120,7 @@
                     <img src="{{ asset('images/store/' . strtolower(str_replace(' ', '', $place->id)) . '.jpg') }}" alt="{{ strtoupper($place->name) }}">
                     <div class="card-body d-flex flex-column">
                         <h4 class="card-title font-weight-bold">{{ $place->name }}</h4>
-                        <p class="card-text">{{ $place->address }} Address</p>
+                        <p class="card-text">{{ $place->address }}</p>
                         <a href="/book/service/{{ $place->id }}">
                             <button class="btn-pilih">SELECT</button>
                         </a>

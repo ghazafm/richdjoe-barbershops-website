@@ -114,10 +114,10 @@
         <div class="row justify-content-center text-center text-light">
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="{{ asset($kapsters->photo) }}" alt="{{ $kapsters->name }}">
+                    <img src="{{ asset('images/kapster/' . strtolower(str_replace(' ', '', $kapsters->id)) . '.jpg') }}" alt="{{ $kapsters->name }}">
                     <div class="card-body d-flex flex-column">
                         <h4 class="card-title fw-bold">{{ $kapsters->name }}</h4>
-                        <a href="/book/service/haircut/kapster/schedule/{{ $place }}/{{ $service }}/{{ $kapsters->id }}">
+                        <a href="/book/service/kapster/schedule/{{ $place }}/{{ $service }}/{{ $kapsters->id }}">
                             <button class="btn-pilih">SELECT</button>
                         </a>
                     </div>

@@ -41,7 +41,7 @@ class UserBookController extends Controller
 
 	public function kapsters($place, $service)
 	{
-		$kapsters = Kapster::where('place', 'LIKE', $place)->get();
+		$kapsters = Kapster::where('place_id', 'LIKE', $place)->get();
 
 		// Pass the data to the view
 		return view('book.kapster', ['kapsters' => $kapsters, 'service' => $service, 'place' => $place]);
@@ -83,6 +83,10 @@ class UserBookController extends Controller
 			$date = $request->query('date');
 			$time = $request->query('time');
 
+			$place = $kapster->place;
+			if (!$place) {
+				return redirect()->back()->with('error', 'Invalid Place associated with Kapster');
+			}
 			// Construct the datetime value for the schedule
 			if ($date && $time) {
 				try {
