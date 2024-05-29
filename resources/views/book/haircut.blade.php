@@ -122,7 +122,7 @@
                         <h4 class="card-title fw-bold">{{ $service->name }}</h4>
                         <h6 class="card-text">IDR {{ number_format($service->price, 0, ',', '.') }}</h6>
                     </div>
-                    <a href="{{ url('book/service/haircut/kapster/'.$place.'/'.$service->id) }}">
+                    <a href="{{ url('book/service/kapster/'.$place.'/'.$service->id) }}">
                         <button class="btn-pilih">SELECT</button>
                     </a>
                 </div>
