@@ -30,7 +30,7 @@ class KapsterSeeder extends Seeder
     public function run()
     {
         // Inisialisasi Faker untuk menghasilkan data acak
-        $faker = Faker::create();
+        $faker = Faker::create('id_ID');
 
         // Definisikan array tempat
         $places = ['Soekarno Hatta', 'Ijen', 'Sigura-gura'];
