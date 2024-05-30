@@ -50,9 +50,12 @@ class UserBookController extends Controller
 	public function showKapster($place, $service, $id)
 	{
 		$kapsters = Kapster::find($id);
+		$ratingComment = $this->getRatingComment($id);
+		$rating = $ratingComment[0];
+		$comments = $ratingComment[1];
 
 		// Pass the data to the view
-		return view('book.profil_kapster', ['place' => $place, 'service' => $service, 'kapsters' => $kapsters]);
+		return view('book.profil_kapster', ['place' => $place, 'service' => $service, 'kapsters' => $kapsters, 'rating' => $rating, 'comments' => $comments]);
 	}
 
 	public function schedule($place, $service, $kapster)
@@ -183,19 +186,28 @@ class UserBookController extends Controller
 	public function setRatingComment($transactionId, $rating)
 	{
 		Transaction::where('id', $transactionId)->update([
-            'rating' => $rating,
-        ]);
+			'rating' => $rating,
+		]);
 
-        // Redirect to the kapster page
-        return redirect('/mybook');
+		// Redirect to the kapster page
+		return redirect('/mybook');
 	}
 
-	public function getRatingComment($kapsterId){
-
+	public function getRatingComment($kapsterId)
+	{
+		// Get rating and comments
 		$rating = $this->getRating($kapsterId);
-		$comment = $this->getComment($kapsterId);
+		$comments = $this->getComment($kapsterId);
 
-		return view('book.profil_kapster', ['kapster_id' => $kapsterId, 'rating' => $rating, 'comment' => $comment]);
+		// Check if the responses are JSON responses
+		if ($rating instanceof \Illuminate\Http\JsonResponse) {
+			return $rating;
+		}
+		if ($comments instanceof \Illuminate\Http\JsonResponse) {
+			return $comments;
+		}
+
+		return response()->json(['kapster_id' => $kapsterId, 'average_rating' => $rating, 'comments' => $comments]);
 	}
 
 	public function getRating($kapsterId)
@@ -221,7 +233,8 @@ class UserBookController extends Controller
 		return $averageRating;
 	}
 
-	public function getComment($kapsterId){
+	public function getComment($kapsterId)
+	{
 		// Retrieve the kapster by ID
 		$kapster = Kapster::with('transactions')->find($kapsterId);
 
@@ -229,11 +242,18 @@ class UserBookController extends Controller
 			return response()->json(['error' => 'Kapster not found'], 404);
 		}
 
-		// Filter out transactions with null ratings
-		$comments = $kapster->transactions->whereNotNull('comment');
+		// Filter out transactions with null comments
+		$comments = $kapster->transactions->filter(function ($transaction) {
+			return !is_null($transaction->comment);
+		})->map(function ($transaction) {
+			return [
+				'comment' => $transaction->comment,
+				'rating' => $transaction->rating,
+			];
+		});
 
 		if ($comments->isEmpty()) {
-			return response()->json(['kapster_id' => $kapsterId, 'average_rating' => null]);
+			return response()->json(['kapster_id' => $kapsterId, 'comments' => null]);
 		}
 
 		return $comments;

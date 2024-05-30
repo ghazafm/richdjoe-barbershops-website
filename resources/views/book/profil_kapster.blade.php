@@ -215,6 +215,7 @@
                         </div>
                         <h2>Reviews</h2>
                         <div class="reviews-section">
+                            @foreach ($comments as comment)
                             <div class="review">
                                 <div class="review-header">
                                     <span>William Chandra</span>
@@ -231,54 +232,7 @@
                                 </div>
                                 <p>Good</p>
                             </div>
-                            <div class="review">
-                                <div class="review-header">
-                                    <span>Harlan Milano</span>
-                                </div>
-                                <div class="review-stars">
-                                    <div class="stars-review">
-                                        <i class="fa-solid fa-star" data-star="1"></i>
-                                        <i class="fa-solid fa-star" data-star="2"></i>
-                                        <i class="fa-solid fa-star" data-star="3"></i>
-                                        <i class="fa-solid fa-star" data-star="4"></i>
-                                        <i class="fa-solid fa-star" data-star="5"></i>
-                                    </div>
-                                    <span>May 29, 2024</span>
-                                </div>
-                                <p>Josss</p>
-                            </div>
-                            <div class="review">
-                                <div class="review-header">
-                                    <span>Dharmawan</span>
-                                </div>
-                                <div class="review-stars">
-                                    <div class="stars-review">
-                                        <i class="fa-solid fa-star" data-star="1"></i>
-                                        <i class="fa-solid fa-star" data-star="2"></i>
-                                        <i class="fa-solid fa-star" data-star="3"></i>
-                                        <i class="fa-solid fa-star" data-star="4"></i>
-                                        <i class="fa-solid fa-star" data-star="5"></i>
-                                    </div>
-                                    <span>May 29, 2024</span>
-                                </div>
-                                <p>Mantap</p>
-                            </div>
-                            <div class="review">
-                                <div class="review-header">
-                                    <span>alfin</span>
-                                </div>
-                                <div class="review-stars">
-                                    <div class="stars-review">
-                                        <i class="fa-solid fa-star" data-star="1"></i>
-                                        <i class="fa-solid fa-star" data-star="2"></i>
-                                        <i class="fa-solid fa-star" data-star="3"></i>
-                                        <i class="fa-solid fa-star" data-star="4"></i>
-                                        <i class="fa-solid fa-star" data-star="5"></i>
-                                    </div>
-                                    <span>May 29, 2024</span>
-                                </div>
-                                <p>Oke banget</p>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
