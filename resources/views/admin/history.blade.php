@@ -35,7 +35,7 @@
                 <h3>History Data</h3>
                 <br />
                 <p>Search History:</p>
-                <form action="/admin/search"class="form-inline mb-3" method="GET">
+                <form action="/admin/history/search"class="form-inline mb-3" method="GET">
                     <input type="text" name="search"class="form-control mr-2" placeholder="Hair Artist ID"
                         value="{{ old('search') }}">
                     <input type="submit" class="btn btn-primary" value="Search">

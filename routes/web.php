@@ -72,7 +72,7 @@ Route::get('/admin/hairartist/delete/{id}', [AdminKapsterController::class, 'del
 Route::get('/admin/hairartist/add', [AdminKapsterController::class, 'add'])->middleware(['auth', 'admin']);
 Route::post('/admin/hairartist/addsave', [AdminKapsterController::class, 'addsave'])->middleware(['auth', 'admin']);
 Route::get('/admin/history', [TransactionLogController::class, 'index'])->middleware(['auth', 'admin']);
-Route::get('/admin/history/search', [TransactionLogController::class, 'index'])->middleware(['auth', 'admin']);
+Route::get('/admin/history/search', [TransactionLogController::class, 'search_history'])->middleware(['auth', 'admin']);
 
 
 
