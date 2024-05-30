@@ -117,7 +117,7 @@
                     <img src="{{ asset('images/services/haircut.jpg') }}" alt="haircut">
                     <div class="card-body d-flex flex-column">
                         <h4 class="card-title fw-bold">Haircut</h4>
-                        <h6 class="card-text">IDR 85000 - 139000</h6>
+                        <h6 class="card-text">IDR 85.000 - 139.000</h6>
                         <a href="/book/service/haircut/{{ $place }}">
                             <button class="btn-pilih">SELECT</button>
                         </a>

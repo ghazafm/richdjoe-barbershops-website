@@ -45,6 +45,7 @@ Route::get('/book/service/kapster/schedule/confirmation/{place}/{service}/{kapst
 Route::get('/transaction/detail/{transaction}', [UserBookController::class, 'showTransactionDetail'])->name('transaction.detail');
 // Route::get('/book/service/haircut/kapster/schedule/confirmation/cancelled/{id}', [UserBookController::class, 'cancel'])->middleware('auth', 'verified');
 Route::get('/mybook', [UserBookController::class,'mybook'])->middleware('auth', 'verified');
+Route::get('/mybook/review/{transaction}', [UserBookController::class,'review'])->middleware('auth', 'verified');
 
 //Admin
 Route::get('/admin', function () {

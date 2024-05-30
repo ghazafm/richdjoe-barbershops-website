@@ -206,7 +206,7 @@
                     <a href="/transaction/detail/{{ $transaction->id }}">
                         <button class="btn btn-detail btn-custom">Show Detail</button>
                     </a>
-                    <a href="/">
+                    <a href="/mybook/review/{{ $transaction->id }}">
                         <button class="btn btn-review btn-custom">Review</button>
                     </a>
                 </div>

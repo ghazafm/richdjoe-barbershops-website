@@ -49,13 +49,25 @@ class UserBookController extends Controller
 
 	public function showKapster($place, $service, $id)
 	{
-		$kapsters = Kapster::find($id);
-		$ratingComment = $this->getRatingComment($id);
-		$rating = $ratingComment[0];
-		$comments = $ratingComment[1];
+		$kapster = Kapster::find($id);
+		$ratingComment = $this->getReview($id);
+
+		// Check if the response is a JSON response and handle accordingly
+		if ($ratingComment instanceof \Illuminate\Http\JsonResponse) {
+			return $ratingComment;
+		}
+
+		$rating = $ratingComment['average_rating'];
+		$comments = $ratingComment['comments'];
 
 		// Pass the data to the view
-		return view('book.profil_kapster', ['place' => $place, 'service' => $service, 'kapsters' => $kapsters, 'rating' => $rating, 'comments' => $comments]);
+		return view('book.profil_kapster', [
+			'place' => $place,
+			'service' => $service,
+			'kapster' => $kapster,
+			'rating' => $rating,
+			'comments' => $comments
+		]);
 	}
 
 	public function schedule($place, $service, $kapster)
@@ -183,7 +195,14 @@ class UserBookController extends Controller
 		return view('book.my_book', ['transactions' => $transactions]);
 	}
 
-	public function setRatingComment($transactionId, $rating)
+	public function review($transaction){
+		
+		$transaction = Transaction::with(['kapster'])->find($transaction);
+
+		return view('book.review', ['transaction' => $transaction]);
+	}
+
+	public function setReview($transactionId, $rating)
 	{
 		Transaction::where('id', $transactionId)->update([
 			'rating' => $rating,
@@ -193,7 +212,7 @@ class UserBookController extends Controller
 		return redirect('/mybook');
 	}
 
-	public function getRatingComment($kapsterId)
+	public function getReview($kapsterId)
 	{
 		// Get rating and comments
 		$rating = $this->getRating($kapsterId);
@@ -203,12 +222,11 @@ class UserBookController extends Controller
 		if ($rating instanceof \Illuminate\Http\JsonResponse) {
 			return $rating;
 		}
-		if ($comments instanceof \Illuminate\Http\JsonResponse) {
-			return $comments;
-		}
 
-		return response()->json(['kapster_id' => $kapsterId, 'average_rating' => $rating, 'comments' => $comments]);
+		// Return an array with the rating and comments
+		return ['average_rating' => $rating, 'comments' => $comments];
 	}
+
 
 	public function getRating($kapsterId)
 	{
@@ -247,13 +265,15 @@ class UserBookController extends Controller
 			return !is_null($transaction->comment);
 		})->map(function ($transaction) {
 			return [
+				'name' => $transaction->user->name ?? 'Anonymous', // Assuming there is a user relationship
+				'date' => $transaction->created_at->format('M d, Y'), // Format the date as needed
 				'comment' => $transaction->comment,
 				'rating' => $transaction->rating,
 			];
 		});
 
 		if ($comments->isEmpty()) {
-			return response()->json(['kapster_id' => $kapsterId, 'comments' => null]);
+			return [];
 		}
 
 		return $comments;
