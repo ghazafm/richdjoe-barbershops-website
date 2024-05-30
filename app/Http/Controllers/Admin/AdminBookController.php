@@ -276,6 +276,38 @@ class AdminBookController extends Controller
 
 		// Update the service_status to "decline"
 		$transaction->update(['service_status' => 'decline']);
+		$transaction->update(['payment_status' => 'cancelled']);
+
+		// Log
+		TransactionLog::create([
+			'id' => $transaction->id,
+			'user_id' => $transaction->user->id,
+			'user_name' => $transaction->user->name,
+			'user_email' => $transaction->user->email,
+			'kapster_id' => $transaction->kapster->id,
+			'kapster_name' => $transaction->kapster->name,
+			'service_id' => $transaction->service->id,
+			'service_name' => $transaction->service->name,
+			'schedule' => $transaction->schedule,
+			'total_price' => $transaction->total_price,
+			'service_status' => $transaction->service_status,
+			'payment_status' => $transaction->payment_status,
+			'rating' => $transaction->rating,
+			'comment' => $transaction->comment
+		]);
+
+		// Redirect back with a success message
+		return redirect()->back()->with('success', 'Service declined.');
+	}
+
+	public function cancel_service($id)
+	{
+		// Find the transaction by its ID
+		$transaction = Transaction::findOrFail($id);
+
+		// Update the service_status to "decline"
+		$transaction->update(['service_status' => 'cancelled']);
+		$transaction->update(['payment_status' => 'cancelled']);
 
 		// Log
 		TransactionLog::create([

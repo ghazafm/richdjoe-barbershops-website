@@ -91,7 +91,7 @@
                         </div>
                         </div>
                         <div class="col">
-                            <form id="cancelForm" method="POST" style="display:inline-block;">
+                            <form id="declineForm" method="POST" style="display:inline-block;">
                                 @csrf
                                 <button type="submit" class="btn btn-danger btn-block">Cancel</button>
                             </form>
@@ -103,31 +103,37 @@
     </div>
 
     <script>
-        $('#detailModal').on('show.bs.modal', function (event) {
+        $('#detailModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget); // Button that triggered the modal
             var id = button.data('id'); // Extract info from data-* attributes
 
+            // Set the action attribute for the forms
             $('#confirmForm').attr('action', '/admin/payment/verify/' + id);
+            $('#declineForm').attr('action', '/admin/payment/decline/' + id);
+
+            // Set the action attribute for the forms
+            $('#confirmForm').attr('action', '/admin/payment/verify/' + id);
+            $('#declineForm').attr('action', '/admin/payment/decline/' + id);
 
             // AJAX request to get the detail data
             $.ajax({
                 url: '/admin/payment/' + id, // URL to fetch detail data
                 method: 'GET',
-                success: function (data) {
-                    console.log('Data received:', data); // Debugging
+                success: function(data) {
                     var modal = $('#detailModal');
                     modal.find('.modal-body').html(data); // Load the data into the modal body
                 },
-                error: function (xhr, status, error) {
-                    console.error('Error fetching details:', status, error); // Debugging
+                error: function() {
                     var modal = $('#detailModal');
                     modal.find('.modal-body').html('<p>Error retrieving payment details.</p>'); // Error handling
                 }
             });
         });
 
-        $('#detailModal').on('hidden.bs.modal', function (e) {
-            location.reload(); // Refresh the page
+
+        $('#detailModal').on('hidden.bs.modal', function(e) {
+            // Merefresh halaman
+            location.reload();
         });
     </script>
 

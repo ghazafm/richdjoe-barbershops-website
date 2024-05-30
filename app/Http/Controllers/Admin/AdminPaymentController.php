@@ -77,32 +77,34 @@ class AdminPaymentController extends Controller
 
     public function decline_payment($id)
 	{
-		// Find the transaction by its ID
-		$transaction = Transaction::findOrFail($id);
+        // Find the transaction by its ID
+        $transaction = Transaction::findOrFail($id);
 
-		// Update the service_status to "decline"
-		$transaction->update(['payment_status' => 'decline']);
+        // Update the payment_status to "decline"
+        $transaction->update(['payment_status' => 'decline']);
 
-		// Log
-		TransactionLog::create([
-			'id' => $transaction->id,
-			'user_id' => $transaction->user->id,
-			'user_name' => $transaction->user->name,
-			'user_email' => $transaction->user->email,
-			'kapster_id' => $transaction->kapster->id,
-			'kapster_name' => $transaction->kapster->name,
-			'service_id' => $transaction->service->id,
-			'service_name' => $transaction->service->name,
-			'schedule' => $transaction->schedule,
-			'total_price' => $transaction->total_price,
-			'service_status' => $transaction->service_status,
-			'payment_status' => $transaction->payment_status,
-			'rating' => $transaction->rating,
-			'comment' => $transaction->comment
-		]);
+        // Log the transaction
 
-		// Redirect back with a success message
-		return redirect()->back()->with('success', 'Payment declined.');
+        TransactionLog::create([
+            'id' => $transaction->id,
+            'user_id' => $transaction->user->id,
+            'user_name' => $transaction->user->name,
+            'user_email' => $transaction->user->email,
+            'kapster_id' => $transaction->kapster->id,
+            'kapster_name' => $transaction->kapster->name,
+            'service_id' => $transaction->service->id,
+            'service_name' => $transaction->service->name,
+            'schedule' => $transaction->schedule,
+            'total_price' => $transaction->total_price,
+            'service_status' => $transaction->service_status,
+            'payment_status' => $transaction->payment_status,
+            'rating' => $transaction->rating,
+            'comment' => $transaction->comment
+        ]);
+
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Payment cancelled.');
 	}
 
 
