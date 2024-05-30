@@ -26,4 +26,9 @@ class Kapster extends Model
     {
         return $this->belongsTo(Place::class);
     }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }

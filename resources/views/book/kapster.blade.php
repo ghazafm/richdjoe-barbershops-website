@@ -112,7 +112,6 @@
                 <button class="btn btn-outline-secondary text-white" onclick="goBack()">⬅️ Back</button>
             </div>
             <div class="text-right ml-auto mr-3">
-                <a href="" class="d-block text-white">My Booking</a>
                 <a href="{{ route('profile.edit') }}" class="text-white">{{ Auth::user()->name }}, </a>
                 <span id="current-time" class="text-muted"></span>
             </div>
