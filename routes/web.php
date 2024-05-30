@@ -80,6 +80,7 @@ Route::get('/admin/history/search', [TransactionLogController::class, 'index'])-
 Route::get('/admin/payment', [AdminPaymentController::class, 'payment'])->middleware(['auth', 'admin']);
 Route::get('/admin/payment/{id}', [AdminPaymentController::class, 'detail'])->middleware(['auth', 'admin']);
 Route::get('/admin/payment/payment/search', [AdminPaymentController::class, 'search_payment'])->middleware(['auth', 'admin']);
+Route::post('/admin/payment/decline/{id}', [AdminPaymentController::class, 'decline_payment'])->middleware(['auth', 'admin']);
 Route::post('/admin/payment/verify/{id}', [AdminPaymentController::class, 'verify_payment'])->middleware(['auth', 'admin']);
 
 Route::get('/admin/user', [AdminUserController::class, 'index'])->middleware(['auth', 'admin']);
