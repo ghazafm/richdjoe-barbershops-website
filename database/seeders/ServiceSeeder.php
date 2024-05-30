@@ -13,17 +13,15 @@ class ServiceSeeder extends Seeder
     public function run(): void
     {
         $services = [
-            ['name' => 'Basic Haircut', 'description' => 'A simple and clean haircut.', 'type' => 'haircut', 'price' => 90000],
-            ['name' => 'Deluxe Haircut', 'description' => 'A stylish haircut with shampoo and blow-dry.', 'type' => 'haircut', 'price' => 100000],
-            ['name' => 'Kids Haircut', 'description' => 'Specialized haircut for children under 12.', 'type' => 'haircut', 'price' => 85000],
-            ['name' => 'Premium Haircut', 'description' => 'Specialized haircut for premium service.', 'type' => 'haircut', 'price' => 139000],
-            ['name' => 'Beard Trim', 'description' => 'Beard trimming and shaping.', 'type' => 'other', 'price' => 10000],
-            ['name' => 'Full Shave', 'description' => 'Complete shave with hot towel treatment.', 'type' => 'other', 'price' => 20000],
-            ['name' => 'Hair Coloring', 'description' => 'Professional hair coloring services.', 'type' => 'other', 'price' => 50000],
-            ['name' => 'Hair Highlights', 'description' => 'Add highlights to your hair.', 'type' => 'other', 'price' => 40000],
-            ['name' => 'Scalp Massage', 'description' => 'Relaxing scalp massage.', 'type' => 'other', 'price' => 15000],
-            ['name' => 'Hair Treatment', 'description' => 'Specialized treatment for hair health.', 'type' => 'other', 'price' => 30000],
-            ['name' => 'Shampoo and Blow-Dry', 'description' => 'Shampooing and blow-drying services.', 'type' => 'other', 'price' => 20000],
+            ['name' => 'ROYALE LUXE CUT', 'description' => 'A simple and clean haircut.', 'type' => 'haircut', 'price' => 139000],
+            ['name' => 'ROYALE LUXE CUT + BACK MASSAGE', 'description' => 'A stylish haircut with shampoo and blow-dry.', 'type' => 'haircut', 'price' => 169000],
+            ['name' => 'ROYALE LUXE CUT + ADD MASSAGE TIME (HEAD/FACE)', 'description' => 'Specialized haircut for children under 12.', 'type' => 'haircut', 'price' => 154000],
+            ['name' => 'ROYALE LUXE CUT + BACK MASSAGE + ADD MASSAGE TIME (HEAD/FACE)', 'description' => 'Add highlights to your hair.', 'type' => 'haircut', 'price' => 184000],
+            ['name' => 'ROYALE HAIRCUT', 'description' => 'Specialized haircut for premium service.', 'type' => 'haircut', 'price' => 85000],
+            ['name' => 'TREATMENT', 'description' => 'Beard trimming and shaping.', 'type' => 'other', 'price' => 165000],
+            ['name' => 'BLEACHING', 'description' => 'Complete shave with hot towel treatment.', 'type' => 'other', 'price' => 85000],
+            ['name' => 'TONING', 'description' => 'Professional hair coloring services.', 'type' => 'other', 'price' => 150000],
+            ['name' => 'FASHION COLOR', 'description' => 'Relaxing scalp massage.', 'type' => 'other', 'price' => 15000],
         ];
 
         foreach ($services as $service) {
