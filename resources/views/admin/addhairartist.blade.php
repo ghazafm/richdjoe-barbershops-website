@@ -53,10 +53,12 @@
                             <div class="mb-3">
                                 <label for="place" class="form-label">Place: </label>
                                 <select id="place" name="place" class="form-control" required>
-                                    <option value="Ijen">Ijen</option>
-                                    <option value="Sigura-gura">Sigura-gura</option>
-                                    <option value="Soekarno Hatta">Soekarno Hatta</option>
+                                    @foreach ($places as $place)
+                                        <option value="{{ $place->name }}">{{ $place->name }}</option>
+                                    @endforeach
                                 </select>
+                                
+                                
                             </div>
                             <div class="mb-3">
                                 <label for="schedule" class="form-label">Schedule: </label>

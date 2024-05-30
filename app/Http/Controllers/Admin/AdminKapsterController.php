@@ -43,9 +43,10 @@ class AdminKapsterController extends Controller
     {
         // Retrieve the kapster by ID
         $kapster = Kapster::find($id);
+        $places = Place::all();
 
         // Pass the data to the view
-        return view('admin.edithairartist', ['kapster' => $kapster]);
+        return view('admin.edithairartist', ['kapster' => $kapster],['places'=>$places]);
     }
 
     public function editsave(Request $req)

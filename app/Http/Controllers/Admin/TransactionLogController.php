@@ -43,11 +43,12 @@ class TransactionLogController extends Controller
     {
         $search = $req->search;
 
-        // Search transactions using Eloquent
-        $logs = Transaction::where('service_status', 'wait')
-            ->where('id', 'LIKE', '%' . $search . '%')
+        // Search transaction logs using Eloquent
+        $logs = TransactionLog::where('service_status', 'wait')
+            ->orwhere('id', 'LIKE', '%' . $search . '%')
             ->orWhere('user_id', 'like', '%' . $search . '%')
             ->orWhere('user_name', 'like', '%' . $search . '%')
+            ->orWhere('user_email', 'like', '%' . $search . '%')
             ->orWhere('kapster_id', 'like', '%' . $search . '%')
             ->orWhere('kapster_name', 'like', '%' . $search . '%')
             ->orWhere('service_id', 'like', '%' . $search . '%')
@@ -60,10 +61,10 @@ class TransactionLogController extends Controller
             ->orWhere('comment', 'like', '%' . $search . '%')
             ->orWhere('created_at', 'like', '%' . $search . '%')
             ->orWhere('updated_at', 'like', '%' . $search . '%')
-            ->paginate();
+            ->get();
 
         // Return view with search results
-        return view('admin.book', ['logs' => $logs, 'logsCount' => $logs->total()]);
+        return view('admin.history', ['logs' => $logs, 'logsCount' => $logs->count()]);
     }
     // Helper========================================================================
     public function update(Request $request, $id)
