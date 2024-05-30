@@ -50,7 +50,11 @@
                             </div>
                             <div class="mb-3">
                                 <label for="usertype" class="form-label">Usertype:</label>
-                                <input type="text" id="usertype" name="usertype" class="form-control" required>
+                                <select id="place" name="place" class="form-control" required>
+                                @foreach ($usertype as $type)
+                                <option value="{{ $type }}">{{ $type }}</option>
+                            @endforeach             
+                                </select>               
                             </div>
                             <div class="mb-3">
                                 <label for="phone" class="form-label">Phone:</label>

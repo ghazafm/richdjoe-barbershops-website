@@ -23,7 +23,8 @@ class AdminUserController extends Controller
 
     public function add()
     {
-        return view('admin.adduser');
+        $usertype = User::distinct()->pluck('usertype');
+        return view('admin.adduser',['usertype' => $usertype]);
     }
 
     public function addsave(Request $req)
@@ -46,9 +47,11 @@ class AdminUserController extends Controller
     {
         // Retrieve the user by ID
         $user = User::find($id);
+        $usertype = User::distinct()->pluck('usertype');
+
 
         // Pass the data to the view
-        return view('admin.edituser', ['user' => $user]);
+        return view('admin.edituser', ['user' => $user],['usertype' => $usertype]);
     }
 
     public function editsave(Request $req)
