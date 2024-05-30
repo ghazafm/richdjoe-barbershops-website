@@ -179,4 +179,63 @@ class UserBookController extends Controller
 		$transactions = Transaction::where('user_id', $user->id)->get();
 		return view('book.my_book', ['transactions' => $transactions]);
 	}
+
+	public function setRatingComment($transactionId, $rating)
+	{
+		Transaction::where('id', $transactionId)->update([
+            'rating' => $rating,
+        ]);
+
+        // Redirect to the kapster page
+        return redirect('/mybook');
+	}
+
+	public function getRatingComment($kapsterId){
+
+		$rating = $this->getRating($kapsterId);
+		$comment = $this->getComment($kapsterId);
+
+		return view('book.profil_kapster', ['kapster_id' => $kapsterId, 'rating' => $rating, 'comment' => $comment]);
+	}
+
+	public function getRating($kapsterId)
+	{
+		// Retrieve the kapster by ID
+		$kapster = Kapster::with('transactions')->find($kapsterId);
+
+		if (!$kapster) {
+			return response()->json(['error' => 'Kapster not found'], 404);
+		}
+
+		// Filter out transactions with null ratings
+		$ratedTransactions = $kapster->transactions->whereNotNull('rating');
+
+		if ($ratedTransactions->isEmpty()) {
+			return response()->json(['kapster_id' => $kapsterId, 'average_rating' => null]);
+		}
+
+		// Calculate the average rating
+		$averageRating = $ratedTransactions->avg('rating');
+
+		// Return the average rating for the kapster
+		return $averageRating;
+	}
+
+	public function getComment($kapsterId){
+		// Retrieve the kapster by ID
+		$kapster = Kapster::with('transactions')->find($kapsterId);
+
+		if (!$kapster) {
+			return response()->json(['error' => 'Kapster not found'], 404);
+		}
+
+		// Filter out transactions with null ratings
+		$comments = $kapster->transactions->whereNotNull('comment');
+
+		if ($comments->isEmpty()) {
+			return response()->json(['kapster_id' => $kapsterId, 'average_rating' => null]);
+		}
+
+		return $comments;
+	}
 }
