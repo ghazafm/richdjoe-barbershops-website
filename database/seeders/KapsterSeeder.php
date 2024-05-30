@@ -30,19 +30,19 @@ class KapsterSeeder extends Seeder
     public function run(): void
     {
         $kapsters = [
-            ['name' => 'Poneri', 'place_id' => '3', 'schedule' => '09.00-15.00'],
-            ['name' => 'Anang', 'place_id' => '3', 'schedule' => '09.00-15.00'],
-            ['name' => 'Brian', 'place_id' => '3', 'schedule' => '09.00-15.00'],
-            ['name' => 'Jodi', 'place_id' => '3', 'schedule' => '15.00-21.00'],
-            ['name' => 'Dhea', 'place_id' => '3', 'schedule' => '15.00-21.00'],
-            ['name' => 'Bahrul', 'place_id' => '3', 'schedule' => '15.00-21.00'],
+            ['name' => 'Poneri', 'place_id' => '3', 'schedule' => '09.00-21.00'],
+            ['name' => 'Anang', 'place_id' => '3', 'schedule' => '09.00-21.00'],
+            ['name' => 'Brian', 'place_id' => '3', 'schedule' => '09.00-21.00'],
+            ['name' => 'Jodi', 'place_id' => '3', 'schedule' => '09.00-21.00'],
+            ['name' => 'Dhea', 'place_id' => '3', 'schedule' => '09.00-21.00'],
+            ['name' => 'Bahrul', 'place_id' => '3', 'schedule' => '09.00-21.00'],
             ['name' => 'Erick', 'place_id' => '2', 'schedule' => '09.00-21.00'],
             ['name' => 'Tom', 'place_id' => '2', 'schedule' => '09.00-21.00'],
             ['name' => 'Bimo', 'place_id' => '2', 'schedule' => '09.00-21.00'],
-            ['name' => 'Khoir', 'place_id' => '1', 'schedule' => '09.00-15.00'],
-            ['name' => 'Marcel', 'place_id' => '1', 'schedule' => '09.00-15.00'],
-            ['name' => 'Alfa', 'place_id' => '1', 'schedule' => '15,00-21.00'],
-            ['name' => 'Bimo', 'place_id' => '1', 'schedule' => '15,00-21.00'],
+            ['name' => 'Khoir', 'place_id' => '1', 'schedule' => '09.00-21.00'],
+            ['name' => 'Marcel', 'place_id' => '1', 'schedule' => '09.00-21.00'],
+            ['name' => 'Alfa', 'place_id' => '1', 'schedule' => '09.00-21.00'],
+            ['name' => 'Bimo', 'place_id' => '1', 'schedule' => '09.00-21.00'],
         ];
 
         foreach ($kapsters as $kapster) {
