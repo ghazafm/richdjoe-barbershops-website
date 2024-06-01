@@ -17,6 +17,7 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             color: white;
+            overflow-x: hidden;
         }
 
         .navbar {
@@ -38,11 +39,27 @@
             color: #fff;
         }
 
+        @media (max-width: 992px) {
+            .navbar-center {
+                justify-content: flex-start;
+            }
+
+            .navbar-right {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .btn-sign {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }
+
         .main-content {
             margin-bottom: 100px;
-            padding-left: 150px;
             min-height: 80vh;
             display: flex;
+            padding-left: 100px;
         }
 
         .main-content h1 {
@@ -95,11 +112,11 @@
 
         .navbar-right {
             display: flex;
+            align-items: center;
         }
 
         .btn-sign {
             background-color: rgb(254, 174, 111);
-            ;
             color: #fff;
             border: none;
             margin-left: 10px;
@@ -120,7 +137,13 @@
 
         .card img {
             object-fit: cover;
-            max-width: 100%;
+            width: 100%;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .btn-buy {
@@ -155,30 +178,29 @@
             height: 50px;
         }
 
-
         .services,
         .capster,
         .about-us,
         .produk,
         .contact-us {
             background-color: rgba(0, 19, 33, 255);
-            padding-inline: 200px;
+            padding-inline: 50px;
             padding-top: 50px;
             padding-bottom: 200px;
         }
 
-        .capster{
+        .capster {
             background-color: rgba(10, 19, 38, 255);
         }
 
-        .about-us{
+        .about-us {
             background-color: rgba(10, 19, 38, 255);
         }
 
         .footer-main {
             background-color: rgba(34, 40, 49, 1);
             color: #fff;
-            padding: 50px 0 150px;
+            padding: 50px 100px 150px;
         }
 
         .footer-main h2 {
@@ -233,11 +255,15 @@
         .navbar-right .dropdown-menu a {
             white-space: nowrap;
         }
+
+        .container{
+            max-width: 100%;
+        }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-darker">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
         <a class="navbar-brand" href="/">
             <img src="{{ asset('images/home/logo.png') }}" alt="Logo" class="logo">
         </a>
@@ -245,42 +271,39 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <div class="navbar-center">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/book">Book</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#capster">Hair Artist</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#produk">Product</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about-us">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact-us">Contact Us</a>
-                    </li>
-
-                </ul>
-            </div>
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/book">Book</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#services">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#capster">Hair Artist</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#produk">Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#about-us">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#contact-us">Contact Us</a>
+                </li>
+            </ul>
             <div class="navbar-right">
                 @if (Route::has('login'))
                 @auth
                 <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                         {{ Auth::user()->name }}
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
-                        <li><a class="dropdown-item"href="/mybook">My Booking</a></li>
+                        <li><a class="dropdown-item" href="/mybook">My Booking</a></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -301,7 +324,7 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="main-content">
+    <div class="container main-content">
         <div class="row align-items-center">
             <div class="col-md-6">
                 <h1>RICDHJOE BARBERSHOP</h1>
@@ -312,7 +335,7 @@
         </div>
     </div>
 
-    <main class="services" id="services">
+    <main class="container services" id="services">
         <h1 class="text-center mb-2">SERVICES</h1>
         <p class="text-center mb-4">Richdjoe Provides Several Services</p>
         <div class="row justify-content-center text-center text-light">
@@ -359,7 +382,7 @@
         </div>
     </main>
 
-    <main class="capster" id="capster">
+    <main class="container capster" id="capster">
         <h1 class="text-center mb-2">HAIR ARTIST</h1>
         <p class="text-center mb-4">Richdjoe Has Several Hair Artists</p>
         {{-- saran ku di for loop sejumlah kapster pake php jadi jangan pure html --}}
@@ -490,8 +513,7 @@
         </div>
     </main>
 
-
-    <main class="produk" id="produk">
+    <main class="container produk" id="produk">
         <h1 class="text-center mb-2">OUR PRODUCTS</h1>
         <p class="text-center mb-4">Richdjoe Provides Several Products</p>
         <div class="row justify-content-center text-center text-light ">
@@ -537,7 +559,7 @@
         </div>
     </main>
 
-    <div class="about-us" id="about-us">
+    <div class="container about-us" id="about-us">
         <div class="row align-items-center">
             <div class="history col-md-6">
                 <h1>OUR HISTORY</h1>
@@ -552,7 +574,7 @@
         </div>
     </div>
 
-    <main class="contact-us" id="contact-us">
+    <main class="container contact-us" id="contact-us">
         <h1 class="text-center mb-4">CONTACT US</h1>
         <form method="post" action="/send-message">
             <div class="form-group">
