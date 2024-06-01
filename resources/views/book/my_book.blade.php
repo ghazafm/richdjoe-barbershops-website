@@ -123,6 +123,17 @@
             color: white;
         }
 
+        .btn-review {
+            background-color: #dc830f;
+            color: white;
+            width: 135px;
+        }
+
+        .btn-review:hover {
+            background-color: rgb(201, 104, 30);
+            color: white;
+        }
+
         .mybook {
             padding-bottom: 250px;
         }
@@ -139,7 +150,6 @@
                 <button class="btn btn-outline-secondary text-white" onclick="goBack()">⬅️ Back</button>
             </div>
             <div class="text-right ml-auto mr-3">
-                <a href="" class="d-block text-white">My Booking</a>
                 <a href="{{ route('profile.edit') }}" class="text-white">{{ Auth::user()->name }}, </a>
                 <span id="current-time" class="text-muted"></span>
             </div>
@@ -192,9 +202,12 @@
                         </form>
                     </div>
                 </div>
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-around">
                     <a href="/transaction/detail/{{ $transaction->id }}">
                         <button class="btn btn-detail btn-custom">Show Detail</button>
+                    </a>
+                    <a href="/">
+                        <button class="btn btn-review btn-custom">Review</button>
                     </a>
                 </div>
             </div>

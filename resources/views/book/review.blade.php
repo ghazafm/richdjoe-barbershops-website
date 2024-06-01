@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Richdjoe Barbershops</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <style>
         body {
             background-color: rgba(0, 19, 33, 255);
@@ -19,7 +20,6 @@
             background-color: rgb(246, 220, 172);
             position: relative;
             color: black;
-            margin-bottom: 20px;
         }
 
         .card img {
@@ -54,17 +54,6 @@
             height: 65px;
         }
 
-        .btn-sign {
-            background-color: rgb(254, 174, 111);
-            color: #fff;
-            border: none;
-            margin-left: 10px;
-        }
-
-        .btn-sign:hover {
-            background-color: rgb(246, 220, 172);
-        }
-
         .form-inline .form-group {
             margin-bottom: 1rem;
         }
@@ -94,23 +83,82 @@
             margin: 5px;
         }
 
-        .btn-confirm {
-            background-color: #007bff;
-            color: white;
+        .btn-sign {
+            background-color: rgb(254, 174, 111);
+            color: #fff;
+            border: none;
+            margin-left: 10px;
+        }
+
+        .btn-sign:hover {
+            background-color: rgb(246, 220, 172);
+        }
+
+        .btn-custom {
             border-radius: 15px;
             border: none;
             padding: 10px 20px;
             cursor: pointer;
-            margin-bottom: 100px;
+            margin: 10px 5px;
+            width: 210px;
+            margin-bottom: 1px;
         }
 
-        .btn-confirm:hover {
-            background-color: #0056b3;
+        .btn-review {
+            background-color: #dc830f;
             color: white;
         }
 
-        .konfirmasi {
+        .btn-review:hover {
+            background-color: rgb(201, 104, 30);
+            color: white;
+        }
+
+        .btn-cancel {
+            background-color: #b61d1d;
+            color: white;
+        }
+
+        .btn-cancel:hover {
+            background-color: darkred;
+            color: white;
+        }
+
+        .review {
             padding-bottom: 100px;
+        }
+
+        .review-section {
+            margin-top: 20px;
+        }
+
+        .review-section h2 {
+            font-weight: bold;
+        }
+
+        .stars i {
+            color: #e6e6e6;
+            font-size: 35px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .stars i.active {
+            color: #ff9c1a;
+        }
+
+        .review-textarea {
+            width: 100%;
+            height: 100px;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .review-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -125,6 +173,7 @@
                 <button class="btn btn-outline-secondary text-white" onclick="goBack()">⬅️ Back</button>
             </div>
             <div class="text-right ml-auto mr-3">
+                <a href="/mybook" class="d-block text-white">My Booking</a>
                 <a href="{{ route('profile.edit') }}" class="text-white">{{ Auth::user()->name }}, </a>
                 <span id="current-time" class="text-muted"></span>
             </div>
@@ -136,76 +185,76 @@
             </form>
         </div>
     </header>
-    <div class="container konfirmasi">
-        <h1 class="text-center">Booking Confirmation</h1>
+    <div class="container review">
+        <h1 class="text-center">Review Booking</h1>
         <div class="row justify-content-center mt-4">
             <div class="col-md-5">
                 <div class="card">
                     <div class="card-body">
-                        <form class="form-inline">
-                            <div class="form-group w-100 bg-transparent">
-                                <label for="name">Name</label>
-                                <span>:</span>
-                                <p>{{ $user->name }}</p>
-                            </div>
-                            <div class="form-group w-100">
-                                <label for="email">Email</label>
-                                <span>:</span>
-                                <p>{{ $user->email }}</p>
-                            </div>
-                            <div class="form-group w-100">
-                                <label for="phone">No Hp</label>
-                                <span>:</span>
-                                <p>{{ $user->phone }}</p>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-5">
-                <div class="card">
-                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-3 border-bottom border-dark font-weight-bold">
+                            <span>Proof of Booking</span>
+                            <span>@ {{ $transaction->kapster->place->name }}</span>
+                        </div>
                         <form class="form-inline">
                             <div class="form-group w-100">
-                                <label for="tanggal">Date</label>
+                                <label for="date">Date</label>
                                 <span>:</span>
-                                <p>{{ $schedule->format('Y-m-d') }}</p>
+                                <p>{{ $transaction->schedule->format('Y-m-d') }}</p>
                             </div>
                             <div class="form-group w-100">
-                                <label for="jam">Time</label>
+                                <label for="time">Time</label>
                                 <span>:</span>
-                                <p>{{ $schedule->format('H:i') }}</p>
+                                <p>{{ $transaction->schedule->format('H:i') }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="service">Service</label>
                                 <span>:</span>
-                                <p>{{ $service->name }}</p>
+                                <p>{{ $transaction->service->name }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="artist">Hair Artist</label>
                                 <span>:</span>
-                                <p>{{ $kapster->name }}</p>
+                                <p>{{ $transaction->kapster->name }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="price">Price</label>
                                 <span>:</span>
-                                <p>{{ $service->price }}</p>
+                                <p>{{ $transaction->total_price }}</p>
                             </div>
                             <div class="form-group w-100">
-                                <label for="store">Store</label>
+                                <label for="code">Code</label>
                                 <span>:</span>
-                                <p>{{ $kapster->place->name }}</p>
+                                <p>{{ $transaction->id }}</p>
+                            </div>
+                            <div class="form-group w-100">
+                                <label for="status">Status</label>
+                                <span>:</span>
+                                <p>{{ $transaction->service_status }}</p>
                             </div>
                         </form>
                     </div>
                 </div>
-                <a href="/book/service/kapster/schedule/confirmation/{{ $kapster->place }}/{{ $service->id }}/{{ $kapster->id }}/{{ $schedule }}">
-                    <button class="btn btn-confirm">Confirm Booking</button>
-                </a>
+            </div>
+            <div class="col-8 mb-5">
+                <div class="review-section card mt-4">
+                    <div class="card-body text-center">
+                        <div class="stars">
+                            <i class="fa-solid fa-star" data-star="1"></i>
+                            <i class="fa-solid fa-star" data-star="2"></i>
+                            <i class="fa-solid fa-star" data-star="3"></i>
+                            <i class="fa-solid fa-star" data-star="4"></i>
+                            <i class="fa-solid fa-star" data-star="5"></i>
+                        </div>
+                        <textarea class="review-textarea" placeholder="Write your review here..."></textarea>
+                        <div class="review-buttons">
+                            <button class="btn-review btn-custom">Submit</button>
+                            <button class="btn-cancel btn-custom">Cancel</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
     <footer class="footer-socials">
         <div class="container">
             <div class="row">
@@ -224,6 +273,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function updateTime() {
             const currentTimeElement = document.getElementById('current-time');
@@ -248,7 +300,56 @@
         function goBack() {
             window.history.back();
         }
+
+        const stars = document.querySelectorAll(".stars i");
+        stars.forEach((star, index1) => {
+            star.addEventListener("click", () => {
+                stars.forEach((star, index2) => {
+                    index1 >= index2 ? star.classList.add("active") : star.classList.remove("active");
+                })
+            });
+        });
+
+        $('.btn-review').click(function() {
+            // Mendapatkan nilai rating bintang
+            var rating = $('.stars i.active').length;
+
+            // Mendapatkan teks ulasan
+            var reviewText = $('#review-textarea').val();
+
+            // Kirim data ke server menggunakan Ajax
+            $.ajax({
+                type: 'POST',
+                url: '/submit-review',
+                data: {
+                    rating: rating,
+                    reviewText: reviewText
+                },
+                success: function(response) {
+
+                    Swal.fire({
+                        title: 'Thank you for your review!',
+                        text: 'Your feedback is highly appreciated.',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "/";
+                        }
+                    });
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'An error occurred while submitting your review. Please try again later.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            });
+        });
     </script>
+
 </body>
 
 </html>

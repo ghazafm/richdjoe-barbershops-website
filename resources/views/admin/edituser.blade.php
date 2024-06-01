@@ -54,6 +54,18 @@
                                 <textarea name="email" id="email" class="form-control" required>{{ $user->email }}</textarea>
                             </div>
                             <div class="mb-3">
+                                <label for="usertype" class="form-label">Usertype:</label>
+                                <select id="usertype" name="usertype" class="form-control" required>
+                                    @foreach ($usertype as $type)
+                                        <option value="{{ $type }}" {{ $type == $user->usertype ? 'selected' : '' }}>
+                                            {{ $type }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            
+                            
+                            <div class="mb-3">
                                 <label for="phone" class="form-label">Phone:</label>
                                 <input type="text" id="phone" name="phone" value="{{ $user->phone }}" class="form-control" required>
                             </div>

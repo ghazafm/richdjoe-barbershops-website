@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Richdjoe Barbershops</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="tes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <style>
         body {
             background-color: rgba(0, 19, 33, 255);
@@ -84,6 +84,83 @@
         .btn-sign:hover {
             background-color: rgb(246, 220, 172);
         }
+
+        .rating-section {
+            background-color: rgb(246, 220, 172);
+            color: black;
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .rating-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .rating-header h4 {
+            margin: 0;
+        }
+
+        .stars i {
+            color: #e6e6e6;
+            font-size: 35px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .stars span {
+            font-size: 2rem;
+            color: rgb(0, 0, 0);
+            margin-right: 5px;
+        }
+
+        .reviews-section {
+            text-align: left;
+            background-color: rgb(255, 250, 230);
+            padding: 15px;
+            border-radius: 10px;
+            color: black;
+        }
+
+        .review {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .review:last-child {
+            border-bottom: none;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .review-header span {
+            font-weight: bold;
+        }
+
+        .review p {
+            margin: 5px 0 0;
+        }
+
+        .review-stars {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 5px;
+        }
+
+        .review-stars span {
+            font-size: 1rem;
+            color: rgb(0, 0, 0);
+            margin-right: 2px;
+        }
     </style>
 </head>
 
@@ -97,7 +174,6 @@
                 <button class="btn btn-outline-secondary text-white" onclick="goBack()">⬅️ Back</button>
             </div>
             <div class="text-right ml-auto mr-3">
-                <a href="" class="d-block text-white">My Booking</a>
                 <a href="{{ route('profile.edit') }}" class="text-white">{{ Auth::user()->name }}, </a>
                 <span id="current-time" class="text-muted"></span>
             </div>
@@ -120,6 +196,44 @@
                         <a href="/book/service/kapster/schedule/{{ $place }}/{{ $service }}/{{ $kapsters->id }}">
                             <button class="btn-pilih">SELECT</button>
                         </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mb-4">
+                <div class="card rating-section">
+                    <div class="card-body">
+                        <div class="rating-header">
+                            <h4>Service by {{ $kapsters->name }}</h4>
+                            <div class="stars">
+                                <i class="fa-solid fa-star" data-star="1"></i>
+                                <i class="fa-solid fa-star" data-star="2"></i>
+                                <i class="fa-solid fa-star" data-star="3"></i>
+                                <i class="fa-solid fa-star" data-star="4"></i>
+                                <i class="fa-solid fa-star" data-star="5"></i>
+                                <span>5.0</span>
+                            </div>
+                        </div>
+                        <h2>Reviews</h2>
+                        <div class="reviews-section">
+                            @foreach ($comments as comment)
+                            <div class="review">
+                                <div class="review-header">
+                                    <span>William Chandra</span>
+                                </div>
+                                <div class="review-stars">
+                                    <div class="stars-review">
+                                        <i class="fa-solid fa-star" data-star="1"></i>
+                                        <i class="fa-solid fa-star" data-star="2"></i>
+                                        <i class="fa-solid fa-star" data-star="3"></i>
+                                        <i class="fa-solid fa-star" data-star="4"></i>
+                                        <i class="fa-solid fa-star" data-star="5"></i>
+                                    </div>
+                                    <span>May 29, 2024</span>
+                                </div>
+                                <p>Good</p>
+                            </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
