@@ -8,19 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="{{asset('/admincss/vendor/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('/admincss/vendor/bootstrap/css/bootstrap.min.css') }}">
     <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="{{asset('/admincss/vendor/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('/admincss/vendor/font-awesome/css/font-awesome.min.css') }}">
     <!-- Custom Font Icons CSS-->
-    <link rel="stylesheet" href="{{asset('/admincss/css/font.css')}}">
+    <link rel="stylesheet" href="{{ asset('/admincss/css/font.css') }}">
     <!-- Google fonts - Muli-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,700">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" href="{{asset('/admincss/css/style.default.css')}}" id="theme-stylesheet">
+    <link rel="stylesheet" href="{{ asset('/admincss/css/style.default.css') }}" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="{{asset('/admincss/css/custom.css')}}">
+    <link rel="stylesheet" href="{{ asset('/admincss/css/custom.css') }}">
     <!-- Favicon-->
-    <link rel="shortcut icon" href="{{asset('/admincss/img/favicon.ico')}}">
+    <link rel="shortcut icon" href="{{ asset('/admincss/img/favicon.ico') }}">
     <!-- Tweaks for older IEs-->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -40,16 +40,17 @@
                     </div>
                     <div class="card-body">
                         <a href="{{ url('/admin/hairartist') }}" class="btn btn-secondary mb-3">Back</a>
-                        <form action="{{ url('/admin/hairartist/addsave') }}" method="post">
+                        <form action="{{ url('/admin/hairartist/addsave') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label for="name" class="form-label">Hair Artist Name: </label>
                                 <input type="text" id="name" name="name" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label for="photo" class="form-label">Photo: </label>
-                                <input type="text" id="photo" name="photo" class="form-control" required>
+                                <label for="photo" class="form-label">Photo: (1:1) </label>
+                                <input type="file" id="photo" name="photo" class="form-control" accept="image/*" required>
                             </div>
+                            
                             <div class="mb-3">
                                 <label for="place" class="form-label">Place: </label>
                                 <select id="place" name="place" class="form-control" required>
@@ -57,8 +58,6 @@
                                         <option value="{{ $place->name }}">{{ $place->name }}</option>
                                     @endforeach
                                 </select>
-                                
-                                
                             </div>
                             <div class="mb-3">
                                 <label for="schedule" class="form-label">Schedule: </label>
@@ -72,5 +71,4 @@
         </div>
     </div>
 </body>
-
 </html>

@@ -9,15 +9,26 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
+        word-wrap: break-word;
     }
-    .table-bordered thead th {
-            border-top: 1px solid #dee2e6;
-            border-left: 1px solid #dee2e6;
-            border-right: 1px solid #dee2e6;
-        }
-        
 
-    
+    .table {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    .table th,
+    .table td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+    }
+
+    .table-bordered thead th {
+        border-top: 1px solid #dee2e6;
+        border-left: 1px solid #dee2e6;
+        border-right: 1px solid #dee2e6;
+    }
 </style>
         
 </head>

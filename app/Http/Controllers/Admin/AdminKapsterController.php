@@ -22,22 +22,40 @@ class AdminKapsterController extends Controller
     public function add()
     {
         $places = Place::all();
-        return view('admin.addhairartist',['places'=>$places]);
+        return view('admin.addhairartist', ['places' => $places]);
     }
 
     public function addsave(Request $req)
-    {
-        // Create a new kapster
-        Kapster::create([
-            'name' => $req->name,
-            'photo' => $req->photo,
-            'place' => $req->place,
-            'schedule' => $req->schedule,
-        ]);
+{
+    // Find the place by name
+    $place = Place::where('name', $req->place)->first();
 
-        // Redirect to the kapster page
-        return redirect('/admin/hairartist');
+    // Check if place exists
+    if (!$place) {
+        // Handle case where place does not exist
+        // You might want to throw an error or redirect with a message
+        return redirect('/admin/hairartist')->with('error', 'Place not found.');
     }
+
+    // Create a new kapster
+    $kapster = Kapster::create([
+        'name' => $req->name,
+        'place_id' => $place->id, // Assuming 'place_id' is the foreign key in Kapster table
+        'schedule' => $req->schedule,
+    ]);
+
+    // Handle file upload
+    if ($req->hasFile('photo')) {
+        $photo = $req->file('photo');
+        $fileName = $kapster->id . '.jpg';
+        $photo->move(public_path('images/kapster/'), $fileName);
+    }
+
+    // Redirect to the kapster page
+    return redirect('/admin/hairartist');
+}
+
+    
 
     public function edit($id)
     {
@@ -46,16 +64,14 @@ class AdminKapsterController extends Controller
         $places = Place::all();
 
         // Pass the data to the view
-        return view('admin.edithairartist', ['kapster' => $kapster],['places'=>$places]);
+        return view('admin.edithairartist', ['kapster' => $kapster], ['places' => $places]);
     }
 
     public function editsave(Request $req)
     {
         // Update the kapster
         Kapster::where('id', $req->id)->update([
-            // 'name' => $req->name,
-            'photo' => $req->photo,
-            'place' => $req->place,
+            'place_id' => $req->place,
             'schedule' => $req->schedule,
         ]);
 

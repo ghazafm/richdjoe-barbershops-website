@@ -54,6 +54,19 @@
                                 <textarea name="description" id="description" class="form-control" required>{{ $service->description }}</textarea>
                             </div>
                             <div class="mb-3">
+                                <label for="type" class="form-label">Type:</label>
+                                <select id="type" name="type" class="form-control" required>
+                                    @foreach ($types as $type)
+                                        <option value="{{ $type }}"
+                                            {{ $type == $service->type ? 'selected' : '' }}>
+                                            {{ $type }}
+                                        </option>
+                                    @endforeach
+                                </select>
+
+
+                            </div>
+                            <div class="mb-3">
                                 <label for="price" class="form-label">Price:</label>
                                 <input type="text" id="price" name="price" value="{{ number_format($service->price, 0, ',', '') }}" class="form-control" required>
                             </div>

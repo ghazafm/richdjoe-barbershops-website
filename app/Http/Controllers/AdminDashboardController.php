@@ -20,7 +20,7 @@ class AdminDashboardController extends Controller
         $userCount = $users->count();
         $services = Service::get();;
         $serviceCount = $services->count();
-        $transaction = Transaction::where('service_status', 'verified')
+        $transaction = TransactionLog::where('service_status', 'verified')
             ->where('payment_status', 'verified');
         $transactionCount = $transaction->count();
         $payment = Service::get();;
@@ -34,7 +34,7 @@ class AdminDashboardController extends Controller
 
     public function totalIncome()
     {
-        $totalIncome = Transaction::where('service_status', 'verified')
+        $totalIncome = TransactionLog::where('service_status', 'verified')
             ->where('payment_status', 'verified')
             ->sum('total_price');
 
@@ -46,7 +46,7 @@ class AdminDashboardController extends Controller
         $sixMonthsAgo = Carbon::now()->subMonths(6)->startOfMonth();
         $now = Carbon::now()->endOfMonth();
 
-        $monthlyIncome = Transaction::where('service_status', 'verified')
+        $monthlyIncome = TransactionLog::where('service_status', 'verified')
             ->where('payment_status', 'verified')
             ->whereBetween('schedule', [$sixMonthsAgo, $now])
             ->get()

@@ -38,7 +38,7 @@
                     </div>
                     <div class="card-body">
                         <a href="{{ url('/admin/service') }}" class="btn btn-secondary mb-3">Back</a>
-                        <form action="{{ url('/admin/service/addsave') }}" method="post">
+                        <form action="{{ url('/admin/service/addsave') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label for="name" class="form-label">Service Name:</label>
@@ -47,6 +47,18 @@
                             <div class="mb-3">
                                 <label for="description" class="form-label">Description:</label>
                                 <input type="text" id="description" name="description" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="photo" class="form-label">Photo: (1:1) </label>
+                                <input type="file" id="photo" name="photo" class="form-control" accept="image/*" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="type" class="form-label">Type: </label>
+                                <select id="type" name="type" class="form-control" required>
+                                    @foreach ($types as $type)
+                                        <option value="{{ $type }}">{{ $type }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="price" class="form-label">Price:</label>

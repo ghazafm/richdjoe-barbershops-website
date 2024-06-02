@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -72,8 +73,9 @@ class AdminUserController extends Controller
 
     public function delete($id)
     {
+        Transaction::where('user_id', $id)->delete();
         // Delete the user
-        User::where('id', $id)->delete();
+        User::where('id', $id)->forceDelete();
 
         // Redirect to the student page
         return redirect('/admin/user');
@@ -87,6 +89,8 @@ class AdminUserController extends Controller
         $users = User::where('name', 'like', '%' . $search . '%')
             ->orWhere('email', 'like', '%' . $search . '%')
             ->orwhere('id', 'like', '%' . $search . '%')
+            ->orwhere('phone', 'like', '%' . $search . '%')
+            ->orwhere('address', 'like', '%' . $search . '%')
             ->paginate();
 
         $userCount = $users->count();
