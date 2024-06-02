@@ -147,7 +147,9 @@
                 <a href="/">
                     <img src="{{ asset('images/home/logo.png') }}" alt="Logo" class="logo mb-2">
                 </a>
-                <button class="btn btn-outline-secondary text-white" onclick="goBack()">⬅️ Back</button>
+                <a href="/">
+                    <button class="btn btn-outline-secondary text-white">⬅️ Back</button>
+                </a>
             </div>
             <div class="text-right ml-auto mr-3">
                 <a href="{{ route('profile.edit') }}" class="text-white">{{ Auth::user()->name }}, </a>
@@ -164,55 +166,59 @@
     <div class="container mybook">
         <h1 class="text-center">My Bookings</h1>
         <div class="row justify-content-center mt-4">
-            @foreach($transactions as $transaction)
-            <div class="col-md-5 mb-5">
-                <div class="card">
-                    <div class="card-body">
-                        <form class="form-inline">
-                            <div class="form-group w-100">
-                                <label for="date">Date</label>
-                                <span>:</span>
-                                <p>{{ $transaction->schedule->format('Y-m-d') }}</p>
-                            </div>
-                            <div class="form-group w-100">
-                                <label for="time">Time</label>
-                                <span>:</span>
-                                <p>{{ $transaction->schedule->format('H:i') }}</p>
-                            </div>
-                            <div class="form-group w-100">
-                                <label for="service">Service</label>
-                                <span>:</span>
-                                <p>{{ $transaction->service->name }}</p>
-                            </div>
-                            <div class="form-group w-100">
-                                <label for="artist">Hair Artist</label>
-                                <span>:</span>
-                                <p>{{ $transaction->kapster->name }}</p>
-                            </div>
-                            <div class="form-group w-100">
-                                <label for="store">Store</label>
-                                <span>:</span>
-                                <p>{{ $transaction->kapster->place->name }}</p>
-                            </div>
-                            <div class="form-group w-100">
-                                <label for="code">Code</label>
-                                <span>:</span>
-                                <p>{{ $transaction->id }}</p>
-                            </div>
-                        </form>
+            @foreach ($transactions as $transaction)
+                <div class="col-md-5 mb-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <form class="form-inline">
+                                <div class="form-group w-100">
+                                    <label for="date">Date</label>
+                                    <span>:</span>
+                                    <p>{{ $transaction->schedule->format('Y-m-d') }}</p>
+                                </div>
+                                <div class="form-group w-100">
+                                    <label for="time">Time</label>
+                                    <span>:</span>
+                                    <p>{{ $transaction->schedule->format('H:i') }}</p>
+                                </div>
+                                <div class="form-group w-100">
+                                    <label for="service">Service</label>
+                                    <span>:</span>
+                                    <p>{{ $transaction->service->name }}</p>
+                                </div>
+                                <div class="form-group w-100">
+                                    <label for="artist">Hair Artist</label>
+                                    <span>:</span>
+                                    <p>{{ $transaction->kapster->name }}</p>
+                                </div>
+                                <div class="form-group w-100">
+                                    <label for="store">Store</label>
+                                    <span>:</span>
+                                    <p>{{ $transaction->kapster->place->name }}</p>
+                                </div>
+                                <div class="form-group w-100">
+                                    <label for="code">Code</label>
+                                    <span>:</span>
+                                    <p>{{ $transaction->id }}</p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-around">
+                        <a href="/transaction/detail/{{ $transaction->id }}">
+                            <button class="btn btn-detail btn-custom">Show Detail</button>
+                        </a>
+                        @if (
+                            $transaction->comment === null &&
+                                $transaction->rating === null &&
+                                $transaction->service_status === 'verified' &&
+                                $transaction->payment_status === 'verified')
+                            <a href="/mybook/review/{{ $transaction->id }}">
+                                <button class="btn btn-review btn-custom">Review</button>
+                            </a>
+                        @endif
                     </div>
                 </div>
-                <div class="d-flex justify-content-around">
-                    <a href="/transaction/detail/{{ $transaction->id }}">
-                        <button class="btn btn-detail btn-custom">Show Detail</button>
-                    </a>
-                    @if ($transaction->comment === null && $transaction->rating === null && $transaction->service_status === 'verified' && $transaction->payment_status === 'verified')
-                    <a href="/mybook/review/{{ $transaction->id }}">
-                        <button class="btn btn-review btn-custom">Review</button>
-                    </a>
-                    @endif
-                </div>
-            </div>
             @endforeach
         </div>
         <div class="d-flex justify-content-center mt-2">
@@ -229,9 +235,12 @@
                 <div class="col-12">
                     <h2>Our Socials</h2>
                     <div class="socials">
-                        <a href="https://www.instagram.com/richdjoebarbershops/" target="_blank"><img src="{{ asset('images/home/instagram.png') }}" alt="Instagram"></a>
-                        <a href="https://shorturl.at/Swdzg" target="_blank"><img src="{{ asset('images/home/wa.png') }}" alt="Whatsapp"></a>
-                        <a href="https://www.tiktok.com/@richdjoebarbershops?_t=8mfes20zxib&_r=1" target="_blank"><img src="{{ asset('images/home/tt.png') }}" alt="TikTok"></a>
+                        <a href="https://www.instagram.com/richdjoebarbershops/" target="_blank"><img
+                                src="{{ asset('images/home/instagram.png') }}" alt="Instagram"></a>
+                        <a href="https://shorturl.at/Swdzg" target="_blank"><img
+                                src="{{ asset('images/home/wa.png') }}" alt="Whatsapp"></a>
+                        <a href="https://www.tiktok.com/@richdjoebarbershops?_t=8mfes20zxib&_r=1" target="_blank"><img
+                                src="{{ asset('images/home/tt.png') }}" alt="TikTok"></a>
                     </div>
                 </div>
             </div>
@@ -261,10 +270,6 @@
 
         // Set initial time
         updateTime();
-
-        function goBack() {
-            window.history.back();
-        }
     </script>
 </body>
 
