@@ -40,9 +40,6 @@
         }
 
         @media (max-width: 992px) {
-            .navbar-center {
-                justify-content: flex-start;
-            }
 
             .navbar-right {
                 flex-direction: column;
@@ -58,8 +55,7 @@
         .main-content {
             margin-bottom: 100px;
             min-height: 80vh;
-            display: flex;
-            padding-left: 100px;
+            align-content: center;
         }
 
         .main-content h1 {
@@ -106,13 +102,6 @@
 
         .btn-book:hover {
             background-color: rgb(254, 174, 111);
-        }
-
-        .navbar-center {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            font-size: 18px;
         }
 
         .navbar-right {
