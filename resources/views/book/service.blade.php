@@ -113,7 +113,7 @@
         <div class="row justify-content-center text-center text-light">
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    <img src="{{ asset('images/services/haircut.jpg') }}" alt="haircut">
+                    <img src="{{ asset('images/services/1.jpg') }}" alt="haircut">
                     <div class="card-body d-flex flex-column">
                         <h4 class="card-title fw-bold">HAIRCUT</h4>
                         <h6 class="card-text">IDR 85.000 - 139.000</h6>
