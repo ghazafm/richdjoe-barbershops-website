@@ -74,7 +74,7 @@
                                 <td class="text-center">{{ $transaction->service->name }}</td>
                                 <td class="text-center">{{ $transaction->kapster->name }}</td>
                                 <td class="text-center">{{ $transaction->schedule }}</td>
-                                <td class="text-center">{{ $transaction->service->price }}</td>
+                                <td class="text-center">{{ number_format($transaction->total_price, 0, ',', '.') }}</td>
 
                                 <td class="text-center">
                                     <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#detailModal"
