@@ -4,13 +4,32 @@
 <head>
     @include('admin.css')
     <!-- Link to Font Awesome CSS -->
+
     <style>
-        /* Custom CSS to reduce the thickness of the top border in the table */
+        <style>.table thead th {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        .table {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        .table th,
+        .table td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
         .table-bordered thead th {
             border-top: 1px solid #dee2e6;
             border-left: 1px solid #dee2e6;
             border-right: 1px solid #dee2e6;
         }
+    </style>
+
     </style>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> <!-- Full version of jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -30,65 +49,65 @@
                 <br />
                 <p>Search Transaction:</p>
                 <form action="/admin/book/book/search" method="GET" class="form-inline mb-3">
-                <form action="/admin/book/book/search" method="GET" class="form-inline mb-3">
-                    <input type="text" name="search" class="form-control mr-2" placeholder="Search Transaction"
-                        value="{{ old('search') }}">
-                    <input type="submit" class="btn btn-primary" value="search">
-                </form>
-                <p>Filter:</p>
-                <form action="/admin/book/book/filter" method="GET" class="form-inline mb-3">
-                    <label for="date_from">Date From:</label>
-                    <input type="date" id="date_from" name="date_from" class="form-control mx-2"
-                        placeholder="yyyy-mm-dd">
+                    <form action="/admin/book/book/search" method="GET" class="form-inline mb-3">
+                        <input type="text" name="search" class="form-control mr-2" placeholder="Search Transaction"
+                            value="{{ old('search') }}">
+                        <input type="submit" class="btn btn-primary" value="search">
+                    </form>
+                    <p>Filter:</p>
+                    <form action="/admin/book/book/filter" method="GET" class="form-inline mb-3">
+                        <label for="date_from">Date From:</label>
+                        <input type="date" id="date_from" name="date_from" class="form-control mx-2"
+                            placeholder="yyyy-mm-dd">
 
-                    <label for="date_to">Date To:</label>
-                    <input type="date" id="date_to" name="date_to" class="form-control mx-2" placeholder="yyyy-mm-dd">
+                        <label for="date_to">Date To:</label>
+                        <input type="date" id="date_to" name="date_to" class="form-control mx-2"
+                            placeholder="yyyy-mm-dd">
 
-                    <label for="price_from">Price From:</label>
-                    <input type="number" id="price_from" name="price_from" class="form-control mx-2"
-                        placeholder="Price From" step="5000" min="0">
+                        <label for="price_from">Price From:</label>
+                        <input type="number" id="price_from" name="price_from" class="form-control mx-2"
+                            placeholder="Price From" step="5000" min="0">
 
-                    <label for="price_to">Price To:</label>
-                    <input type="number" id="price_to" name="price_to" class="form-control mx-2" placeholder="Price To"
-                        step="5000" min="0">
+                        <label for="price_to">Price To:</label>
+                        <input type="number" id="price_to" name="price_to" class="form-control mx-2"
+                            placeholder="Price To" step="5000" min="0">
 
-                    <input type="submit" class="btn btn-secondary" value="Filter">
-                </form>
-                
+                        <input type="submit" class="btn btn-secondary" value="Filter">
+                    </form>
 
-                <table id="transactionTable" class="table table-bordered table-striped">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th class="sortable text-center" data-column="id">ID</th>
-                            <th class="sortable text-center" data-column="username">Username</th>
-                            <th class="sortable text-center" data-column="service">Service</th>
-                            <th class="sortable text-center" data-column="hair_artist">Hair Artist</th>
-                            <th class="sortable text-center" data-column="schedule">Schedule</th>
-                            <th class="sortable text-center" data-column="total_price">Total Price</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($transaction as $trn)
+
+                    <table id="transactionTable" class="table table-bordered table-striped">
+                        <thead class="thead-dark">
                             <tr>
-                                <td class="text-center">{{ $trn->id }}</td>
-                                <td class="text-center">{{ $trn->user->name }}</td>
-                                <td class="text-center">{{ $trn->service->name }}</td>
-                                <td class="text-center">{{ $trn->kapster->name }}</td>
-                                <td class="text-center">{{ $trn->schedule }}</td>
-                                <td class="text-center">{{ number_format($trn->total_price, 0, ',', '.') }}</td>
-                                <td class="text-center">
-                                    <button class="btn btn-warning btn-sm detail-btn" data-toggle="modal"
-                                    <button class="btn btn-warning btn-sm detail-btn" data-toggle="modal"
-                                        data-target="#detailModal" data-id="{{ $trn->id }}">Detail</button>
-                                </td>
+                                <th class="sortable text-center" data-column="id">ID</th>
+                                <th class="sortable text-center" data-column="username">Username</th>
+                                <th class="sortable text-center" data-column="service">Service</th>
+                                <th class="sortable text-center" data-column="hair_artist">Hair Artist</th>
+                                <th class="sortable text-center" data-column="schedule">Schedule</th>
+                                <th class="sortable text-center" data-column="total_price">Total Price</th>
+                                <th class="text-center">Action</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($transaction as $trn)
+                                <tr>
+                                    <td class="text-center">{{ $trn->id }}</td>
+                                    <td class="text-center">{{ $trn->user->name }}</td>
+                                    <td class="text-center">{{ $trn->service->name }}</td>
+                                    <td class="text-center">{{ $trn->kapster->name }}</td>
+                                    <td class="text-center">{{ $trn->schedule }}</td>
+                                    <td class="text-center">{{ number_format($trn->total_price, 0, ',', '.') }}</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-warning btn-sm detail-btn" data-toggle="modal"
+                                            data-target="#detailModal" data-id="{{ $trn->id }}">Detail</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
 
-                <br>
-                Jumlah Data : {{ $transactionCount }} <br>
+                    <br>
+                    Jumlah Data : {{ $transactionCount }} <br>
             </div>
         </div>
     </div>
@@ -151,7 +170,8 @@
                 },
                 error: function() {
                     var modal = $('#detailModal');
-                    modal.find('.modal-body').html('<p>Error retrieving booking details.</p>'); // Error handling
+                    modal.find('.modal-body').html(
+                        '<p>Error retrieving booking details.</p>'); // Error handling
                 }
             });
         });
@@ -162,7 +182,7 @@
             location.reload();
         });
     </script>
-     <script>
+    <script>
         document.addEventListener("DOMContentLoaded", function() {
             const table = document.getElementById("transactionTable");
             const headers = table.querySelectorAll("th.sortable");
@@ -185,7 +205,8 @@
                         }
 
                         // For other columns, perform alphabetical sorting
-                        return isAscending ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+                        return isAscending ? aValue.localeCompare(bValue) : bValue
+                            .localeCompare(aValue);
                     });
 
                     const tbody = table.querySelector("tbody");
@@ -197,9 +218,10 @@
                     headers.forEach(function(header) {
                         header.classList.remove("ascending", "descending");
                         // Remove any existing arrow emojis
-                        header.innerHTML = header.innerHTML.replace("↓", "").replace("↑", "");
+                        header.innerHTML = header.innerHTML.replace("↓", "").replace("↑",
+                            "");
                     });
-                    
+
                     // Add arrow emoji to indicate sorting order
                     this.innerHTML += isAscending ? " ↑" : " ↓";
 
@@ -214,10 +236,10 @@
 
             function getColumnIndex(columnName) {
                 const headers = Array.from(table.querySelectorAll("thead th"));
-                return headers.findIndex(header => header.dataset.column ===columnName);
-}
-});
-</script>
+                return headers.findIndex(header => header.dataset.column === columnName);
+            }
+        });
+    </script>
 </body>
 
 </html>

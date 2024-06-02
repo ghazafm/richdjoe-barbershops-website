@@ -5,21 +5,20 @@
 <head>
     @include('admin.css')
     <style>
-        /* Custom CSS to reduce the thickness of the top border in the table */
-        .table-bordered thead th {
+        .table thead th {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    .table-bordered thead th {
             border-top: 1px solid #dee2e6;
             border-left: 1px solid #dee2e6;
             border-right: 1px solid #dee2e6;
-
         }
+        
 
-#HistoryTable th,
-#HistoryTable td {
-    text-align: center;
-    vertical-align: middle;
-}
-
-    </style>
+    
+</style>
         
 </head>
 
