@@ -225,7 +225,7 @@
                             <div class="form-group w-100">
                                 <label for="price">Price</label>
                                 <span>:</span>
-                                <p>{{ $transaction->total_price }}</p>
+                                <p>IDR {{ number_format($transaction->total_price, 0, ',', '.') }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="code">Code</label>
@@ -257,7 +257,7 @@
             <span class="close" onclick="hidePopup()">&times;</span>
             <h2 id="popup-title"></h2>
             <p id="popup-message"></p>
-            <p>Whatsapp : +62 817-9003-008</p>
+            <p>Telephone : +62 817-9003-008</p>
             <p>Email : richdjoe@gmail.com</p>
         </div>
     </div>

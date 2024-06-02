@@ -190,10 +190,10 @@
         <div class="row justify-content-center text-center text-light">
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="{{ asset('images/kapster/' . strtolower(str_replace(' ', '', $kapsters->id)) . '.jpg') }}" alt="{{ $kapsters->name }}">
+                    <img src="{{ asset('images/kapster/' . strtolower(str_replace(' ', '', $kapster->id)) . '.jpg') }}" alt="{{ $kapster->name }}">
                     <div class="card-body d-flex flex-column">
-                        <h4 class="card-title fw-bold">{{ $kapsters->name }}</h4>
-                        <a href="/book/service/kapster/schedule/{{ $place }}/{{ $service }}/{{ $kapsters->id }}">
+                        <h4 class="card-title fw-bold">{{ $kapster->name }}</h4>
+                        <a href="/book/service/kapster/schedule/{{ $place }}/{{ $service }}/{{ $kapster->id }}">
                             <button class="btn-pilih">SELECT</button>
                         </a>
                     </div>
@@ -203,34 +203,28 @@
                 <div class="card rating-section">
                     <div class="card-body">
                         <div class="rating-header">
-                            <h4>Service by {{ $kapsters->name }}</h4>
+                            <h4>Service by {{ $kapster->name }}</h4>
                             <div class="stars">
-                                <i class="fa-solid fa-star" data-star="1"></i>
-                                <i class="fa-solid fa-star" data-star="2"></i>
-                                <i class="fa-solid fa-star" data-star="3"></i>
-                                <i class="fa-solid fa-star" data-star="4"></i>
-                                <i class="fa-solid fa-star" data-star="5"></i>
-                                <span>5.0</span>
+                                @for ($i = 1; $i <= 5; $i++) <i class="fa-solid fa-star" data-star="{{ $i }}" style="color: {{ $i <= $rating ? 'gold' : 'gray' }}"></i>
+                                    @endfor
+                                    <span>{{ number_format($rating, 1) }}</span>
                             </div>
                         </div>
                         <h2>Reviews</h2>
                         <div class="reviews-section">
-                            @foreach ($comments as comment)
+                            @foreach ($comments as $comment)
                             <div class="review">
                                 <div class="review-header">
-                                    <span>William Chandra</span>
+                                    <span>{{ $comment['name'] }}</span>
                                 </div>
                                 <div class="review-stars">
                                     <div class="stars-review">
-                                        <i class="fa-solid fa-star" data-star="1"></i>
-                                        <i class="fa-solid fa-star" data-star="2"></i>
-                                        <i class="fa-solid fa-star" data-star="3"></i>
-                                        <i class="fa-solid fa-star" data-star="4"></i>
-                                        <i class="fa-solid fa-star" data-star="5"></i>
+                                        @for ($i = 1; $i <= 5; $i++) <i class="fa-solid fa-star" data-star="{{ $i }}" style="color: {{ $i <= $comment['rating'] ? 'gold' : 'gray' }}"></i>
+                                            @endfor
                                     </div>
-                                    <span>May 29, 2024</span>
+                                    <span>{{ $comment['date'] }}</span>
                                 </div>
-                                <p>Good</p>
+                                <p>{{ $comment['comment'] }}</p>
                             </div>
                             @endforeach
                         </div>

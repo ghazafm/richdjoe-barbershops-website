@@ -189,7 +189,7 @@
                             <div class="form-group w-100">
                                 <label for="price">Price</label>
                                 <span>:</span>
-                                <p>{{ $service->price }}</p>
+                                <p>IDR {{ number_format($service->price, 0, ',', '.') }}</p>
                             </div>
                             <div class="form-group w-100">
                                 <label for="store">Store</label>

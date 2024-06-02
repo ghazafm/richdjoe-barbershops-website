@@ -17,6 +17,7 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             color: white;
+            overflow-x: hidden;
         }
 
         .navbar {
@@ -38,11 +39,27 @@
             color: #fff;
         }
 
+        @media (max-width: 992px) {
+            .navbar-center {
+                justify-content: flex-start;
+            }
+
+            .navbar-right {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .btn-sign {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }
+
         .main-content {
             margin-bottom: 100px;
-            padding-left: 150px;
             min-height: 80vh;
             display: flex;
+            padding-left: 100px;
         }
 
         .main-content h1 {
@@ -95,11 +112,11 @@
 
         .navbar-right {
             display: flex;
+            align-items: center;
         }
 
         .btn-sign {
             background-color: rgb(254, 174, 111);
-            ;
             color: #fff;
             border: none;
             margin-left: 10px;
@@ -120,7 +137,13 @@
 
         .card img {
             object-fit: cover;
-            max-width: 100%;
+            width: 100%;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .btn-buy {
@@ -155,30 +178,29 @@
             height: 50px;
         }
 
-
         .services,
         .capster,
         .about-us,
         .produk,
         .contact-us {
             background-color: rgba(0, 19, 33, 255);
-            padding-inline: 200px;
+            padding-inline: 50px;
             padding-top: 50px;
             padding-bottom: 200px;
         }
 
-        .capster{
+        .capster {
             background-color: rgba(10, 19, 38, 255);
         }
 
-        .about-us{
+        .about-us {
             background-color: rgba(10, 19, 38, 255);
         }
 
         .footer-main {
             background-color: rgba(34, 40, 49, 1);
             color: #fff;
-            padding: 50px 0 150px;
+            padding: 50px 100px 150px;
         }
 
         .footer-main h2 {
@@ -233,75 +255,79 @@
         .navbar-right .dropdown-menu a {
             white-space: nowrap;
         }
+
+        .container {
+            max-width: 100%;
+        }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-darker">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
         <a class="navbar-brand" href="/">
             <img src="{{ asset('images/home/logo.png') }}" alt="Logo" class="logo">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <div class="navbar-center">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/book">Book</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#capster">Hair Artist</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#produk">Product</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about-us">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact-us">Contact Us</a>
-                    </li>
-
-                </ul>
-            </div>
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/book">Book</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#services">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#capster">Hair Artist</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#produk">Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#about-us">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#contact-us">Contact Us</a>
+                </li>
+            </ul>
             <div class="navbar-right">
                 @if (Route::has('login'))
-                @auth
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ Auth::user()->name }}
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
-                        <li><a class="dropdown-item"href="/mybook">My Booking</a></li>
-                        <li>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
-                                    Log Out
-                                </a>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-                @else
-                <a class="nav-link btn btn-sign ms-2" href="{{ route('register') }}">SIGN UP</a>
-                <a class="nav-link btn btn-sign ms-2" href="{{ route('login') }}">SIGN IN</a>
-                @endauth
+                    @auth
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-expanded="false">
+                                {{ Auth::user()->name }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
+                                <li><a class="dropdown-item" href="/mybook">My Booking</a></li>
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); this.closest('form').submit();">
+                                            Log Out
+                                        </a>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @else
+                        <a class="nav-link btn btn-sign ms-2" href="{{ route('register') }}">SIGN UP</a>
+                        <a class="nav-link btn btn-sign ms-2" href="{{ route('login') }}">SIGN IN</a>
+                    @endauth
                 @endif
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <div class="main-content">
+    <div class="container main-content">
         <div class="row align-items-center">
             <div class="col-md-6">
                 <h1>RICDHJOE BARBERSHOP</h1>
@@ -312,172 +338,46 @@
         </div>
     </div>
 
-    <main class="services" id="services">
+    <main class="container services" id="services">
         <h1 class="text-center mb-2">SERVICES</h1>
         <p class="text-center mb-4">Richdjoe Provides Several Services</p>
         <div class="row justify-content-center text-center text-light">
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="{{ asset('images/services/service1.jpg') }}" alt="HAIRCUT">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold ">HAIRCUT</h5>
+            @foreach ($services as $service)
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ asset('images/services/' . $service->id) }}" alt="{{ $service->name }}">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">{{ $service->name }}</h5>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="{{ asset('images/services/service2.jpg') }}" alt="TREATMENT">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">TREATMENT</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="{{ asset('images/services/service3.jpg') }}" alt="BLEACHING">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">BLEACHING</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">TONING</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="{{ asset('images/services/service5.jpg') }}" alt="FASHION COLOR">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">FASHION COLOR</h5>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </main>
 
-    <main class="capster" id="capster">
+    <main class="container capster" id="capster">
         <h1 class="text-center mb-2">HAIR ARTIST</h1>
         <p class="text-center mb-4">Richdjoe Has Several Hair Artists</p>
-        {{-- saran ku di for loop sejumlah kapster pake php jadi jangan pure html --}}
+        @php $chunkedKapsters = $kapsters->chunk(3); @endphp
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="2000">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="row justify-content-center text-center text-light">
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title fw-bold">TONING</h5>
+                @foreach ($chunkedKapsters as $chunkIndex => $chunk)
+                    <div class="carousel-item {{ $chunkIndex === 0 ? 'active' : '' }}">
+                        <div class="row justify-content-center text-center text-light">
+                            @foreach ($chunk as $kapster)
+                                <div class="col-md-4 mb-4">
+                                    <div class="card h-100">
+                                        <img src="{{ asset('images/kapster/' . strtolower(str_replace(' ', '', $kapster->id)) . '.jpg') }}"
+                                            alt="{{ $kapster->name }}">
+                                        <div class="card-body d-flex flex-column">
+                                            <h5 class="card-title fw-bold">{{ $kapster->name }}</h5>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title fw-bold">TONING</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title fw-bold">TONING</h5>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="row justify-content-center text-center text-light">
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title fw-bold">TONING</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title fw-bold">TONING</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title fw-bold">TONING</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="row justify-content-center text-center text-light">
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title fw-bold">TONING</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title fw-bold">TONING</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title fw-bold">TONING</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="row justify-content-center text-center text-light">
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title fw-bold">TONING</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title fw-bold">TONING</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <img src="{{ asset('images/services/service4.jpeg') }}" alt="TONING">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title fw-bold">AHMAD</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tambahkan lebih banyak carousel-item sesuai kebutuhan -->
+                @endforeach
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -491,7 +391,8 @@
     </main>
 
 
-    <main class="produk" id="produk">
+
+    <main class="container produk" id="produk">
         <h1 class="text-center mb-2">OUR PRODUCTS</h1>
         <p class="text-center mb-4">Richdjoe Provides Several Products</p>
         <div class="row justify-content-center text-center text-light ">
@@ -537,13 +438,16 @@
         </div>
     </main>
 
-    <div class="about-us" id="about-us">
+    <div class="container about-us" id="about-us">
         <div class="row align-items-center">
             <div class="history col-md-6">
                 <h1>OUR HISTORY</h1>
-                <span>Richdjoe Barbershops is one of the businesses that utilizes the development of the lifestyle of the
-                    Indonesian people as a new business, especially in Malang City. Richdjoe Barbershops was established on
-                    February 15, 2015. This business began with the move of the owner, Mr. Djoko Prihatin, from Jakarta and
+                <span>Richdjoe Barbershops is one of the businesses that utilizes the development of the lifestyle of
+                    the
+                    Indonesian people as a new business, especially in Malang City. Richdjoe Barbershops was established
+                    on
+                    February 15, 2015. This business began with the move of the owner, Mr. Djoko Prihatin, from Jakarta
+                    and
                     settled in Malang.</span>
             </div>
             <div class="col-md-6">
@@ -552,9 +456,10 @@
         </div>
     </div>
 
-    <main class="contact-us" id="contact-us">
+    <main class="container contact-us" id="contact-us">
         <h1 class="text-center mb-4">CONTACT US</h1>
         <form method="post" action="/send-message">
+            @csrf
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" name="name" required>
@@ -571,7 +476,7 @@
                 <label for="message">Message</label>
                 <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
             </div>
-            <button class="btn-contact fw-bold">SEND</button>
+            <button type="submit" class="btn-contact fw-bold">SEND</button>
         </form>
     </main>
 
@@ -584,14 +489,18 @@
                     <p>Telephone: 0817-9003-008</p>
                     <p>Email: richdjoebarbershops@gmail.com</p>
                     <div class="iframe-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.5228942764197!2d112.61796064145639!3d-7.944791597199651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78827586f74b97%3A0x39ae6dbddda679a9!2sRichdjoe%20Barbershops%20Suhat!5e0!3m2!1sid!2sid!4v1716433031058!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.5228942764197!2d112.61796064145639!3d-7.944791597199651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78827586f74b97%3A0x39ae6dbddda679a9!2sRichdjoe%20Barbershops%20Suhat!5e0!3m2!1sid!2sid!4v1716433031058!5m2!1sid!2sid"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                     <hr>
                     <p>Jl. Sigura - Gura No.2 Kavling 4, Sumbersari, Kec. Lowokwaru, Kota Malang, Jawa Timur 65145</p>
                     <p>Telephone: 0817-9003-008</p>
                     <p>Email: richdjoebarbershops@gmail.com</p>
                     <div class="iframe-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.3944349565863!2d112.60879497505397!3d-7.958126992066504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78827c7b67e545%3A0xc568a219fd100f64!2sRichdjoe%20Barbershops%20Sigura-gura!5e0!3m2!1sid!2sid!4v1716433092293!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.3944349565863!2d112.60879497505397!3d-7.958126992066504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78827c7b67e545%3A0xc568a219fd100f64!2sRichdjoe%20Barbershops%20Sigura-gura!5e0!3m2!1sid!2sid!4v1716433092293!5m2!1sid!2sid"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
                 <div class="col-md-4 addresses">
@@ -600,7 +509,9 @@
                     <p>Telephone: 0817-9003-008</p>
                     <p>Email: richdjoebarbershops@gmail.com</p>
                     <div class="iframe-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.337411592298!2d112.622781775054!3d-7.964039492060745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd629c7cb2b5327%3A0x75d50f62a3f888d6!2sRichdjoe%20Premium%20Barber%20and%20Coffee!5e0!3m2!1sid!2sid!4v1716433113007!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.337411592298!2d112.622781775054!3d-7.964039492060745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd629c7cb2b5327%3A0x75d50f62a3f888d6!2sRichdjoe%20Premium%20Barber%20and%20Coffee!5e0!3m2!1sid!2sid!4v1716433113007!5m2!1sid!2sid"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
                 <div class="col-md-4 hours text-center">
@@ -624,9 +535,12 @@
                 <div class="col-12">
                     <h2>Our Socials</h2>
                     <div class="socials">
-                        <a href="https://www.instagram.com/richdjoebarbershops/" target="_blank"><img src="{{ asset('images/home/instagram.png') }}" alt="Instagram"></a>
-                        <a href="https://shorturl.at/Swdzg" target="_blank"><img src="{{ asset('images/home/wa.png') }}" alt="Whatsapp"></a>
-                        <a href="https://www.tiktok.com/@richdjoebarbershops?_t=8mfes20zxib&_r=1" target="_blank"><img src="{{ asset('images/home/tt.png') }}" alt="TikTok"></a>
+                        <a href="https://www.instagram.com/richdjoebarbershops/" target="_blank"><img
+                                src="{{ asset('images/home/instagram.png') }}" alt="Instagram"></a>
+                        <a href="https://shorturl.at/Swdzg" target="_blank"><img
+                                src="{{ asset('images/home/wa.png') }}" alt="Whatsapp"></a>
+                        <a href="https://www.tiktok.com/@richdjoebarbershops?_t=8mfes20zxib&_r=1" target="_blank"><img
+                                src="{{ asset('images/home/tt.png') }}" alt="TikTok"></a>
                     </div>
                 </div>
             </div>

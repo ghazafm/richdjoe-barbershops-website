@@ -8,15 +8,12 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminPaymentController;
 use App\Http\Controllers\Admin\TransactionLogController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\User\UserBookController;
 use App\Http\Controllers\Malicious\MaliciousController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('user.index');
-});
 
 Route::get('/dashboard', function () {
     return view('user.index');
@@ -33,18 +30,25 @@ require __DIR__ . '/auth.php';
 //Malicious
 Route::get('/malicious', [MaliciousController::class, 'index']);
 
+//Dashboard
+Route::get('/', [DashboardController::class, 'index']);
+Route::post('/send-message', [DashboardController::class, 'sendMessage'])->name('send-message');
+
 //User Book
-Route::get('/book', [UserBookController::class,'index'])->middleware('auth', 'verified');
-Route::get('/book/service/{place}', [UserBookController::class,'services'])->middleware('auth', 'verified');
-Route::get('/book/service/haircut/{place}', [UserBookController::class,'haircut'])->middleware('auth', 'verified');
-Route::get('/book/service/kapster/{place}/{service}', [UserBookController::class,'kapsters'])->middleware('auth', 'verified');
-Route::get('/profil_kapster/{place}/{service}/{kapster}', [UserBookController::class,'showKapster'])->middleware('auth', 'verified');
-Route::get('/book/service/kapster/schedule/{kapster}/{service}/{place}', [UserBookController::class,'schedule'])->middleware('auth', 'verified');
+Route::get('/book', [UserBookController::class, 'index'])->middleware('auth', 'verified');
+Route::get('/book/service/{place}', [UserBookController::class, 'services'])->middleware('auth', 'verified');
+Route::get('/book/service/haircut/{place}', [UserBookController::class, 'haircut'])->middleware('auth', 'verified');
+Route::get('/book/service/kapster/{place}/{service}', [UserBookController::class, 'kapsters'])->middleware('auth', 'verified');
+Route::get('/profil_kapster/{place}/{service}/{kapster}', [UserBookController::class, 'showKapster'])->middleware('auth', 'verified');
+Route::get('/book/service/kapster/schedule/{kapster}/{service}/{place}', [UserBookController::class, 'schedule'])->middleware('auth', 'verified');
 Route::get('/book/service/kapster/schedule/confirmation/{place}/{service}/{kapster}', [UserBookController::class, 'confirmation'])->middleware('auth', 'verified');
 Route::get('/book/service/kapster/schedule/confirmation/{place}/{service}/{kapster}/{schedule}', [UserBookController::class, 'confirm'])->middleware('auth', 'verified');
 Route::get('/transaction/detail/{transaction}', [UserBookController::class, 'showTransactionDetail'])->name('transaction.detail');
 // Route::get('/book/service/haircut/kapster/schedule/confirmation/cancelled/{id}', [UserBookController::class, 'cancel'])->middleware('auth', 'verified');
-Route::get('/mybook', [UserBookController::class,'mybook'])->middleware('auth', 'verified');
+Route::get('/mybook', [UserBookController::class, 'mybook'])->middleware('auth', 'verified');
+Route::get('/mybook/review/{transaction}', [UserBookController::class, 'review'])->middleware('auth', 'verified');
+Route::post('/submit-review', [UserBookController::class, 'setReview'])->middleware('auth', 'verified');
+
 
 //Admin
 Route::get('/admin', function () {
@@ -99,4 +103,3 @@ Route::get('/admin/service/delete/{id}', [AdminServiceController::class, 'delete
 Route::get('/admin/user/edit/{id}', [AdminUserController::class, 'edit'])->middleware(['auth', 'admin']);
 Route::post('/admin/user/editsave', [AdminUserController::class, 'editsave'])->middleware(['auth', 'admin']);
 Route::get('/admin/user/delete/{id}', [AdminUserController::class, 'delete'])->middleware(['auth', 'admin']);
-

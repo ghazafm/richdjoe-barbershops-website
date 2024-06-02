@@ -246,9 +246,14 @@
                             <i class="fa-solid fa-star" data-star="5"></i>
                         </div>
                         <textarea class="review-textarea" placeholder="Write your review here..."></textarea>
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="transactionId" value="{{ $transaction->id }}">
                         <div class="review-buttons">
-                            <button class="btn-review btn-custom">Submit</button>
-                            <button class="btn-cancel btn-custom">Cancel</button>
+                            <button type="button" class="btn-review btn-custom">Submit</button>
+                            <a href="/mybook">
+                                <button type="button" class="btn-cancel btn-custom">Cancel</button>
+                            </a>
+                            
                         </div>
                     </div>
                 </div>
@@ -301,51 +306,52 @@
             window.history.back();
         }
 
-        const stars = document.querySelectorAll(".stars i");
-        stars.forEach((star, index1) => {
-            star.addEventListener("click", () => {
-                stars.forEach((star, index2) => {
-                    index1 >= index2 ? star.classList.add("active") : star.classList.remove("active");
-                })
+        $(document).ready(function() {
+            const stars = document.querySelectorAll(".stars i");
+            stars.forEach((star, index1) => {
+                star.addEventListener("click", () => {
+                    stars.forEach((star, index2) => {
+                        index1 >= index2 ? star.classList.add("active") : star.classList.remove("active");
+                    });
+                });
             });
-        });
 
-        $('.btn-review').click(function() {
-            // Mendapatkan nilai rating bintang
-            var rating = $('.stars i.active').length;
+            $('.btn-review').click(function() {
+                var rating = $('.stars i.active').length;
+                var reviewText = $('.review-textarea').val();
+                var token = $('input[name="_token"]').val();
+                var transactionId = $('input[name="transactionId"]').val();
 
-            // Mendapatkan teks ulasan
-            var reviewText = $('#review-textarea').val();
-
-            // Kirim data ke server menggunakan Ajax
-            $.ajax({
-                type: 'POST',
-                url: '/submit-review',
-                data: {
-                    rating: rating,
-                    reviewText: reviewText
-                },
-                success: function(response) {
-
-                    Swal.fire({
-                        title: 'Thank you for your review!',
-                        text: 'Your feedback is highly appreciated.',
-                        icon: 'success',
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = "/";
-                        }
-                    });
-                },
-                error: function(xhr, status, error) {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'An error occurred while submitting your review. Please try again later.',
-                        icon: 'error',
-                        confirmButtonText: 'OK'
-                    });
-                }
+                $.ajax({
+                    type: 'POST',
+                    url: '/submit-review',
+                    data: {
+                        _token: token,
+                        transactionId: transactionId,
+                        rating: rating,
+                        comment: reviewText
+                    },
+                    success: function(response) {
+                        Swal.fire({
+                            title: 'Thank you for your review!',
+                            text: 'Your feedback is highly appreciated.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "/mybook";
+                            }
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'An error occurred while submitting your review. Please try again later.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
             });
         });
     </script>
