@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+        
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -21,8 +22,8 @@
                 color: #e0e0e0;
             }
             .bg-dark {
-                background-color: #1e1e1e;
-            }
+        background-color: rgba(0, 19, 33, 255); /* Equivalent to 0, 19, 33, 255 in RGBA */
+    }
         </style>
     </head>
     <body class="font-sans text-gray-100 antialiased">
