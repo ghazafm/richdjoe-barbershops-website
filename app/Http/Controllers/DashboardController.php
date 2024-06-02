@@ -4,10 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Mail\ContactFormSubmitted;
+use App\Models\Kapster;
+use App\Models\Service;
 use Illuminate\Support\Facades\Mail;
 
 class DashboardController extends Controller
 {
+    public function index()
+    {
+        $services = $this->getServices();
+        $kapsters = $this->getKapsters();
+        return view('user.index', ['services' => $services, 'kapsters' => $kapsters]);
+    }
+    public function getServices()
+    {
+        return Service::get();
+    }
+
+    public function getKapsters()
+    {
+        return Kapster::get();
+    }
     public function sendMessage(Request $request)
     {
         // Validate the form data
