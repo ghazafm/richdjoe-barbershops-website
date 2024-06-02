@@ -577,6 +577,7 @@
     <main class="container contact-us" id="contact-us">
         <h1 class="text-center mb-4">CONTACT US</h1>
         <form method="post" action="/send-message">
+            @csrf
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" name="name" required>
@@ -593,7 +594,7 @@
                 <label for="message">Message</label>
                 <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
             </div>
-            <button class="btn-contact fw-bold">SEND</button>
+            <button  type="submit" class="btn-contact fw-bold">SEND</button>
         </form>
     </main>
 

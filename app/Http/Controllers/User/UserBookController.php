@@ -195,40 +195,35 @@ class UserBookController extends Controller
 		return view('book.my_book', ['transactions' => $transactions]);
 	}
 
-	public function review($transaction){
-		
+	public function review($transaction)
+	{
+
 		$transaction = Transaction::with(['kapster'])->find($transaction);
 
 		return view('book.review', ['transaction' => $transaction]);
 	}
 
-	public function setReview($transactionId, $rating)
+	public function setReview(Request $request)
 	{
+		$request->validate([
+			'transactionId' => 'required|exists:transactions,id',
+			'rating' => 'required|integer|min:1|max:5',
+			'comment' => 'required|string|max:255',
+		]);
+
+		$transactionId = $request->input('transactionId');
+		$rating = $request->input('rating');
+		$comment = $request->input('comment');
+
 		Transaction::where('id', $transactionId)->update([
+			'comment' => $comment,
 			'rating' => $rating,
 		]);
 
-		// Redirect to the kapster page
-		return redirect('/mybook');
+		return response()->json(['message' => 'Review submitted successfully']);
 	}
 
 	public function getReview($kapsterId)
-	{
-		// Get rating and comments
-		$rating = $this->getRating($kapsterId);
-		$comments = $this->getComment($kapsterId);
-
-		// Check if the responses are JSON responses
-		if ($rating instanceof \Illuminate\Http\JsonResponse) {
-			return $rating;
-		}
-
-		// Return an array with the rating and comments
-		return ['average_rating' => $rating, 'comments' => $comments];
-	}
-
-
-	public function getRating($kapsterId)
 	{
 		// Retrieve the kapster by ID
 		$kapster = Kapster::with('transactions')->find($kapsterId);
@@ -240,30 +235,11 @@ class UserBookController extends Controller
 		// Filter out transactions with null ratings
 		$ratedTransactions = $kapster->transactions->whereNotNull('rating');
 
-		if ($ratedTransactions->isEmpty()) {
-			return response()->json(['kapster_id' => $kapsterId, 'average_rating' => null]);
-		}
+		// Sort transactions by creation date in descending order
+		$sortedTransactions = $kapster->transactions->sortByDesc('created_at');
 
-		// Calculate the average rating
-		$averageRating = $ratedTransactions->avg('rating');
-
-		// Return the average rating for the kapster
-		return $averageRating;
-	}
-
-	public function getComment($kapsterId)
-	{
-		// Retrieve the kapster by ID
-		$kapster = Kapster::with('transactions')->find($kapsterId);
-
-		if (!$kapster) {
-			return response()->json(['error' => 'Kapster not found'], 404);
-		}
-
-		// Filter out transactions with null comments
-		$comments = $kapster->transactions->filter(function ($transaction) {
-			return !is_null($transaction->comment);
-		})->map(function ($transaction) {
+		// Map transactions into comments array
+		$comments = $sortedTransactions->map(function ($transaction) {
 			return [
 				'name' => $transaction->user->name ?? 'Anonymous', // Assuming there is a user relationship
 				'date' => $transaction->created_at->format('M d, Y'), // Format the date as needed
@@ -272,10 +248,10 @@ class UserBookController extends Controller
 			];
 		});
 
-		if ($comments->isEmpty()) {
-			return [];
-		}
+		// Calculate the average rating
+		$averageRating = $ratedTransactions->isEmpty() ? null : $ratedTransactions->avg('rating');
 
-		return $comments;
+		// Return the average rating and comments
+		return ['average_rating' => $averageRating, 'comments' => $comments];
 	}
 }
