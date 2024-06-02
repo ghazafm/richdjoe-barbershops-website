@@ -36,9 +36,9 @@ class DashboardController extends Controller
         ]);
 
         // Send email
-        Mail::to('college@fauzanghaza.com')->send(new ContactFormSubmitted($validatedData));
+        Mail::to('college@fauzanghaza.com');
 
         // Redirect back with a success message
-        return view('user.index')->with('success', 'Your message has been sent successfully!');
+        return redirect('/')->with('success', 'Your message has been sent successfully!');
     }
 }

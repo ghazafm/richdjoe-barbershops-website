@@ -64,6 +64,7 @@
                             <th class="sortable text-center" data-column="id">ID</th>
                             <th class="sortable text-center" data-column="name">Service</th>
                             <th class="sortable text-center" data-column="description">Description</th>
+                            <th class="sortable text-center" data-column="type">Type</th>
                             <th class="sortable text-center" data-column="price">Total Price</th>
                             <th class="text-center">Option</th>
                         </tr>
@@ -74,6 +75,7 @@
                                 <td class="text-center">{{ $svc->id }}</td>
                                 <td class="text-center">{{ $svc->name }}</td>
                                 <td class="text-center">{{ $svc->description }}</td>
+                                <td class="text-center">{{ $svc->type }}</td>
                                 <td class="text-center">{{ number_format($svc->price, 0, ',', '.') }}</td>
                                 <td class="text-center">
                                     <div class="btn-group">

@@ -118,6 +118,7 @@ class AdminPaymentController extends Controller
             ->where(function ($query) use ($search) {
                 $query->where('id', 'LIKE', '%' . $search . '%')
                     ->orWhere('total_price', 'like', '%' . $search . '%')
+                    ->orWhere('schedule', 'like', '%' . $search . '%')
                     ->orWhereHas('user', function ($query) use ($search) {
                         $query->where('name', 'like', '%' . $search . '%');
                     })

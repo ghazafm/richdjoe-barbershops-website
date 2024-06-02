@@ -232,11 +232,13 @@ class UserBookController extends Controller
 			return response()->json(['error' => 'Kapster not found'], 404);
 		}
 
-		// Filter out transactions with null ratings
-		$ratedTransactions = $kapster->transactions->whereNotNull('rating');
+		// Filter out transactions with both rating and comment
+		$ratedTransactions = $kapster->transactions->filter(function ($transaction) {
+			return $transaction->rating !== null && $transaction->comment !== null;
+		});
 
 		// Sort transactions by creation date in descending order
-		$sortedTransactions = $kapster->transactions->sortByDesc('created_at');
+		$sortedTransactions = $ratedTransactions->sortByDesc('created_at');
 
 		// Map transactions into comments array
 		$comments = $sortedTransactions->map(function ($transaction) {

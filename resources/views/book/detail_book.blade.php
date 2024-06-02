@@ -233,9 +233,14 @@
                                 <p>{{ $transaction->id }}</p>
                             </div>
                             <div class="form-group w-100">
-                                <label for="status">Status</label>
+                                <label for="status">Booking Status</label>
                                 <span>:</span>
                                 <p>{{ $transaction->service_status }}</p>
+                            </div>
+                            <div class="form-group w-100">
+                                <label for="status">Payment Status</label>
+                                <span>:</span>
+                                <p>{{ $transaction->payment_status }}</p>
                             </div>
                         </form>
                     </div>

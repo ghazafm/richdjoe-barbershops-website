@@ -44,7 +44,7 @@
                 <br />
                 <p>Search History:</p>
                 <form action="/admin/history/search"class="form-inline mb-3" method="GET">
-                    <input type="text" name="search"class="form-control mr-2" placeholder="Hair Artist ID"
+                    <input type="text" name="search"class="form-control mr-2" placeholder="Search history"
                         value="{{ old('search') }}">
                     <input type="submit" class="btn btn-primary" value="Search">
                 </form>
@@ -97,7 +97,7 @@
                             <td class="text-center">{{ $log->service_id }}</td>
                             <td class="text-center">{{ $log->service_name }}</td>
                             <td class="text-center">{{ $log->schedule }}</td>
-                            <td class="text-center">{{ $log->total_price }}</td>
+                            <td class="text-center">{{ number_format($log->total_price, 0, ',', '.') }}</td>
                             <td class="text-center">{{ $log->service_status }}</td>
                             <td class="text-center">{{ $log->payment_status }}</td>
                         </tr>

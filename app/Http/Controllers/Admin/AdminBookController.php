@@ -283,9 +283,7 @@ class AdminBookController extends Controller
 			'schedule' => $transaction->schedule,
 			'total_price' => $transaction->total_price,
 			'service_status' => $transaction->service_status,
-			'payment_status' => $transaction->payment_status,
-			'rating' => $transaction->rating,
-			'comment' => $transaction->comment
+			'payment_status' => $transaction->payment_status
 		]);
 
 		// Redirect back with a success message

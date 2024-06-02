@@ -5,6 +5,7 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\URL;
 
 class ContactFormSubmitted extends Mailable
 {
@@ -30,8 +31,13 @@ class ContactFormSubmitted extends Mailable
      */
     public function build()
     {
+        $redirectUrl = URL::to('/'); // Change this to your desired URL
+
         return $this->subject('New message from ' . $this->formData['name'])
-            ->view('user.index')
-            ->with('formData', $this->formData);
+            ->markdown('emails.contact_form_submitted')
+            ->with([
+                'formData' => $this->formData,
+                'redirectUrl' => $redirectUrl,
+            ]);
     }
 }

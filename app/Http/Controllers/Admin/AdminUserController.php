@@ -61,7 +61,7 @@ class AdminUserController extends Controller
         User::where('id', $req->id)->update([
             'name' => $req->name,
             'email' => $req->email,
-            // 'usertype' => $req->usertype,
+            'usertype' => $req->usertype,
             'phone' => $req->phone,
             'address' => $req->address,
             'password' => bcrypt($req->password),
