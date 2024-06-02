@@ -33,6 +33,18 @@
                     <input type="text" name="search" class="form-control mr-2" placeholder="Search Service" value="{{ old('search') }}">
                     <input type="submit" value="Search" class="btn btn-primary">
                 </form>
+                <p>Filter:</p>
+                <form action="/admin/service/service/filter" method="GET" class="form-inline mb-3">
+                    <label for="price_from">Price From:</label>
+                    <input type="number" id="price_from" name="price_from" class="form-control mx-2"
+                        placeholder="Price From" step="5000" min="0">
+
+                    <label for="price_to">Price To:</label>
+                    <input type="number" id="price_to" name="price_to" class="form-control mx-2" placeholder="Price To"
+                        step="5000" min="0">
+
+                    <input type="submit" class="btn btn-secondary" value="Filter">
+                </form>
 
                 <table id="serviceTable" class="table table-bordered table-striped">
                     <thead class="thead-dark">

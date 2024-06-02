@@ -28,9 +28,30 @@
                 <p>Search Payment:</p>
 
                 <form action="/admin/payment/payment/search" method="GET" class="form-inline mb-3">
-                    <input type="text" name="search" class="form-control mr-2" placeholder="Search Payment" value="{{ old('search') }}">
+                    <input type="text" name="search" class="form-control mr-2" placeholder="Search Payment"
+                        value="{{ old('search') }}">
                     <input type="submit" value="Search" class="btn btn-primary">
                 </form>
+                <p>Filter:</p>
+                <form action="/admin/payment/payment/filter" method="GET" class="form-inline mb-3">
+                    <label for="date_from">Date From:</label>
+                    <input type="date" id="date_from" name="date_from" class="form-control mx-2"
+                        placeholder="yyyy-mm-dd">
+
+                    <label for="date_to">Date To:</label>
+                    <input type="date" id="date_to" name="date_to" class="form-control mx-2" placeholder="yyyy-mm-dd">
+
+                    <label for="price_from">Price From:</label>
+                    <input type="number" id="price_from" name="price_from" class="form-control mx-2"
+                        placeholder="Price From" step="5000" min="0">
+
+                    <label for="price_to">Price To:</label>
+                    <input type="number" id="price_to" name="price_to" class="form-control mx-2" placeholder="Price To"
+                        step="5000" min="0">
+
+                    <input type="submit" class="btn btn-secondary" value="Filter">
+                </form>
+
 
                 <table id="transactionTable" class="table table-bordered table-striped">
                     <thead class="thead-dark">
@@ -39,28 +60,31 @@
                             <th class="sortable text-center" data-column="username">Username</th>
                             <th class="sortable text-center" data-column="service">Service</th>
                             <th class="sortable text-center" data-column="kapster">Hair Artist</th>
+                            <th class="sortable text-center" data-column="schedule">Schedule</th>
                             <th class="sortable text-center" data-column="price">Total Price</th>
-                            <th class="sortable text-center" data-column="created_at">Created At</th>
+
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($transactions as $transaction)
-                        <tr>
-                            <td class="text-center">{{ $transaction->id }}</td>
-                            <td class="text-center">{{ $transaction->user->name }}</td>
-                            <td class="text-center">{{ $transaction->service->name }}</td>
-                            <td class="text-center">{{ $transaction->kapster->name }}</td>
-                            <td class="text-center">{{ number_format($transaction->total_price, 0, ',', '.') }}</td>
-                            <td class="text-center">{{ $transaction->created_at }}</td>
-                            <td class="text-center">
-                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#detailModal" data-id="{{ $transaction->id }}">Detail</button>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="text-center">{{ $transaction->id }}</td>
+                                <td class="text-center">{{ $transaction->user->name }}</td>
+                                <td class="text-center">{{ $transaction->service->name }}</td>
+                                <td class="text-center">{{ $transaction->kapster->name }}</td>
+                                <td class="text-center">{{ $transaction->schedule }}</td>
+                                <td class="text-center">{{ $transaction->service->price }}</td>
+
+                                <td class="text-center">
+                                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#detailModal"
+                                        data-id="{{ $transaction->id }}">Detail</button>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
-                
+
 
                 <br>
                 Jumlah Data : {{$paymentCount}} <br>
@@ -69,7 +93,8 @@
         </div>
     </div>
 
-    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -89,21 +114,21 @@
                                 <button type="submit" class="btn btn-success btn-block">Confirm</button>
                             </form>
                         </div>
-                        </div>
-                        <div class="col">
-                            <form id="declineForm" method="POST" style="display:inline-block;">
-                                @csrf
-                                <button type="submit" class="btn btn-danger btn-block">Cancel</button>
-                            </form>
-                        </div>
+                    </div>
+                    <div class="col">
+                        <form id="declineForm" method="POST" style="display:inline-block;">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-block">Cancel</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
 
     <script>
-        $('#detailModal').on('show.bs.modal', function(event) {
+        $('#detailModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget); // Button that triggered the modal
             var id = button.data('id'); // Extract info from data-* attributes
 
@@ -119,11 +144,11 @@
             $.ajax({
                 url: '/admin/payment/' + id, // URL to fetch detail data
                 method: 'GET',
-                success: function(data) {
+                success: function (data) {
                     var modal = $('#detailModal');
                     modal.find('.modal-body').html(data); // Load the data into the modal body
                 },
-                error: function() {
+                error: function () {
                     var modal = $('#detailModal');
                     modal.find('.modal-body').html('<p>Error retrieving payment details.</p>'); // Error handling
                 }
@@ -131,24 +156,24 @@
         });
 
 
-        $('#detailModal').on('hidden.bs.modal', function(e) {
+        $('#detailModal').on('hidden.bs.modal', function (e) {
             // Merefresh halaman
             location.reload();
         });
     </script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const table = document.getElementById("transactionTable");
             const headers = table.querySelectorAll("th.sortable");
 
-            headers.forEach(function(header) {
-                header.addEventListener("click", function() {
+            headers.forEach(function (header) {
+                header.addEventListener("click", function () {
                     const column = this.dataset.column;
                     const isAscending = this.classList.contains("ascending");
                     const sortedRows = Array.from(table.querySelectorAll("tbody tr"));
 
-                    sortedRows.sort(function(a, b) {
+                    sortedRows.sort(function (a, b) {
                         let aValue = getValue(a, column);
                         let bValue = getValue(b, column);
 
@@ -165,16 +190,16 @@
 
                     const tbody = table.querySelector("tbody");
                     tbody.innerHTML = "";
-                    sortedRows.forEach(function(row) {
+                    sortedRows.forEach(function (row) {
                         tbody.appendChild(row);
                     });
 
-                    headers.forEach(function(header) {
+                    headers.forEach(function (header) {
                         header.classList.remove("ascending", "descending");
                         // Remove any existing arrow emojis
                         header.innerHTML = header.innerHTML.replace("↓", "").replace("↑", "");
                     });
-                    
+
                     // Add arrow emoji to indicate sorting order
                     this.innerHTML += isAscending ? " ↑" : " ↓";
 
@@ -189,10 +214,13 @@
 
             function getColumnIndex(columnName) {
                 const headers = Array.from(table.querySelectorAll("thead th"));
-                return headers.findIndex(header => header.dataset.column ===columnName);
-}
-});
-</script>
+                return headers.findIndex(header => header.dataset.column === columnName);
+            }
+        });
+    </script>
+   
+
 
 </body>
+
 </html>

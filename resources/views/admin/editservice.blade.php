@@ -33,11 +33,10 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="text-center">Dashboard</h2>
-                        <h3 class="text-center">Ubah data mahasiswa</h3>
+                        <h3 class="text-center">Change Data</h3>
                     </div>
                     <div class="card-body">
-                        <a href="/admin/service" class="btn btn-secondary mb-3">Kembali</a>
+                        <a href="/admin/service" class="btn btn-secondary mb-3">Back</a>
                         <form action="/admin/service/editsave" method="post">
                             {{ csrf_field() }}
                             <input type="hidden" name="id" value="{{ $service->id }}">
@@ -57,7 +56,7 @@
                                 <label for="price" class="form-label">Price:</label>
                                 <input type="text" id="price" name="price" value="{{ number_format($service->price, 0, ',', '.') }}" class="form-control" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Simpan Data</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </form>
                     </div>
                 </div>

@@ -37,10 +37,21 @@
                 </form>
                 <p>Filter:</p>
                 <form action="/admin/book/book/filter" method="GET" class="form-inline mb-3">
-                    <input type="date" name="date_from" class="form-control mx-2" placeholder="Schedule From">
-                    <input type="date" name="date_to" class="form-control mx-2" placeholder="Schedule To">
-                    <input type="number" name="price_from" class="form-control mx-2" placeholder="Price From" step="5000" min="0">
-                    <input type="number" name="price_to" class="form-control mx-2" placeholder="Price To" step="5000" min="0">
+                    <label for="date_from">Date From:</label>
+                    <input type="date" id="date_from" name="date_from" class="form-control mx-2"
+                        placeholder="yyyy-mm-dd">
+
+                    <label for="date_to">Date To:</label>
+                    <input type="date" id="date_to" name="date_to" class="form-control mx-2" placeholder="yyyy-mm-dd">
+
+                    <label for="price_from">Price From:</label>
+                    <input type="number" id="price_from" name="price_from" class="form-control mx-2"
+                        placeholder="Price From" step="5000" min="0">
+
+                    <label for="price_to">Price To:</label>
+                    <input type="number" id="price_to" name="price_to" class="form-control mx-2" placeholder="Price To"
+                        step="5000" min="0">
+
                     <input type="submit" class="btn btn-secondary" value="Filter">
                 </form>
                 

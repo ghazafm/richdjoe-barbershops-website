@@ -105,11 +105,12 @@ class AdminServiceController extends Controller
 		}
 
 		if ($req->filled('date_from') && $req->filled('date_to')) {
-			$query->whereBetween('created_at', [$req->input('date_from'), $req->input('date_to')]);
+			$query->whereBetween('schedule', [$req->input('date_from'), $req->input('date_to')]);
 		}
 
-		$transactions = $query->paginate();
+		$transactions = $query->get();
+        $transactionCount = $transactions->count();
 
-		return view('admin.book', ['transactions' => $transactions]);
+		return view('admin.service', ['services' => $transactions, 'serviceCount' => $transactionCount]);
 	}
 }

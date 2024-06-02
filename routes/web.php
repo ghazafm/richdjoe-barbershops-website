@@ -77,6 +77,7 @@ Route::get('/admin/hairartist/add', [AdminKapsterController::class, 'add'])->mid
 Route::post('/admin/hairartist/addsave', [AdminKapsterController::class, 'addsave'])->middleware(['auth', 'admin']);
 Route::get('/admin/history', [TransactionLogController::class, 'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/history/search', [TransactionLogController::class, 'search_history'])->middleware(['auth', 'admin']);
+Route::get('/admin/history/history/filter', [TransactionLogController::class, 'filter'])->middleware(['auth', 'admin']);
 
 
 
@@ -86,6 +87,7 @@ Route::get('/admin/payment/{id}', [AdminPaymentController::class, 'detail'])->mi
 Route::get('/admin/payment/payment/search', [AdminPaymentController::class, 'search_payment'])->middleware(['auth', 'admin']);
 Route::post('/admin/payment/decline/{id}', [AdminPaymentController::class, 'decline_payment'])->middleware(['auth', 'admin']);
 Route::post('/admin/payment/verify/{id}', [AdminPaymentController::class, 'verify_payment'])->middleware(['auth', 'admin']);
+Route::get('/admin/payment/payment/filter', [AdminPaymentController::class, 'filter_payment'])->middleware(['auth', 'admin']);
 
 Route::get('/admin/user', [AdminUserController::class, 'index'])->middleware(['auth', 'admin']);
 Route::get('/admin/user', [AdminUserController::class, 'index'])->middleware(['auth', 'admin']);
@@ -97,6 +99,7 @@ Route::post('/admin/user/addsave', [AdminUserController::class, 'addsave'])->mid
 Route::get('/admin/service/add', [AdminServiceController::class, 'add'])->middleware(['auth', 'admin']);
 Route::post('/admin/service/addsave', [AdminServiceController::class, 'addsave'])->middleware(['auth', 'admin']);
 Route::get('/admin/service/search', [AdminServiceController::class, 'search'])->middleware(['auth', 'admin']);
+Route::get('/admin/service/service/filter', [AdminServiceController::class, 'filter'])->middleware(['auth', 'admin']);
 Route::get('/admin/service/edit/{id}', [AdminServiceController::class, 'edit'])->middleware(['auth', 'admin']);
 Route::post('/admin/service/editsave', [AdminServiceController::class, 'editsave'])->middleware(['auth', 'admin']);
 Route::get('/admin/service/delete/{id}', [AdminServiceController::class, 'delete'])->middleware(['auth', 'admin']);

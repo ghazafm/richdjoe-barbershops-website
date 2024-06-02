@@ -101,4 +101,33 @@ class TransactionLogController extends Controller
 
         return response()->json(null, 204);
     }
+    public function filter(Request $req)
+	{
+		$query = TransactionLog::query();
+
+		if ($req->filled('id')) {
+			$query->where('customer_id', $req->input('customer_id'));
+		}
+        
+		if ($req->filled('name')) {
+			$query->where('name', $req->input('name'));
+		}
+        
+		if ($req->filled('description')) {
+			$query->where('description', $req->input('description'));
+		}
+        
+		if ($req->filled('price_from') && $req->filled('price_to')) {
+			$query->whereBetween('total_price', [$req->input('price_from'), $req->input('price_to')]);
+		}
+
+		if ($req->filled('date_from') && $req->filled('date_to')) {
+			$query->whereBetween('schedule', [$req->input('date_from'), $req->input('date_to')]);
+		}
+
+		$transactions = $query->get();
+        $transactionCount = $transactions->count();
+
+		return view('admin.history', ['logs' => $transactions, 'logsCount' => $transactionCount]);
+	}
 }

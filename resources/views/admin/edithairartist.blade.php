@@ -35,11 +35,10 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="text-center">Dashboard</h2>
-                        <h3 class="text-center">Ubah data mahasiswa</h3>
+                        <h3 class="text-center">Change Data</h3>
                     </div>
                     <div class="card-body">
-                        <a href="/admin/hairartist" class="btn btn-secondary mb-3">Kembali</a>
+                        <a href="/admin/hairartist" class="btn btn-secondary mb-3">Back</a>
                         <form action="/admin/hairartist/editsave" method="post">
                             {{ csrf_field() }}
                             <input type="hidden" name="id" value="{{ $kapster->id }}">
@@ -71,7 +70,7 @@
                                 <input type="text" id="schedule" name="schedule" value="{{ $kapster->schedule }}"
                                     class="form-control" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Simpan Data</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </form>
                     </div>
                 </div>

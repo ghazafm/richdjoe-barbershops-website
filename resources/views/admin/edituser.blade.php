@@ -33,11 +33,10 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="text-center">Dashboard</h2>
-                        <h3 class="text-center">Ubah data mahasiswa</h3>
+                        <h3 class="text-center">Change Data</h3>
                     </div>
                     <div class="card-body">
-                        <a href="/admin/user" class="btn btn-secondary mb-3">Kembali</a>
+                        <a href="/admin/user" class="btn btn-secondary mb-3">Back</a>
                         <form action="/admin/user/editsave" method="post">
                             {{ csrf_field() }}
                             <input type="hidden" name="id" value="{{ $user->id }}">
@@ -73,7 +72,7 @@
                                 <label for="address" class="form-label">Adress:</label>
                                 <input type="text" id="adress" name="address" value="{{ $user->address }}" class="form-control" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Simpan Data</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </form>
                     </div>
                 </div>
