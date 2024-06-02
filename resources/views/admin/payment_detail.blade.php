@@ -52,7 +52,7 @@
     </div>
     <div class="detail-item">
         <span class="detail-label">Service Price:</span>
-        <span class="detail-value">{{ $transaction->service->price }}</span>
+        <span class="detail-value">IDR {{ number_format($transaction->service->price, 0, ',', '.') }}</span>
     </div>
     <div class="detail-item">
         <span class="detail-label">Service Status:</span>

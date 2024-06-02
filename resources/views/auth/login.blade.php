@@ -1,8 +1,5 @@
-<x-guest-layout>
+<x-guest-layout style="background-color: rgba(10, 19, 47, 255);">
     <style>
-        .dark-bg {
-            background-color: #121212;
-        }
         .dark-text {
             color: #ffffff;
         }
@@ -37,7 +34,7 @@
                 <!-- Remember Me -->
                 <div class="block mt-4 dark-text">
                     <label for="remember_me" class="inline-flex items-center dark-text">
-                        <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500 dark-text" name="remember">
+                        <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
                         <span class="ms-2 text-sm text-gray-600 dark-text">{{ __('Remember me') }}</span>
                     </label>
                 </div>
