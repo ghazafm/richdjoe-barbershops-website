@@ -21,7 +21,7 @@ class ServiceSeeder extends Seeder
             ['name' => 'TREATMENT', 'description' => '"Treatment" encompasses a diverse array of services or procedures dedicated to enhancing health, appearance, or overall well-being.', 'type' => 'other', 'price' => 165000],
             ['name' => 'BLEACHING', 'description' => 'Bleaching is a chemical process that lightens or removes color from hair, textiles, or other materials.', 'type' => 'other', 'price' => 85000],
             ['name' => 'TONING', 'description' => 'Is a hair coloring technique used to neutralize unwanted tones, such as brassiness or yellowing, and achieve a desired shade or hue.', 'type' => 'other', 'price' => 150000],
-            ['name' => 'FASHION COLOR', 'description' => 'Fashion color entails using vibrant dyes like pastels or neons to make bold style statements with hair.', 'type' => 'other', 'price' => 15000],
+            ['name' => 'FASHION COLOR', 'description' => 'Fashion color entails using vibrant dyes like pastels or neons to make bold style statements with hair.', 'type' => 'other', 'price' => 235000],
         ];
 
         foreach ($services as $service) {

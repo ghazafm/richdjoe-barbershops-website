@@ -69,7 +69,7 @@
                                 <input type="text" id="phone" name="phone" value="{{ $user->phone }}" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label for="address" class="form-label">Adress:</label>
+                                <label for="address" class="form-label">Address:</label>
                                 <input type="text" id="adress" name="address" value="{{ $user->address }}" class="form-control" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Save</button>
