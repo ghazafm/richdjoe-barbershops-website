@@ -6,10 +6,8 @@
     @include('admin.css')
     <style>
         .table thead th {
-        white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
-        word-wrap: break-word;
     }
 
     .table {
