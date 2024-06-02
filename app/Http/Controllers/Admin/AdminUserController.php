@@ -91,7 +91,7 @@ class AdminUserController extends Controller
             ->orwhere('id', 'like', '%' . $search . '%')
             ->orwhere('phone', 'like', '%' . $search . '%')
             ->orwhere('address', 'like', '%' . $search . '%')
-            ->paginate();
+            ->get();
 
         $userCount = $users->count();
             

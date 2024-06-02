@@ -89,10 +89,10 @@ class AdminServiceController extends Controller
             ->orWhere('price', 'like', '%' . $search . '%')
             ->orWhere('created_at', 'like', '%' . $search . '%')
             ->orWhere('updated_at', 'like', '%' . $search . '%')
-            ->paginate();
+            ->get();
 
         // Pass the data to the view
-        return view('admin.service', ['services' => $services, 'serviceCount' => $services->total()]);
+        return view('admin.service', ['services' => $services, 'serviceCount' => $services->count()]);
     }
 
     public function filter(Request $req)
