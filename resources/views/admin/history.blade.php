@@ -40,6 +40,25 @@
                         value="{{ old('search') }}">
                     <input type="submit" class="btn btn-primary" value="Search">
                 </form>
+                <p>Filter:</p>
+                <form action="/admin/history/history/filter" method="GET" class="form-inline mb-3">
+                    <label for="date_from">Date From:</label>
+                    <input type="date" id="date_from" name="date_from" class="form-control mx-2"
+                        placeholder="yyyy-mm-dd">
+
+                    <label for="date_to">Date To:</label>
+                    <input type="date" id="date_to" name="date_to" class="form-control mx-2" placeholder="yyyy-mm-dd">
+
+                    <label for="price_from">Price From:</label>
+                    <input type="number" id="price_from" name="price_from" class="form-control mx-2"
+                        placeholder="Price From" step="5000" min="0">
+
+                    <label for="price_to">Price To:</label>
+                    <input type="number" id="price_to" name="price_to" class="form-control mx-2" placeholder="Price To"
+                        step="5000" min="0">
+
+                    <input type="submit" class="btn btn-secondary" value="Filter">
+                </form>
 
                 <table id="HistoryTable" class="table table-bordered table-striped">
                     <thead class="thead-dark">
@@ -53,7 +72,7 @@
                             <th class="sortable text-center" data-column="serviceid">Service ID</th>
                             <th class="sortable text-center" data-column="service">Service</th>
                             <th class="sortable text-center" data-column="schedule">Schedule</th>
-                            <th class="sortable text-center" data-column="totalprice">Total Price</th>
+                            <th class="sortable text-center" data-column="total_price">Total Price</th>
                             <th class="sortable text-center" data-column="servicestatus">Service Status</th>
                             <th class="sortable text-center" data-column="paymentstatus">Payment Status</th>
                         </tr>

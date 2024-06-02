@@ -175,11 +175,11 @@ class AdminPaymentController extends Controller
         }
 
         if ($req->filled('price_from') && $req->filled('price_to')) {
-            $query->whereBetween('price', [$req->input('price_from'), $req->input('price_to')]);
+            $query->whereBetween('total_price', [$req->input('price_from'), $req->input('price_to')]);
         }
 
         if ($req->filled('date_from') && $req->filled('date_to')) {
-            $query->whereBetween('created_at', [$req->input('date_from'), $req->input('date_to')]);
+            $query->whereBetween('schedule', [$req->input('date_from'), $req->input('date_to')]);
         }
 
         // Retrieve filtered transactions with pagination
@@ -187,7 +187,7 @@ class AdminPaymentController extends Controller
 		$transactionCount = $transactions->count();
 
         // Pass the data to the view
-        return view('admin.book', ['transaction' => $transactions, 'transactionCount' => $transactionCount]);
+        return view('admin.payment', ['transactions' => $transactions, 'paymentCount' => $transactionCount]);
     }
 
 
