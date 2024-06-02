@@ -117,14 +117,7 @@ class AdminPaymentController extends Controller
             ->where('payment_status', 'process')
             ->where(function ($query) use ($search) {
                 $query->where('id', 'LIKE', '%' . $search . '%')
-                    ->orWhere('user_id', 'like', '%' . $search . '%')
-                    ->orWhere('kapster_id', 'like', '%' . $search . '%')
-                    ->orWhere('service_id', 'like', '%' . $search . '%')
                     ->orWhere('total_price', 'like', '%' . $search . '%')
-                    ->orWhere('rating', 'like', '%' . $search . '%')
-                    ->orWhere('comment', 'like', '%' . $search . '%')
-                    ->orWhere('created_at', 'like', '%' . $search . '%')
-                    ->orWhere('updated_at', 'like', '%' . $search . '%')
                     ->orWhereHas('user', function ($query) use ($search) {
                         $query->where('name', 'like', '%' . $search . '%');
                     })
@@ -135,10 +128,10 @@ class AdminPaymentController extends Controller
                         $query->where('name', 'like', '%' . $search . '%');
                     });
             })
-            ->paginate();
+            ->get();
 
         // Return view with search results
-        return view('admin.payment', ['transactions' => $transactions, 'paymentCount' => $transactions->total()]);
+        return view('admin.payment', ['transactions' => $transactions, 'paymentCount' => $transactions->count()]);
     }
 
 

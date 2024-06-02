@@ -160,16 +160,7 @@ class AdminBookController extends Controller
 		$transactions = Transaction::where('service_status', 'wait')
 			->where(function ($query) use ($search) {
 				$query->where('id', 'LIKE', '%' . $search . '%')
-					->orWhere('user_id', 'like', '%' . $search . '%')
-					->orWhere('kapster_id', 'like', '%' . $search . '%')
-					->orWhere('service_id', 'like', '%' . $search . '%')
 					->orWhere('total_price', 'like', '%' . $search . '%')
-					->orWhere('service_status', 'like', '%' . $search . '%')
-					->orWhere('payment_status', 'like', '%' . $search . '%')
-					->orWhere('rating', 'like', '%' . $search . '%')
-					->orWhere('comment', 'like', '%' . $search . '%')
-					->orWhere('created_at', 'like', '%' . $search . '%')
-					->orWhere('updated_at', 'like', '%' . $search . '%')
 					->orWhereHas('user', function ($query) use ($search) {
 						$query->where('name', 'like', '%' . $search . '%');
 					})
@@ -180,10 +171,10 @@ class AdminBookController extends Controller
 						$query->where('name', 'like', '%' . $search . '%');
 					});
 			})
-			->paginate();
+			->get();
 
 		// Return view with search results
-		return view('admin.book', ['transaction' => $transactions, 'transactionCount' => $transactions->total()]);
+		return view('admin.book', ['transaction' => $transactions, 'transactionCount' => $transactions->count()]);
 	}
 
 	public function filter_book(Request $req)
@@ -276,7 +267,7 @@ class AdminBookController extends Controller
 
 		// Update the service_status to "decline"
 		$transaction->update(['service_status' => 'decline']);
-		$transaction->update(['payment_status' => 'cancelled']);
+		$transaction->update(['payment_status' => 'decline']);
 
 		// Log
 		TransactionLog::create([
@@ -299,39 +290,6 @@ class AdminBookController extends Controller
 		// Redirect back with a success message
 		return redirect()->back()->with('success', 'Service declined.');
 	}
-
-	public function cancel_service($id)
-	{
-		// Find the transaction by its ID
-		$transaction = Transaction::findOrFail($id);
-
-		// Update the service_status to "decline"
-		$transaction->update(['service_status' => 'cancelled']);
-		$transaction->update(['payment_status' => 'cancelled']);
-
-		// Log
-		TransactionLog::create([
-			'id' => $transaction->id,
-			'user_id' => $transaction->user->id,
-			'user_name' => $transaction->user->name,
-			'user_email' => $transaction->user->email,
-			'kapster_id' => $transaction->kapster->id,
-			'kapster_name' => $transaction->kapster->name,
-			'service_id' => $transaction->service->id,
-			'service_name' => $transaction->service->name,
-			'schedule' => $transaction->schedule,
-			'total_price' => $transaction->total_price,
-			'service_status' => $transaction->service_status,
-			'payment_status' => $transaction->payment_status,
-			'rating' => $transaction->rating,
-			'comment' => $transaction->comment
-		]);
-
-		// Redirect back with a success message
-		return redirect()->back()->with('success', 'Service declined.');
-	}
-
-
 
 
 	// Helper =============================================================================================
