@@ -86,7 +86,12 @@
             height: 100%;
             max-height: 1000px;
             border: 10px solid rgb(246, 220, 172);
+        }
 
+        .contact-us img {
+            height: 100%;
+            max-height: 1000px;
+            border: 10px solid rgb(246, 220, 172);
         }
 
         .btn-book {
@@ -341,17 +346,35 @@
     <main class="container services" id="services">
         <h1 class="text-center mb-2">SERVICES</h1>
         <p class="text-center mb-4">Richdjoe Provides Several Services</p>
-        <div class="row justify-content-center text-center text-light">
-            @foreach ($services as $service)
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="{{ asset('images/services/' . $service->id) }}" alt="{{ $service->name }}">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title fw-bold">{{ $service->name }}</h5>
+        @php $chunkedServices = $services->chunk(3); @endphp
+        <div id="carouselExampleIndicatorService" class="carousel slide" data-ride="carousel" data-interval="2000">
+            <div class="carousel-inner">
+                @foreach ($chunkedServices as $chunkIndex => $chunk)
+                    <div class="carousel-item {{ $chunkIndex === 0 ? 'active' : '' }}">
+                        <div class="row justify-content-center text-center text-light">
+                            @foreach ($chunk as $service)
+                                <div class="col-md-4 mb-4">
+                                    <div class="card h-100">
+                                        <img src="{{ asset('images/services/' . strtolower(str_replace(' ', '', $service->id)) . '.jpg') }}"
+                                            alt="{{ $service->name }}">
+                                        <div class="card-body d-flex flex-column">
+                                            <h5 class="card-title fw-bold">{{ $service->name }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicatorService" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicatorService" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
     </main>
 
@@ -458,6 +481,11 @@
 
     <main class="container contact-us" id="contact-us">
         <h1 class="text-center mb-4">CONTACT US</h1>
+        <div class="row align-items-center">
+        <div class="col-md-6">
+            <img src="{{ asset('images/home/rich.jpg') }}" alt="Barbershop Image" class="img-fluid">
+        </div>
+        <div class="contact col-md-6">
         <form method="post" action="/send-message">
             @csrf
             <div class="form-group">
@@ -478,6 +506,8 @@
             </div>
             <button type="submit" class="btn-contact fw-bold">SEND</button>
         </form>
+    </div>
+</div>
     </main>
 
     <footer class="footer-main">
