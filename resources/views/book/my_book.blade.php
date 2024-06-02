@@ -206,9 +206,11 @@
                     <a href="/transaction/detail/{{ $transaction->id }}">
                         <button class="btn btn-detail btn-custom">Show Detail</button>
                     </a>
-                    <a href="/">
+                    @if ($transaction->comment === null && $transaction->rating === null && $transaction->service_status === 'verified' && $transaction->payment_status === 'verified')
+                    <a href="/mybook/review/{{ $transaction->id }}">
                         <button class="btn btn-review btn-custom">Review</button>
                     </a>
+                    @endif
                 </div>
             </div>
             @endforeach
@@ -219,6 +221,7 @@
             </a>
         </div>
     </div>
+
 
     <footer class="footer-socials">
         <div class="container">

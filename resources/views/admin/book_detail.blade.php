@@ -32,7 +32,7 @@
 </style>
 
 <div class="transaction-details">
-    <h2 class="detail-heading">Transaction Details</h2>
+    <h2 class="detail-heading">Book Details</h2>
     <div class="detail-item">
         <span class="detail-label">ID:</span>
         <span class="detail-value">{{ $transaction->id }}</span>
@@ -55,7 +55,7 @@
     </div>
     <div class="detail-item">
         <span class="detail-label">Total Price:</span>
-        <span class="detail-value">{{ $transaction->total_price }}</span>
+        <span class="detail-value">IDR {{ number_format($transaction->total_price, 0, ',', '.') }}</span>
     </div>
     <div class="detail-item">
         <span class="detail-label">Service Status:</span>

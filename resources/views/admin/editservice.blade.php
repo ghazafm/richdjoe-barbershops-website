@@ -54,7 +54,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="price" class="form-label">Price:</label>
-                                <input type="text" id="price" name="price" value="{{ $service->price }}" class="form-control" required>
+                                <input type="text" id="price" name="price" value="{{ number_format($service->price, 0, ',', '.') }}" class="form-control" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>
