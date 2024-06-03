@@ -100,7 +100,7 @@
             padding: 10px 20px;
             cursor: pointer;
             margin: 10px 5px;
-            width: 210px;
+            width: 47%;
             margin-bottom: 1px;
         }
 
