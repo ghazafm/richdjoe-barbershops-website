@@ -180,7 +180,7 @@
     <div class="container schedule" id="schedule">
         <h1 class="text-center">Available Schedule</h1>
         <div class="row mt-4">
-            <div class="col-md-8">
+            <div class="col-md-8 mb-3">
                 <div id="calendar"></div>
             </div>
             <div class="col-md-4">

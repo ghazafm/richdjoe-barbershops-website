@@ -100,7 +100,6 @@
             padding: 10px 20px;
             cursor: pointer;
             margin: 10px 5px;
-            width: 210px;
             margin-bottom: 1px;
         }
 
@@ -235,7 +234,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-8 mb-5">
+            <div class="col-md-8 mb-5">
                 <div class="review-section card mt-4">
                     <div class="card-body text-center">
                         <div class="stars">
@@ -249,11 +248,12 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="transactionId" value="{{ $transaction->id }}">
                         <div class="review-buttons">
-                            <button type="button" class="btn-review btn-custom">Submit</button>
+                            <a>
+                                <button type="button" class="btn-review btn-custom">Submit</button>
+                            </a>
                             <a href="/mybook">
                                 <button type="button" class="btn-cancel btn-custom">Cancel</button>
                             </a>
-                            
                         </div>
                     </div>
                 </div>
