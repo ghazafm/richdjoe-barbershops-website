@@ -1,3 +1,15 @@
+# UB Guesthouse Banquet System
+
+## Anggota Kelompok
+
+1. **Fauzan Ghaza Madani** - Frontend, Backend 
+2. **Lukas Awan Cahya Buana** - Frontend, UI/UX
+3. **Azril Januar Athallah** - Frontend, UI/UX
+4. **Haikal Gibran Gunawan** - Frontend, UI/UX
+5. **Abyan Rifqi Zainum Muttaqin** - UI/UX
+
+## Deskripsi Proyek
+
 ## Tutor clone project
 1. Clone project ke komputer kalian (git clone aja)
 2. Di dalam folder project buka command line
