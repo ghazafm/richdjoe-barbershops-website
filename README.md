@@ -76,7 +76,7 @@ This project is licensed under [MIT License](LICENSE).
 
 For more information, you can contact team members via the following email:
 
-- Fauzan Ghaza Madani: fauzanghaza@example.com
+- Fauzan Ghaza Madani: college@fauzanghaza.com
 - Lukas Awan Cahya Buana: lukasawan@example.com
 - Azril Januar Athallah: azril@example.com
 - Haikal Gibran Gunawan: haikal@example.com
