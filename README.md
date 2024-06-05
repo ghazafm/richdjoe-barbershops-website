@@ -1,6 +1,6 @@
-# UB Guesthouse Banquet System
+# Richdjoe Barbershop Website
 
-## Anggota Kelompok
+## Meet our Team
 
 1. **Fauzan Ghaza Madani** - Frontend, Backend 
 2. **Lukas Awan Cahya Buana** - Frontend, UI/UX
@@ -8,21 +8,63 @@
 4. **Haikal Gibran Gunawan** - Frontend, UI/UX
 5. **Abyan Rifqi Zainum Muttaqin** - UI/UX
 
-## Deskripsi Proyek
+## Project description
 
-## Tutor clone project
-1. Clone project ke komputer kalian (git clone aja)
-2. Di dalam folder project buka command line
-3. Setelah itu buat file .env di folder terluar project (bisa .env.example kalian copy terus rename)
-4. Isi dari file .env kalian sesuaikan dengan database di komputer kalian
-5. Ketik "composer install" setelah itu enter
-6. Tunggu sampai folder vendor dibuat
-7. Jalankan di terminal 'php artisan migrate' atau './script/migrate_all.zsh'(jika command sebelumnya tidak merubah apapun di database kalian)
-8. Jalankan di terminal 'php artisan db:seed' (untuk menambahkan data dummy)
-9. Jalankan di terminal 'npm install'
-10. Jalankan di terminal 'npm run build'
-11. Jalankan di terminal 'php artisan key:generate' (jika diperlukan)
-12. Gas ngerjain.....
+Richdjoe Barbershop is a website developed for UMKM marketing functions in marketing planning, improving interaction with customers, as well as facilitating the process of booking or booking services. We use Laravel as a development framework that can improve efficiency and effectiveness in managing websites and support UMKM barbershop marketing strategy.
+
+## How to start the project
+
+1. git clone this repository
+2. In the project folder open the command line
+3. Then create a.env file in the external project folder (You can use.env.example and then you can copy and rename)
+4. The contents of your.env file match the database on your computer
+5. Type "composer install" after it enter
+6. Wait until vendor folder is created
+7. Run in the terminal 'php artisan migrate' or './script/migrate_all.zsh' (if the previous command didn't change anything in your database)
+8. Run in the terminal 'php artisan db:seed' (add dummy data)
+9. Run in the terminal 'npm install'
+10. Run in the terminal 'npm run build'
+11. Run in the terminal 'php artisan key:generate' (If necessary)
+12. Run the program and enjoy!
+
+If you have any more problem, feel free to contact us
+
+## Fitur Utama
+
+- **Profile:** Menampilkan informasi admin seperti username dan password. Admin juga dapat mengganti username atau password.
+- **Dashboard:** Menampilkan overview statistik pesanan per bulan, distribusi pemesan, dan berbagai informasi terkait jumlah orders, paket, ruangan, kategori makanan, dan layout ruangan yang tersedia.
+- **Orders:** Mengelola tabel orders dengan fitur perubahan status order, penambahan order baru, dan pengisian form tambahan untuk setiap status.
+- **Paket:** Menyediakan list paket dengan fitur pencarian, pengurutan, penambahan, pengubahan, dan penghapusan paket.
+- **Ruangan:** Menyediakan list ruangan dengan fitur pencarian, pengurutan, penambahan, pengubahan, dan penghapusan ruangan.
+- **Layout:** Menyediakan list layout ruangan dengan fitur pencarian, pengurutan, penambahan, pengubahan, dan penghapusan layout ruangan.
+- **Makanan:** Menyediakan list makanan dengan fitur pencarian, pengurutan, penambahan, pengubahan, dan penghapusan makanan.
+- **History:** Menampilkan list pemesanan yang statusnya sudah menjadi checkout atau selesai.
+- **Income:** Menampilkan tabel pemasukan dari pesanan yang telah selesai dengan fitur filter dan pencetakan laporan.
+- **FAQ:** Menyediakan jawaban untuk pertanyaan yang sering diajukan terkait sistem.
+- **Logout:** Menu untuk keluar dari sistem dan mengakhiri sesi admin.
+
+## Tech Stack
+
+- **Frontend:** 
+  - ![HTML](https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+  - ![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+  - ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+  - ![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+- **Backend:**
+  - ![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+- **Database:**
+  - ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+- **Cloud Services:**
+  - ![Google Cloud](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)
+- **API Testing:**
+  - ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+- **Libraries :**
+  - ![Carbon](https://img.shields.io/badge/Carbon-A19092)
+  - ![DOM PDF](https://img.shields.io/badge/DOM-PDF-A19092)
+  - ![JCHART](https://img.shields.io/badge/jchart-A19092)
+  - ![Faker](https://img.shields.io/badge/Faker-A19092)
+- **ORM:**
+  - ![Eloquent](https://img.shields.io/badge/Eloquent-FF0027)
 
 <p align="center"><a href="https://github.com/ghazafm" target="_blank"><img src="https://i.pinimg.com/originals/41/7e/be/417ebee986aec41629278b1e04cfbfe9.gif" width="400" alt="Laravel Logo"></a></p>
 
