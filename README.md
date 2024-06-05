@@ -2,13 +2,13 @@
 
 ## Meet our Team
 
-1. **Fauzan Ghaza Madani** - Frontend, Backend 
+1. **Fauzan Ghaza Madani** - Backend, Product Manager 
 2. **Lukas Awan Cahya Buana** - Frontend, UI/UX
 3. **Azril Januar Athallah** - Frontend, UI/UX
 4. **Haikal Gibran Gunawan** - Frontend, UI/UX
 5. **Abyan Rifqi Zainum Muttaqin** - UI/UX
 
-## Project description
+## Project Description
 
 Richdjoe Barbershop is a website developed for UMKM marketing functions in marketing planning, improving interaction with customers, as well as facilitating the process of booking or booking services. We use Laravel as a development framework that can improve efficiency and effectiveness in managing websites and support UMKM barbershop marketing strategy.
 
@@ -29,8 +29,25 @@ Richdjoe Barbershop is a website developed for UMKM marketing functions in marke
 
 If you have any more problem, feel free to contact us
 
-## Fitur Utama
+## Main feature
 
+**User :**
+- **Profile**
+- **Dashboard**
+- **Booking**
+- **Catalog**
+- **Review**
+- **Logout**
+
+**Admin :**
+- **Dashboard reporting**
+- **Booking Management**
+- **Payment Management**
+- **Service Management**
+- **Hair Artist Management**
+- **User Management**
+- **History Transaction**
+- **Logout**
 
 ## Tech Stack
 
@@ -41,20 +58,32 @@ If you have any more problem, feel free to contact us
   - ![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
   - ![AJAX](https://img.shields.io/badge/AJAX-0055A4?style=for-the-badge&logo=ajax&logoColor=white)
 - **Backend:**
-  - ![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+  - ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+  - ![Laravel Sail](https://img.shields.io/badge/Laravel%20Sail-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 - **Database:**
   - ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+  - ![phpMyAdmin](https://img.shields.io/badge/phpMyAdmin-6C78AF?style=for-the-badge&logo=phpmyadmin&logoColor=white)
 - **Cloud Services:**
-  - ![Google Cloud](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)
-- **API Testing:**
-  - ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+  - ![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=Cloudflare&logoColor=white)
 - **Libraries :**
   - ![Carbon](https://img.shields.io/badge/Carbon-A19092)
-  - ![DOM PDF](https://img.shields.io/badge/DOM-PDF-A19092)
-  - ![JCHART](https://img.shields.io/badge/jchart-A19092)
   - ![Faker](https://img.shields.io/badge/Faker-A19092)
-- **ORM:**
-  - ![Eloquent](https://img.shields.io/badge/Eloquent-FF0027)
+
+## License
+
+This project is licensed under [MIT License](LICENSE).
+
+## Contact
+
+For more information, you can contact team members via the following email:
+
+- Fauzan Ghaza Madani: fauzanghaza@example.com
+- Lukas Awan Cahya Buana: lukasawan@example.com
+- Azril Januar Athallah: azril@example.com
+- Haikal Gibran Gunawan: haikal@example.com
+- Abyan Rifqi Zainum Muttaqin: abyanrifqi@example.com
+
+Thank you for using Richdjoe Barbershop Website!
 
 <p align="center"><a href="https://github.com/ghazafm" target="_blank"><img src="https://i.pinimg.com/originals/41/7e/be/417ebee986aec41629278b1e04cfbfe9.gif" width="400" alt="Laravel Logo"></a></p>
 
