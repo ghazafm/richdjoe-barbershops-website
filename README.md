@@ -25,7 +25,6 @@ Richdjoe Barbershop is a website developed for UMKM marketing functions in marke
 9. Run in the terminal 'npm install'
 10. Run in the terminal 'npm run build'
 11. Run in the terminal 'php artisan key:generate' (If necessary)
-12. Run the program and enjoy!
 
 If you have any more problem, feel free to contact us
 
