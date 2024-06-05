@@ -14,7 +14,7 @@ Richdjoe Barbershop is a website developed for UMKM marketing functions in marke
 
 ## How to start the project
 
-1. git clone this repository
+1. Git clone this repository
 2. In the project folder open the command line
 3. Then create a.env file in the external project folder (You can use.env.example and then you can copy and rename)
 4. The contents of your.env file match the database on your computer
@@ -31,17 +31,6 @@ If you have any more problem, feel free to contact us
 
 ## Fitur Utama
 
-- **Profile:** Menampilkan informasi admin seperti username dan password. Admin juga dapat mengganti username atau password.
-- **Dashboard:** Menampilkan overview statistik pesanan per bulan, distribusi pemesan, dan berbagai informasi terkait jumlah orders, paket, ruangan, kategori makanan, dan layout ruangan yang tersedia.
-- **Orders:** Mengelola tabel orders dengan fitur perubahan status order, penambahan order baru, dan pengisian form tambahan untuk setiap status.
-- **Paket:** Menyediakan list paket dengan fitur pencarian, pengurutan, penambahan, pengubahan, dan penghapusan paket.
-- **Ruangan:** Menyediakan list ruangan dengan fitur pencarian, pengurutan, penambahan, pengubahan, dan penghapusan ruangan.
-- **Layout:** Menyediakan list layout ruangan dengan fitur pencarian, pengurutan, penambahan, pengubahan, dan penghapusan layout ruangan.
-- **Makanan:** Menyediakan list makanan dengan fitur pencarian, pengurutan, penambahan, pengubahan, dan penghapusan makanan.
-- **History:** Menampilkan list pemesanan yang statusnya sudah menjadi checkout atau selesai.
-- **Income:** Menampilkan tabel pemasukan dari pesanan yang telah selesai dengan fitur filter dan pencetakan laporan.
-- **FAQ:** Menyediakan jawaban untuk pertanyaan yang sering diajukan terkait sistem.
-- **Logout:** Menu untuk keluar dari sistem dan mengakhiri sesi admin.
 
 ## Tech Stack
 
@@ -50,6 +39,7 @@ If you have any more problem, feel free to contact us
   - ![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)
   - ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
   - ![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+  - ![AJAX](https://img.shields.io/badge/AJAX-0055A4?style=for-the-badge&logo=ajax&logoColor=white)
 - **Backend:**
   - ![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 - **Database:**
