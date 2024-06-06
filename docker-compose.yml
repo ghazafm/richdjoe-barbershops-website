@@ -24,6 +24,7 @@ services:
         depends_on:
             - mysql
             - phpmyadmin
+
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
@@ -38,6 +39,7 @@ services:
         volumes:
             - 'sail-mysql:/var/lib/mysql'
             - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
+            - './ssl:/etc/mysql/ssl'  # Mount SSL certificates
         networks:
             - sail
         healthcheck:
@@ -48,6 +50,8 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
+        command: --ssl-ca=/etc/mysql/ssl/ca.pem --ssl-cert=/etc/mysql/ssl/server-cert.pem --ssl-key=/etc/mysql/ssl/server-key.pem  # Enable SSL for MySQL
+
     phpmyadmin:
         image: 'phpmyadmin:latest'
         ports:
@@ -56,9 +60,20 @@ services:
             - sail
         environment:
             - PMA_ARBITRARY=1
+            - PMA_HOST=mysql
+            - PMA_PORT=3306
+            - PMA_USER=${DB_USERNAME}
+            - PMA_PASSWORD=${DB_PASSWORD}
+            - PMA_SSL_CA=/etc/phpmyadmin/ssl/ca.pem  # Specify SSL CA for phpMyAdmin
+            - PMA_SSL_CERT=/etc/phpmyadmin/ssl/client-cert.pem  # Specify SSL certificate for phpMyAdmin
+            - PMA_SSL_KEY=/etc/phpmyadmin/ssl/client-key.pem  # Specify SSL key for phpMyAdmin
+        volumes:
+            - './ssl:/etc/phpmyadmin/ssl'  # Mount SSL certificates for phpMyAdmin
+
 networks:
     sail:
         driver: bridge
+
 volumes:
     sail-mysql:
         driver: local
