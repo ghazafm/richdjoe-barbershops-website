@@ -1,16 +1,88 @@
-## Tutor clone project
-1. Clone project ke komputer kalian (git clone aja)
-2. Di dalam folder project buka command line
-3. Ketik "composer install" setelah itu enter
-5. Tunggu sampai folder vendor dibuat
-6. Setelah itu buat file .env di folder terluar project (bisa .env.example kalian copy terus rename)
-7. Isi dari file .env kalian sesuaikan dengan database di komputer kalian
-8. Jalankan di terminal 'php artisan migrate' atau './script/migrate_all.zsh'(jika command sebelumnya tidak merubah apapun di database kalian)
-9. Jalankan di terminal 'npm install'
-10. Jalankan di terminal 'npm run build'
-11. Jalankan di terminal 'php artisan key:generate' (jika diperlukan)
-12. Jalankan di terminal 'php artisan db:seed' (untuk menambahkan data dummy)
-13. Gas ngerjain.....
+# Richdjoe Barbershop Website
+
+## Meet our Team
+
+1. **Fauzan Ghaza Madani** - Backend, Product Manager 
+2. **Lukas Awan Cahya Buana** - Frontend, UI/UX
+3. **Azril Januar Athallah** - Frontend, UI/UX
+4. **Haikal Gibran Gunawan** - Frontend, UI/UX
+5. **Abyan Rifqi Zainum Muttaqin** - UI/UX
+
+## Project Description
+
+Richdjoe Barbershop is a website developed for UMKM marketing functions in marketing planning, improving interaction with customers, as well as facilitating the process of booking or booking services. We use Laravel as a development framework that can improve efficiency and effectiveness in managing websites and support UMKM barbershop marketing strategy.
+
+## How to start the project
+
+1. Git clone this repository
+2. In the project folder open the command line
+3. Then create a.env file in the external project folder (You can use.env.example and then you can copy and rename)
+4. The contents of your.env file match the database on your computer
+5. Type "composer install" after it enter
+6. Wait until vendor folder is created
+7. Run in the terminal 'php artisan migrate' or './script/migrate_all.zsh' (if the previous command didn't change anything in your database)
+8. Run in the terminal 'php artisan db:seed' (add dummy data)
+9. Run in the terminal 'npm install'
+10. Run in the terminal 'npm run build'
+11. Run in the terminal 'php artisan key:generate' (If necessary)
+
+If you have any more problem, feel free to contact us
+
+## Main feature
+
+**User :**
+- **Profile**
+- **Dashboard**
+- **Booking**
+- **Catalog**
+- **Review**
+- **Logout**
+
+**Admin :**
+- **Dashboard reporting**
+- **Booking Management**
+- **Payment Management**
+- **Service Management**
+- **Hair Artist Management**
+- **User Management**
+- **History Transaction**
+- **Logout**
+
+## Tech Stack
+
+- **Frontend:** 
+  - ![HTML](https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+  - ![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+  - ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+  - ![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+  - ![AJAX](https://img.shields.io/badge/AJAX-0055A4?style=for-the-badge&logo=ajax&logoColor=white)
+- **Backend:**
+  - ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+  - ![Laravel Sail](https://img.shields.io/badge/Laravel%20Sail-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+- **Database:**
+  - ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+  - ![phpMyAdmin](https://img.shields.io/badge/phpMyAdmin-6C78AF?style=for-the-badge&logo=phpmyadmin&logoColor=white)
+- **Cloud Services:**
+  - ![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=Cloudflare&logoColor=white)
+- **Libraries :**
+  - ![Carbon](https://img.shields.io/badge/Carbon-A19092)
+  - ![Faker](https://img.shields.io/badge/Faker-A19092)
+
+## License
+
+This project is licensed under [MIT License](LICENSE).
+
+## Contact
+
+For more information, you can contact team members via the following email:
+
+- Fauzan Ghaza Madani: personal@fauzanghaza.com
+- Lukas Awan Cahya Buana: lukasawan@example.com
+- Azril Januar Athallah: azril@example.com
+- Haikal Gibran Gunawan: haikal@example.com
+- Abyan Rifqi Zainum Muttaqin: abyanrifqi@example.com
+
+Thank you for using Richdjoe Barbershop Website!
 
 <p align="center"><a href="https://github.com/ghazafm" target="_blank"><img src="https://i.pinimg.com/originals/41/7e/be/417ebee986aec41629278b1e04cfbfe9.gif" width="400" alt="Laravel Logo"></a></p>
 

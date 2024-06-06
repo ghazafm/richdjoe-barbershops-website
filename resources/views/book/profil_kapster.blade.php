@@ -94,9 +94,6 @@
 
         .rating-header {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
         }
 
         .rating-header h4 {
@@ -108,13 +105,11 @@
             font-size: 35px;
             margin-bottom: 10px;
             cursor: pointer;
-            transition: color 0.2s ease;
         }
 
         .stars span {
             font-size: 2rem;
             color: rgb(0, 0, 0);
-            margin-right: 5px;
         }
 
         .reviews-section {
@@ -204,11 +199,11 @@
                     <div class="card-body">
                         <div class="rating-header">
                             <h4>Service by {{ $kapster->name }}</h4>
-                            <div class="stars">
-                                @for ($i = 1; $i <= 5; $i++) <i class="fa-solid fa-star" data-star="{{ $i }}" style="color: {{ $i <= $rating ? 'gold' : 'gray' }}"></i>
-                                    @endfor
-                                    <span>{{ number_format($rating, 1) }}</span>
-                            </div>
+                        </div>
+                        <div class="stars">
+                            @for ($i = 1; $i <= 5; $i++) <i class="fa-solid fa-star" data-star="{{ $i }}" style="color: {{ $i <= $rating ? 'gold' : 'gray' }}"></i>
+                                @endfor
+                                <span>{{ number_format($rating, 1) }}</span>
                         </div>
                         <h2>Reviews</h2>
                         <div class="reviews-section">
