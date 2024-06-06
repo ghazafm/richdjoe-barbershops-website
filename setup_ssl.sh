@@ -18,8 +18,8 @@ generate_ssl_certificates() {
 
 # Function to restart services using Sail
 restart_services() {
-    ./vendor/bin/sail down
-    ./vendor/bin/sail up -d
+    sudo ./vendor/bin/sail down
+    sudo ./vendor/bin/sail up -d
 }
 
 # Main script
