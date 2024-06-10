@@ -16,8 +16,8 @@ Richdjoe Barbershop is a website developed for UMKM marketing functions in marke
 
 1. Git clone this repository
 2. In the project folder open the command line
-3. Then create a.env file in the external project folder (You can use.env.example and then you can copy and rename)
-4. The contents of your.env file match the database on your computer
+3. Then create a .env file in the external project folder (You can use.env.example and then you can copy and rename)
+4. The contents of your .env file match the database on your computer
 5. Type "composer install" after it enter
 6. Wait until vendor folder is created
 7. Run in the terminal 'php artisan migrate' or './script/migrate_all.zsh' (if the previous command didn't change anything in your database)
